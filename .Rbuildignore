@@ -2,3 +2,5 @@
 ^README\.Rmd$
 ^\.pre-commit-config\.yaml$
 ^Makefile$
+^.*\.Rproj$
+^\.Rproj\.user$
