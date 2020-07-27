@@ -9,6 +9,14 @@ Authors@R:
            comment = c(ORCID = "0000-0002-8458-8467"))
 Description: This is a personal package. Use at your own risk.
 License: MIT + file LICENSE
+Imports: 
+    dplyr,
+    ggplot2,
+    magrittr,
+    rnaturalearth,
+    sf,
+    stringr,
+    xpectr
 Suggests:
     testthat
 Encoding: UTF-8

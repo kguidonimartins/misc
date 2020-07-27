@@ -9,6 +9,7 @@ de
 deps
 devtools
 dontrun
+dplyr
 ead
 ebd
 exts
@@ -26,6 +27,7 @@ Karlo
 kguidonimartins
 knitr
 LazyData
+magrittr
 Makefile
 MERCHANTABILITY
 NONINFRINGEMENT
@@ -36,14 +38,17 @@ printf
 Rcheck
 requireNamespace
 rf
+rnaturalearth
 roxygen
 Roxygen
 RoxygenNote
 Rscript
 sed
 stevenworthington
+stringr
 sublicense
 testthat
 Worthington
+xpectr
 yihui
 zA
