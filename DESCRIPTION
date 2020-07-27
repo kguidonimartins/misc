@@ -1,15 +1,15 @@
 Package: misc
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R: 
+Title: Miscellaneous functions
+Version: 0.0.1
+Authors@R:
     person(given = "Karlo",
            family = "Guidoni Martins",
            role = c("aut", "cre"),
            email = "kguidonimartins@gmail.com",
            comment = c(ORCID = "0000-0002-8458-8467"))
-Description: What the package does (one paragraph).
+Description: This is a personal package. Use at your own risk.
 License: MIT + file LICENSE
-Suggests: 
+Suggests:
     testthat
 Encoding: UTF-8
 LazyData: true

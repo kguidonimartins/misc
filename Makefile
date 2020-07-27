@@ -2,25 +2,31 @@
 # https://github.com/yihui/knitr/blob/dc5ead7bcfc0ebd2789fe99c527c7d91afb3de4a/Makefile#L1-L4
 # Note the portability change as suggested in the manual:
 # https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Writing-portable-packages
+.DEFAULT_GOAL := help
 PKGNAME = `sed -n "s/Package: *\([^ ]*\)/\1/p" DESCRIPTION`
 PKGVERS = `sed -n "s/Version: *\([^ ]*\)/\1/p" DESCRIPTION`
 
+.PHONY: help tests clean
 
-all: check
+all: check ## run check target
 
-build:
+build: ## build package
 	R CMD build .
 
-check: build
-	R CMD check --no-manual $(PKGNAME)_$(PKGVERS).tar.gz
+check: ## check package
+	Rscript -e "devtools::check()"
 
-install_deps:
+install_deps: ## install dependencies
 	Rscript \
 	-e 'if (!requireNamespace("remotes")) install.packages("remotes")' \
 	-e 'remotes::install_deps(dependencies = TRUE)'
 
-install: install_deps build
+install: install_deps build ## install package
 	R CMD INSTALL $(PKGNAME)_$(PKGVERS).tar.gz
 
-clean:
+clean: ## clean *.Rcheck
 	@rm -rf $(PKGNAME)_$(PKGVERS).tar.gz $(PKGNAME).Rcheck
+
+help:         ## show this message
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
+		awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
