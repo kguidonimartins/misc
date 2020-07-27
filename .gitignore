@@ -3,3 +3,4 @@ tags
 .Rproj.user
 todo.txt
 .dev.R
+man/figures/*

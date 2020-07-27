@@ -30,6 +30,9 @@ install: install_deps build ## install package
 clean: ## clean *.Rcheck
 	@rm -rf $(PKGNAME)_$(PKGVERS).tar.gz $(PKGNAME).Rcheck
 
+render: ## render README
+	Rscript -e "rmarkdown::render('README.Rmd')"
+
 help:         ## show this message
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'

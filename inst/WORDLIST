@@ -37,8 +37,11 @@ PKGNAME
 PKGVERS
 printf
 Rcheck
+README
 requireNamespace
 rf
+rmarkdown
+Rmd
 rnaturalearth
 roxygen
 Roxygen
