@@ -31,6 +31,7 @@ repos:
           .*\.Rds|
           .*\.sh|
           .*\.RData
+          .*\.dev.R
           )$
     -   id: readme-rmd-rendered
     -   id: parsable-R
