@@ -8,3 +8,5 @@
 ^todo.txt$
 ^.here$
 ^README\.html$
+^.dev.R$
+^.travis.yml$

@@ -8,13 +8,16 @@ PKGVERS = `sed -n "s/Version: *\([^ ]*\)/\1/p" DESCRIPTION`
 
 .PHONY: help tests clean
 
-all: check ## run check target
+all: build clean test_pkg check ## run test_pkg, check, and clean targets
 
 build: ## build package
 	R CMD build .
 
 check: ## check package
 	Rscript -e "devtools::check()"
+
+test_pkg:     ## test functions and shiny app
+	Rscript -e "devtools::test()"
 
 install_deps: ## install dependencies
 	Rscript \
