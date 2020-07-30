@@ -8,7 +8,7 @@ PKGVERS = `sed -n "s/Version: *\([^ ]*\)/\1/p" DESCRIPTION`
 
 .PHONY: help tests clean
 
-all: build clean test_pkg check ## run test_pkg, check, and clean targets
+all: build clean test_pkg check ## run build, clean, test_pkg, and check
 
 build: ## build package
 	R CMD build .
