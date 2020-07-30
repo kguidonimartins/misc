@@ -10,6 +10,7 @@ Authors@R:
 Description: This is a personal package. Use at your own risk.
 License: MIT + file LICENSE
 Imports: 
+    conflicted,
     dplyr,
     ggplot2,
     magrittr,

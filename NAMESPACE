@@ -2,7 +2,9 @@
 
 export("%>%")
 export(ipak)
+export(prefer)
 export(quick_map)
+importFrom(conflicted,conflict_prefer)
 importFrom(dplyr,any_vars)
 importFrom(dplyr,case_when)
 importFrom(dplyr,filter_all)
