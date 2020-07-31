@@ -10,3 +10,4 @@
 ^README\.html$
 ^.dev.R$
 ^.travis.yml$
+^.in-dev$

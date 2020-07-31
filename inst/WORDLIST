@@ -128,6 +128,7 @@ cnY
 cran
 cre
 cS
+csv
 cT
 cV
 cʌ
@@ -482,6 +483,7 @@ mr
 Mɺh
 Mʁ
 mS
+mtcars
 Mto
 mU
 mv
@@ -628,6 +630,8 @@ rb
 Rcheck
 rds
 README
+readr
+readxl
 requireNamespace
 rf
 RgV
@@ -692,6 +696,7 @@ sޓM
 tA
 ʨ
 testthat
+textclean
 Tg
 tI
 tK
@@ -699,6 +704,7 @@ tL
 Ťm
 tMo
 tQ
+trinker
 tS
 tT
 tu
@@ -829,6 +835,7 @@ xh
 xH
 Xj
 xL
+xlsx
 XM
 xo
 ׄXO

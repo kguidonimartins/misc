@@ -7,13 +7,28 @@ if (!require("devtools")) install.packages("devtools")
 devtools::load_all()
 
 # udpate description file
-c("sf", "rnaturalearth", "ggplot2", "dplyr", "stringr", "magrittr", "xpectr", "conflicted", "usethis", "fs", "here") %>%
+c(
+  "sf",
+  "rnaturalearth",
+  "ggplot2",
+  "dplyr",
+  "stringr",
+  "magrittr",
+  "xpectr",
+  "conflicted",
+  "usethis",
+  "fs",
+  "here",
+  "janitor",
+  "readxl",
+  "tools"
+) %>%
   stringr::str_remove(., "tidyverse") %>%
   .[. != ""] %>%
   purrr::map(~ usethis::use_package(package = .x, type = "Imports"))
 
 # last function
-func <- "save_temp_data"
+func <- "read_sheet_then_save_csv"
 
 usethis::use_r(func)
 

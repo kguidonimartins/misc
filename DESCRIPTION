@@ -15,14 +15,22 @@ Imports:
     fs,
     ggplot2,
     here,
+    janitor,
     magrittr,
+    readr,
+    readxl,
     rnaturalearth,
     sf,
     stringr,
+    textclean,
+    tools,
     usethis,
     xpectr
 Suggests:
     testthat
+Remotes:
+    github::trinker/lexicon,
+    github::trinker/textclean
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
