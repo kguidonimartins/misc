@@ -8,6 +8,9 @@ r_packages:
   - rnaturalearthdata
   - rgeos
 
+before_script:
+ - Rscript -e "devtools::install_deps()"
+
 warnings_are_errors: false
 
 before_install: |
