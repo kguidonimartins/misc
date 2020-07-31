@@ -6,6 +6,7 @@ language: r
 r_packages:
   - devtools
   - rnaturalearthdata
+  - rgeos
 
 warnings_are_errors: false
 
