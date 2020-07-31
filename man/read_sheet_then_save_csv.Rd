@@ -4,7 +4,20 @@
 \alias{read_sheet_then_save_csv}
 \title{Read a excel sheet and save into a csv file}
 \usage{
-read_sheet_then_save_csv(excel_sheet, path_to_xlsx, dir_to_save = NULL)
+read_sheet_then_save_csv(
+  excel_sheet,
+  path_to_xlsx,
+  dir_to_save = NULL,
+  range = NULL,
+  col_types = NULL,
+  col_names = TRUE,
+  na = "",
+  trim_ws = TRUE,
+  skip = 0,
+  n_max = Inf,
+  guess_max = min(1000, n_max),
+  .name_repair = "unique"
+)
 }
 \arguments{
 \item{excel_sheet}{a character vector with the name of the excel sheet}
@@ -12,6 +25,24 @@ read_sheet_then_save_csv(excel_sheet, path_to_xlsx, dir_to_save = NULL)
 \item{path_to_xlsx}{a character vector with the path of the excel file}
 
 \item{dir_to_save}{a character vector with the path to save the csv file. Default is NULL and save the csv in the "data/temp" if it exists.}
+
+\item{range}{A cell range to read from. Includes typical Excel ranges like "B3:D87".}
+
+\item{col_types}{Either NULL to guess all from the spreadsheet or a character vector containing one entry per column from these options: "skip", "guess", "logical", "numeric", "date", "text" or "list". If exactly one col_type is specified, it will be recycled.}
+
+\item{col_names}{TRUE to use the first row as column names}
+
+\item{na}{Character vector of strings to interpret as missing values. By default, treats blank cells as missing data.}
+
+\item{trim_ws}{Should leading and trailing whitespace be trimmed?}
+
+\item{skip}{Minimum number of rows to skip before reading anything, be it column names or data.}
+
+\item{n_max}{Maximum number of data rows to read.}
+
+\item{guess_max}{Maximum number of data rows to use for guessing column types.}
+
+\item{.name_repair}{Handling of column names}
 }
 \description{
 Read a excel sheet and save into a csv file
