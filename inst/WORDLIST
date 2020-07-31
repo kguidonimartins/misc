@@ -133,6 +133,8 @@ DFq
 dh
 dHo
 dI
+dir
+dirs
 dm
 DM
 dontrun
@@ -204,6 +206,7 @@ foq
 fP
 FP
 FRZk
+fs
 fS
 FS
 fsZ
@@ -431,6 +434,7 @@ mv
 mVG
 MWQ
 mX
+myfolder
 Mz
 Ń
 ñ
@@ -560,6 +564,7 @@ rA
 raV
 rb
 Rcheck
+rds
 README
 requireNamespace
 rf
@@ -668,6 +673,7 @@ uo
 uR
 ȕr
 URsV
+usethis
 uTr
 uTw
 uʼp

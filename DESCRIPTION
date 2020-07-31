@@ -12,11 +12,14 @@ License: MIT + file LICENSE
 Imports: 
     conflicted,
     dplyr,
+    fs,
     ggplot2,
+    here,
     magrittr,
     rnaturalearth,
     sf,
     stringr,
+    usethis,
     xpectr
 Suggests:
     testthat

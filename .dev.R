@@ -2,16 +2,18 @@ if (!require("remotes")) install.packages("remotes")
 if (!require("tidyverse")) install.packages("tidyverse")
 if (!require("prefixer")) remotes::install_github("dreamRs/prefixer")
 if (!require("xpectr")) install.packages("xpectr")
+if (!require("devtools")) install.packages("devtools")
 
+devtools::load_all()
 
 # udpate description file
-c("sf", "rnaturalearth", "ggplot2", "dplyr", "stringr", "magrittr", "xpectr", "conflicted") %>%
+c("sf", "rnaturalearth", "ggplot2", "dplyr", "stringr", "magrittr", "xpectr", "conflicted", "usethis", "fs", "here") %>%
   stringr::str_remove(., "tidyverse") %>%
   .[. != ""] %>%
   purrr::map(~ usethis::use_package(package = .x, type = "Imports"))
 
 # last function
-func <- "prefer"
+func <- "create_dirs"
 
 usethis::use_r(func)
 
@@ -21,4 +23,4 @@ rstudioapi::navigateToFile("R/prefer.R")
 
 prefixer::prefixer()
 
-prefixer::import_from(prefer)
+prefixer::import_from(create_dirs)
