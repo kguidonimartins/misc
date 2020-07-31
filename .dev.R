@@ -28,7 +28,7 @@ c(
   purrr::map(~ usethis::use_package(package = .x, type = "Imports"))
 
 # last function
-func <- "read_all_xlsx_then_save_csv"
+func <- "na_viz"
 
 usethis::use_r(func)
 
