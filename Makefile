@@ -16,6 +16,9 @@ build: ## build package
 check: ## check package
 	Rscript -e "devtools::check()"
 
+styler: ## styler package
+	Rscript -e "styler::style_dir('R')"
+
 test_pkg:     ## test functions and shiny app
 	Rscript -e "devtools::test()"
 
