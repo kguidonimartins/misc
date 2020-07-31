@@ -3,7 +3,9 @@ dist: xenial
 
 language: r
 
-r_packages: devtools
+r_packages:
+  - devtools
+  - rnaturalearthdata
 
 warnings_are_errors: false
 
