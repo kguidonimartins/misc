@@ -1,11 +1,4 @@
-read_all_sheets_then_save_csv <- function(path_to_xlsx) {
-  dir_to_save <- here::here("data", "temp", "extracted_sheets")
 
-  path_to_xlsx %>%
-    readxl::excel_sheets(path = .) %>%
-    purrr::set_names() %>%
-    purrr::map(read_sheet_then_save_csv, path_to_xlsx = path_to_xlsx, dir_to_save = dir_to_save)
-}
 
 
 read_all_xlsx_then_save_csv <- function(path_to_xlsx) {

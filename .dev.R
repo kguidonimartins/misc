@@ -28,7 +28,7 @@ c(
   purrr::map(~ usethis::use_package(package = .x, type = "Imports"))
 
 # last function
-func <- "read_sheet_then_save_csv"
+func <- "read_all_sheets_then_save_csv"
 
 usethis::use_r(func)
 

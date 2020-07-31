@@ -17,6 +17,7 @@ Imports:
     here,
     janitor,
     magrittr,
+    purrr,
     readr,
     readxl,
     rnaturalearth,
