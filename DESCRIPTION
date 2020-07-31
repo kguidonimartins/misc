@@ -23,6 +23,7 @@ Imports:
     readxl,
     rnaturalearth,
     sf,
+    skimr,
     stringr,
     textclean,
     tidyr,

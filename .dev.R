@@ -28,7 +28,7 @@ c(
   purrr::map(~ usethis::use_package(package = .x, type = "Imports"))
 
 # last function
-func <- "na_viz"
+func <- "describe_data"
 
 usethis::use_r(func)
 
