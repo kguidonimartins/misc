@@ -13,14 +13,14 @@ c("sf", "rnaturalearth", "ggplot2", "dplyr", "stringr", "magrittr", "xpectr", "c
   purrr::map(~ usethis::use_package(package = .x, type = "Imports"))
 
 # last function
-func <- "create_dirs"
+func <- "save_temp_data"
 
 usethis::use_r(func)
 
 usethis::use_test(func)
 
-rstudioapi::navigateToFile("R/prefer.R")
+rstudioapi::navigateToFile(paste0("R/", func, ".R"))
 
 prefixer::prefixer()
 
-prefixer::import_from(create_dirs)
+prefixer::import_from(paste(func))

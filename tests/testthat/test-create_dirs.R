@@ -1,5 +1,3 @@
-
-
 test_that("create_dirs works with NULL entry", {
   create_dirs(dirs = NULL)
   expect_true(file.exists("data/raw/.gitkeep"))
