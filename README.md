@@ -27,6 +27,18 @@ if (!require("misc")) remotes::install_github("kguidonimartins/misc")
 ``` r
 library(misc)
 
+# check available functions
+getNamespaceExports("misc")
+#> [1] "%>%"                           "read_all_sheets_then_save_csv"
+#> [3] "ipak"                          "save_temp_data"               
+#> [5] "prefer"                        "quick_map"                    
+#> [7] "create_dirs"                   "read_sheet_then_save_csv"     
+#> [9] "read_all_xlsx_then_save_csv"
+```
+
+#### Some examples
+
+``` r
 # install and load multiple packages
 ipak(c("vegan", "dplyr"))
 
@@ -34,7 +46,7 @@ ipak(c("vegan", "dplyr"))
 quick_map()
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
 ``` r
 
@@ -42,13 +54,13 @@ quick_map()
 quick_map(region = "South America", type = "sf")
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-2.png" width="100%" />
 
 ``` r
 quick_map(region = "Caribbean", type = "sf")
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-3.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-3.png" width="100%" />
 
 ``` r
 
@@ -58,4 +70,4 @@ quick_map(region = "Africa", type = "sf") +
   theme_void()
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-4.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-4.png" width="100%" />

@@ -32,9 +32,16 @@ if (!require("misc")) remotes::install_github("kguidonimartins/misc")
 
 ### Usage
 
-```{r, message=FALSE, results='hide', warning=FALSE}
+```{r}
 library(misc)
 
+# check available functions
+getNamespaceExports("misc")
+```
+
+#### Some examples
+
+```{r, message=FALSE, results='hide', warning=FALSE}
 # install and load multiple packages
 ipak(c("vegan", "dplyr"))
 
