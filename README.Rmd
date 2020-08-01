@@ -30,18 +30,63 @@ if (!require("remotes")) install.packages("remotes")
 if (!require("misc")) remotes::install_github("kguidonimartins/misc")
 ```
 
-### Usage
 
-```{r}
-library(misc)
-
-# check available functions
-getNamespaceExports("misc")
+```{r, echo=FALSE, eval=TRUE, message=FALSE, results='hide', warning=FALSE}
+remotes::install_github("kguidonimartins/misc", force = TRUE)
+if (!require("git2r")) install.packages("git2r")
 ```
 
-#### Some examples
+### Available functions
+
+```{r, echo=FALSE, message=FALSE}
+
+suppressPackageStartupMessages({
+  library(tidyverse)
+})
+
+get_func <- function(func) {
+  tools::parse_Rd(file = func) %>%
+    .[5] %>%
+    flatten() %>%
+    .[[1]]
+}
+
+get_title <- function(title) {
+  tools::parse_Rd(file = title) %>%
+    .[9] %>%
+    flatten() %>%
+    .[[1]]
+}
+
+mans <- fs::dir_ls(path = "man", regexp = "\\.Rd")
+
+list_func <- list()
+list_title <- list()
+for (i in seq_along(mans)) {
+  list_func[i] <- get_func(mans[i])[1]
+  list_title[i] <- get_title(mans[i])[1]
+}
+
+full_join(
+  list_func %>% enframe() %>%
+    unnest(cols = c(value)) %>%
+    transmute(ID = name, Function = value),
+  list_title %>% enframe() %>%
+    unnest(cols = c(value)) %>%
+    transmute(ID = name, Description = value),
+  by = "ID"
+) %>%
+  filter(Description != "Pipe operator") %>%
+  mutate(Function = paste0("`", Function, "()`")) %>%
+  as.data.frame() %>%
+  knitr::kable(.)
+```
+
+### Usage
 
 ```{r, message=FALSE, results='hide', warning=FALSE}
+library(misc)
+
 # install and load multiple packages
 ipak(c("vegan", "dplyr"))
 
@@ -56,4 +101,10 @@ quick_map(region = "Caribbean", type = "sf")
 if (!require("ggplot2")) install.packages("ggplot2")
 quick_map(region = "Africa", type = "sf") +
   theme_void()
+```
+
+### What commit is this file at?
+
+```{r}
+if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r::repository(here::here())
 ```
