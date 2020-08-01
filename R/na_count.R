@@ -26,7 +26,7 @@ na_count <- function(data) {
     )
   na_percent_data <-
     data %>%
-    dplyr::summarise_all(~ round(sum(is.na(.)) / dplyr::n(), digits = 3)) %>%
+    dplyr::summarise_all(~ round((sum(is.na(.)) / dplyr::n()) * 100, digits = 3)) %>%
     tidyr::pivot_longer(
       cols = tidyr::everything(),
       names_to = "variables",

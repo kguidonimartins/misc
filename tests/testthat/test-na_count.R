@@ -4,5 +4,5 @@ test_that("na_count works", {
     na_data %>%
     na_count()
   expect_equivalent(na_res$na_count, c(1, 2))
-  expect_equivalent(na_res$na_percent, c(0.5, 1.0))
+  expect_equivalent(na_res$na_percent, c(50, 100))
 })
