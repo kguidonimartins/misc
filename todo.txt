@@ -7,6 +7,10 @@
 ## TODO
 
 - include `plot_overlap_ranges()`
+- include `save_plot()`
+    >  ~/GoogleDrive2/git-repos/min_proj/R/utils.R
+    * [ ] add option for base and ggplot plots
+    * [ ] add option for trim images after save it
 - include `trim_fig()`
     > https://cran.r-project.org/web/packages/magick/vignettes/intro.html#Cut_and_edit
 
