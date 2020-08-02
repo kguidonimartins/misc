@@ -26,17 +26,18 @@ if (!require("misc")) remotes::install_github("kguidonimartins/misc")
 
 | ID | Function                          | Description                                                   |
 | -: | :-------------------------------- | :------------------------------------------------------------ |
-|  1 | `create_dirs()`                   | Create data, output and R directories                         |
-|  2 | `describe_data()`                 | Describe data                                                 |
-|  3 | `ipak()`                          | Install and load multiple R packages                          |
-|  4 | `na_count()`                      | Count NA frequency in data                                    |
-|  5 | `na_viz()`                        | Vizualize NA frequency in data                                |
-|  7 | `prefer()`                        | Defines preferred functions from conflicts between namespaces |
-|  8 | `quick_map()`                     | Create maps quickly                                           |
-|  9 | `read_all_sheets_then_save_csv()` | Read and save into csv files all the sheets in a excel file   |
-| 10 | `read_all_xlsx_then_save_csv()`   | Read all sheets from all excel files and save into csv files  |
-| 11 | `read_sheet_then_save_csv()`      | Read a excel sheet and save into a csv file                   |
-| 12 | `save_temp_data()`                | Save objects as a RDS file                                    |
+|  1 | `add_gitignore()`                 | Add a gitignore to the project root                           |
+|  2 | `create_dirs()`                   | Create data, output and R directories                         |
+|  3 | `describe_data()`                 | Describe data                                                 |
+|  4 | `ipak()`                          | Install and load multiple R packages                          |
+|  5 | `na_count()`                      | Count NA frequency in data                                    |
+|  6 | `na_viz()`                        | Vizualize NA frequency in data                                |
+|  8 | `prefer()`                        | Defines preferred functions from conflicts between namespaces |
+|  9 | `quick_map()`                     | Create maps quickly                                           |
+| 10 | `read_all_sheets_then_save_csv()` | Read and save into csv files all the sheets in a excel file   |
+| 11 | `read_all_xlsx_then_save_csv()`   | Read all sheets from all excel files and save into csv files  |
+| 12 | `read_sheet_then_save_csv()`      | Read a excel sheet and save into a csv file                   |
+| 13 | `save_temp_data()`                | Save objects as a RDS file                                    |
 
 ### Usage
 
@@ -82,5 +83,5 @@ quick_map(region = "Africa", type = "sf") +
 if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r::repository(here::here())
 #> Local:    main /home/karlo/GoogleDrive2/git-repos/misc
 #> Remote:   main @ origin (https://github.com/kguidonimartins/misc.git)
-#> Head:     [05ff493] 2020-07-31: add `describe_data()`
+#> Head:     [98f68dc] 2020-08-02: update todo.txt
 ```

@@ -32,7 +32,7 @@ if (!require("misc")) remotes::install_github("kguidonimartins/misc")
 
 
 ```{r, echo=FALSE, eval=TRUE, message=FALSE, results='hide', warning=FALSE}
-remotes::install_github("kguidonimartins/misc", force = TRUE)
+remotes::install_github("kguidonimartins/misc")
 if (!require("git2r")) install.packages("git2r")
 ```
 

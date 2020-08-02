@@ -13,6 +13,7 @@
     * [ ] add option for trim images after save it
 - include `trim_fig()`
     > https://cran.r-project.org/web/packages/magick/vignettes/intro.html#Cut_and_edit
+- include `add_makefile()`
 
 ## DOING
 
