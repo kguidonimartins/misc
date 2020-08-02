@@ -7,6 +7,8 @@
 ## TODO
 
 - include `plot_overlap_ranges()`
+- include `trim_fig()`
+    > https://cran.r-project.org/web/packages/magick/vignettes/intro.html#Cut_and_edit
 
 ## DOING
 
@@ -18,3 +20,5 @@
 
 - include `create_data_dirs()`
 - include `save_rds_temp_data()`
+- include `add_gitignore()`
+    > https://www.toptal.com/developers/gitignore/api/r

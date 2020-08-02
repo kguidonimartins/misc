@@ -28,7 +28,7 @@ c(
   purrr::map(~ usethis::use_package(package = .x, type = "Imports"))
 
 # last function
-func <- "describe_data"
+func <- "add_gitignore"
 
 usethis::use_r(func)
 
