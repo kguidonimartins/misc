@@ -1,4 +1,4 @@
-#' Combine words using ptbr rules (differ from `{knitr::combine_words()` which uses oxford commas)
+#' Combine words using ptbr rules (differ from knitr::combine_words() which uses oxford commas)
 #'
 #' @param words a character vector with words to combine
 #' @param sep a character with the separator of the words. Default is NULL and insert ", "

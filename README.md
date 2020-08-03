@@ -24,20 +24,21 @@ if (!require("misc")) remotes::install_github("kguidonimartins/misc")
 
 ### Available functions
 
-| ID | Function                          | Description                                                   |
-| -: | :-------------------------------- | :------------------------------------------------------------ |
-|  1 | `add_gitignore()`                 | Add a gitignore to the project root                           |
-|  2 | `create_dirs()`                   | Create data, output and R directories                         |
-|  3 | `describe_data()`                 | Describe data                                                 |
-|  4 | `ipak()`                          | Install and load multiple R packages                          |
-|  5 | `na_count()`                      | Count NA frequency in data                                    |
-|  6 | `na_viz()`                        | Vizualize NA frequency in data                                |
-|  8 | `prefer()`                        | Defines preferred functions from conflicts between namespaces |
-|  9 | `quick_map()`                     | Create maps quickly                                           |
-| 10 | `read_all_sheets_then_save_csv()` | Read and save into csv files all the sheets in a excel file   |
-| 11 | `read_all_xlsx_then_save_csv()`   | Read all sheets from all excel files and save into csv files  |
-| 12 | `read_sheet_then_save_csv()`      | Read a excel sheet and save into a csv file                   |
-| 13 | `save_temp_data()`                | Save objects as a RDS file                                    |
+| ID | Function                          | Description                                                                                   |
+| -: | :-------------------------------- | :-------------------------------------------------------------------------------------------- |
+|  1 | `add_gitignore()`                 | Add a gitignore to the project root                                                           |
+|  2 | `combine_words_ptbr()`            | Combine words using ptbr rules (differ from knitr::combine\_words() which uses oxford commas) |
+|  3 | `create_dirs()`                   | Create data, output and R directories                                                         |
+|  4 | `describe_data()`                 | Describe data                                                                                 |
+|  5 | `ipak()`                          | Install and load multiple R packages                                                          |
+|  6 | `na_count()`                      | Count NA frequency in data                                                                    |
+|  7 | `na_viz()`                        | Vizualize NA frequency in data                                                                |
+|  9 | `prefer()`                        | Defines preferred functions from conflicts between namespaces                                 |
+| 10 | `quick_map()`                     | Create maps quickly                                                                           |
+| 11 | `read_all_sheets_then_save_csv()` | Read and save into csv files all the sheets in a excel file                                   |
+| 12 | `read_all_xlsx_then_save_csv()`   | Read all sheets from all excel files and save into csv files                                  |
+| 13 | `read_sheet_then_save_csv()`      | Read a excel sheet and save into a csv file                                                   |
+| 14 | `save_temp_data()`                | Save objects as a RDS file                                                                    |
 
 ### Usage
 
@@ -83,5 +84,5 @@ quick_map(region = "Africa", type = "sf") +
 if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r::repository(here::here())
 #> Local:    main /home/karlo/GoogleDrive2/git-repos/misc
 #> Remote:   main @ origin (https://github.com/kguidonimartins/misc.git)
-#> Head:     [98f68dc] 2020-08-02: update todo.txt
+#> Head:     [543bb91] 2020-08-03: add `combine_words_ptbr()`
 ```

@@ -80,6 +80,7 @@ full_join(
   mutate(Function = paste0("`", Function, "()`")) %>%
   as.data.frame() %>%
   knitr::kable(.)
+
 ```
 
 ### Usage

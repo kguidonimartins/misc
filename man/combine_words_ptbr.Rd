@@ -2,7 +2,7 @@
 % Please edit documentation in R/combine_words_ptbr.R
 \name{combine_words_ptbr}
 \alias{combine_words_ptbr}
-\title{Combine words using ptbr rules (differ from \verb{\{knitr::combine_words()} which uses oxford commas)}
+\title{Combine words using ptbr rules (differ from knitr::combine_words() which uses oxford commas)}
 \usage{
 combine_words_ptbr(words, sep = NULL, last = NULL)
 }
@@ -17,7 +17,7 @@ combine_words_ptbr(words, sep = NULL, last = NULL)
 a character vector
 }
 \description{
-Combine words using ptbr rules (differ from \verb{\{knitr::combine_words()} which uses oxford commas)
+Combine words using ptbr rules (differ from knitr::combine_words() which uses oxford commas)
 }
 \examples{
 \dontrun{
