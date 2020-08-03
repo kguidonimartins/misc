@@ -21,14 +21,15 @@ c(
   "here",
   "janitor",
   "readxl",
-  "tools"
+  "tools",
+  "glue"
 ) %>%
   stringr::str_remove(., "tidyverse") %>%
   .[. != ""] %>%
   purrr::map(~ usethis::use_package(package = .x, type = "Imports"))
 
 # last function
-func <- "add_gitignore"
+func <- "combine_words_ptbr"
 
 usethis::use_r(func)
 
