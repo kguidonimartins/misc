@@ -7,12 +7,6 @@
 ## TODO
 
 - include `plot_overlap_ranges()`
-- include `save_plot()`
-    >  ~/GoogleDrive2/git-repos/min_proj/R/utils.R
-    * [ ] add option for base and ggplot plots
-    * [ ] add option for trim images after save it
-- include `trim_fig()`
-    > https://cran.r-project.org/web/packages/magick/vignettes/intro.html#Cut_and_edit
 - include `add_makefile()`
 
 ## DOING
@@ -27,3 +21,9 @@
 - include `save_rds_temp_data()`
 - include `add_gitignore()`
     > https://www.toptal.com/developers/gitignore/api/r
+- include `trim_fig()`
+    > https://cran.r-project.org/web/packages/magick/vignettes/intro.html#Cut_and_edit
+- include `save_plot()`
+    >  ~/GoogleDrive2/git-repos/min_proj/R/utils.R
+    *  X  add option for base and ggplot plots
+    * [x] add option for trim images after save it

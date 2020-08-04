@@ -3,6 +3,7 @@ if (!require("tidyverse")) install.packages("tidyverse")
 if (!require("prefixer")) remotes::install_github("dreamRs/prefixer")
 if (!require("xpectr")) install.packages("xpectr")
 if (!require("devtools")) install.packages("devtools")
+if (!require("usethis")) install.packages("usethis")
 
 devtools::load_all()
 
@@ -22,14 +23,15 @@ c(
   "janitor",
   "readxl",
   "tools",
-  "glue"
+  "glue",
+  "magick"
 ) %>%
   stringr::str_remove(., "tidyverse") %>%
   .[. != ""] %>%
   purrr::map(~ usethis::use_package(package = .x, type = "Imports"))
 
 # last function
-func <- "combine_words_ptbr"
+func <- "trim_fig"
 
 usethis::use_r(func)
 

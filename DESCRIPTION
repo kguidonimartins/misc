@@ -17,6 +17,7 @@ Imports:
     glue,
     here,
     janitor,
+    magick,
     magrittr,
     naniar,
     purrr,
