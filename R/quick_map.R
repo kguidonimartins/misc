@@ -98,6 +98,5 @@ quick_map <- function(region = NULL, type = NULL) {
     }
   }
 
-
   return(plot_map)
 }

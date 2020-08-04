@@ -11,3 +11,4 @@
 ^.dev.R$
 ^.travis.yml$
 ^.in-dev$
+^.env$

@@ -48,5 +48,5 @@ if (!require("misc")) remotes::install_github("kguidonimartins/misc")
 if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r::repository(here::here())
 #> Local:    main /home/karlo/GoogleDrive2/git-repos/misc
 #> Remote:   main @ origin (https://github.com/kguidonimartins/misc.git)
-#> Head:     [e6f2678] 2020-08-04: add `save_plot()` and `trim_fig()`
+#> Head:     [454b741] 2020-08-04: update tests
 ```

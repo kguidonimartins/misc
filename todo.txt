@@ -7,7 +7,21 @@
 ## TODO
 
 - include `plot_overlap_ranges()`
+- include `update_description()`
 - include `add_makefile()`
+    > goal = c("manuscript", "analytical", "show-case", "slides", "package", "shiny")
+- include `add_rbuildignore()`
+- indlude `add_renv()`
+    > which append .Last(`renv::snapshot()`) to the created .Rprofile
+- include `add_dockerfile()`
+    > see rrtools
+    * [ ] using dist xenial
+    * [ ] using rstudio package manager or mran pointing to the first day of dockerfile creation
+- include `add_docx_md_hooks()`
+- include `add_travis(goal = c("manuscript", "analytical"), inside_docker = FALSE)`
+- include `make_template()
+    > goal = c("manuscript", "analytical", "show-case", "slides", "package", "shiny")
+    > a wrapper for create_dirs, and add_*()
 
 ## DOING
 

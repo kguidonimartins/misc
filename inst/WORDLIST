@@ -119,6 +119,7 @@ cAE
 cAEr
 carb
 Cbw
+cd
 cĔ
 cF
 CfШ
@@ -161,7 +162,10 @@ dirs
 dLH
 dm
 DM
+dockerfile
+docx
 dontrun
+dotenv
 dp
 DpaT
 dplyr
@@ -182,8 +186,8 @@ dϠ
 è
 È
 Ě
-E݁
 E͊ۜ
+E݁
 ȇ
 eA
 ead
@@ -200,6 +204,7 @@ eK
 eł
 eM
 ēN
+env
 eP
 EP
 eq
@@ -346,6 +351,7 @@ IJ
 IK
 iL
 IM
+indlude
 io
 iO
 ipak
@@ -480,6 +486,7 @@ magrittr
 makefile
 Makefile
 mB
+md
 mE
 MERCHANTABILITY
 Mf
@@ -493,6 +500,7 @@ mN
 mO
 MQC
 mr
+mran
 Mɺh
 Mʁ
 mS
@@ -648,12 +656,14 @@ R'J
 rA
 raV
 rb
+rbuildignore
 Rcheck
 RCMD
 rds
 README
 readr
 readxl
+renv
 repos
 requireNamespace
 rf
@@ -677,11 +687,15 @@ roxygen
 Roxygen
 RoxygenNote
 RPD
+Rprofile
 RPzy
 rQ
 rR
 rrJR
+rrtools
 Rscript
+rstudio
+rv
 rV
 rW
 ry
@@ -737,6 +751,7 @@ tL
 tMo
 toptal
 tQ
+travis
 trinker
 tS
 tT
@@ -866,6 +881,7 @@ xC
 xd
 xE
 XeE
+xenial
 xf
 xh
 xH

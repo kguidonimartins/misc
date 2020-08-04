@@ -1,41 +1,42 @@
-# h/t to @jimhester and @yihui for this parse block:
-# https://github.com/yihui/knitr/blob/dc5ead7bcfc0ebd2789fe99c527c7d91afb3de4a/Makefile#L1-L4
-# Note the portability change as suggested in the manual:
-# https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Writing-portable-packages
 .DEFAULT_GOAL := help
-PKGNAME = `sed -n "s/Package: *\([^ ]*\)/\1/p" DESCRIPTION`
-PKGVERS = `sed -n "s/Version: *\([^ ]*\)/\1/p" DESCRIPTION`
-RCMD := Rscript -e
+
+R := Rscript -e
+
+PKGNAME := $(shell sed -n "s/Package: *\([^ ]*\)/\1/p" DESCRIPTION)
+PKGVERS := $(shell sed -n "s/Version: *\([^ ]*\)/\1/p" DESCRIPTION)
 
 .PHONY: help tests clean
 
-all: build clean test_pkg check ## run build, clean, test_pkg, and check
+all: install tests check clean README.md ## run install_deps, build, install, tests, check, clean, and README.md
 
 build: ## build package
-	R CMD build .
+	$(R) "devtools::build()"
 
 check: ## check package
-	$(RCMD) "devtools::check()"
+	$(R) "devtools::check()"
 
 styler: ## styler package
-	$(RCMD) "styler::style_dir('R')"
+	$(R) "styler::style_dir('R')"
 
-test_pkg:     ## test functions and shiny app
-	$(RCMD) "devtools::test()"
+tests: ## run test
+	$(R) "devtools::test()"
 
 install_deps: ## install dependencies
-	Rscript \
-	-e 'if (!requireNamespace("remotes")) install.packages("remotes")' \
+	$(R) 'if (!requireNamespace("remotes")) install.packages("remotes")' \
+	-e 'if (!requireNamespace("dotenv")) install.packages("dotenv")' \
+	-e 'if (file.exists(".env")) dotenv::load_dot_env()' \
 	-e 'remotes::install_deps(dependencies = TRUE)'
 
 install: install_deps build ## install package
+	cd ..; \
 	R CMD INSTALL $(PKGNAME)_$(PKGVERS).tar.gz
 
-clean: ## clean *.Rcheck
-	@rm -rf $(PKGNAME)_$(PKGVERS).tar.gz $(PKGNAME).Rcheck
+clean: ## clean *.tar.gz *.Rcheck
+	cd ..; \
+	$(RM) -rv $(PKGNAME)_$(PKGVERS).tar.gz $(PKGNAME).Rcheck
 
-render: ## render README
-	$(RCMD) "rmarkdown::render('README.Rmd')"
+README.md: README.Rmd ## render README
+	$(R) "rmarkdown::render('$<')"
 
 help:         ## show this message
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
