@@ -5,6 +5,7 @@
 .DEFAULT_GOAL := help
 PKGNAME = `sed -n "s/Package: *\([^ ]*\)/\1/p" DESCRIPTION`
 PKGVERS = `sed -n "s/Version: *\([^ ]*\)/\1/p" DESCRIPTION`
+RCMD := Rscript -e
 
 .PHONY: help tests clean
 
@@ -14,13 +15,13 @@ build: ## build package
 	R CMD build .
 
 check: ## check package
-	Rscript -e "devtools::check()"
+	$(RCMD) "devtools::check()"
 
 styler: ## styler package
-	Rscript -e "styler::style_dir('R')"
+	$(RCMD) "styler::style_dir('R')"
 
 test_pkg:     ## test functions and shiny app
-	Rscript -e "devtools::test()"
+	$(RCMD) "devtools::test()"
 
 install_deps: ## install dependencies
 	Rscript \
@@ -34,7 +35,7 @@ clean: ## clean *.Rcheck
 	@rm -rf $(PKGNAME)_$(PKGVERS).tar.gz $(PKGNAME).Rcheck
 
 render: ## render README
-	Rscript -e "rmarkdown::render('README.Rmd')"
+	$(RCMD) "rmarkdown::render('README.Rmd')"
 
 help:         ## show this message
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \

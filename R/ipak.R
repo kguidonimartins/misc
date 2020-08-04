@@ -18,7 +18,7 @@
 ipak <- function(pkg_list) {
   new_pkg <- pkg_list[!(pkg_list %in% utils::installed.packages()[, "Package"])]
   if (length(new_pkg)) {
-    utils::install.packages(new_pkg, dependencies = TRUE)
+    utils::install.packages(new_pkg, dependencies = TRUE, repos = "https://cloud.r-project.org")
   }
   sapply(X = pkg_list, FUN = require, quietly = TRUE, character.only = TRUE)
 }

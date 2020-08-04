@@ -649,6 +649,7 @@ rA
 raV
 rb
 Rcheck
+RCMD
 rds
 README
 readr
@@ -656,6 +657,7 @@ readxl
 repos
 requireNamespace
 rf
+rgeos
 RgV
 Rhu
 ri
@@ -668,7 +670,9 @@ rmarkdown
 Rmd
 rMJ
 rnaturalearth
+rnaturalearthdata
 rO
+ropensci
 roxygen
 Roxygen
 RoxygenNote

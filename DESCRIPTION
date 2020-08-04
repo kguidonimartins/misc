@@ -9,7 +9,7 @@ Authors@R:
            comment = c(ORCID = "0000-0002-8458-8467"))
 Description: This is a personal package. Use at your own risk.
 License: MIT + file LICENSE
-Imports: 
+Imports:
     conflicted,
     dplyr,
     fs,
@@ -33,8 +33,11 @@ Imports:
     usethis,
     xpectr
 Suggests:
+    rgeos,
+    rnaturalearthdata,
     testthat
 Remotes:
+    github::ropensci/rnaturalearthdata,
     github::trinker/lexicon,
     github::trinker/textclean
 Encoding: UTF-8
