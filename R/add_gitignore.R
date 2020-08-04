@@ -31,6 +31,7 @@ add_gitignore <- function(type = "r") {
   } else {
     usethis::ui_todo("Creating {usethis::ui_field(here::here(file_wanted))}...")
     utils::download.file(url = URL_wanted, destfile = file_wanted)
+    write("tags", file = file_wanted, append = TRUE)
     usethis::ui_done("{usethis::ui_field(here::here(file_wanted))} saved!")
   }
 }
