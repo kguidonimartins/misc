@@ -83,27 +83,6 @@ full_join(
 
 ```
 
-### Usage
-
-```{r, message=FALSE, results='hide', warning=FALSE}
-library(misc)
-
-# install and load multiple packages
-ipak(c("vegan", "dplyr"))
-
-# create world map quickly
-quick_map()
-
-# create other maps quickly
-quick_map(region = "South America", type = "sf")
-quick_map(region = "Caribbean", type = "sf")
-
-# edit maps
-if (!require("ggplot2")) install.packages("ggplot2")
-quick_map(region = "Africa", type = "sf") +
-  theme_void()
-```
-
 ### What commit is this file at?
 
 ```{r}
