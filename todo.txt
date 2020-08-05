@@ -3,10 +3,12 @@
 - ICEBOX
     > Someday, maybe, that data...
     * [ ] see cool_paper.pdf
+    * [ ] include `plot_overlap_ranges()`
 
 ## TODO
 
-- include `plot_overlap_ranges()`
+- include `read_temp_data()`
+    > using purrr to read all too
 - include `update_description()`
 - include `add_makefile()`
     > goal = c("manuscript", "analytical", "show-case", "slides", "package", "shiny")
@@ -21,7 +23,7 @@
 - include `add_travis(goal = c("manuscript", "analytical"), inside_docker = FALSE)`
 - include `make_template()
     > goal = c("manuscript", "analytical", "show-case", "slides", "package", "shiny")
-    > a wrapper for create_dirs, and add_*()
+    * [ ] a wrapper for create_dirs, and add_*()
 
 ## DOING
 
@@ -39,5 +41,4 @@
     > https://cran.r-project.org/web/packages/magick/vignettes/intro.html#Cut_and_edit
 - include `save_plot()`
     >  ~/GoogleDrive2/git-repos/min_proj/R/utils.R
-    *  X  add option for base and ggplot plots
     * [x] add option for trim images after save it

@@ -2,22 +2,26 @@
 % Please edit documentation in R/ipak.R
 \name{ipak}
 \alias{ipak}
-\title{Install and load multiple R packages}
+\title{Install and load multiple CRAN and github R packages}
 \usage{
-ipak(pkg_list)
+ipak(pkg_list, force_cran = FALSE, force_github = FALSE)
 }
 \arguments{
-\item{pkg_list}{A character vector with the package names}
+\item{pkg_list}{A character vector with the package names. Github packages needs to be listed as usual: "username/repo"}
+
+\item{force_cran}{logical. If force the installation of cran packages}
+
+\item{force_github}{logical. If force the installation of github packages}
 }
 \value{
 None
 }
 \description{
-Install and load multiple R packages
+Install and load multiple CRAN and github R packages
 }
 \examples{
 \dontrun{
-pkg_list <- c("vegan", "ggplot2")
+pkg_list <- c("vegan", "ggplot2", "trinker/textclean", "jalvesaq/colorout")
 ipak(pkg_list)
 }
 }

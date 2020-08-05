@@ -11,6 +11,7 @@ Description: This is a personal package. Use at your own risk.
 License: MIT + file LICENSE
 Imports:
     conflicted,
+    crayon,
     dplyr,
     fs,
     ggplot2,
@@ -23,6 +24,7 @@ Imports:
     purrr,
     readr,
     readxl,
+    remotes,
     rnaturalearth,
     sf,
     skimr,
