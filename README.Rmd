@@ -82,6 +82,14 @@ full_join(
 
 ```
 
+### Usage
+
+```{r}
+# install and load multiple package (cran and github) at once
+library(misc)
+ipak(c("vegan", "ggplot2", "trinker/textclean", "jalvesaq/colorout"))
+```
+
 ### What commit is this file at?
 
 ```{r}

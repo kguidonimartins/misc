@@ -30,7 +30,7 @@ if (!require("misc")) remotes::install_github("kguidonimartins/misc")
 |  2 | `combine_words_ptbr()`            | Combine words using ptbr rules (differ from knitr::combine\_words() which uses oxford commas) |
 |  3 | `create_dirs()`                   | Create data, output and R directories                                                         |
 |  4 | `describe_data()`                 | Describe data                                                                                 |
-|  5 | `ipak()`                          | Install and load multiple R packages                                                          |
+|  5 | `ipak()`                          | Install and load multiple CRAN and github R packages                                          |
 |  6 | `na_count()`                      | Count NA frequency in data                                                                    |
 |  7 | `na_viz()`                        | Vizualize NA frequency in data                                                                |
 |  9 | `prefer()`                        | Defines preferred functions from conflicts between namespaces                                 |
@@ -42,11 +42,24 @@ if (!require("misc")) remotes::install_github("kguidonimartins/misc")
 | 15 | `save_temp_data()`                | Save objects as a RDS file                                                                    |
 | 16 | `trim_fig()`                      | Remove white spaces around figures                                                            |
 
+### Usage
+
+``` r
+# install and load multiple package (cran and github) at once
+library(misc)
+ipak(c("vegan", "ggplot2", "trinker/textclean", "jalvesaq/colorout"))
+#> ℹ Successful loaded:
+#>  - vegan (2.5.6) 
+#>  - ggplot2 (3.3.2) 
+#>  - textclean (0.9.5) 
+#>  - colorout (1.2.2)
+```
+
 ### What commit is this file at?
 
 ``` r
 if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r::repository(here::here())
 #> Local:    main /home/karlo/GoogleDrive2/git-repos/misc
 #> Remote:   main @ origin (https://github.com/kguidonimartins/misc.git)
-#> Head:     [454b741] 2020-08-04: update tests
+#> Head:     [03f713c] 2020-08-05: now `ipak()` also handle github packages
 ```
