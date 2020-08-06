@@ -2,7 +2,7 @@
 % Please edit documentation in R/prefer.R
 \name{prefer}
 \alias{prefer}
-\title{Defines preferred functions from conflicts between namespaces}
+\title{Defines preferred package::functions}
 \usage{
 prefer(pkg_name, quiet = TRUE)
 }
@@ -12,8 +12,20 @@ prefer(pkg_name, quiet = TRUE)
 \item{quiet}{If warnings should be displayed. Default is TRUE}
 }
 \description{
-Defines preferred functions from conflicts between namespaces
+The most common conflict between \code{{tidyverse}} users is \code{dplyr::filter()} and
+\code{stats::filter()}; among \code{{raster}} users, the conflict is with
+\code{dplyr::select()}. \code{prefer()} eliminates conflicts between namespaces by
+forcing the use of all the functions of the chosen package, rather than
+looking for specific conflicts. Because of that and depending on the number
+of functions exported by a package, \code{prefer()} can be slow.
 }
+\section{Acknowledgment}{
+
+\code{prefer()} is shamelessly derived from a piece of code in
+\href{https://github.com/elbersb/tidylog/blob/master/README.md#namespace-conflicts}{README.md}
+of the \href{https://github.com/elbersb/tidylog}{\code{{tidylog}}}
+}
+
 \examples{
 \dontrun{
 # prefer `{dplyr}` functions over `{stats}`

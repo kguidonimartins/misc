@@ -2,7 +2,7 @@
 % Please edit documentation in R/na_viz.R
 \name{na_viz}
 \alias{na_viz}
-\title{Vizualize NA frequency in data}
+\title{Visualize NA frequency in data}
 \usage{
 na_viz(data)
 }
@@ -13,8 +13,13 @@ na_viz(data)
 a ggplot object
 }
 \description{
-Vizualize NA frequency in data
+\code{na_viz()} create a ggplot plot showing the percentage of NA in each column
 }
+\section{Acknowledgment}{
+
+\code{na_viz()} is another name for the excellent \code{naniar::vis_miss()} function
+}
+
 \examples{
 \dontrun{
 na_data <- data.frame(c1 = c(1, NA), c2 = c(NA, NA))

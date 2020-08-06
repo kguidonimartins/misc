@@ -1,4 +1,9 @@
-#' Combine words using ptbr rules (differ from knitr::combine_words() which uses oxford commas)
+#' Combine words using ptbr rules
+#'
+#' @description
+#' `combine_words_ptbr()` collapse words using ptbr rules. This function
+#' differ from [`knitr::combine_words()`](https://github.com/yihui/knitr/blob/2e08d5a9cb0a3b83cd73fd30d507a18676b0c4a4/R/utils.R#L830)
+#' which uses oxford commas.
 #'
 #' @param words a character vector with words to combine
 #' @param sep a character with the separator of the words. Default is NULL and insert ", "
@@ -9,6 +14,10 @@
 #' @return a character vector
 #'
 #' @export
+#'
+#' @section Acknowledgment:
+#' `combine_words_ptbr()` uses [transformers](https://cran.r-project.org/web/packages/glue/vignettes/transformers.html)
+#' available in the excellent [`{glue}`](https://github.com/tidyverse/glue) package
 #'
 #' @examples
 #' \dontrun{

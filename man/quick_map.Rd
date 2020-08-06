@@ -15,8 +15,17 @@ quick_map(region = NULL, type = NULL)
 a ggplot object
 }
 \description{
-Create maps quickly
+\code{quick_map()} allows the creation of maps quickly using \code{{ggplot2}}. For this
+reason, the resulting map is fully editable through \code{{ggplot2}} layers.
 }
+\section{Acknowledgment}{
+
+\code{quick_map()} depends heavily on the data available by
+the \href{https://github.com/ropensci/rnaturalearth}{\code{{rnaturalearth}}}
+package. In this sense, \code{quick_map()} uses a wide and dirty filtering of
+this data to create the map.
+}
+
 \examples{
 \dontrun{
 # plot a world map

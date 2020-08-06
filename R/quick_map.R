@@ -1,7 +1,12 @@
 #' Create maps quickly
 #'
+#' @description
+#' `quick_map()` allows the creation of maps quickly using `{ggplot2}`. For this
+#' reason, the resulting map is fully editable through `{ggplot2}` layers.
+#'
 #' @param region character string or atomic vector containing countries names ou continents. Default is \code{NULL}.
 #' @param type character string informing map type. Can be \code{"sf"} or \code{"ggplot"}
+#'
 #' @importFrom dplyr select filter_all any_vars mutate case_when pull
 #' @importFrom ggplot2 ggplot geom_sf borders theme_bw labs theme element_blank element_line
 #' @importFrom rnaturalearth ne_countries
@@ -9,6 +14,13 @@
 #' @importFrom stringr str_detect
 #'
 #' @return a ggplot object
+#'
+#' @section Acknowledgment:
+#' `quick_map()` depends heavily on the data available by
+#' the [`{rnaturalearth}`](https://github.com/ropensci/rnaturalearth)
+#' package. In this sense, `quick_map()` uses a wide and dirty filtering of
+#' this data to create the map.
+#'
 #' @export
 #'
 #' @examples
@@ -97,6 +109,5 @@ quick_map <- function(region = NULL, type = NULL) {
         )
     }
   }
-
   return(plot_map)
 }

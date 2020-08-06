@@ -2,7 +2,7 @@
 % Please edit documentation in R/combine_words_ptbr.R
 \name{combine_words_ptbr}
 \alias{combine_words_ptbr}
-\title{Combine words using ptbr rules (differ from knitr::combine_words() which uses oxford commas)}
+\title{Combine words using ptbr rules}
 \usage{
 combine_words_ptbr(words, sep = NULL, last = NULL)
 }
@@ -17,8 +17,16 @@ combine_words_ptbr(words, sep = NULL, last = NULL)
 a character vector
 }
 \description{
-Combine words using ptbr rules (differ from knitr::combine_words() which uses oxford commas)
+\code{combine_words_ptbr()} collapse words using ptbr rules. This function
+differ from \href{https://github.com/yihui/knitr/blob/2e08d5a9cb0a3b83cd73fd30d507a18676b0c4a4/R/utils.R#L830}{\code{knitr::combine_words()}}
+which uses oxford commas.
 }
+\section{Acknowledgment}{
+
+\code{combine_words_ptbr()} uses \href{https://cran.r-project.org/web/packages/glue/vignettes/transformers.html}{transformers}
+available in the excellent \href{https://github.com/tidyverse/glue}{\code{{glue}}} package
+}
+
 \examples{
 \dontrun{
 misc::ipak(c("dplyr", "broom", "glue"))

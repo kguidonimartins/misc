@@ -24,6 +24,9 @@ if (!require("misc")) remotes::install_github("kguidonimartins/misc")
 
 ### Available functions
 
+Check all available functions inside an interactive session with:
+`help(package = misc)`
+
 | ID | Function                          | Description                                                                                   |
 | -: | :-------------------------------- | :-------------------------------------------------------------------------------------------- |
 |  1 | `add_gitignore()`                 | Add a gitignore to the project root                                                           |
@@ -61,5 +64,5 @@ ipak(c("vegan", "ggplot2", "trinker/textclean", "jalvesaq/colorout"))
 if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r::repository(here::here())
 #> Local:    main /home/karlo/GoogleDrive2/git-repos/misc
 #> Remote:   main @ origin (https://github.com/kguidonimartins/misc.git)
-#> Head:     [03f713c] 2020-08-05: now `ipak()` also handle github packages
+#> Head:     [b04b05d] 2020-08-05: update readme
 ```

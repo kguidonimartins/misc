@@ -7,18 +7,28 @@
 ipak(pkg_list, force_cran = FALSE, force_github = FALSE)
 }
 \arguments{
-\item{pkg_list}{A character vector with the package names. Github packages needs to be listed as usual: "username/repo"}
+\item{pkg_list}{A character vector with the package names. Github packages needs to be listed as usual: \code{"username/repo"}}
 
 \item{force_cran}{logical. If force the installation of cran packages}
 
 \item{force_github}{logical. If force the installation of github packages}
 }
-\value{
-None
-}
 \description{
-Install and load multiple CRAN and github R packages
+\code{ipak()} checks if the package is installed and then loads
+it. If the package is not installed, then \code{ipak()} installs it and then
+loads it. \code{ipak()} is capable of handling CRAN and github packages. In
+addition, the user can update their packages using the \code{force_*()}
+arguments.
 }
+\section{Acknowledgment}{
+
+\code{ipak()} was first developed by
+\href{https://github.com/stevenworthington}{Steven Worthington} and made
+publicly available
+\href{https://gist.github.com/stevenworthington/3178163}{here}. I've been
+using this function for years and now I decided to expand it.
+}
+
 \examples{
 \dontrun{
 pkg_list <- c("vegan", "ggplot2", "trinker/textclean", "jalvesaq/colorout")

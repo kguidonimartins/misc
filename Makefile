@@ -9,7 +9,10 @@ PKGVERS := $(shell sed -n "s/Version: *\([^ ]*\)/\1/p" DESCRIPTION)
 
 all: install tests check clean README.md ## run install_deps, build, install, tests, check, clean, and README.md
 
-build: ## build package
+document: ## refresh function documentation
+	$(R) "devtools::document()"
+
+build: document ## build package
 	$(R) "devtools::build()"
 
 check: ## check package
@@ -28,6 +31,10 @@ install_deps: ## install dependencies
 	-e 'remotes::install_deps(dependencies = TRUE)'
 
 install: install_deps build ## install package
+	cd ..; \
+	R CMD INSTALL $(PKGNAME)_$(PKGVERS).tar.gz
+
+quick_install: build ## quick install (document, build, install) tar package version (used in development)
 	cd ..; \
 	R CMD INSTALL $(PKGNAME)_$(PKGVERS).tar.gz
 

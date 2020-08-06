@@ -10,11 +10,19 @@ na_count(data)
 \item{data}{a data frame}
 }
 \value{
-a tibble
+a long-format tibble
 }
 \description{
-Count NA frequency in data
+\code{na_count()} is a way to display the count and frequency of NA in data. It
+can be slow over large datasets.
 }
+\section{Acknowledgment}{
+
+I learned this way of exploring data though the excellent webinar taught by
+\href{https://twitter.com/robinson_es}{Emily Robinson}. The original code is
+hosted \href{https://youtu.be/uG3igAGX7UE?t=1060}{here}.
+}
+
 \examples{
 \dontrun{
 na_data <- data.frame(c1 = c(1, NA), c2 = c(NA, NA))

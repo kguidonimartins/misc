@@ -118,6 +118,7 @@ cAe
 cAE
 cAEr
 carb
+cb
 Cbw
 cd
 cĔ
@@ -131,11 +132,13 @@ CMD
 cnY
 colorout
 compre
+cookiecutter
 cran
 cre
 cS
 csv
 cT
+ctags
 cV
 cʌ
 cy
@@ -173,6 +176,7 @@ dplyr
 dQē
 dr
 dR
+drivendata
 ds
 dS
 Dv
@@ -203,7 +207,9 @@ ej
 ek
 eK
 eł
+elbersb
 eM
+emph
 ēN
 env
 eP
@@ -227,6 +233,7 @@ eZY
 Ɛ
 F'ke
 fA
+fd
 Fd
 fe
 feira
@@ -271,6 +278,7 @@ GG
 ggplot
 gH
 GH
+gi
 Gi
 github
 gitignore
@@ -319,6 +327,7 @@ hN
 hO
 hP
 hQ
+href
 https
 Hv
 hx
@@ -344,6 +353,7 @@ ie
 iE
 iF
 iFI
+igAGX
 ih
 IHDR
 IIrr
@@ -588,15 +598,19 @@ oZ
 ɵYFZ
 P'줪
 pbb
+pcbi
 pD
 PDB
 PDn
+peerj
 pepino
 ph
 pI
 PKGNAME
 PKGVERS
 plJ
+plos
+ploscompbiol
 pM
 pmi
 PN
@@ -611,6 +625,8 @@ PPz
 pq
 pQE
 pR
+preformatted
+preprints
 printf
 proj
 ps
@@ -685,6 +701,7 @@ rMJ
 rnaturalearth
 rnaturalearthdata
 rO
+robinson
 ropensci
 roxygen
 Roxygen
@@ -724,6 +741,7 @@ skimr
 smy
 sn
 sp
+springer
 sR
 Ss
 stevenworthington
@@ -747,7 +765,9 @@ textclean
 Tg
 tI
 tibble
+tidylog
 tidyr
+tidyverse
 tK
 tL
 Ťm
@@ -788,6 +808,7 @@ uE
 ues
 uF
 ug
+uG
 Uj
 UJnZ
 uK
@@ -821,6 +842,7 @@ vF
 VGu
 VH
 vI
+vis
 Vizualize
 vJ
 vKEa
@@ -923,6 +945,7 @@ yL
 ylֲ
 yN
 yoh
+youtu
 yP
 YQ
 YQFyZ

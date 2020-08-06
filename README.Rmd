@@ -37,6 +37,8 @@ if (!require("git2r")) install.packages("git2r")
 
 ### Available functions
 
+Check all available functions inside an interactive session with: `help(package = misc)`
+
 ```{r, echo=FALSE, message=FALSE}
 
 suppressPackageStartupMessages({

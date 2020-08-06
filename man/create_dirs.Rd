@@ -2,16 +2,51 @@
 % Please edit documentation in R/create_dirs.R
 \name{create_dirs}
 \alias{create_dirs}
-\title{Create data, output and R directories}
+\title{Create directories}
 \usage{
 create_dirs(dirs = NULL)
 }
 \arguments{
-\item{dirs}{a character vector with the directory names. Default is NULL and create \code{data/raw}, \code{data/clean}, \code{data/temp}, \code{output/figures}, \code{output/results}, \code{output/supp}, and \code{R}}
+\item{dirs}{a character vector with the directory names. Default is NULL and
+create \verb{data/\{raw,clean,temp\}}, \verb{output/\{figures,results,supp\}},
+and \code{R}}
 }
 \description{
-Create data, output and R directories
+The main purpose of \code{create_dirs()} is to create default directories used
+in data science projects. \code{create_dirs()} can also create custom
+directories.
 }
+\section{Goal}{
+
+There is a somewhat subjective discussion about the ideal directory structure
+for data science projects in general (see
+\href{https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424}{here},
+\href{https://drivendata.github.io/cookiecutter-data-science/}{here},
+\href{https://link.springer.com/article/10.1007/s10816-015-9272-9}{here}, and
+\href{https://peerj.com/preprints/3192v1/}{here}). In my humble opinion, the
+decision should be made by the user/analyst/scientist/team. Here, I
+suggest a directory structure that has worked for me. In addition, the
+directory structure created fits perfectly with functions present in this
+package (for example \code{\link{save_plot}} and \code{\link{save_temp_data}}).
+Below is the \emph{suggested} directory structure:\preformatted{.
+├── R           # local functions
+├── data
+│   ├── clean   # stores clean data
+│   ├── raw     # stores raw data (read-only)
+│   └── temp    # stores temporary data
+└── output
+    ├── figures # stores figures ready for publication/presentation
+    ├── results # stores text results and others
+    └── supp    # stores supplementary material for publication/presentation
+}
+}
+
+\section{Acknowledgment}{
+
+\code{create_dirs()} takes advantage of the functions available in the excellent
+\href{https://github.com/r-lib/fs}{\code{{fs}}} package.
+}
+
 \examples{
 \dontrun{
 # create a single directory

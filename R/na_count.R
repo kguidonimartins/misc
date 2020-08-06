@@ -1,12 +1,22 @@
 #' Count NA frequency in data
 #'
+#' @description
+#' `na_count()` is a way to display the count and frequency of NA in data. It
+#' can be slow over large datasets.
+#'
 #' @param data a data frame
 #'
-#' @return a tibble
+#' @return a long-format tibble
 #'
 #' @importFrom dplyr summarise_all n full_join
 #' @importFrom purrr map_df
 #' @importFrom tidyr pivot_longer everything
+#'
+#'
+#' @section Acknowledgment:
+#' I learned this way of exploring data though the excellent webinar taught by
+#' [Emily Robinson](https://twitter.com/robinson_es). The original code is
+#' hosted [here](https://youtu.be/uG3igAGX7UE?t=1060).
 #'
 #' @export
 #'

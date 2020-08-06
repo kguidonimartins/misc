@@ -1,10 +1,16 @@
-#' Vizualize NA frequency in data
+#' Visualize NA frequency in data
+#'
+#' @description
+#' `na_viz()` create a ggplot plot showing the percentage of NA in each column
 #'
 #' @param data a data frame
 #'
 #' @return a ggplot object
 #'
 #' @importFrom naniar vis_miss
+#'
+#' @section Acknowledgment:
+#' `na_viz()` is another name for the excellent `naniar::vis_miss()` function
 #'
 #' @export
 #'

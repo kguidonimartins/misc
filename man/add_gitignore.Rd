@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_gitignore.R
 \name{add_gitignore}
 \alias{add_gitignore}
-\title{Add a gitignore to the project root}
+\title{Add a gitignore file to the project root}
 \usage{
 add_gitignore(type = "r")
 }
@@ -10,11 +10,22 @@ add_gitignore(type = "r")
 \item{type}{a character vector with the language to be ignored}
 }
 \description{
-Add a gitignore to the project root
+\code{add_gitignore()} fetch files using the API from
+\href{https://www.toptal.com/developers/gitignore}{gitignore.io}. Also,
+\code{add_gitignore()} include \code{tags} (created by
+\href{https://github.com/universal-ctags/ctags}{ctags}) into the gitignore file.
 }
+\section{Acknowledgment}{
+
+\code{add_gitignore()} is inspired by
+\href{https://github.com/ropensci/gitignore/blob/master/R/gi_fetch_templates.R}{\code{gitignore::gi_fetch_templates}}
+}
+
 \examples{
 \dontrun{
-# if your project do not have a gitignore, take it:
+# if your project does not have a gitignore, get it with:
 add_gitignore()
+# want to ignore python files too:
+add_gitignore(type = c("r", "python"))
 }
 }
