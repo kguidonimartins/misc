@@ -61,20 +61,13 @@ ipak(c("vegan", "ggplot2", "trinker/textclean", "jalvesaq/colorout"))
 ### What commit is this file at?
 
 ``` r
-if (!require("git2r")) install.packages("git2r")
-#> Loading required package: git2r
-#> 
-#> Attaching package: 'git2r'
-#> The following object is masked from 'package:dplyr':
-#> 
-#>     pull
-#> The following objects are masked from 'package:purrr':
-#> 
-#>     is_empty, when
-if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) {
-  git2r::repository(here::here())
+ipak("git2r")
+#> ℹ Successful loaded:
+#>  - git2r (0.27.1)
+if (in_repository(path = ".")) {
+  repository(".")
 }
 #> Local:    main /home/karlo/GoogleDrive2/git-repos/misc
 #> Remote:   main @ origin (https://github.com/kguidonimartins/misc.git)
-#> Head:     [10a8384] 2020-08-06: working on documentation
+#> Head:     [c757f50] 2020-08-07: update readme
 ```

@@ -88,8 +88,8 @@ ipak(c("vegan", "ggplot2", "trinker/textclean", "jalvesaq/colorout"))
 ### What commit is this file at?
 
 ```{r}
-if (!require("git2r")) install.packages("git2r")
-if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) {
-  git2r::repository(here::here())
+ipak("git2r")
+if (in_repository(path = ".")) {
+  repository(".")
 }
 ```
