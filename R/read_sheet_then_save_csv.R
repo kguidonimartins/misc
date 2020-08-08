@@ -1,5 +1,9 @@
 #' Read an excel sheet and save it to a CSV file
 #'
+#' @description
+#' `read_sheet_then_save_csv()` is heavily inspired in `readxl::read_excel()`
+#' (actually, this inherit almost all argument from it).
+#'
 #' @param excel_sheet a character vector with the name of the excel sheet
 #' @param path_to_xlsx a character vector with the path of the excel file
 #' @param dir_to_save a character vector with the path to save the csv file.
@@ -32,6 +36,11 @@
 #' @importFrom textclean replace_non_ascii
 #' @importFrom tools file_path_sans_ext
 #' @importFrom usethis ui_stop ui_field ui_todo ui_done ui_info
+#'
+#' @section Acknowledgment:
+#' `read_sheet_then_save_csv()` is an adaptation of the awesome workflow described
+#' in an [article](https://readxl.tidyverse.org/articles/articles/readxl-workflows.html)
+#' from `{readxl}` package site.
 #'
 #' @examples
 #' \dontrun{
@@ -121,7 +130,11 @@ read_sheet_then_save_csv <-
   }
 
 
-#' Read and save into csv files all the sheets in a excel file
+#' Read and save all excel sheets and save them to a CSV file
+#'
+#' @description
+#' `read_all_sheet_then_save_csv()` just loop `read_sheet_then_save_csv()` over
+#' the available excel sheets and save them in `data/temp/extracted_sheets`
 #'
 #' @param path_to_xlsx a character vector with path to the excel file
 #' @param dir_to_save a character vector with the path to save the csv files.
@@ -135,6 +148,9 @@ read_sheet_then_save_csv <-
 #' @importFrom usethis ui_stop ui_field
 #'
 #' @export
+#'
+#' @section Acknowledgment:
+#' See: \code{\link{read_sheet_then_save_csv}}
 #'
 #' @examples
 #' \dontrun{
@@ -168,7 +184,12 @@ read_all_sheets_then_save_csv <- function(path_to_xlsx, dir_to_save = NULL) {
 }
 
 
-#' Read all sheets from all excel files and save into csv files
+#' Read all sheets from all excel files and save into CSV files
+#'
+#' @description
+#' Following the same principle of \code{\link{read_all_sheets_then_save_csv}}
+#' `read_all_xlsx_then_save_csv()` just loop `read_all_sheets_then_save_csv()` over
+#' all available xls[x] files
 #'
 #' @param path_to_xlsx a character vector with the path to excel file
 #'
@@ -176,6 +197,9 @@ read_all_sheets_then_save_csv <- function(path_to_xlsx, dir_to_save = NULL) {
 #' @importFrom purrr map
 #'
 #' @export
+#'
+#' @section Acknowledgment:
+#' See: \code{\link{read_sheet_then_save_csv}}
 #'
 #' @examples
 #' \dontrun{

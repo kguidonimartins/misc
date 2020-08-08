@@ -10,8 +10,15 @@ trim_fig(figure_path)
 \item{figure_path}{a character vector with path of the figure}
 }
 \description{
-Remove white spaces around figures
+\code{trim_fig()} just remove white spaces around a figure and save it into the
+\code{trim} folder (maintain the original figure untouchable)
 }
+\section{Acknowledgment}{
+
+\code{trim_fig()} wraps the excellent \code{image_trim()} of
+\href{https://github.com/ropensci/magick}{\code{{magick}}}
+}
+
 \examples{
 \dontrun{
 library(misc)

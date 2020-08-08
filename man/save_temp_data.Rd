@@ -2,7 +2,7 @@
 % Please edit documentation in R/save_temp_data.R
 \name{save_temp_data}
 \alias{save_temp_data}
-\title{Save objects as a RDS file}
+\title{Save object as RDS file}
 \usage{
 save_temp_data(object, dir_to_save = NULL)
 }
@@ -12,17 +12,39 @@ save_temp_data(object, dir_to_save = NULL)
 \item{dir_to_save}{a character vector with the directory name. Default is NULL and save object in the "data/temp" if it exists.}
 }
 \description{
-Save objects as a RDS file
+Save object as RDS file
 }
 \examples{
 \dontrun{
 # create and save a R object
-awesome <- "not to much!"
+awesome <- "not too much!"
 misc::create_dirs("ma-box")
 save_temp_data(object = awesome, dir_to_save = "ma-box")
 # using default directories from `misc::create_dirs()`
 create_dirs()
 so_good <- "Yep!"
 save_temp_data(object = so_good)
+
+# reading many temp data
+ext <- "\\\\.[rR]ds$"
+# list files
+files <- list.files(
+  path = "data/temp",
+  pattern = ext,
+  full.names = TRUE
+)
+# loop over files
+for (i in files) {
+  # read temporary file
+  tmp <- readRDS(file = i)
+  # remove extension from filename
+  obj_name <- gsub(
+    pattern = ext,
+    replacement = "",
+    x = basename(i)
+  )
+  # assign name
+  assign(obj_name, tmp)
+}
 }
 }

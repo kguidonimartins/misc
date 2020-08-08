@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_sheet_then_save_csv.R
 \name{read_all_xlsx_then_save_csv}
 \alias{read_all_xlsx_then_save_csv}
-\title{Read all sheets from all excel files and save into csv files}
+\title{Read all sheets from all excel files and save into CSV files}
 \usage{
 read_all_xlsx_then_save_csv(path_to_xlsx)
 }
@@ -10,8 +10,15 @@ read_all_xlsx_then_save_csv(path_to_xlsx)
 \item{path_to_xlsx}{a character vector with the path to excel file}
 }
 \description{
-Read all sheets from all excel files and save into csv files
+Following the same principle of \code{\link{read_all_sheets_then_save_csv}}
+\code{read_all_xlsx_then_save_csv()} just loop \code{read_all_sheets_then_save_csv()} over
+all available xls\link{x} files
 }
+\section{Acknowledgment}{
+
+See: \code{\link{read_sheet_then_save_csv}}
+}
+
 \examples{
 \dontrun{
 # read and into a csv

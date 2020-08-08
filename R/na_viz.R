@@ -10,7 +10,8 @@
 #' @importFrom naniar vis_miss
 #'
 #' @section Acknowledgment:
-#' `na_viz()` is another name for the excellent `naniar::vis_miss()` function
+#' `na_viz()` is another name for the excellent `vis_miss()` of
+#' [`{naniar}`](https://github.com/njtierney/naniar)
 #'
 #' @export
 #'

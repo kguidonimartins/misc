@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_sheet_then_save_csv.R
 \name{read_all_sheets_then_save_csv}
 \alias{read_all_sheets_then_save_csv}
-\title{Read and save into csv files all the sheets in a excel file}
+\title{Read and save all excel sheets and save them to a CSV file}
 \usage{
 read_all_sheets_then_save_csv(path_to_xlsx, dir_to_save = NULL)
 }
@@ -14,8 +14,14 @@ Default is NULL and save the csv files in the "data/temp/extracted_sheets"
 if it exists.}
 }
 \description{
-Read and save into csv files all the sheets in a excel file
+\code{read_all_sheet_then_save_csv()} just loop \code{read_sheet_then_save_csv()} over
+the available excel sheets and save them in \code{data/temp/extracted_sheets}
 }
+\section{Acknowledgment}{
+
+See: \code{\link{read_sheet_then_save_csv}}
+}
+
 \examples{
 \dontrun{
 # read and into a csv

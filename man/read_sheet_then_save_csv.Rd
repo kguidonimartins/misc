@@ -53,8 +53,16 @@ types.}
 \item{.name_repair}{Handling of column names}
 }
 \description{
-Read an excel sheet and save it to a CSV file
+\code{read_sheet_then_save_csv()} is heavily inspired in \code{readxl::read_excel()}
+(actually, this inherit almost all argument from it).
 }
+\section{Acknowledgment}{
+
+\code{read_sheet_then_save_csv()} is an adaptation of the awesome workflow described
+in an \href{https://readxl.tidyverse.org/articles/articles/readxl-workflows.html}{article}
+from \code{{readxl}} package site.
+}
+
 \examples{
 \dontrun{
 # read and into a csv

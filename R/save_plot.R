@@ -1,5 +1,10 @@
 #' Save a ggplot figure
 #'
+#' @description
+#' `save_plot()` wraps `ggplot2::ggsave()` and offer option to remove white
+#' spaces around figures (creates a additional file in `output/figures/trim`;
+#' uses \code{\link{trim_fig}})
+#'
 #' @param object a ggplot object
 #' @param filename a character vector with the name of the file to save. Default is NULL and saves with the name of the object
 #' @param dir_to_save a character vector with the name of the directory to save
@@ -17,6 +22,12 @@
 #' @importFrom usethis ui_stop ui_field ui_todo ui_done ui_info
 #'
 #' @export
+#'
+#' @section Acknowledgment:
+#' `save_plot()` is derived from
+#' [`write_plot()`](https://github.com/globeandmail/startr/blob/fff446f5a07a67f565a7bae887f0cdd24c808cdb/R/utils.R#L157),
+#' available in the excellent
+#' [`start`](https://github.com/globeandmail/startr) project template
 #'
 #' @examples
 #' \dontrun{
@@ -51,31 +62,22 @@ save_plot <- function(object, filename = NULL, dir_to_save = NULL, width = NA, h
     usethis::ui_stop("{usethis::ui_field(here::here(dir_to_save))} does not exists! Use `misc::create_dirs('{ui_field(dir_to_save)}')` before.")
   }
   name_to_save <- paste0(dir_to_save, "/", default_filename, ".", default_format)
+  args <- list(
+    plot = object,
+    file = name_to_save,
+    units = default_units,
+    dpi = default_dpi,
+    width = width,
+    height = height
+  )
+  if (default_format == "pdf") args[["useDingbats"]] <- FALSE
   if (!fs::file_exists(name_to_save)) {
     usethis::ui_todo("Saving {usethis::ui_field(here::here(name_to_save))}...")
-    args <- list(
-      plot = object,
-      file = name_to_save,
-      units = default_units,
-      dpi = default_dpi,
-      width = width,
-      height = height
-    )
-    if (default_format == "pdf") args[["useDingbats"]] <- FALSE
     do.call(ggplot2::ggsave, args)
     usethis::ui_done("{usethis::ui_field(here::here(name_to_save))} saved!")
   } else if (overwrite) {
     usethis::ui_todo("Overwriting {usethis::ui_field(here::here(name_to_save))}...")
     unlink(name_to_save)
-    args <- list(
-      plot = object,
-      file = name_to_save,
-      units = default_units,
-      dpi = default_dpi,
-      width = width,
-      height = height
-    )
-    if (default_format == "pdf") args[["useDingbats"]] <- FALSE
     do.call(ggplot2::ggsave, args)
     usethis::ui_done("{usethis::ui_field(here::here(name_to_save))} saved!")
   } else {

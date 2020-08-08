@@ -38,11 +38,11 @@ Check all available functions inside an interactive session with:
 |  7 | `na_viz()`                        | Visualize NA frequency in data                               |
 |  9 | `prefer()`                        | Defines preferred package::functions                         |
 | 10 | `quick_map()`                     | Create maps quickly                                          |
-| 11 | `read_all_sheets_then_save_csv()` | Read and save into csv files all the sheets in a excel file  |
-| 12 | `read_all_xlsx_then_save_csv()`   | Read all sheets from all excel files and save into csv files |
+| 11 | `read_all_sheets_then_save_csv()` | Read and save all excel sheets and save them to a CSV file   |
+| 12 | `read_all_xlsx_then_save_csv()`   | Read all sheets from all excel files and save into CSV files |
 | 13 | `read_sheet_then_save_csv()`      | Read an excel sheet and save it to a CSV file                |
 | 14 | `save_plot()`                     | Save a ggplot figure                                         |
-| 15 | `save_temp_data()`                | Save objects as a RDS file                                   |
+| 15 | `save_temp_data()`                | Save object as RDS file                                      |
 | 16 | `trim_fig()`                      | Remove white spaces around figures                           |
 
 ### Usage
@@ -61,6 +61,7 @@ ipak(c("vegan", "ggplot2", "trinker/textclean", "jalvesaq/colorout"))
 ### What commit is this file at?
 
 ``` r
+
 ipak("git2r")
 #> ℹ Successful loaded:
 #>  - git2r (0.27.1)
@@ -69,5 +70,5 @@ if (in_repository(path = ".")) {
 }
 #> Local:    main /home/karlo/GoogleDrive2/git-repos/misc
 #> Remote:   main @ origin (https://github.com/kguidonimartins/misc.git)
-#> Head:     [c757f50] 2020-08-07: update readme
+#> Head:     [a0c58c5] 2020-08-07: clean readme
 ```

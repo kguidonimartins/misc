@@ -88,6 +88,7 @@ ipak(c("vegan", "ggplot2", "trinker/textclean", "jalvesaq/colorout"))
 ### What commit is this file at?
 
 ```{r}
+
 ipak("git2r")
 if (in_repository(path = ".")) {
   repository(".")

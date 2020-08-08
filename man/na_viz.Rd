@@ -17,7 +17,8 @@ a ggplot object
 }
 \section{Acknowledgment}{
 
-\code{na_viz()} is another name for the excellent \code{naniar::vis_miss()} function
+\code{na_viz()} is another name for the excellent \code{vis_miss()} of
+\href{https://github.com/njtierney/naniar}{\code{{naniar}}}
 }
 
 \examples{

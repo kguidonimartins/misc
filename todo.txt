@@ -7,8 +7,7 @@
 
 ## TODO
 
-- include `read_temp_data()`
-    > using purrr to read all too
+- include `add_todo()`
 - include `update_description()`
 - include `add_makefile()`
     > goal = c("manuscript", "analytical", "show-case", "slides", "package", "shiny")
@@ -42,3 +41,5 @@
 - include `save_plot()`
     >  ~/GoogleDrive2/git-repos/min_proj/R/utils.R
     * [x] add option for trim images after save it
+- cancelled: include `read_temp_data()`
+    > using purrr to read all too

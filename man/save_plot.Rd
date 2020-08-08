@@ -39,8 +39,18 @@ save_plot(
 \item{trim}{logical}
 }
 \description{
-Save a ggplot figure
+\code{save_plot()} wraps \code{ggplot2::ggsave()} and offer option to remove white
+spaces around figures (creates a additional file in \code{output/figures/trim};
+uses \code{\link{trim_fig}})
 }
+\section{Acknowledgment}{
+
+\code{save_plot()} is derived from
+\href{https://github.com/globeandmail/startr/blob/fff446f5a07a67f565a7bae887f0cdd24c808cdb/R/utils.R#L157}{\code{write_plot()}},
+available in the excellent
+\href{https://github.com/globeandmail/startr}{\code{start}} project template
+}
+
 \examples{
 \dontrun{
 library(misc)

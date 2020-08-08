@@ -90,6 +90,7 @@ aZT
 b̈
 bܲ
 bA
+bae
 bAe
 Bc
 bcfc
@@ -117,10 +118,13 @@ cA
 cAe
 cAE
 cAEr
+cancelled
 carb
 cb
 Cbw
 cd
+cdb
+cdd
 cĔ
 cF
 CfШ
@@ -237,6 +241,7 @@ fd
 Fd
 fe
 feira
+fff
 FG
 FGc
 FH
@@ -276,6 +281,7 @@ Gcz
 gg
 GG
 ggplot
+ggsave
 gH
 GH
 gi
@@ -286,6 +292,7 @@ gJ
 Gj
 gKޥ
 glFS
+globeandmail
 gmail
 gMI
 gn
@@ -294,6 +301,7 @@ GoogleDrive
 GƟTo
 gQ
 Gsd
+gsub
 gSV
 gT
 Guidoni
@@ -538,6 +546,7 @@ ngSZ
 nj
 nJ
 Ǌ
+njtierney
 Nk
 nkˎ
 NONINFRINGEMENT
@@ -680,6 +689,7 @@ RCMD
 rds
 README
 readr
+readRDS
 readxl
 renv
 repo
@@ -744,6 +754,7 @@ sp
 springer
 sR
 Ss
+startr
 stevenworthington
 stringr
 styler
@@ -772,6 +783,8 @@ tK
 tL
 Ťm
 tMo
+tmp
+todo
 toptal
 tQ
 travis
@@ -912,6 +925,7 @@ xh
 xH
 Xj
 xL
+xls
 xlsx
 XM
 xo

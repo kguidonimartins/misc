@@ -1,5 +1,9 @@
 #' Remove white spaces around figures
 #'
+#' @description
+#' `trim_fig()` just remove white spaces around a figure and save it into the
+#' `trim` folder (maintain the original figure untouchable)
+#'
 #' @param figure_path a character vector with path of the figure
 #'
 #' @importFrom fs file_exists dir_create
@@ -8,6 +12,10 @@
 #' @importFrom usethis ui_stop ui_field ui_todo ui_done
 #'
 #' @export
+#'
+#' @section Acknowledgment:
+#' `trim_fig()` wraps the excellent `image_trim()` of
+#' [`{magick}`](https://github.com/ropensci/magick)
 #'
 #' @examples
 #' \dontrun{
