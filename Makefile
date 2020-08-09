@@ -7,7 +7,7 @@ PKGVERS := $(shell sed -n "s/Version: *\([^ ]*\)/\1/p" DESCRIPTION)
 
 .PHONY: help tests clean
 
-all: install tests check clean README.md ## run install_deps, build, install, tests, check, clean, and README.md
+all: install tests check clean render ## run install_deps, build, install, tests, check, clean, and README.md
 
 document: ## refresh function documentation
 	$(R) "devtools::document()"

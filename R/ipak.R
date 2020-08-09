@@ -11,7 +11,7 @@
 #' @param force_cran logical. If force the installation of cran packages
 #' @param force_github logical. If force the installation of github packages
 #'
-#' @importFrom crayon green blue red
+#' @importFrom crayon green blue red col_align
 #' @importFrom remotes install_github
 #' @importFrom usethis ui_todo ui_code ui_done ui_info ui_oops
 #' @importFrom utils install.packages installed.packages packageVersion
@@ -100,14 +100,14 @@ ipak <- function(pkg_list, force_cran = FALSE, force_github = FALSE) {
   if (length(success$pkg_name)) {
     usethis::ui_info("Successful loaded:")
     for (i in seq_along(success$pkg_name)) {
-      cat(" -", paste0(crayon::green(success$pkg_name[i]), " (", crayon::blue(success$version[i]), ")"), "\n")
+      cat(" -", paste0(crayon::col_align(crayon::green(success$pkg_name[i]), max(nchar(success$pkg_name))), " (", crayon::blue(success$version[i]), ")"), "\n")
     }
   }
 
   if (length(fail$pkg_name)) {
     usethis::ui_oops("Fail to load:")
     for (i in seq_along(fail$pkg_name)) {
-      cat(" -", paste0(crayon::red(fail$pkg_name[i]), " (", crayon::blue(fail$version[i]), ")"), "\n")
+      cat(" -", paste0(crayon::col_align(crayon::red(fail$pkg_name[i]), max(nchar(fail$pkg_name))), " (", crayon::blue(fail$version[i]), ")"), "\n")
     }
   }
 }

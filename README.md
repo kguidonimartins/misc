@@ -48,27 +48,31 @@ Check all available functions inside an interactive session with:
 ### Usage
 
 ``` r
-# install and load multiple package (cran and github) at once
+# install and load multiple packages (cran and github) at once
 library(misc)
-ipak(c("vegan", "ggplot2", "trinker/textclean", "jalvesaq/colorout"))
+ipak(c("vegan", "tidyverse", "git2r", "trinker/textclean", "jalvesaq/colorout"))
 #> ℹ Successful loaded:
-#>  - vegan (2.5.6) 
-#>  - ggplot2 (3.3.2) 
+#>  - vegan     (2.5.6) 
+#>  - git2r     (0.27.1) 
 #>  - textclean (0.9.5) 
-#>  - colorout (1.2.2)
+#>  - colorout  (1.2.2) 
+#>  - ggplot2   (3.3.2) 
+#>  - tibble    (3.0.3) 
+#>  - tidyr     (1.1.1) 
+#>  - readr     (1.3.1) 
+#>  - purrr     (0.3.4) 
+#>  - dplyr     (1.0.1) 
+#>  - stringr   (1.4.0) 
+#>  - forcats   (0.5.0)
 ```
 
 ### What commit is this file at?
 
 ``` r
-
-ipak("git2r")
-#> ℹ Successful loaded:
-#>  - git2r (0.27.1)
 if (in_repository(path = ".")) {
   repository(".")
 }
 #> Local:    main /home/karlo/GoogleDrive2/git-repos/misc
 #> Remote:   main @ origin (https://github.com/kguidonimartins/misc.git)
-#> Head:     [a0c58c5] 2020-08-07: clean readme
+#> Head:     [df92ee5] 2020-08-09: update pre commit config
 ```
