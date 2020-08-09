@@ -7,6 +7,9 @@
 
 [![Build
 Status](https://travis-ci.com/kguidonimartins/misc.svg?branch=main)](https://travis-ci.com/kguidonimartins/misc)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 <!-- badges: end -->
 
 `{misc}` stands for *miscellaneous*. This is a personal package. Use it
@@ -74,5 +77,5 @@ if (in_repository(path = ".")) {
 }
 #> Local:    main /home/karlo/GoogleDrive2/git-repos/misc
 #> Remote:   main @ origin (https://github.com/kguidonimartins/misc.git)
-#> Head:     [df92ee5] 2020-08-09: update pre commit config
+#> Head:     [b9edd48] 2020-08-09: update ipak test
 ```

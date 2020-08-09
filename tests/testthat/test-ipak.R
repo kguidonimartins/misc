@@ -1,3 +1,3 @@
-test_that("no prefer message", {
-  expect_equal(length(ipak(c("vegan", "tidyverse"))), 0L)
+test_that("0 length ipak output", {
+  expect_equal(length(ipak("vegan")), 0L)
 })

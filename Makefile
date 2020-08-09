@@ -7,7 +7,7 @@ PKGVERS := $(shell sed -n "s/Version: *\([^ ]*\)/\1/p" DESCRIPTION)
 
 .PHONY: help tests clean
 
-all: install tests check clean render ## run install_deps, build, install, tests, check, clean, and README.md
+all: install tests check clean ## run install_deps, build, install, tests, check, and clean
 
 document: ## refresh function documentation
 	$(R) "devtools::document()"
@@ -29,6 +29,9 @@ install_deps: ## install dependencies
 	-e 'if (!requireNamespace("dotenv")) install.packages("dotenv")' \
 	-e 'if (file.exists(".env")) dotenv::load_dot_env()' \
 	-e 'remotes::install_deps(dependencies = TRUE)'
+
+install_remote: ## install package from remote version
+	$(R) 'misc::ipak("kguidonimartins/misc", force_github = TRUE)'
 
 install: install_deps build ## install package
 	cd ..; \
