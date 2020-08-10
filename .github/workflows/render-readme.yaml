@@ -15,9 +15,12 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
       - name: Install rmarkdown, remotes, and the local package
         run: |
-          install.packages("remotes")
+          install.packages(c("remotes", "fs", "tools", "vegan", "tidyverse", "git2r", "knitr", "rmarkdown"))
           remotes::install_local(".")
           remotes::install_cran("rmarkdown")
+          remotes::install_deps(dependencies = TRUE)
+          remotes::install_github("trinker/textclean")
+          remotes::install_github("jalvesaq/colorout")
         shell: Rscript {0}
       - name: Render README
         run: Rscript -e 'rmarkdown::render("README.Rmd")'
