@@ -56,19 +56,19 @@ Check all available functions inside an interactive session with:
 # install and load multiple packages (cran and github) at once
 library(misc)
 ipak(c("vegan", "tidyverse", "git2r", "trinker/textclean", "jalvesaq/colorout"))
-#> ℹ Successful loaded:
-#>  - vegan     (2.5.6) 
-#>  - git2r     (0.27.1) 
-#>  - textclean (0.9.5) 
-#>  - colorout  (1.2.2) 
-#>  - ggplot2   (3.3.2) 
-#>  - tibble    (3.0.3) 
-#>  - tidyr     (1.1.1) 
-#>  - readr     (1.3.1) 
-#>  - purrr     (0.3.4) 
-#>  - dplyr     (1.0.1) 
-#>  - stringr   (1.4.0) 
-#>  - forcats   (0.5.0)
+#> [33mℹ[39m Successful loaded:
+#>  - [32mvegan[39m     ([34m2.5.6[39m) 
+#>  - [32mgit2r[39m     ([34m0.27.1[39m) 
+#>  - [32mtextclean[39m ([34m0.9.5[39m) 
+#>  - [32mcolorout[39m  ([34m1.2.2[39m) 
+#>  - [32mggplot2[39m   ([34m3.3.2[39m) 
+#>  - [32mtibble[39m    ([34m3.0.3[39m) 
+#>  - [32mtidyr[39m     ([34m1.1.1[39m) 
+#>  - [32mreadr[39m     ([34m1.3.1[39m) 
+#>  - [32mpurrr[39m     ([34m0.3.4[39m) 
+#>  - [32mdplyr[39m     ([34m1.0.1[39m) 
+#>  - [32mstringr[39m   ([34m1.4.0[39m) 
+#>  - [32mforcats[39m   ([34m0.5.0[39m)
 ```
 
 ### What commit is this file at?
@@ -77,7 +77,7 @@ ipak(c("vegan", "tidyverse", "git2r", "trinker/textclean", "jalvesaq/colorout"))
 if (in_repository(path = ".")) {
   repository(".")
 }
-#> Local:    main /home/karlo/GoogleDrive2/git-repos/misc
-#> Remote:   main @ origin (https://github.com/kguidonimartins/misc.git)
-#> Head:     [fa9b5fa] 2020-08-10: update quick_map
+#> Local:    main /Users/runner/work/misc/misc
+#> Remote:   main @ origin (https://github.com/kguidonimartins/misc)
+#> Head:     [f9fcef6] 2020-08-10: add missing pkgs to gh ci
 ```
