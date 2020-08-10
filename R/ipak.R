@@ -43,6 +43,9 @@ ipak <- function(pkg_list, force_cran = FALSE, force_github = FALSE) {
   pkg_list_github <- pkg_list[grep(pattern = "/", x = pkg_list)]
   pkg_list_cran <- pkg_list[!pkg_list %in% pkg_list_github]
 
+  new_pkg_github <- basename(pkg_list_github)[!(basename(pkg_list) %in% utils::installed.packages()[, "Package"])]
+  new_pkg_cran <- pkg_list_cran[!(pkg_list_cran %in% utils::installed.packages()[, "Package"])]
+
   install_gh <- function(new_pkg_github, force = FALSE) {
     usethis::ui_todo("Installing github packages: {usethis::ui_code(new_pkg_github)}")
     cat("\n")
@@ -69,13 +72,9 @@ ipak <- function(pkg_list, force_cran = FALSE, force_github = FALSE) {
     install_cran(pkg_list_cran)
   }
 
-  new_pkg_github <- basename(pkg_list_github)[!(basename(pkg_list) %in% utils::installed.packages()[, "Package"])]
-
   if (length(new_pkg_github)) {
     install_gh(new_pkg_github, force = FALSE)
   }
-
-  new_pkg_cran <- pkg_list_cran[!(pkg_list_cran %in% utils::installed.packages()[, "Package"])]
 
   if (length(new_pkg_cran)) {
     install_cran(new_pkg_cran)

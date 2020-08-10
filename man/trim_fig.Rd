@@ -4,10 +4,12 @@
 \alias{trim_fig}
 \title{Remove white spaces around figures}
 \usage{
-trim_fig(figure_path)
+trim_fig(figure_path, overwrite = FALSE)
 }
 \arguments{
 \item{figure_path}{a character vector with path of the figure}
+
+\item{overwrite}{logical}
 }
 \description{
 \code{trim_fig()} just remove white spaces around a figure and save it into the

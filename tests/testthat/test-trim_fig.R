@@ -1,8 +1,4 @@
-if (!require("ggplot2")) install.packages("ggplot2")
-
-p <- ggplot(mtcars) +
-  aes(mpg, cyl) +
-  geom_point()
+p <- quick_map()
 
 test_that("trim_fig works", {
   create_dirs()

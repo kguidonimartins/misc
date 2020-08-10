@@ -84,6 +84,6 @@ save_plot <- function(object, filename = NULL, dir_to_save = NULL, width = NA, h
     usethis::ui_info("File {usethis::ui_field(here::here(name_to_save))} already exists! Use overwrite = TRUE.")
   }
   if (trim) {
-    trim_fig(name_to_save)
+    trim_fig(figure_path = name_to_save, overwrite = overwrite)
   }
 }

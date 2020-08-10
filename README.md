@@ -77,5 +77,5 @@ if (in_repository(path = ".")) {
 }
 #> Local:    main /home/karlo/GoogleDrive2/git-repos/misc
 #> Remote:   main @ origin (https://github.com/kguidonimartins/misc.git)
-#> Head:     [b9edd48] 2020-08-09: update ipak test
+#> Head:     [0a4b043] 2020-08-09: idk why sometimes devtools::check fail to pass the tests
 ```
