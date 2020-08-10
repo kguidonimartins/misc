@@ -13,3 +13,4 @@
 ^.in-dev$
 ^.env$
 ^codemeta\.json$
+^\.github$

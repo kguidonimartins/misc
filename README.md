@@ -10,6 +10,8 @@ Status](https://travis-ci.com/kguidonimartins/misc.svg?branch=main)](https://tra
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![R build
+status](https://github.com/kguidonimartins/misc/workflows/R-CMD-check/badge.svg)](https://github.com/kguidonimartins/misc/actions)
 <!-- badges: end -->
 
 `{misc}` stands for *miscellaneous*. This is a personal package. Use it
@@ -77,5 +79,5 @@ if (in_repository(path = ".")) {
 }
 #> Local:    main /home/karlo/GoogleDrive2/git-repos/misc
 #> Remote:   main @ origin (https://github.com/kguidonimartins/misc.git)
-#> Head:     [0a4b043] 2020-08-09: idk why sometimes devtools::check fail to pass the tests
+#> Head:     [fa9b5fa] 2020-08-10: update quick_map
 ```
