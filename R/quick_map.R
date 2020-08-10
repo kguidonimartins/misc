@@ -31,10 +31,14 @@
 #' quick_map(region = "Americas", type = "sf")
 #' # using ggplot
 #' quick_map(region = "Americas", type = "ggplot")
+#' # edit using ggplot2 layers
+#' quick_map() +
+#'   theme_void() +
+#'   geom_sf(fill = "white")
 #' }
 quick_map <- function(region = NULL, type = NULL) {
-  world_data <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
-
+  world_data <-
+    rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
   columns <- c(
     "continent",
     "region_un",
@@ -52,27 +56,23 @@ quick_map <- function(region = NULL, type = NULL) {
     "iso_a2",
     "iso_a3"
   )
-
   if (is.null(region) && is.null(type)) {
     plot_map <-
       world_data %>%
       ggplot2::ggplot() +
       ggplot2::geom_sf()
   }
-
   if (!is.null(type)) {
     if (type == "sf") {
       data_filtered <-
         world_data %>%
         dplyr::select(!!columns) %>%
         dplyr::filter_all(., dplyr::any_vars(stringr::str_detect(., paste(region, collapse = "|"))))
-
       plot_map <-
         data_filtered %>%
         ggplot2::ggplot() +
         ggplot2::geom_sf()
     }
-
     if (type == "ggplot") {
       data_filtered <-
         world_data %>%
@@ -86,14 +86,13 @@ quick_map <- function(region = NULL, type = NULL) {
           )
         ) %>%
         dplyr::pull(admin)
-
-      map_borders <- ggplot2::borders(
+      map_borders <-
+        ggplot2::borders(
         database = "world",
         regions = data_filtered,
         fill = "white",
         colour = "grey90"
       )
-
       plot_map <-
         ggplot2::ggplot() +
         map_borders +
