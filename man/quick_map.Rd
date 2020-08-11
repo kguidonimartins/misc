@@ -34,5 +34,9 @@ quick_map()
 quick_map(region = "Americas", type = "sf")
 # using ggplot
 quick_map(region = "Americas", type = "ggplot")
+# edit using ggplot2 layers
+quick_map() +
+  theme_void() +
+  geom_sf(fill = "white")
 }
 }
