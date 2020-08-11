@@ -73,7 +73,8 @@ ipak <- function(pkg_list, force_cran = FALSE, force_github = FALSE) {
   }
 
   if (length(new_pkg_github)) {
-    install_gh(new_pkg_github, force = FALSE)
+    new_pkg_github_to_install <- pkg_list_github[grep(pattern = new_pkg_github, x = pkg_list_github)]
+    install_gh(new_pkg_github_to_install, force = FALSE)
   }
 
   if (length(new_pkg_cran)) {
