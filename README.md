@@ -12,6 +12,8 @@ state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R build
 status](https://github.com/kguidonimartins/misc/workflows/R-CMD-check/badge.svg)](https://github.com/kguidonimartins/misc/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/kguidonimartins/misc/branch/master/graph/badge.svg)](https://codecov.io/gh/kguidonimartins/misc?branch=master)
 <!-- badges: end -->
 
 `{misc}` stands for *miscellaneous*. This is a personal package. Use it
@@ -79,5 +81,5 @@ if (in_repository(path = ".")) {
 }
 #> Local:    main /home/karlo/GoogleDrive2/git-repos/misc
 #> Remote:   main @ origin (https://github.com/kguidonimartins/misc.git)
-#> Head:     [a713693] 2020-08-10: remove render readme gh ci
+#> Head:     [36c06f7] 2020-08-17: update example save_temp_data
 ```

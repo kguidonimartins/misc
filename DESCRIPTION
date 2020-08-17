@@ -39,7 +39,8 @@ Imports:
 Suggests:
     rgeos,
     rnaturalearthdata,
-    testthat
+    testthat,
+    covr
 Remotes:
     github::ropensci/rnaturalearthdata,
     github::trinker/lexicon,

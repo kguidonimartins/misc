@@ -14,3 +14,7 @@
 ^.env$
 ^codemeta\.json$
 ^\.github$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^codecov\.yml$

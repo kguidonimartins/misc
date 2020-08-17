@@ -19,6 +19,7 @@ knitr::opts_chunk$set(
 [![Build Status](https://travis-ci.com/kguidonimartins/misc.svg?branch=main)](https://travis-ci.com/kguidonimartins/misc)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R build status](https://github.com/kguidonimartins/misc/workflows/R-CMD-check/badge.svg)](https://github.com/kguidonimartins/misc/actions)
+[![Codecov test coverage](https://codecov.io/gh/kguidonimartins/misc/branch/master/graph/badge.svg)](https://codecov.io/gh/kguidonimartins/misc?branch=master)
 <!-- badges: end -->
 
 `{misc}` stands for *miscellaneous*. This is a personal package. Use it at your own risk.

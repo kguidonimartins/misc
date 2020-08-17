@@ -73,6 +73,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=testthat"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "covr",
+      "name": "covr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=covr"
     }
   ],
   "softwareRequirements": [
@@ -360,7 +372,7 @@
   ],
   "codeRepository": "https://github.com/kguidonimartins/misc",
   "readme": "https://github.com/kguidonimartins/misc/blob/main/README.md",
-  "fileSize": "483.649KB",
+  "fileSize": "483.921KB",
   "contIntegration": "https://travis-ci.com/kguidonimartins/misc",
   "issueTracker": "https://github.com/kguidonimartins/misc/issues",
   "developmentStatus": "https://www.repostatus.org/#active"
