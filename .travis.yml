@@ -49,3 +49,5 @@ deploy:
   provider: script
   script: Rscript -e 'pkgdown::deploy_site_github()'
   cleanup: true
+  on:
+    branch: main
