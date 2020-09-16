@@ -26,7 +26,7 @@ so_good <- "Yep!"
 save_temp_data(object = so_good)
 
 # reading many temp data
-ext <- "\\\\.[rR]ds$"
+ext <- "\\\\.[rRdDsS]$"
 # list files
 files <- list.files(
   path = "data/temp",
