@@ -33,7 +33,6 @@
 #' @importFrom readr write_csv
 #' @importFrom readxl read_excel
 #' @importFrom stringr str_replace_all str_to_lower
-#' @importFrom textclean replace_non_ascii
 #' @importFrom tools file_path_sans_ext
 #' @importFrom usethis ui_stop ui_field ui_todo ui_done ui_info
 #'
@@ -68,6 +67,8 @@ read_sheet_then_save_csv <-
            n_max = Inf,
            guess_max = min(1000, n_max),
            .name_repair = "unique") {
+    check_require("trinker/lexicon")
+    check_require("trinker/textclean")
     if (is.null(dir_to_save)) {
       dir_to_save <- "data/temp"
       if (!fs::dir_exists(dir_to_save)) {

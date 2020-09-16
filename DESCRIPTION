@@ -20,31 +20,27 @@ Imports:
     glue,
     here,
     janitor,
-    magick,
     magrittr,
     naniar,
     purrr,
     readr,
     readxl,
     remotes,
-    rnaturalearth,
-    sf,
     skimr,
     stringr,
-    textclean,
     tidyr,
     tools,
     usethis,
     xpectr
 Suggests:
+    magick,
+    sf,
     rgeos,
-    rnaturalearthdata,
+    rnaturalearth,
     testthat,
+    lexicon,
+    textclean,
     covr
-Remotes:
-    github::ropensci/rnaturalearthdata,
-    github::trinker/lexicon,
-    github::trinker/textclean
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

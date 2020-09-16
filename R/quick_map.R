@@ -9,8 +9,6 @@
 #'
 #' @importFrom dplyr select filter_all any_vars mutate case_when pull
 #' @importFrom ggplot2 ggplot geom_sf borders theme_bw labs theme element_blank element_line
-#' @importFrom rnaturalearth ne_countries
-#' @importFrom sf st_drop_geometry
 #' @importFrom stringr str_detect
 #'
 #' @return a ggplot object
@@ -37,6 +35,9 @@
 #'   geom_sf(fill = "white")
 #' }
 quick_map <- function(region = NULL, type = NULL) {
+  check_require("rnaturalearth")
+  check_require("ropensci/rnaturalearthdata")
+  check_require("sf")
   world_data <-
     rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
   columns <- c(

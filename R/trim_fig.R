@@ -9,7 +9,6 @@
 #'
 #' @importFrom fs file_exists dir_create
 #' @importFrom here here
-#' @importFrom magick image_read image_trim image_write
 #' @importFrom usethis ui_stop ui_field ui_todo ui_done
 #'
 #' @export
@@ -31,6 +30,7 @@
 #' trim_fig("output/figures/p.png")
 #' }
 trim_fig <- function(figure_path, overwrite = FALSE) {
+  check_require("magick")
   if (!fs::file_exists(figure_path)) {
     usethis::ui_stop("{usethis::ui_field(here::here(figure_path))} does not exists!")
   }
