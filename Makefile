@@ -28,7 +28,7 @@ install_deps: ## install dependencies
 	$(R) 'if (!requireNamespace("remotes")) install.packages("remotes")' \
 	-e 'if (!requireNamespace("dotenv")) install.packages("dotenv")' \
 	-e 'if (file.exists(".env")) dotenv::load_dot_env()' \
-	-e 'remotes::install_deps(dependencies = TRUE)'
+	-e 'remotes::install_deps(dependencies = TRUE, upgrade = "never")'
 
 install_remote: ## install package from remote version
 	$(R) 'misc::ipak("kguidonimartins/misc", force_github = TRUE)'
