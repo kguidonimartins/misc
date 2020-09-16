@@ -52,3 +52,33 @@ scale_y_reordered <- function(..., sep = "___") {
   reg <- paste0(sep, ".+$")
   ggplot2::scale_y_discrete(labels = function(x) gsub(reg, "", x), ...)
 }
+
+# https://github.com/kguidonimartins/monitora-derramamento-oleo/raw/gh-pages/data-raw/2020-03-19_LOCALIDADES_AFETADAS.xlsx
+
+latitude_raw <- str_extract_all(df$latitude, "\\(?[0-9, ., A-Z]+\\)?")
+
+latitude_separated <-
+  data.frame(
+    matrix(
+      unlist(latitude_raw),
+      nrow = length(latitude_raw),
+      byrow = TRUE
+    ),
+    stringsAsFactors = FALSE
+  ) %>%
+  mutate_all(str_squish) %>%
+  set_names(c("lat_graus", "lat_minutos", "lat_segundos", "lat_letra")) %>%
+  mutate_at(vars("lat_graus", "lat_minutos", "lat_segundos"), as.numeric)
+
+suppressWarnings(
+  latitude_clean <- latitude_separated %>%
+    mutate(
+      latitude = from_dms_to_dd(
+        lat_graus,
+        lat_minutos,
+        lat_segundos,
+        lat_letra
+      )
+    ) %>%
+    select(latitude)
+)
