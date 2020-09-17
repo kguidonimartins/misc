@@ -31,8 +31,9 @@ You can install the released version of misc from
 
 ### Available functions
 
-Check all available functions inside an interactive session with:
-`help(package = misc)`
+Check all available functions inside an interactive session using
+`help(package = misc)` or in the site package
+[here](https://kguidonimartins.github.io/misc/reference/index.html).
 
 |  ID | Function                          | Description                                                  |
 |----:|:----------------------------------|:-------------------------------------------------------------|
@@ -78,4 +79,4 @@ Check all available functions inside an interactive session with:
     }
     #> Local:    main /home/karlo/GoogleDrive2/git-repos/misc
     #> Remote:   main @ origin (https://github.com/kguidonimartins/misc.git)
-    #> Head:     [ac0b863] 2020-09-16: ci: turn on test-coverage
+    #> Head:     [7062caa] 2020-09-17: fix: pkgdown deploy- do not build home before
