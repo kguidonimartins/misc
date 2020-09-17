@@ -8,11 +8,10 @@
   "description": "This is a personal package. Use at your own risk.",
   "name": "misc: Miscellaneous functions",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "4.0.2",
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 4.0.2 (2020-06-22)",
@@ -40,6 +39,42 @@
   "softwareSuggestions": [
     {
       "@type": "SoftwareApplication",
+      "identifier": "covr",
+      "name": "covr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=covr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "lexicon",
+      "name": "lexicon",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=lexicon"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "magick",
+      "name": "magick",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=magick"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "rgeos",
       "name": "rgeos",
       "provider": {
@@ -52,15 +87,27 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "rnaturalearthdata",
-      "name": "rnaturalearthdata",
+      "identifier": "rnaturalearth",
+      "name": "rnaturalearth",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/ropensci/rnaturalearthdata"
+      "sameAs": "https://CRAN.R-project.org/package=rnaturalearth"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "sf",
+      "name": "sf",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=sf"
     },
     {
       "@type": "SoftwareApplication",
@@ -76,15 +123,15 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "covr",
-      "name": "covr",
+      "identifier": "textclean",
+      "name": "textclean",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=covr"
+      "sameAs": "https://CRAN.R-project.org/package=textclean"
     }
   ],
   "softwareRequirements": [
@@ -186,18 +233,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "magick",
-      "name": "magick",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=magick"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "magrittr",
       "name": "magrittr",
       "provider": {
@@ -270,30 +305,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "rnaturalearth",
-      "name": "rnaturalearth",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=rnaturalearth"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "sf",
-      "name": "sf",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=sf"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "skimr",
       "name": "skimr",
       "provider": {
@@ -315,18 +326,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=stringr"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "textclean",
-      "name": "textclean",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://github.com/trinker/textclean"
     },
     {
       "@type": "SoftwareApplication",
@@ -372,8 +371,8 @@
   ],
   "codeRepository": "https://github.com/kguidonimartins/misc",
   "readme": "https://github.com/kguidonimartins/misc/blob/main/README.md",
-  "fileSize": "483.921KB",
-  "contIntegration": "https://travis-ci.com/kguidonimartins/misc",
+  "fileSize": "938.043KB",
+  "contIntegration": ["https://travis-ci.com/kguidonimartins/misc", "https://codecov.io/gh/kguidonimartins/misc?branch=master"],
   "issueTracker": "https://github.com/kguidonimartins/misc/issues",
   "developmentStatus": "https://www.repostatus.org/#active"
 }

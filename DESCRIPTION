@@ -1,6 +1,6 @@
 Package: misc
 Title: Miscellaneous functions
-Version: 0.0.1
+Version: 0.0.2
 Authors@R:
     person(given = "Karlo",
            family = "Guidoni Martins",
@@ -33,14 +33,14 @@ Imports:
     usethis,
     xpectr
 Suggests:
+    covr,
+    lexicon,
     magick,
-    sf,
     rgeos,
     rnaturalearth,
+    sf,
     testthat,
-    lexicon,
-    textclean,
-    covr
+    textclean
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

@@ -105,6 +105,7 @@ bPR
 bR
 brT
 BT
+BugReports
 BUq
 bWSͭp
 bϞ
@@ -134,10 +135,17 @@ cI
 Cȉ
 CMD
 cnY
+codecov
 Codecov
+codemeta
+codeRepository
 colorout
 compre
+ComputerLanguage
+contIntegration
 cookiecutter
+copyrightHolder
+covr
 cran
 cre
 cS
@@ -160,6 +168,7 @@ DAr
 dBn
 de
 deps
+developmentStatus
 devtools
 dFf
 DFq
@@ -173,6 +182,7 @@ dm
 DM
 dockerfile
 docx
+doi
 dontrun
 dotenv
 dp
@@ -238,6 +248,7 @@ eZY
 Ɛ
 F'ke
 fA
+familyName
 fd
 Fd
 fe
@@ -248,6 +259,7 @@ FGc
 FH
 fHii
 fI
+fileSize
 fJ
 Fj
 Fk
@@ -264,6 +276,7 @@ fS
 FS
 fsZ
 ftܒ
+funder
 fW
 Fw
 Fw̧QO
@@ -283,12 +296,14 @@ gg
 GG
 ggplot
 ggsave
+gh
 gH
 GH
 gi
 Gi
 github
 gitignore
+givenName
 gJ
 Gj
 gKޥ
@@ -337,6 +352,7 @@ hO
 hP
 hQ
 href
+http
 https
 Hv
 hx
@@ -378,6 +394,7 @@ ipak
 IQe
 iS
 iS̉
+issueTracker
 iU
 Iu
 IU
@@ -593,6 +610,7 @@ oly
 oOn
 OoY
 OQ
+orcid
 ORCID
 OrE
 OSen
@@ -638,6 +656,7 @@ pR
 preformatted
 preprints
 printf
+programmingLanguage
 proj
 ps
 PSH
@@ -688,6 +707,7 @@ rbuildignore
 Rcheck
 RCMD
 rds
+readme
 README
 readr
 readRDS
@@ -695,6 +715,7 @@ readxl
 renv
 repo
 repos
+repostatus
 requireNamespace
 rf
 rgeos
@@ -726,6 +747,7 @@ rrJR
 rrtools
 Rscript
 rstudio
+runtimePlatform
 rv
 rV
 rW
@@ -740,6 +762,7 @@ rН
 s'tR
 sa
 sA
+sameAs
 sD
 sE
 sed
@@ -751,7 +774,12 @@ sK
 skimr
 smy
 sn
+SoftwareApplication
+softwareRequirements
+SoftwareSourceCode
+softwareSuggestions
 sp
+spdx
 springer
 sR
 Ss
