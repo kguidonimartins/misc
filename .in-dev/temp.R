@@ -82,3 +82,54 @@ suppressWarnings(
     ) %>%
     select(latitude)
 )
+
+
+extract_docx_comments <- function(path_to_docx, dir_to_save = NULL) {
+  obj_name <- path_to_docx %>%
+    gsub(".docx", "_comments.csv", .)
+  if (is.null(dir_to_save)) {
+    dir_to_save <- "manuscript"
+    if (!fs::dir_exists(dir_to_save)) {
+      usethis::ui_stop("{usethis::ui_field(here::here(dir_to_save))} does not exists! Use `misc::create_dirs()`")
+    }
+  }
+  if (!fs::dir_exists(dir_to_save)) {
+    usethis::ui_stop("{usethis::ui_field(here::here(dir_to_save))} does not exists! Use `misc::create_dirs('{ui_field(dir_to_save)}')` before.")
+  }
+  name_to_save <- obj_name
+  if (!fs::file_exists(name_to_save)) {
+    usethis::ui_todo("Saving {usethis::ui_field(here::here(name_to_save))}...")
+    path_to_docx %>%
+      docxtractr::read_docx(track_changes = NULL) %>%
+      docxtractr::docx_extract_all_cmnts(include_text = TRUE) %>%
+      dplyr::select(id, date, author, word_src, comment_text) %>%
+      readr::write_csv(path = name_to_save, quote_escape = "double")
+    usethis::ui_done("{usethis::ui_field(here::here(name_to_save))} saved!")
+  } else {
+    usethis::ui_info("File {usethis::ui_field(here::here(name_to_save))} already exists!")
+  }
+}
+
+
+update_description <- function(pkg_list) {
+  has_tidy <- grepl(pattern = "tidyverse", x = pkg_list)
+
+  if (sum(has_tidy) >= 1) {
+    pkg_list <- pkg_list[!pkg_list %in% "tidyverse"]
+    pkg_list <- c(pkg_list, c("ggplot2", "tibble", "tidyr", "readr", "purrr", "dplyr", "stringr", "forcats"))
+  }
+
+  pkg_list_github <- pkg_list[grep(pattern = "/", x = pkg_list)]
+  pkg_list_cran <- pkg_list[!pkg_list %in% pkg_list_github]
+
+  if (!file.exists(here::here("DESCRIPTION"))) {
+    usethis::use_description(check_name = FALSE)
+  }
+
+  suppressMessages({
+    pkg_list_cran %>%
+      map(~ use_package(package = .x, type = "Imports"))
+  })
+
+  message(glue("Consider include {pkg_list_cran} into Remotes section of DESCRIPTION file"))
+}

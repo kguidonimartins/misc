@@ -16,7 +16,7 @@ build: document ## build package
 	$(R) "devtools::build()"
 
 check: ## check package
-	$(R) "devtools::check()"
+	$(R) "Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0); devtools::check()"
 
 styler: ## styler package
 	$(R) "styler::style_dir('R')"

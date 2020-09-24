@@ -9,7 +9,6 @@
 #'
 #' @importFrom dplyr select filter_all any_vars mutate case_when pull
 #' @importFrom ggplot2 ggplot geom_sf borders theme_bw labs theme element_blank element_line
-#' @importFrom stringr str_detect
 #'
 #' @return a ggplot object
 #'
@@ -38,6 +37,7 @@ quick_map <- function(region = NULL, type = NULL) {
   check_require("rnaturalearth")
   check_require("ropensci/rnaturalearthdata")
   check_require("sf")
+  check_require("stringr")
   world_data <-
     rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
   columns <- c(
@@ -89,11 +89,11 @@ quick_map <- function(region = NULL, type = NULL) {
         dplyr::pull(admin)
       map_borders <-
         ggplot2::borders(
-        database = "world",
-        regions = data_filtered,
-        fill = "white",
-        colour = "grey90"
-      )
+          database = "world",
+          regions = data_filtered,
+          fill = "white",
+          colour = "grey90"
+        )
       plot_map <-
         ggplot2::ggplot() +
         map_borders +

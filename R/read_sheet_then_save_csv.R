@@ -29,10 +29,6 @@
 #'
 #' @importFrom fs dir_exists dir_create file_exists
 #' @importFrom here here
-#' @importFrom janitor make_clean_names clean_names
-#' @importFrom readr write_csv
-#' @importFrom readxl read_excel
-#' @importFrom stringr str_replace_all str_to_lower
 #' @importFrom tools file_path_sans_ext
 #' @importFrom usethis ui_stop ui_field ui_todo ui_done ui_info
 #'
@@ -69,6 +65,10 @@ read_sheet_then_save_csv <-
            .name_repair = "unique") {
     check_require("trinker/lexicon")
     check_require("trinker/textclean")
+    check_require("readr")
+    check_require("readxl")
+    check_require("janitor")
+    check_require("stringr")
     if (is.null(dir_to_save)) {
       dir_to_save <- "data/temp"
       if (!fs::dir_exists(dir_to_save)) {
@@ -145,7 +145,6 @@ read_sheet_then_save_csv <-
 #' @importFrom fs dir_exists dir_create
 #' @importFrom here here
 #' @importFrom purrr map set_names
-#' @importFrom readxl excel_sheets
 #' @importFrom usethis ui_stop ui_field
 #'
 #' @export
@@ -165,6 +164,7 @@ read_sheet_then_save_csv <-
 #' }
 #'
 read_all_sheets_then_save_csv <- function(path_to_xlsx, dir_to_save = NULL) {
+  check_require("readxl")
   if (is.null(dir_to_save)) {
     dir_to_save <- "data/temp"
     if (fs::dir_exists(dir_to_save)) {

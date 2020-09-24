@@ -4,8 +4,6 @@
 #'
 #' @return a skimr object
 #'
-#' @importFrom skimr skim
-#'
 #' @export
 #'
 #' @examples
@@ -15,6 +13,7 @@
 #'   describe_data()
 #' }
 describe_data <- function(data) {
+  check_require("skimr")
   data %>%
     skimr::skim()
 }

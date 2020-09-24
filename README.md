@@ -53,30 +53,12 @@ Check all available functions inside an interactive session using
 |  15 | `save_temp_data()`                | Save object as RDS file                                      |
 |  16 | `trim_fig()`                      | Remove white spaces around figures                           |
 
-### Usage
-
-    # install and load multiple packages (cran and github) at once
-    library(misc)
-    ipak(c("vegan", "tidyverse", "git2r", "trinker/textclean", "jalvesaq/colorout"))
-    #> ℹ Successful loaded:
-    #>  - vegan     (2.5.6) 
-    #>  - git2r     (0.27.1) 
-    #>  - textclean (0.9.5) 
-    #>  - colorout  (1.2.2) 
-    #>  - ggplot2   (3.3.2) 
-    #>  - tibble    (3.0.3) 
-    #>  - tidyr     (1.1.2) 
-    #>  - readr     (1.3.1) 
-    #>  - purrr     (0.3.4) 
-    #>  - dplyr     (1.0.2) 
-    #>  - stringr   (1.4.0) 
-    #>  - forcats   (0.5.0)
-
 ### What commit is this file at?
 
+    misc::ipak("git2r")
     if (in_repository(path = ".")) {
       repository(".")
     }
     #> Local:    main /home/karlo/GoogleDrive2/git-repos/misc
     #> Remote:   main @ origin (https://github.com/kguidonimartins/misc.git)
-    #> Head:     [7062caa] 2020-09-17: fix: pkgdown deploy- do not build home before
+    #> Head:     [64931ee] 2020-09-17: increase version number

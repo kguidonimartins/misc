@@ -39,6 +39,18 @@
   "softwareSuggestions": [
     {
       "@type": "SoftwareApplication",
+      "identifier": "conflicted",
+      "name": "conflicted",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=conflicted"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "covr",
       "name": "covr",
       "provider": {
@@ -48,6 +60,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=covr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "janitor",
+      "name": "janitor",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=janitor"
     },
     {
       "@type": "SoftwareApplication",
@@ -72,6 +96,42 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=magick"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "naniar",
+      "name": "naniar",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=naniar"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "readr",
+      "name": "readr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=readr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "readxl",
+      "name": "readxl",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=readxl"
     },
     {
       "@type": "SoftwareApplication",
@@ -111,6 +171,30 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "skimr",
+      "name": "skimr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=skimr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "stringr",
+      "name": "stringr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=stringr"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
       "provider": {
@@ -135,30 +219,6 @@
     }
   ],
   "softwareRequirements": [
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "conflicted",
-      "name": "conflicted",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=conflicted"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "crayon",
-      "name": "crayon",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=crayon"
-    },
     {
       "@type": "SoftwareApplication",
       "identifier": "dplyr",
@@ -221,18 +281,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "janitor",
-      "name": "janitor",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=janitor"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "magrittr",
       "name": "magrittr",
       "provider": {
@@ -242,18 +290,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=magrittr"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "naniar",
-      "name": "naniar",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=naniar"
     },
     {
       "@type": "SoftwareApplication",
@@ -269,30 +305,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "readr",
-      "name": "readr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=readr"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "readxl",
-      "name": "readxl",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=readxl"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "remotes",
       "name": "remotes",
       "provider": {
@@ -302,30 +314,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=remotes"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "skimr",
-      "name": "skimr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=skimr"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "stringr",
-      "name": "stringr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=stringr"
     },
     {
       "@type": "SoftwareApplication",
@@ -355,23 +343,11 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=usethis"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "xpectr",
-      "name": "xpectr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=xpectr"
     }
   ],
   "codeRepository": "https://github.com/kguidonimartins/misc",
   "readme": "https://github.com/kguidonimartins/misc/blob/main/README.md",
-  "fileSize": "938.043KB",
+  "fileSize": "934.892KB",
   "contIntegration": ["https://travis-ci.com/kguidonimartins/misc", "https://codecov.io/gh/kguidonimartins/misc?branch=master"],
   "issueTracker": "https://github.com/kguidonimartins/misc/issues",
   "developmentStatus": "https://www.repostatus.org/#active"

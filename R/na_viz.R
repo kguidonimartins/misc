@@ -7,8 +7,6 @@
 #'
 #' @return a ggplot object
 #'
-#' @importFrom naniar vis_miss
-#'
 #' @section Acknowledgment:
 #' `na_viz()` is another name for the excellent `vis_miss()` of
 #' [`{naniar}`](https://github.com/njtierney/naniar)
@@ -21,6 +19,7 @@
 #' na_data %>% na_viz()
 #' }
 na_viz <- function(data) {
+  check_require("naniar")
   data %>%
     naniar::vis_miss(x = .)
 }

@@ -12,33 +12,31 @@ License: MIT + file LICENSE
 URL: https://github.com/kguidonimartins/misc
 BugReports: https://github.com/kguidonimartins/misc/issues
 Imports:
-    conflicted,
-    crayon,
     dplyr,
     fs,
     ggplot2,
     glue,
     here,
-    janitor,
     magrittr,
-    naniar,
     purrr,
-    readr,
-    readxl,
     remotes,
-    skimr,
-    stringr,
     tidyr,
     tools,
-    usethis,
-    xpectr
+    usethis
 Suggests:
+    conflicted,
     covr,
+    janitor,
     lexicon,
     magick,
+    naniar,
+    readr,
+    readxl,
     rgeos,
     rnaturalearth,
     sf,
+    skimr,
+    stringr,
     testthat,
     textclean
 Encoding: UTF-8
