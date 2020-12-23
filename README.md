@@ -1,8 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-misc
-====
+# misc
 
 <!-- badges: start -->
 
@@ -15,19 +14,21 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 status](https://github.com/kguidonimartins/misc/workflows/R-CMD-check/badge.svg)](https://github.com/kguidonimartins/misc/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/kguidonimartins/misc/branch/master/graph/badge.svg)](https://codecov.io/gh/kguidonimartins/misc?branch=master)
+[![CodeFactor](https://www.codefactor.io/repository/github/kguidonimartins/misc/badge/main)](https://www.codefactor.io/repository/github/kguidonimartins/misc/overview/main)
 <!-- badges: end -->
 
 `{misc}` stands for *miscellaneous*. This is a personal package. Use it
 at your own risk.
 
-Installation
-------------
+## Installation
 
 You can install the released version of misc from
 [github](https://github.com/kguidonimartins/misc) with:
 
-    if (!require("remotes")) install.packages("remotes")
-    if (!require("misc")) remotes::install_github("kguidonimartins/misc")
+``` r
+if (!require("remotes")) install.packages("remotes")
+if (!require("misc")) remotes::install_github("kguidonimartins/misc")
+```
 
 ### Available functions
 
@@ -55,10 +56,14 @@ Check all available functions inside an interactive session using
 
 ### What commit is this file at?
 
-    misc::ipak("git2r")
-    if (in_repository(path = ".")) {
-      repository(".")
-    }
-    #> Local:    main /home/karlo/GoogleDrive2/git-repos/misc
-    #> Remote:   main @ origin (https://github.com/kguidonimartins/misc.git)
-    #> Head:     [64931ee] 2020-09-17: increase version number
+``` r
+misc::ipak("git2r")
+#> ℹ Successful loaded:
+#>  - git2r (0.27.1)
+if (in_repository(path = ".")) {
+  repository(".")
+}
+#> Local:    main /home/karlo/GoogleDrive2/git-repos/misc
+#> Remote:   main @ origin (https://github.com/kguidonimartins/misc.git)
+#> Head:     [9513ab0] 2020-09-24: move many for suggests
+```
