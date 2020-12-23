@@ -23,6 +23,9 @@
 - include `make_template()
     > goal = c("manuscript", "analytical", "show-case", "slides", "package", "shiny")
     * [ ] a wrapper for create_dirs, and add_*()
+- test if packages can be loaded
+- test if packages can be installed
+- test error in unknow packages
 
 ## DOING
 
