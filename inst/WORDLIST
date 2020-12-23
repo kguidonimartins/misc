@@ -143,6 +143,7 @@ codeRepository
 colorout
 compre
 ComputerLanguage
+config
 contIntegration
 cookiecutter
 copyrightHolder
@@ -169,6 +170,7 @@ DAr
 dBn
 de
 deps
+dev
 developmentStatus
 devtools
 dFf
@@ -293,6 +295,7 @@ fڬY
 G͂
 Gb
 Gcz
+getRversion
 gg
 GG
 ggplot
@@ -339,6 +342,7 @@ gڎ
 ʰ
 ħ
 hː
+hashFiles
 Hb
 Hc
 HD
@@ -502,6 +506,7 @@ LF
 lFMT
 lH
 ̳LH
+LIBS
 Lk
 lm
 lN
@@ -520,6 +525,7 @@ LX
 Lz
 ƚ핥
 maça
+macOS
 magick
 magrittr
 makefile
@@ -614,6 +620,7 @@ OQ
 orcid
 ORCID
 OrE
+os
 OSen
 ot
 oT
@@ -626,6 +633,7 @@ Oý
 oZ
 ɵYFZ
 P'줪
+pandoc
 pbb
 pcbi
 pD
@@ -635,6 +643,7 @@ peerj
 pepino
 ph
 pI
+pkgdown
 PKGNAME
 PKGVERS
 plJ
@@ -764,6 +773,7 @@ s'tR
 sa
 sA
 sameAs
+saveRDS
 sD
 sE
 sed
@@ -783,6 +793,7 @@ softwareSuggestions
 sp
 spdx
 springer
+sprintf
 sR
 Ss
 startr
@@ -932,6 +943,7 @@ wO
 Worthington
 wP
 Wr
+writeLines
 ws
 Wš
 WtI
