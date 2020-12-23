@@ -84,7 +84,7 @@ arguments." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -95,7 +95,7 @@ arguments." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/kguidonimartins/misc/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -125,7 +125,7 @@ addition, the user can update their packages using the <code>force_*()</code>
 arguments.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ipak</span>(<span class='kw'>pkg_list</span>, force_cran = <span class='fl'>FALSE</span>, force_github = <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>ipak</span><span class='op'>(</span><span class='va'>pkg_list</span>, force_cran <span class='op'>=</span> <span class='cn'>FALSE</span>, force_github <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -155,10 +155,10 @@ publicly available
 using this function for years and now I decided to expand it.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='kw'>pkg_list</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"vegan"</span>, <span class='st'>"ggplot2"</span>, <span class='st'>"trinker/textclean"</span>, <span class='st'>"jalvesaq/colorout"</span>)
-<span class='fu'>ipak</span>(<span class='kw'>pkg_list</span>)
-}
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>pkg_list</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"vegan"</span>, <span class='st'>"ggplot2"</span>, <span class='st'>"trinker/textclean"</span>, <span class='st'>"jalvesaq/colorout"</span><span class='op'>)</span>
+<span class='fu'>ipak</span><span class='op'>(</span><span class='va'>pkg_list</span><span class='op'>)</span>
+<span class='op'>}</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
