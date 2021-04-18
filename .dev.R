@@ -31,7 +31,7 @@ c(
   purrr::map(~ usethis::use_package(package = .x, type = "Imports"))
 
 # last function
-func <- "trim_fig"
+func <- "setup_lintr"
 
 usethis::use_r(func)
 

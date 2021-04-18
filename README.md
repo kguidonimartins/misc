@@ -52,18 +52,17 @@ Check all available functions inside an interactive session using
 |  13 | `read_sheet_then_save_csv()`      | Read an excel sheet and save it to a CSV file                |
 |  14 | `save_plot()`                     | Save a ggplot figure                                         |
 |  15 | `save_temp_data()`                | Save object as RDS file                                      |
-|  16 | `trim_fig()`                      | Remove white spaces around figures                           |
+|  16 | `setup_lintr()`                   | Setup a config file for static code analysis                 |
+|  17 | `trim_fig()`                      | Remove white spaces around figures                           |
 
 ### What commit is this file at?
 
 ``` r
 misc::ipak("git2r")
-#> ℹ Successful loaded:
-#>  - git2r (0.27.1)
 if (in_repository(path = ".")) {
   repository(".")
 }
 #> Local:    main /home/karlo/GoogleDrive2/git-repos/misc
 #> Remote:   main @ origin (https://github.com/kguidonimartins/misc.git)
-#> Head:     [9513ab0] 2020-09-24: move many for suggests
+#> Head:     [467fcac] 2020-12-23: update todo and in-dev
 ```

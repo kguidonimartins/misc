@@ -1,4 +1,4 @@
-globalVariables(c(".", "admin"))
+globalVariables(c(".", "admin", "excluded_files", "linter"))
 
 check_require <- function(pkg) {
   full_pkgname <- pkg

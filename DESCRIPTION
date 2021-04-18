@@ -38,7 +38,8 @@ Suggests:
     skimr,
     stringr,
     testthat,
-    textclean
+    textclean,
+    lintr
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
