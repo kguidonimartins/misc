@@ -123,7 +123,7 @@ read_sheet_then_save_csv <-
           .name_repair = .name_repair
         ) %>%
         janitor::clean_names(dat = ., case = "snake") %>%
-        readr::write_csv(x = ., path = filename_to_save)
+        readr::write_csv(x = ., file = filename_to_save)
       usethis::ui_done("{usethis::ui_field(here::here(filename_to_save))} saved!")
     } else {
       usethis::ui_info("File {usethis::ui_field(here::here(filename_to_save))} already exists!")
