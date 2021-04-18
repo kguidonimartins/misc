@@ -22,7 +22,8 @@ Imports:
     remotes,
     tidyr,
     tools,
-    usethis
+    usethis,
+    crayon
 Suggests:
     conflicted,
     covr,
