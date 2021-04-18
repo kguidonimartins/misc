@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • misc</title>
+<title>Setup a config file for static code analysis — setup_lintr • misc</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Setup a config file for static code analysis — setup_lintr" />
+<meta property="og:description" content="This function create a config file (.lintr) in root of the user's project
+based on static code analysis performed by the `lintr." />
 
 
 
@@ -58,7 +60,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -105,132 +107,57 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Setup a config file for static code analysis</h1>
+    <small class="dont-index">Source: <a href='https://github.com/kguidonimartins/misc/blob/master/R/setup_lintr.R'><code>R/setup_lintr.R</code></a></small>
+    <div class="hidden name"><code>setup_lintr.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>This function create a config file (<code>.lintr</code>) in root of the user's project
+based on static code analysis performed by the `lintr.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>setup_lintr</span><span class='op'>(</span>exclude_file <span class='op'>=</span> <span class='cn'>NULL</span>, exclude_path <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="add_gitignore.html">add_gitignore()</a></code> </p>
-        </td>
-        <td><p>Add a gitignore file to the project root</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="combine_words_ptbr.html">combine_words_ptbr()</a></code> </p>
-        </td>
-        <td><p>Combine words using ptbr rules</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="create_dirs.html">create_dirs()</a></code> </p>
-        </td>
-        <td><p>Create directories</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="describe_data.html">describe_data()</a></code> </p>
-        </td>
-        <td><p>Describe data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ipak.html">ipak()</a></code> </p>
-        </td>
-        <td><p>Install and load multiple CRAN and github R packages</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="na_count.html">na_count()</a></code> </p>
-        </td>
-        <td><p>Count NA frequency in data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="na_viz.html">na_viz()</a></code> </p>
-        </td>
-        <td><p>Visualize NA frequency in data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="prefer.html">prefer()</a></code> </p>
-        </td>
-        <td><p>Defines preferred package::functions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="quick_map.html">quick_map()</a></code> </p>
-        </td>
-        <td><p>Create maps quickly</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_all_sheets_then_save_csv.html">read_all_sheets_then_save_csv()</a></code> </p>
-        </td>
-        <td><p>Read and save all excel sheets and save them to a CSV file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_all_xlsx_then_save_csv.html">read_all_xlsx_then_save_csv()</a></code> </p>
-        </td>
-        <td><p>Read all sheets from all excel files and save into CSV files</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_sheet_then_save_csv.html">read_sheet_then_save_csv()</a></code> </p>
-        </td>
-        <td><p>Read an excel sheet and save it to a CSV file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="save_plot.html">save_plot()</a></code> </p>
-        </td>
-        <td><p>Save a ggplot figure</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="save_temp_data.html">save_temp_data()</a></code> </p>
-        </td>
-        <td><p>Save object as RDS file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="setup_lintr.html">setup_lintr()</a></code> </p>
-        </td>
-        <td><p>Setup a config file for static code analysis</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="trim_fig.html">trim_fig()</a></code> </p>
-        </td>
-        <td><p>Remove white spaces around figures</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>exclude_file</th>
+      <td><p>character a character vector containing the files that
+should be excluded from static code analysis.</p></td>
+    </tr>
+    <tr>
+      <th>exclude_path</th>
+      <td><p>character a character vector containing the paths that
+should be excluded from static code analysis.</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>none</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>setup_lint</code> creates a file (<code>.lintr</code>) in the root of the user project,
+which lists and counts the warnings, syntax errors, and possible semantic
+issues provided by the static code analysis of the <code>{lintr}</code>. In the current
+form (i.e., right after its creation), the <code>.lintr</code> file will block all the
+problems and hints founded by the static code analysis. Users need to edit
+the file manually, changing the variable values from NULL to the value used
+by each type of linter listed. For example, the default value of the
+<code>line_length_linter</code> linter is 80, but users can change it to 120. Please,
+check the <a href='https://github.com/jimhester/lintr/blob/master/README.md'>README</a>
+of the <code>{lintr}</code> for further information.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'>setup_lintr</span><span class='op'>(</span>exclude_file <span class='op'>=</span> <span class='st'>"manuscript.Rmd"</span>, exclude_path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"data"</span>, <span class='st'>"sources"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
