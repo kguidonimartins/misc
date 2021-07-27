@@ -1,6 +1,6 @@
 Package: misc
 Title: Miscellaneous functions
-Version: 0.0.2
+Version: 0.0.3
 Authors@R:
     person(given = "Karlo",
            family = "Guidoni Martins",
@@ -40,6 +40,7 @@ Suggests:
     stringr,
     testthat,
     textclean,
+    tidyselect,
     lintr
 Encoding: UTF-8
 LazyData: true

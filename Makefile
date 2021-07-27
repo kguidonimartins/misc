@@ -15,7 +15,7 @@ document: ## refresh function documentation
 build: document ## build package
 	$(R) "devtools::build()"
 
-check: ## check package
+check: build ## check package
 	$(R) "Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0); devtools::check(document = FALSE, build_args = c('--no-build-vignettes'))"
 
 styler: ## styler package

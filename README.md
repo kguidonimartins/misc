@@ -42,27 +42,30 @@ Check all available functions inside an interactive session using
 |   2 | `combine_words_ptbr()`            | Combine words using ptbr rules                               |
 |   3 | `create_dirs()`                   | Create directories                                           |
 |   4 | `describe_data()`                 | Describe data                                                |
-|   5 | `ipak()`                          | Install and load multiple CRAN and github R packages         |
-|   6 | `na_count()`                      | Count NA frequency in data                                   |
-|   7 | `na_viz()`                        | Visualize NA frequency in data                               |
-|   9 | `prefer()`                        | Defines preferred package::functions                         |
-|  10 | `quick_map()`                     | Create maps quickly                                          |
-|  11 | `read_all_sheets_then_save_csv()` | Read and save all excel sheets and save them to a CSV file   |
-|  12 | `read_all_xlsx_then_save_csv()`   | Read all sheets from all excel files and save into CSV files |
-|  13 | `read_sheet_then_save_csv()`      | Read an excel sheet and save it to a CSV file                |
-|  14 | `save_plot()`                     | Save a ggplot figure                                         |
-|  15 | `save_temp_data()`                | Save object as RDS file                                      |
-|  16 | `setup_lintr()`                   | Setup a config file for static code analysis                 |
-|  17 | `trim_fig()`                      | Remove white spaces around figures                           |
+|   5 | `filter_na()`                     | Easily filter NA values from data frames                     |
+|   6 | `ipak()`                          | Install and load multiple CRAN and github R packages         |
+|   7 | `na_count()`                      | Count NA frequency in data                                   |
+|   8 | `na_viz()`                        | Visualize NA frequency in data                               |
+|  10 | `prefer()`                        | Defines preferred package::functions                         |
+|  11 | `quick_map()`                     | Create maps quickly                                          |
+|  12 | `read_all_sheets_then_save_csv()` | Read and save all excel sheets and save them to a CSV file   |
+|  13 | `read_all_xlsx_then_save_csv()`   | Read all sheets from all excel files and save into CSV files |
+|  14 | `read_sheet_then_save_csv()`      | Read an excel sheet and save it to a CSV file                |
+|  15 | `save_plot()`                     | Save a ggplot figure                                         |
+|  16 | `save_temp_data()`                | Save object as RDS file                                      |
+|  17 | `setup_lintr()`                   | Setup a config file for static code analysis                 |
+|  18 | `trim_fig()`                      | Remove white spaces around figures                           |
 
 ### What commit is this file at?
 
 ``` r
 misc::ipak("git2r")
+#> ℹ Successful loaded:
+#>  - git2r (0.28.0)
 if (in_repository(path = ".")) {
   repository(".")
 }
-#> Local:    main /home/karlo/GoogleDrive2/git-repos/misc
+#> Local:    main /home/karlo/google-drive/kguidonimartins/git-repos/misc
 #> Remote:   main @ origin (https://github.com/kguidonimartins/misc.git)
-#> Head:     [467fcac] 2020-12-23: update todo and in-dev
+#> Head:     [ab40174] 2021-04-18: update NAMESPACE
 ```
