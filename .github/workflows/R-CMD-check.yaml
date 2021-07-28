@@ -50,7 +50,7 @@ jobs:
         run: |
           install.packages("pak", repos = "https://r-lib.github.io/p/pak/dev/")
         shell: Rscript {0}
-        
+
       - name: Install system dependencies
         if: runner.os == 'Linux'
         env:
@@ -60,11 +60,11 @@ jobs:
           do
             eval sudo $cmd
           done < <(Rscript -e 'writeLines(pak::local_system_requirements("ubuntu", "16.04"))')
-      
+
       - name: Install dependencies
         run: |
           remotes::install_deps(dependencies = c("Depends", "Imports", "LinkingTo", "Suggests"))
-          remotes::install_cran(c("rcmdcheck", "devtools"))
+          remotes::install_cran(c("rcmdcheck", "devtools", "sf"))
         shell: Rscript {0}
 
       - name: Session info
@@ -79,7 +79,7 @@ jobs:
           _R_CHECK_CRAN_INCOMING_: false
         run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error", build_args = c('--no-build-vignettes'))
         shell: Rscript {0}
-        
+
       - name: Tests
         run: devtools::test()
         shell: Rscript {0}
