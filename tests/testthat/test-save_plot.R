@@ -1,3 +1,5 @@
+skip("Depends on rnaturalearth data")
+
 p <- quick_map()
 
 test_that("save_plot works with default arguments", {

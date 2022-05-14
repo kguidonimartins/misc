@@ -1,3 +1,5 @@
+skip("Depends on rnaturalearth data")
+
 p <- quick_map()
 
 test_that("trim_fig works", {

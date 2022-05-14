@@ -1,3 +1,5 @@
+skip("Depends on network connection")
+
 test_that("add_gitignore download file", {
   add_gitignore()
   expect_true(file.exists(".gitignore"))
