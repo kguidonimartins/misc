@@ -25,6 +25,7 @@
 #'
 #' @importFrom dplyr tally group_by
 #' @importFrom magrittr %$%
+#' @importFrom rlang is_empty
 #'
 #' @export
 #'
@@ -55,18 +56,28 @@ setup_lintr <- function(exclude_file = NULL, exclude_path = NULL) {
     file.remove(lint_file)
   }
 
-  # List current lints
-  sink(lint_file)
-  sprintf("exclusions: list(\n    %s\n  )\n",
-    paste0('"', exclude_all, '"', collapse = ",\n    ")) %>%
-  cat()
-  lintr::lint_package() %>%
-    as.data.frame() %>%
+  checks <-
+    lintr::lint_package() %>%
+    as.data.frame %>%
     dplyr::group_by(linter) %>%
     dplyr::tally(sort = TRUE) %$%
-    sprintf("linters: with_defaults(\n    %s\n    dummy_linter = NULL\n  )\n",
-      paste0(linter, " = NULL, # ", n, collapse = "\n    ")) %>%
-    cat()
+    sprintf("linters: linters_with_defaults(\n    %s\n    dummy_linter = NULL\n  )\n",
+            paste0(linter, " = NULL, # ", n, collapse = "\n    "))
+
+  sink(".lintr")
+  cat(checks)
   sink()
+
+  if (!rlang::is_empty(exclude_all)) {
+
+    excls <-
+      sprintf("exclusions: list(\n    %s\n  )\n",
+              paste0('"', exclude_all, '"', collapse = ",\n    "))
+
+    sink(".lintr", append = TRUE)
+    cat(excls)
+    sink()
+
+  }
 
 }

@@ -1,9 +1,6 @@
-exclusions: list(
-    ""
-  )
-linters: with_defaults(
-    line_length_linter = NULL, # 90
-    commented_code_linter = NULL, # 5
+linters: linters_with_defaults(
+    line_length_linter = NULL, # 101
+    commented_code_linter = NULL, # 8
     object_name_linter = NULL, # 3
     object_usage_linter = NULL, # 2
     dummy_linter = NULL
