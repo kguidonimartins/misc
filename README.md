@@ -54,6 +54,6 @@ Check all available functions inside an interactive session using
 |  15 | `save_plot()`                     | Save a ggplot figure                                         |
 |  16 | `save_temp_data()`                | Save object as RDS file                                      |
 |  17 | `setup_lintr()`                   | Setup a config file for static code analysis                 |
-|  18 | `tad_view()`                      | Alternative                                                  |
+|  18 | `tad_view()`                      | Alternative data.frame viewer using tad                      |
 |  19 | `trim_fig()`                      | Remove white spaces around figures                           |
-|  20 | `view_in()`                       | Alternative                                                  |
+|  20 | `view_in()`                       | Alternative data.frame viewer                                |
