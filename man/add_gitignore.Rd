@@ -19,6 +19,8 @@ add_gitignore(type = "r")
 
 \code{add_gitignore()} is inspired by
 \href{https://github.com/ropensci/gitignore/blob/master/R/gi_fetch_templates.R}{\code{gitignore::gi_fetch_templates}}
+and by some examples on the gitignore.io
+\href{https://github.com/toptal/gitignore.io/wiki/Advanced-Command-Line}{wiki page}.
 }
 
 \examples{

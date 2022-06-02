@@ -34,7 +34,6 @@
 #' setup_lintr(exclude_file = "manuscript.Rmd", exclude_path = c("data", "sources"))
 #' }
 setup_lintr <- function(exclude_file = NULL, exclude_path = NULL) {
-
   check_require("lintr")
 
   if (is.null(exclude_file)) {
@@ -44,7 +43,7 @@ setup_lintr <- function(exclude_file = NULL, exclude_path = NULL) {
   exclude_path_list <- list()
 
   for (i in seq_along(exclude_path)) {
-    exclude_path_list[[i]] <- list.files(exclude_path[i], recursive = TRUE, full.names = TRUE)    # print(exclude_paths)
+    exclude_path_list[[i]] <- list.files(exclude_path[i], recursive = TRUE, full.names = TRUE) # print(exclude_paths)
   }
 
   exclude_all <- unique(unlist(c(exclude_file, exclude_path_list)))
@@ -58,26 +57,27 @@ setup_lintr <- function(exclude_file = NULL, exclude_path = NULL) {
 
   checks <-
     lintr::lint_package() %>%
-    as.data.frame %>%
+    as.data.frame() %>%
     dplyr::group_by(linter) %>%
     dplyr::tally(sort = TRUE) %$%
-    sprintf("linters: linters_with_defaults(\n    %s\n    dummy_linter = NULL\n  )\n",
-            paste0(linter, " = NULL, # ", n, collapse = "\n    "))
+    sprintf(
+      "linters: linters_with_defaults(\n    %s\n    dummy_linter = NULL\n  )\n",
+      paste0(linter, " = NULL, # ", n, collapse = "\n    ")
+    )
 
   sink(".lintr")
   cat(checks)
   sink()
 
   if (!rlang::is_empty(exclude_all)) {
-
     excls <-
-      sprintf("exclusions: list(\n    %s\n  )\n",
-              paste0('"', exclude_all, '"', collapse = ",\n    "))
+      sprintf(
+        "exclusions: list(\n    %s\n  )\n",
+        paste0('"', exclude_all, '"', collapse = ",\n    ")
+      )
 
     sink(".lintr", append = TRUE)
     cat(excls)
     sink()
-
   }
-
 }

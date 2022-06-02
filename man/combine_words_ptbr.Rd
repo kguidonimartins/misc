@@ -37,7 +37,8 @@ mtcars \%>\%
   lm(mpg ~ cyl + carb + wt, data = .) \%>\%
   tidy() \%>\%
   filter(p.value <= 0.05, term != "(Intercept)") \%>\%
-  pull(term) \%>\% {
+  pull(term) \%>\%
+  {
     paste("Variáveis significativas:", combine_words_ptbr(.))
   }
 

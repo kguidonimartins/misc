@@ -50,8 +50,7 @@
 #' )
 #' }
 read_sheet_then_save_csv <-
-  function(
-           excel_sheet,
+  function(excel_sheet,
            path_to_xlsx,
            dir_to_save = NULL,
            range = NULL,

@@ -35,5 +35,4 @@ filter_na <- function(data, type = c("any", "all")) {
   }
 
   return(data_filter)
-
 }

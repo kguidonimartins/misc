@@ -18,6 +18,8 @@
 #' @section Acknowledgment:
 #' `add_gitignore()` is inspired by
 #' [`gitignore::gi_fetch_templates`](https://github.com/ropensci/gitignore/blob/master/R/gi_fetch_templates.R)
+#' and by some examples on the gitignore.io
+#' [wiki page](https://github.com/toptal/gitignore.io/wiki/Advanced-Command-Line).
 #'
 #' @examples
 #' \dontrun{
