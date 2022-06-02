@@ -1,6 +1,6 @@
 Package: misc
 Title: Miscellaneous functions
-Version: 0.0.3
+Version: 0.0.4
 Authors@R:
     person(given = "Karlo",
            family = "Guidoni Martins",
@@ -24,7 +24,8 @@ Imports:
     tools,
     usethis,
     crayon,
-    readr
+    readr,
+    rlang
 Suggests:
     conflicted,
     covr,

@@ -54,18 +54,6 @@ Check all available functions inside an interactive session using
 |  15 | `save_plot()`                     | Save a ggplot figure                                         |
 |  16 | `save_temp_data()`                | Save object as RDS file                                      |
 |  17 | `setup_lintr()`                   | Setup a config file for static code analysis                 |
-|  18 | `trim_fig()`                      | Remove white spaces around figures                           |
-
-### What commit is this file at?
-
-``` r
-misc::ipak("git2r")
-#> ℹ Successful loaded:
-#>  - git2r (0.28.0)
-if (in_repository(path = ".")) {
-  repository(".")
-}
-#> Local:    main /home/karlo/google-drive/kguidonimartins/git-repos/misc
-#> Remote:   main @ origin (https://github.com/kguidonimartins/misc.git)
-#> Head:     [ab40174] 2021-04-18: update NAMESPACE
-```
+|  18 | `tad_view()`                      | Alternative                                                  |
+|  19 | `trim_fig()`                      | Remove white spaces around figures                           |
+|  20 | `view_in()`                       | Alternative                                                  |

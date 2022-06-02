@@ -2,7 +2,7 @@
 % Please edit documentation in R/tad_view.R
 \name{tad_view}
 \alias{tad_view}
-\title{Alternative \code{View()} function}
+\title{Alternative data.frame viewer using tad}
 \usage{
 tad_view(data)
 }

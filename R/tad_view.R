@@ -1,4 +1,4 @@
-#' Alternative `View()` function
+#' Alternative data.frame viewer using tad
 #'
 #' @description
 #' `tad_view()` is an alternative to `View()` function when not using

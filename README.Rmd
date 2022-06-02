@@ -81,9 +81,9 @@ full_join(
   knitr::kable(.)
 ```
 
-### What commit is this file at?
 
-```{r}
+```{r, echo=FALSE,eval=FALSE}
+### What commit is this file at?
 misc::ipak("git2r")
 if (in_repository(path = ".")) {
   repository(".")
