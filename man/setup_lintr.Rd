@@ -18,7 +18,7 @@ none
 }
 \description{
 This function create a config file (\code{.lintr}) in root of the user's project
-based on static code analysis performed by the `{lintr}.
+based on static code analysis performed by the \code{{lintr}}.
 }
 \details{
 \code{setup_lint} creates a file (\code{.lintr}) in the root of the user project,

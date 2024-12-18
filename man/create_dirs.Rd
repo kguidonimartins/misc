@@ -28,7 +28,9 @@ decision should be made by the user/analyst/scientist/team. Here, I
 suggest a directory structure that has worked for me. In addition, the
 directory structure created fits perfectly with functions present in this
 package (for example \code{\link{save_plot}} and \code{\link{save_temp_data}}).
-Below is the \emph{suggested} directory structure:\preformatted{.
+Below is the \emph{suggested} directory structure:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{.
 ├── R           # local functions
 ├── data
 │   ├── clean   # stores clean data
@@ -38,7 +40,7 @@ Below is the \emph{suggested} directory structure:\preformatted{.
     ├── figures # stores figures ready for publication/presentation
     ├── results # stores text results and others
     └── supp    # stores supplementary material for publication/presentation
-}
+}\if{html}{\out{</div>}}
 }
 
 \section{Acknowledgment}{

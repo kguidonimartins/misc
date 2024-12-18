@@ -2,7 +2,7 @@
 #'
 #' @description
 #' This function create a config file (`.lintr`) in root of the user's project
-#' based on static code analysis performed by the `{lintr}.
+#' based on static code analysis performed by the `{lintr}`.
 #'
 #' @details
 #' `setup_lint` creates a file (`.lintr`) in the root of the user project,
