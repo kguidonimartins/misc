@@ -88,26 +88,60 @@ view_in <- function(data, viewer = c("libreoffice", "gnumeric", "tad")) {
 #' nested_df %>% view_vd(type = "json")
 #' }
 view_vd <- function(data, title = NULL, type = "csv") {
+  # Check if input is a valid data type
+  valid_classes <- c("data.frame", "tbl_df", "sf")
+  if (!any(class(data) %in% valid_classes)) {
+    stop("Input must be a data.frame, tibble, or sf object")
+  }
+
   if (interactive()) {
 
-    ## bin <- Sys.which("st")
+    misc_dir <- paste0(Sys.getenv("HOME"), "/.misc")
+
+    if (!dir.exists(here::here(misc_dir))) {
+      dir.create(here::here(misc_dir))
+    }
+
+    project_name <- basename(here::here())
+
+    construct_file_name <- function(file_extension) {
+      return(paste0(misc_dir, "/", format(Sys.time(), "D%Y%m%dT%H%M%OS5"), "_", project_name, extfile))
+    }
 
     if (is.null(title)) {
       title <- "misc::view_vd"
     }
 
     if (class(data)[1] == "sf") {
-      message("Removing sf geometry...")
+      message("[INFO] `{misc}`: Removing sf geometry...")
       data_clean <-
         sf::st_drop_geometry(data)
     } else {
       data_clean <- data
     }
 
+    ## remove list-columns
+    if (dplyr::is_grouped_df(data_clean)) {
+      message("[INFO] `{misc}`: Ungrouping data...")
+      message("[INFO] `{misc}`: Removing list-columns...")
+      data_clean <-
+        data_clean %>%
+        dplyr::ungroup() %>%
+        dplyr::select(-dplyr::where(is.list))
+    } else {
+      message("[INFO] `{misc}`: Removing list-columns...")
+      data_clean <-
+        data_clean %>%
+        dplyr::ungroup() %>%
+        dplyr::select(-dplyr::where(is.list))
+    }
+
     if (type == "csv") {
       extfile <- ".csv"
-      tmp <- paste0(tempfile(), "___", format(Sys.time(), "D%Y%m%dT%H%M%S"), "___misc___visidata", extfile)
-      readr::write_csv(data_clean, tmp)
+      tmp <- construct_file_name(extfile)
+      num_threads <- parallel::detectCores()
+      data.table::setDTthreads(num_threads)
+      data.table::fwrite(x = data_clean, file = tmp, nThread = num_threads)
     }
 
     if (type == "json") {
@@ -131,11 +165,11 @@ view_vd <- function(data, title = NULL, type = "csv") {
     )
 
   }
-  return(data)
+  return(dplyr::glimpse(data))
 }
 
 #' View data frame in VisiData (non-interactive version)
-#' 
+#'
 #' Opens a data frame in VisiData terminal viewer, saving to a fixed location in Downloads.
 #' Similar to view_vd() but without interactive mode check.
 #'
@@ -176,7 +210,7 @@ view_vd_nonint <- function(data, title = NULL) {
 
 
 #' View data frame in Excel or other spreadsheet viewer
-#' 
+#'
 #' Opens a data frame in Microsoft Excel or another spreadsheet viewer. Also copies the data
 #' to the system clipboard.
 #'
