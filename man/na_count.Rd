@@ -8,6 +8,9 @@ na_count(data, sort = TRUE)
 }
 \arguments{
 \item{data}{a data frame}
+
+\item{sort}{If \code{TRUE}, sort rows by descending \code{na_percent}. If \code{FALSE}, keep
+column order from the input.}
 }
 \value{
 a long-format tibble

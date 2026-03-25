@@ -11,9 +11,9 @@ read_geo(path, layer = NULL, quiet = TRUE, ...)
 
 \item{layer}{Passed to multi-layer GDAL readers. Ignored for \code{.zip} and \code{.kmz}.}
 
-\item{quiet}{Passed to \code{\link[sf:read_sf]{sf::read_sf()}}.}
+\item{quiet}{Passed to \code{\link[sf:st_read]{sf::read_sf()}}.}
 
-\item{...}{Additional arguments passed to \code{\link[sf:read_sf]{sf::read_sf()}}.}
+\item{...}{Additional arguments passed to \code{\link[sf:st_read]{sf::read_sf()}}.}
 }
 \value{
 A tibble as described in \code{\link[=read_gdb]{read_gdb()}}.
@@ -21,11 +21,11 @@ A tibble as described in \code{\link[=read_gdb]{read_gdb()}}.
 \description{
 Chooses the reader from \code{tools::file_ext(path)} (case-insensitive):
 \itemize{
-\item \code{.zip} \mdash \code{\link[=read_sf_zip]{read_sf_zip()}}
-\item \code{.kmz} \mdash \code{\link[=read_kmz]{read_kmz()}}
-\item \code{.kml} \mdash internal KML reader (same tibble layout; \code{fpath} is the \code{.kml} file)
-\item \code{.gdb} \mdash \code{\link[=read_gdb]{read_gdb()}}
-\item anything else GDAL/\code{sf} can open on \code{path} \mdash one row per layer from
+\item \code{.zip} — \code{\link[=read_sf_zip]{read_sf_zip()}}
+\item \code{.kmz} — \code{\link[=read_kmz]{read_kmz()}}
+\item \code{.kml} — internal KML reader (same tibble layout; \code{fpath} is the \code{.kml} file)
+\item \code{.gdb} — \code{\link[=read_gdb]{read_gdb()}}
+\item anything else GDAL/\code{sf} can open on \code{path} — one row per layer from
 \code{\link[sf:st_layers]{sf::st_layers()}} (e.g. \code{.shp}, \code{.gpkg}, \code{.geojson})
 }
 }

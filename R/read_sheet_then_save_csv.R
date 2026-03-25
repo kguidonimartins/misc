@@ -189,7 +189,7 @@ read_all_sheets_then_save_csv <- function(path_to_xlsx, dir_to_save = NULL) {
 #' @description
 #' Following the same principle of \code{\link{read_all_sheets_then_save_csv}}
 #' `read_all_xlsx_then_save_csv()` just loop `read_all_sheets_then_save_csv()` over
-#' all available xls[x] files
+#' all available xlsx files
 #'
 #' @param path_to_xlsx a character vector with the path to excel file
 #'

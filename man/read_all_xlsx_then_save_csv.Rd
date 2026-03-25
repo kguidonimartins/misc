@@ -12,7 +12,7 @@ read_all_xlsx_then_save_csv(path_to_xlsx)
 \description{
 Following the same principle of \code{\link{read_all_sheets_then_save_csv}}
 \code{read_all_xlsx_then_save_csv()} just loop \code{read_all_sheets_then_save_csv()} over
-all available xls\link{x} files
+all available xlsx files
 }
 \section{Acknowledgment}{
 

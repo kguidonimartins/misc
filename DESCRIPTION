@@ -12,6 +12,7 @@ License: MIT + file LICENSE
 URL: https://github.com/kguidonimartins/misc
 BugReports: https://github.com/kguidonimartins/misc/issues
 Imports:
+    data.table,
     dplyr,
     fs,
     ggplot2,

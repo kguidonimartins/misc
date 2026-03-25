@@ -16,13 +16,13 @@ build: document ## build package
 	$(R) "devtools::build()"
 
 check: build ## check package
-	$(R) "Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0); devtools::check(document = FALSE, build_args = c('--no-build-vignettes'))"
+	$(R) "Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0); devtools::check(document = FALSE, build_args = c('--no-build-vignettes'))" 2>&1 | tee out-check.txt
 
 styler: ## styler package
 	$(R) "styler::style_dir('R')"
 
 tests: ## run test
-	$(R) "devtools::test()"
+	$(R) "Sys.setenv('TESTTHAT_MAX_FAILS' = Inf); devtools::test()" 2>&1 | tee out-testthat.txt
 
 install_deps: ## install dependencies
 	$(R) 'if (!requireNamespace("remotes")) install.packages("remotes")' \

@@ -9,20 +9,21 @@ read_kmz(path, quiet = TRUE, ...)
 \arguments{
 \item{path}{Path to a \code{.kmz} file.}
 
-\item{quiet}{Passed to \code{\link[sf:read_sf]{sf::read_sf()}}.}
+\item{quiet}{Passed to \code{\link[sf:st_read]{sf::read_sf()}}.}
 
-\item{...}{Additional arguments passed to \code{\link[sf:read_sf]{sf::read_sf()}}.}
+\item{...}{Additional arguments passed to \code{\link[sf:st_read]{sf::read_sf()}}.}
 }
 \value{
-A tibble with the same columns as \code{\link[=read_gdb]{read_gdb()}}. Here \code{fpath} is the path to the
-original \code{.kmz} (not the temporary \code{.kml}), and \code{file_type} is typically \code{"kmz"}.
-Metadata columns still come from \code{\link[sf:st_layers]{sf::st_layers()}} on the extracted KML used for reading.
+A tibble with the same columns as \code{\link[=read_gdb]{read_gdb()}}. Here \code{fpath} is the
+path to the original \code{.kmz} (not the temporary \code{.kml}), and \code{file_type} is
+typically \code{"kmz"}. Metadata columns still come from \code{\link[sf:st_layers]{sf::st_layers()}} on the
+extracted KML file used for reading.
 }
 \description{
 Extracts the archive to a temporary directory and reads each KML layer with
-\code{\link[sf:read_sf]{sf::read_sf()}} after \code{\link[sf:st_layers]{sf::st_layers()}}. Multiple KML files or multiple
+\code{\link[sf:st_read]{sf::read_sf()}} after \code{\link[sf:st_layers]{sf::st_layers()}}. Multiple KML files or multiple
 layers yield one row per layer; \code{layer_name} is simplified when there is only
-one layer in one file. KMZ is handled with base \code{\link[utils:unzip]{utils::unzip()}} and \code{sf} (no \code{keyholeio}).
+one layer in one file.
 }
 \examples{
 \dontrun{

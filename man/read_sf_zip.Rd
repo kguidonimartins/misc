@@ -9,17 +9,17 @@ read_sf_zip(path, quiet = TRUE, ...)
 \arguments{
 \item{path}{Path to a \code{.zip} file.}
 
-\item{quiet}{Passed to \code{\link[sf:read_sf]{sf::read_sf()}}.}
+\item{quiet}{Passed to \code{\link[sf:st_read]{sf::read_sf()}}.}
 
-\item{...}{Additional arguments passed to \code{\link[sf:read_sf]{sf::read_sf()}}.}
+\item{...}{Additional arguments passed to \code{\link[sf:st_read]{sf::read_sf()}}.}
 }
 \value{
-A tibble with \code{fpath} (the \verb{/vsizip/...} dsn), \code{file_type}, metadata from
-\code{\link[sf:st_layers]{sf::st_layers()}}, and \code{data} (list-column of \code{sf}). See \code{\link[=read_gdb]{read_gdb()}}.
+A tibble with \code{fpath} (the \verb{/vsizip/...} dsn), \code{file_type}, metadata
+from \code{\link[sf:st_layers]{sf::st_layers()}}, and \code{data} (list-column of \code{sf}). See \code{\link[=read_gdb]{read_gdb()}}.
 }
 \description{
 Uses \code{\link[zip:zip_list]{zip::zip_list()}} to find \code{.shp} members, then reads each with
-\code{\link[sf:read_sf]{sf::read_sf()}} on a \verb{/vsizip/...} path. Multiple shapefiles become one row
+\code{\link[sf:st_read]{sf::read_sf()}} on a \verb{/vsizip/...} path. Multiple shapefiles become one row
 each (list-column \code{data}), so differing CRS are not merged.
 }
 \examples{
