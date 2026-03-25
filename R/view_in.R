@@ -57,6 +57,67 @@ view_in <- function(data, viewer = c("libreoffice", "gnumeric", "tad")) {
 ##   return(data)
 ## }
 
+check_sf_geometry <- function(data) {
+
+  if (any(class(data) %in% "sf")) {
+
+    message("[INFO] `{misc}`: Removing sf geometry...")
+
+    data_clean <-
+      data %>%
+      sf::st_drop_geometry()
+
+  } else {
+
+    data_clean <- data
+
+  }
+
+  return(data_clean)
+
+}
+
+check_grouped_data <- function(data) {
+
+  if (dplyr::is_grouped_df(data)) {
+
+    message("[INFO] `{misc}`: Ungrouping data...")
+
+    data_clean <-
+      data %>%
+      dplyr::ungroup()
+
+  } else {
+
+    data_clean <- data
+
+  }
+
+  return(data_clean)
+
+}
+
+check_list_columns <- function(data) {
+
+  if (any(sapply(data, class) %in% "list")) {
+
+    message("[INFO] `{misc}`: Removing list-columns... You can choose `type = 'json'` to explore list-columns!")
+
+    data_clean <-
+      data %>%
+      dplyr::select(-dplyr::where(is.list))
+
+  } else {
+
+    data_clean <- data
+
+  }
+
+  return(data_clean)
+
+}
+
+
 #' View data in VisiData
 #'
 #' @description
@@ -64,7 +125,6 @@ view_in <- function(data, viewer = c("libreoffice", "gnumeric", "tad")) {
 #' an sf object, the geometry column will be dropped before viewing.
 #'
 #' @param data A data.frame, tibble, or sf object to view
-#' @param title Character string for the Terminal window title. Defaults to "misc::view_vd"
 #' @param type Either "csv" or "json" format for writing the temporary file. Use "json" for
 #'   preserving list-columns.
 #'
@@ -87,11 +147,12 @@ view_in <- function(data, viewer = c("libreoffice", "gnumeric", "tad")) {
 #' # View with list columns preserved
 #' nested_df %>% view_vd(type = "json")
 #' }
-view_vd <- function(data, title = NULL, type = "csv") {
-  # Check if input is a valid data type
-  valid_classes <- c("data.frame", "tbl_df", "sf")
-  if (!any(class(data) %in% valid_classes)) {
-    stop("Input must be a data.frame, tibble, or sf object")
+view_vd <- function(data, type = "csv") {
+
+  if (!any(class(data) %in% "data.frame")) {
+
+    stop("[ERROR] `{misc}`: Input must be a data.frame", call. = FALSE)
+
   }
 
   if (interactive()) {
@@ -105,49 +166,33 @@ view_vd <- function(data, title = NULL, type = "csv") {
     project_name <- basename(here::here())
 
     construct_file_name <- function(file_extension) {
-      return(paste0(misc_dir, "/", format(Sys.time(), "D%Y%m%dT%H%M%OS5"), "_", project_name, extfile))
-    }
-
-    if (is.null(title)) {
-      title <- "misc::view_vd"
-    }
-
-    if (class(data)[1] == "sf") {
-      message("[INFO] `{misc}`: Removing sf geometry...")
-      data_clean <-
-        sf::st_drop_geometry(data)
-    } else {
-      data_clean <- data
-    }
-
-    ## remove list-columns
-    if (dplyr::is_grouped_df(data_clean)) {
-      message("[INFO] `{misc}`: Ungrouping data...")
-      message("[INFO] `{misc}`: Removing list-columns...")
-      data_clean <-
-        data_clean %>%
-        dplyr::ungroup() %>%
-        dplyr::select(-dplyr::where(is.list))
-    } else {
-      message("[INFO] `{misc}`: Removing list-columns...")
-      data_clean <-
-        data_clean %>%
-        dplyr::ungroup() %>%
-        dplyr::select(-dplyr::where(is.list))
+      return(paste0(misc_dir, "/", format(Sys.time(), "%Y%m%d.%s"), "_", project_name, extfile))
     }
 
     if (type == "csv") {
+
+      data_clean <-
+        data %>%
+        check_sf_geometry() %>%
+        check_grouped_data() %>%
+        check_list_columns()
+
       extfile <- ".csv"
       tmp <- construct_file_name(extfile)
       num_threads <- parallel::detectCores()
       data.table::setDTthreads(num_threads)
-      data.table::fwrite(x = data_clean, file = tmp, nThread = num_threads)
+      data.table::fwrite(x = data_clean, file = tmp, nThread = num_threads, na = NA)
+
     }
 
     if (type == "json") {
-      extfile <- "json"
-      tmp <- paste0(tempfile(), "___", format(Sys.time(), "D%Y%m%dT%H%M%S"), "___misc___visidata", extfile)
+
+      data_clean <- data
+
+      extfile <- ".json"
+      tmp <- construct_file_name(extfile)
       jsonlite::write_json(data_clean, tmp)
+
     }
 
     ## NOTE 2024-10-15: Use jsonlite::write_json to get list-columns
@@ -157,7 +202,7 @@ view_vd <- function(data, title = NULL, type = "csv") {
       glue::glue(
       "osascript -e 'tell application \"Terminal\"
           if not application \"Terminal\" is running then launch
-          do script \"vd --default-width=500 {tmp}\"
+          do script \"vdk {project_name} {tmp}\"
           activate
       end tell'
       "
@@ -165,7 +210,10 @@ view_vd <- function(data, title = NULL, type = "csv") {
     )
 
   }
-  return(dplyr::glimpse(data))
+
+  message("[INFO] `{misc}`: Your original data:")
+  return(data)
+
 }
 
 #' View data frame in VisiData (non-interactive version)

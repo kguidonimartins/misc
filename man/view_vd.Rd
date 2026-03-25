@@ -4,12 +4,10 @@
 \alias{view_vd}
 \title{View data in VisiData}
 \usage{
-view_vd(data, title = NULL, type = "csv")
+view_vd(data, type = "csv")
 }
 \arguments{
 \item{data}{A data.frame, tibble, or sf object to view}
-
-\item{title}{Character string for the Terminal window title. Defaults to "misc::view_vd"}
 
 \item{type}{Either "csv" or "json" format for writing the temporary file. Use "json" for
 preserving list-columns.}
