@@ -4,7 +4,7 @@
 \alias{na_count}
 \title{Count NA frequency in data}
 \usage{
-na_count(data)
+na_count(data, sort = TRUE)
 }
 \arguments{
 \item{data}{a data frame}

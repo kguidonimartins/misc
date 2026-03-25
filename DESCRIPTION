@@ -29,7 +29,8 @@ Imports:
     sf,
     rlang,
     jsonlite,
-    writexl
+    writexl,
+    zip
 Suggests:
     clipr,
     conflicted,
