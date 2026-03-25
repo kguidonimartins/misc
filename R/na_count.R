@@ -5,10 +5,13 @@
 #' can be slow over large datasets.
 #'
 #' @param data a data frame
+#' @param sort If `TRUE`, sort rows by descending `na_percent`. If `FALSE`, keep
+#'   column order from the input.
 #'
 #' @return a long-format tibble
 #'
-#' @importFrom dplyr summarise_all n full_join
+#' @importFrom dplyr summarise_all n full_join arrange desc
+#' @importFrom rlang .data
 #' @importFrom purrr map_df
 #' @importFrom tidyr pivot_longer everything
 #'
@@ -25,7 +28,7 @@
 #' na_data <- data.frame(c1 = c(1, NA), c2 = c(NA, NA))
 #' na_data %>% na_count()
 #' }
-na_count <- function(data) {
+na_count <- function(data, sort = TRUE) {
   na_count_data <-
     data %>%
     purrr::map_df(~ sum(is.na(.))) %>%
@@ -45,5 +48,12 @@ na_count <- function(data) {
 
   full_check <- dplyr::full_join(x = na_count_data, y = na_percent_data, by = "variables")
 
-  return(full_check)
+  return({
+    if (sort) {
+      full_check %>%
+        dplyr::arrange(dplyr::desc(.data$na_percent))
+    } else {
+      full_check
+    }
+  })
 }
