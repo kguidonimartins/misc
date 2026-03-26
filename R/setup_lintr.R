@@ -13,7 +13,7 @@
 #' the file manually, changing the variable values from NULL to the value used
 #' by each type of linter listed. For example, the default value of the
 #' `line_length_linter` linter is 80, but users can change it to 120. Please,
-#' check the [README](https://github.com/jimhester/lintr/blob/master/README.md)
+#' check the [README](https://github.com/r-lib/lintr/blob/master/README.md)
 #' of the `{lintr}` for further information.
 #'
 #' @param exclude_file character a character vector containing the files that

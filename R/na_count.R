@@ -18,8 +18,7 @@
 #'
 #' @section Acknowledgment:
 #' I learned this way of exploring data though the excellent webinar taught by
-#' [Emily Robinson](https://twitter.com/robinson_es). The original code is
-#' hosted [here](https://youtu.be/uG3igAGX7UE?t=1060).
+#' Emily Robinson.
 #'
 #' @export
 #'

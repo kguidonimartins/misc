@@ -29,7 +29,7 @@ problems and hints founded by the static code analysis. Users need to edit
 the file manually, changing the variable values from NULL to the value used
 by each type of linter listed. For example, the default value of the
 \code{line_length_linter} linter is 80, but users can change it to 120. Please,
-check the \href{https://github.com/jimhester/lintr/blob/master/README.md}{README}
+check the \href{https://github.com/r-lib/lintr/blob/master/README.md}{README}
 of the \code{{lintr}} for further information.
 }
 \examples{

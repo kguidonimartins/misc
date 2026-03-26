@@ -24,4 +24,6 @@
 ^py$
 ^out-check\.txt$
 ^out-check-cran\.txt$
+^out-testthat\.txt$
 ^cran-comments\.md$
+^CRAN-SUBMISSION$

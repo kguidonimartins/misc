@@ -27,15 +27,15 @@
 #' Below is the *suggested* directory structure:
 #' ```
 #' .
-#' ├── R           # local functions
-#' ├── data
-#' │   ├── clean   # stores clean data
-#' │   ├── raw     # stores raw data (read-only)
-#' │   └── temp    # stores temporary data
-#' └── output
-#'     ├── figures # stores figures ready for publication/presentation
-#'     ├── results # stores text results and others
-#'     └── supp    # stores supplementary material for publication/presentation
+#' +- R           # local functions
+#' +- data
+#' |   +- clean   # stores clean data
+#' |   +- raw     # stores raw data (read-only)
+#' |   +- temp    # stores temporary data
+#' +- output
+#'     +- figures # stores figures ready for publication/presentation
+#'     +- results # stores text results and others
+#'     +- supp    # stores supplementary material for publication/presentation
 #' ```
 #'
 #' @section Acknowledgment:

@@ -22,8 +22,7 @@ can be slow over large datasets.
 \section{Acknowledgment}{
 
 I learned this way of exploring data though the excellent webinar taught by
-\href{https://twitter.com/robinson_es}{Emily Robinson}. The original code is
-hosted \href{https://youtu.be/uG3igAGX7UE?t=1060}{here}.
+Emily Robinson.
 }
 
 \examples{

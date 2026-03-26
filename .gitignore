@@ -8,3 +8,5 @@ todo.txt
 /.dev/
 out-check.txt
 py
+/out-check-cran.txt
+/out-testthat.txt

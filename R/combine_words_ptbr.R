@@ -16,7 +16,7 @@
 #' @export
 #'
 #' @section Acknowledgment:
-#' `combine_words_ptbr()` uses [transformers](https://cran.r-project.org/web/packages/glue/vignettes/transformers.html)
+#' `combine_words_ptbr()` uses [transformers](https://CRAN.R-project.org/package=glue)
 #' available in the excellent [`{glue}`](https://github.com/tidyverse/glue) package
 #'
 #' @examples

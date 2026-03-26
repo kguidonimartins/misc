@@ -23,7 +23,7 @@ which uses oxford commas.
 }
 \section{Acknowledgment}{
 
-\code{combine_words_ptbr()} uses \href{https://cran.r-project.org/web/packages/glue/vignettes/transformers.html}{transformers}
+\code{combine_words_ptbr()} uses \href{https://CRAN.R-project.org/package=glue}{transformers}
 available in the excellent \href{https://github.com/tidyverse/glue}{\code{{glue}}} package
 }
 
