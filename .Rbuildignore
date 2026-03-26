@@ -23,3 +23,5 @@
 ^\.dev$
 ^py$
 ^out-check\.txt$
+^out-check-cran\.txt$
+^cran-comments\.md$
