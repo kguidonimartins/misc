@@ -45,12 +45,18 @@ test_that("read_sf_zip errors when path is missing", {
 
 test_that("read_sf_zip errors when zip has no shapefile", {
   skip_if_not_installed("zip")
-  plain <- tempfile(fileext = ".txt")
+  d <- tempfile("readgeo_plainzip")
+  dir.create(d)
+  on.exit(unlink(d, recursive = TRUE), add = TRUE)
+  plain <- file.path(d, "hello.txt")
   writeLines("hello", plain)
   z <- tempfile(fileext = ".zip")
-  zip::zip(z, plain)
+  on.exit(unlink(z), add = TRUE)
+  owd <- getwd()
+  setwd(d)
+  on.exit(setwd(owd), add = TRUE)
+  zip::zip(z, basename(plain))
   expect_error(read_sf_zip(z), "No .shp")
-  unlink(c(plain, z))
 })
 
 test_that("read_sf_zip reads one shapefile from zip", {
@@ -105,12 +111,18 @@ test_that("read_kmz errors when path is missing", {
 
 test_that("read_kmz errors when archive has no kml", {
   skip_if_not_installed("zip")
-  plain <- tempfile(fileext = ".txt")
+  d <- tempfile("readgeo_plainkmz")
+  dir.create(d)
+  on.exit(unlink(d, recursive = TRUE), add = TRUE)
+  plain <- file.path(d, "hello.txt")
   writeLines("hello", plain)
   z <- tempfile(fileext = ".kmz")
-  zip::zip(z, plain)
+  on.exit(unlink(z), add = TRUE)
+  owd <- getwd()
+  setwd(d)
+  on.exit(setwd(owd), add = TRUE)
+  zip::zip(z, basename(plain))
   expect_error(read_kmz(z), "No .kml")
-  unlink(c(plain, z))
 })
 
 test_that("read_kmz reads kmz built from a single kml layer", {
@@ -123,7 +135,10 @@ test_that("read_kmz reads kmz built from a single kml layer", {
   sf::write_sf(read_geo_test_sf(), kml_path, driver = "KML")
   z <- tempfile(fileext = ".kmz")
   on.exit(unlink(z), add = TRUE)
-  zip::zip(z, kml_path)
+  owd <- getwd()
+  setwd(d)
+  on.exit(setwd(owd), add = TRUE)
+  zip::zip(z, basename(kml_path))
   out <- read_kmz(z)
   expect_equal(nrow(out), 1L)
   expect_named(out, read_geo_expected_names())
