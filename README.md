@@ -7,9 +7,6 @@
 
 [![R build
 status](https://github.com/kguidonimartins/misc/workflows/R-CMD-check/badge.svg)](https://github.com/kguidonimartins/misc/actions)
-[![Codecov test
-coverage](https://codecov.io/gh/kguidonimartins/misc/branch/master/graph/badge.svg)](https://codecov.io/gh/kguidonimartins/misc?branch=master)
-[![CodeFactor](https://www.codefactor.io/repository/github/kguidonimartins/misc/badge/main)](https://www.codefactor.io/repository/github/kguidonimartins/misc/overview/main)
 <!-- badges: end -->
 
 `{misc}` stands for *miscellaneous*. This is a personal package. Use it
