@@ -88,28 +88,10 @@ available in the excellent <a href="https://github.com/tidyverse/glue" class="ex
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="fu">misc</span><span class="fu">::</span><span class="fu"><a href="ipak.html">ipak</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dplyr"</span>, <span class="st">"broom"</span>, <span class="st">"glue"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Package 'broom' is not installed. Install from CRAN with:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   install.packages("broom", repos = "https://cloud.r-project.org")</span>
+<span class="r-in"><span><span class="fu">misc</span><span class="fu">::</span><span class="fu"><a href="ipak.html">ipak</a></span><span class="op">(</span><span class="st">"glue"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Successfully loaded:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  pkg_name version</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     dplyr   1.2.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      glue   1.8.0</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> Failed to load:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  pkg_name version</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     broom    &lt;NA&gt;</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># showing significant variables</span></span></span>
-<span class="r-in"><span><span class="va">mtcars</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">select</span><span class="op">(</span><span class="va">mpg</span>, <span class="va">cyl</span>, <span class="va">carb</span>, <span class="va">wt</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">carb</span> <span class="op">+</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">.</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">tidy</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">p.value</span> <span class="op">&lt;=</span> <span class="fl">0.05</span>, <span class="va">term</span> <span class="op">!=</span> <span class="st">"(Intercept)"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">pull</span><span class="op">(</span><span class="va">term</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Variáveis significativas:"</span>, <span class="fu">combine_words_ptbr</span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="op">}</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in tidy(.):</span> could not find function "tidy"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># using in an ordinary text</span></span></span>
 <span class="r-in"><span><span class="va">feira</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"banana"</span>, <span class="st">"maça"</span>, <span class="st">"pepino"</span>, <span class="st">"ovos"</span><span class="op">)</span></span></span>

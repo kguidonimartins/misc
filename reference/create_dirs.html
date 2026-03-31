@@ -109,59 +109,14 @@ Below is the <em>suggested</em> directory structure:</p>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="co"># create a single directory</span></span></span>
 <span class="r-in"><span><span class="fu">create_dirs</span><span class="op">(</span><span class="st">"myfolder"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Creating <span style="color: #00BB00;">/home/runner/work/misc/misc/myfolder</span>...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/myfolder</span> created!</span>
 <span class="r-in"><span><span class="co"># create the default directories</span></span></span>
 <span class="r-in"><span><span class="fu">create_dirs</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Creating <span style="color: #00BB00;">/home/runner/work/misc/misc/data/raw</span>...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/raw</span> created!</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Creating <span style="color: #00BB00;">/home/runner/work/misc/misc/data/clean</span>...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/clean</span> created!</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Creating <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp</span>...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp</span> created!</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Creating <span style="color: #00BB00;">/home/runner/work/misc/misc/output/figures</span>...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/output/figures</span> created!</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Creating <span style="color: #00BB00;">/home/runner/work/misc/misc/output/results</span>...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/output/results</span> created!</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Creating <span style="color: #00BB00;">/home/runner/work/misc/misc/output/supp</span>...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/output/supp</span> created!</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Creating <span style="color: #00BB00;">/home/runner/work/misc/misc/R</span>...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/R</span> created!</span>
 <span class="r-in"><span><span class="co"># see the resulting tree</span></span></span>
 <span class="r-in"><span><span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://fs.r-lib.org/reference/dir_tree.html" class="external-link">dir_tree</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB; font-weight: bold;">.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├── <span style="color: #0000BB; font-weight: bold;">R</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├── add_gitignore.html</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├── combine_words_ptbr.html</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├── <span style="color: #0000BB; font-weight: bold;">data</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   ├── <span style="color: #0000BB; font-weight: bold;">clean</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   ├── <span style="color: #0000BB; font-weight: bold;">raw</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   └── <span style="color: #0000BB; font-weight: bold;">temp</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├── <span style="color: #0000BB; font-weight: bold;">figures</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   ├── <span style="color: #BB00BB; font-weight: bold;">README-unnamed-chunk-3-1.png</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   ├── <span style="color: #BB00BB; font-weight: bold;">README-unnamed-chunk-3-2.png</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   ├── <span style="color: #BB00BB; font-weight: bold;">README-unnamed-chunk-3-3.png</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   ├── <span style="color: #BB00BB; font-weight: bold;">README-unnamed-chunk-3-4.png</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   ├── <span style="color: #BB00BB; font-weight: bold;">README-unnamed-chunk-4-1.png</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   ├── <span style="color: #BB00BB; font-weight: bold;">README-unnamed-chunk-4-2.png</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   ├── <span style="color: #BB00BB; font-weight: bold;">README-unnamed-chunk-4-3.png</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   ├── <span style="color: #BB00BB; font-weight: bold;">README-unnamed-chunk-4-4.png</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   ├── <span style="color: #BB00BB; font-weight: bold;">README-unnamed-chunk-5-1.png</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   ├── <span style="color: #BB00BB; font-weight: bold;">README-unnamed-chunk-5-2.png</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   ├── <span style="color: #BB00BB; font-weight: bold;">README-unnamed-chunk-5-3.png</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   ├── <span style="color: #BB00BB; font-weight: bold;">README-unnamed-chunk-5-4.png</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   ├── <span style="color: #BB00BB; font-weight: bold;">README-unnamed-chunk-6-1.png</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   ├── <span style="color: #BB00BB; font-weight: bold;">README-unnamed-chunk-6-2.png</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   ├── <span style="color: #BB00BB; font-weight: bold;">README-unnamed-chunk-6-3.png</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   └── <span style="color: #BB00BB; font-weight: bold;">README-unnamed-chunk-6-4.png</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├── index.html</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├── <span style="color: #0000BB; font-weight: bold;">myfolder</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> └── <span style="color: #0000BB; font-weight: bold;">output</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     ├── <span style="color: #0000BB; font-weight: bold;">figures</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     ├── <span style="color: #0000BB; font-weight: bold;">results</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     └── <span style="color: #0000BB; font-weight: bold;">supp</span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
