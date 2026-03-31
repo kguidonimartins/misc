@@ -36,7 +36,7 @@ Check all available functions inside an interactive session using
 | 4 | `deduplicate_by()` | Remove duplicate rows based on specified grouping variables |
 | 5 | `describe_data()` | Describe data |
 | 6 | `filter_na()` | Easily filter NA values from data frames |
-| 7 | `ipak()` | Install and load multiple CRAN and github R packages |
+| 7 | `ipak()` | Load multiple CRAN and GitHub R packages |
 | 8 | `na_count()` | Count NA frequency in data |
 | 9 | `na_viz()` | Visualize NA frequency in data |
 | 11 | `prefer()` | Defines preferred package::functions |
@@ -51,11 +51,10 @@ Check all available functions inside an interactive session using
 | 20 | `remove_columns_based_on_NA()` | Remove columns based on NA values |
 | 21 | `save_plot()` | Save a ggplot figure |
 | 22 | `save_temp_data()` | Save object as RDS file |
-| 23 | `setup_lintr()` | Setup a config file for static code analysis |
-| 24 | `tad_view()` | Alternative data.frame viewer using tad |
-| 25 | `trim_fig()` | Remove white spaces around figures |
-| 26 | `view_excel()` | View data frame in Excel or other spreadsheet viewer |
-| 27 | `view_in()` | Alternative data.frame viewer |
-| 28 | `view_mapview_from_path()` | View spatial data from file path with optional map preview |
-| 29 | `view_vd()` | View data in VisiData |
-| 30 | `view_vd_nonint()` | View data frame in VisiData (non-interactive version) |
+| 23 | `tad_view()` | Alternative data.frame viewer using tad |
+| 24 | `trim_fig()` | Remove white spaces around figures |
+| 25 | `view_excel()` | View data frame in Excel or other spreadsheet viewer |
+| 26 | `view_in()` | Alternative data.frame viewer |
+| 27 | `view_mapview_from_path()` | View spatial data from file path with optional map preview |
+| 28 | `view_vd()` | View data in VisiData |
+| 29 | `view_vd_nonint()` | View data frame in VisiData (non-interactive version) |
