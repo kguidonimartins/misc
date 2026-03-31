@@ -28,6 +28,6 @@ one layer in one file.
 \examples{
 \donttest{
 kmz <- system.file("extdata", "misc_example.kmz", package = "misc")
-read_kmz(kmz)
+if (nzchar(kmz) && file.exists(kmz)) read_kmz(kmz)
 }
 }

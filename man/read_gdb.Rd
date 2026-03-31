@@ -31,7 +31,9 @@ Read layers from a file geodatabase (.gdb)
 \examples{
 \donttest{
 gdb <- system.file("extdata", "misc_example.gdb", package = "misc")
-read_gdb(gdb)
-read_gdb(gdb, layer = "OGRGeoJSON")
+if (nzchar(gdb) && dir.exists(gdb)) {
+  read_gdb(gdb)
+  read_gdb(gdb, layer = "OGRGeoJSON")
+}
 }
 }

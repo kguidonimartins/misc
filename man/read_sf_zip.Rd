@@ -25,6 +25,6 @@ each (list-column \code{data}), so differing CRS are not merged.
 \examples{
 \donttest{
 z <- system.file("extdata", "misc_example.zip", package = "misc")
-read_sf_zip(z)
+if (nzchar(z) && file.exists(z)) read_sf_zip(z)
 }
 }

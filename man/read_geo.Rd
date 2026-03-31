@@ -32,12 +32,13 @@ Chooses the reader from \code{tools::file_ext(path)} (case-insensitive):
 \examples{
 \donttest{
 d <- system.file("extdata", package = "misc")
-read_geo(file.path(d, "misc_example.zip"))
-read_geo(file.path(d, "misc_example.kmz"))
-read_geo(file.path(d, "misc_example.kml"))
-read_geo(file.path(d, "misc_example.gpkg"))
-read_geo(file.path(d, "misc_example.geojson"))
-read_geo(file.path(d, "misc_example.shp"))
-read_geo(file.path(d, "misc_example.gdb"), layer = "OGRGeoJSON")
+f <- function(...) file.path(d, ...)
+if (file.exists(f("misc_example.zip"))) read_geo(f("misc_example.zip"))
+if (file.exists(f("misc_example.kmz"))) read_geo(f("misc_example.kmz"))
+if (file.exists(f("misc_example.kml"))) read_geo(f("misc_example.kml"))
+if (file.exists(f("misc_example.gpkg"))) read_geo(f("misc_example.gpkg"))
+if (file.exists(f("misc_example.geojson"))) read_geo(f("misc_example.geojson"))
+if (file.exists(f("misc_example.shp"))) read_geo(f("misc_example.shp"))
+if (dir.exists(f("misc_example.gdb"))) read_geo(f("misc_example.gdb"), layer = "OGRGeoJSON")
 }
 }

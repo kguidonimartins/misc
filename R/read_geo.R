@@ -167,8 +167,10 @@
 #' @examples
 #' \donttest{
 #' gdb <- system.file("extdata", "misc_example.gdb", package = "misc")
-#' read_gdb(gdb)
-#' read_gdb(gdb, layer = "OGRGeoJSON")
+#' if (nzchar(gdb) && dir.exists(gdb)) {
+#'   read_gdb(gdb)
+#'   read_gdb(gdb, layer = "OGRGeoJSON")
+#' }
 #' }
 read_gdb <- function(path, layer = NULL, quiet = TRUE, ...) {
   path <- .read_geo_check_path(path)
@@ -199,7 +201,7 @@ read_gdb <- function(path, layer = NULL, quiet = TRUE, ...) {
 #' @examples
 #' \donttest{
 #' z <- system.file("extdata", "misc_example.zip", package = "misc")
-#' read_sf_zip(z)
+#' if (nzchar(z) && file.exists(z)) read_sf_zip(z)
 #' }
 read_sf_zip <- function(path, quiet = TRUE, ...) {
   path <- .read_geo_check_path(path)
@@ -263,7 +265,7 @@ read_sf_zip <- function(path, quiet = TRUE, ...) {
 #' @examples
 #' \donttest{
 #' kmz <- system.file("extdata", "misc_example.kmz", package = "misc")
-#' read_kmz(kmz)
+#' if (nzchar(kmz) && file.exists(kmz)) read_kmz(kmz)
 #' }
 read_kmz <- function(path, quiet = TRUE, ...) {
   path <- .read_geo_check_path(path)
@@ -334,13 +336,14 @@ read_kmz <- function(path, quiet = TRUE, ...) {
 #' @examples
 #' \donttest{
 #' d <- system.file("extdata", package = "misc")
-#' read_geo(file.path(d, "misc_example.zip"))
-#' read_geo(file.path(d, "misc_example.kmz"))
-#' read_geo(file.path(d, "misc_example.kml"))
-#' read_geo(file.path(d, "misc_example.gpkg"))
-#' read_geo(file.path(d, "misc_example.geojson"))
-#' read_geo(file.path(d, "misc_example.shp"))
-#' read_geo(file.path(d, "misc_example.gdb"), layer = "OGRGeoJSON")
+#' f <- function(...) file.path(d, ...)
+#' if (file.exists(f("misc_example.zip"))) read_geo(f("misc_example.zip"))
+#' if (file.exists(f("misc_example.kmz"))) read_geo(f("misc_example.kmz"))
+#' if (file.exists(f("misc_example.kml"))) read_geo(f("misc_example.kml"))
+#' if (file.exists(f("misc_example.gpkg"))) read_geo(f("misc_example.gpkg"))
+#' if (file.exists(f("misc_example.geojson"))) read_geo(f("misc_example.geojson"))
+#' if (file.exists(f("misc_example.shp"))) read_geo(f("misc_example.shp"))
+#' if (dir.exists(f("misc_example.gdb"))) read_geo(f("misc_example.gdb"), layer = "OGRGeoJSON")
 #' }
 read_geo <- function(path, layer = NULL, quiet = TRUE, ...) {
   path <- .read_geo_check_path(path)
