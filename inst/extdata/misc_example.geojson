@@ -2,7 +2,6 @@
 "type": "FeatureCollection",
 "name": "misc_example",
 "features": [
-{ "type": "Feature", "properties": { "id": 1 }, "geometry": { "type": "Point", "coordinates": [ 1.0, 2.0 ] } },
 { "type": "Feature", "properties": { "id": 1 }, "geometry": { "type": "Point", "coordinates": [ 1.0, 2.0 ] } }
 ]
 }
