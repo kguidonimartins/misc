@@ -23,7 +23,8 @@ Uses \code{\link[zip:zip_list]{zip::zip_list()}} to find \code{.shp} members, th
 each (list-column \code{data}), so differing CRS are not merged.
 }
 \examples{
-\dontrun{
-read_sf_zip("path/to/data.zip")
+\donttest{
+z <- system.file("extdata", "misc_example.zip", package = "misc")
+read_sf_zip(z)
 }
 }

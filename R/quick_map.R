@@ -7,7 +7,7 @@
 #' @param region character string or atomic vector containing countries names ou continents. Default is \code{NULL}.
 #' @param type character string informing map type. Can be \code{"sf"} or \code{"ggplot"}
 #'
-#' @importFrom dplyr select filter_all any_vars mutate case_when pull
+#' @importFrom dplyr select filter if_any all_of everything mutate case_when pull
 #' @importFrom ggplot2 ggplot geom_sf borders theme_bw labs theme element_blank element_line
 #'
 #' @return a ggplot object
@@ -21,7 +21,8 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' if (interactive()) {
 #' # plot a world map
 #' quick_map()
 #' # plot a new world map
@@ -30,8 +31,9 @@
 #' quick_map(region = "Americas", type = "ggplot")
 #' # edit using ggplot2 layers
 #' quick_map() +
-#'   theme_void() +
-#'   geom_sf(fill = "white")
+#'   ggplot2::theme_void() +
+#'   ggplot2::geom_sf(fill = "white")
+#' }
 #' }
 quick_map <- function(region = NULL, type = NULL) {
   check_require("rnaturalearth")
@@ -65,21 +67,23 @@ quick_map <- function(region = NULL, type = NULL) {
   }
   if (!is.null(type)) {
     if (type == "sf") {
+      pattern <- paste(region, collapse = "|")
       data_filtered <-
         world_data %>%
-        dplyr::select(!!columns) %>%
-        dplyr::filter_all(., dplyr::any_vars(stringr::str_detect(., paste(region, collapse = "|"))))
+        dplyr::filter(dplyr::if_any(dplyr::all_of(columns), ~ stringr::str_detect(as.character(.x), pattern))) %>%
+        dplyr::select(!!columns)
       plot_map <-
         data_filtered %>%
         ggplot2::ggplot() +
         ggplot2::geom_sf()
     }
     if (type == "ggplot") {
+      pattern <- paste(region, collapse = "|")
       data_filtered <-
         world_data %>%
         sf::st_drop_geometry(x = .) %>%
         dplyr::select(!!columns) %>%
-        dplyr::filter_all(., dplyr::any_vars(stringr::str_detect(., paste(region, collapse = "|")))) %>%
+        dplyr::filter(dplyr::if_any(dplyr::everything(), ~ stringr::str_detect(as.character(.x), pattern))) %>%
         dplyr::mutate(
           admin = dplyr::case_when(
             admin == "United States of America" ~ "USA",

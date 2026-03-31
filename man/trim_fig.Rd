@@ -11,6 +11,10 @@ trim_fig(figure_path, overwrite = FALSE)
 
 \item{overwrite}{logical}
 }
+\value{
+No return value, called for side effects (writes a trimmed image
+file under a \verb{trim/} subdirectory via \code{\link[magick:editing]{magick::image_write()}}).
+}
 \description{
 \code{trim_fig()} just remove white spaces around a figure and save it into the
 \code{trim} folder (maintain the original figure untouchable)
@@ -22,7 +26,7 @@ trim_fig(figure_path, overwrite = FALSE)
 }
 
 \examples{
-\dontrun{
+\donttest{
 library(misc)
 ipak(c("ggplot2", "dplyr"))
 create_dirs()

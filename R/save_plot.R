@@ -16,6 +16,9 @@
 #' @param overwrite logical
 #' @param trim logical
 #'
+#' @returns No return value, called for side effects (writes a graphics file
+#'   via [ggplot2::ggsave()], and optionally calls [trim_fig()]).
+#'
 #' @importFrom fs dir_exists file_exists
 #' @importFrom ggplot2 ggsave
 #' @importFrom here here
@@ -30,7 +33,7 @@
 #' [`start`](https://github.com/globeandmail/startr) project template
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library(misc)
 #' ipak(c("ggplot2", "dplyr"))
 #' create_dirs()

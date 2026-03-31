@@ -15,7 +15,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' nice_data <- data.frame(c1 = c(1, NA), c2 = c(NA, NA))
 #' nice_data %>%
 #'   filter_na("all")

@@ -7,6 +7,9 @@
 #' @param figure_path a character vector with path of the figure
 #' @param overwrite logical
 #'
+#' @returns No return value, called for side effects (writes a trimmed image
+#'   file under a `trim/` subdirectory via [magick::image_write()]).
+#'
 #' @importFrom fs file_exists dir_create
 #' @importFrom here here
 #' @importFrom usethis ui_stop ui_field ui_todo ui_done
@@ -18,7 +21,7 @@
 #' [`{magick}`](https://github.com/ropensci/magick)
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library(misc)
 #' ipak(c("ggplot2", "dplyr"))
 #' create_dirs()

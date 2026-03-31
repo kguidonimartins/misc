@@ -1,9 +1,29 @@
-ipak <- function(pkg) {
-  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
-  if (length(new.pkg)) {
-    install.packages(new.pkg, dependencies = TRUE)
-  }
-  suppressPackageStartupMessages(sapply(pkg, require, character.only = TRUE))
+# Requires (install yourself if needed): readxl, tidyverse metapackage or its
+# pieces, openxlsx, here, fs, janitor, glue — and this script uses tidyverse
+# verbs (dplyr, etc.) after loading.
+needed <- c(
+  "readxl",
+  "ggplot2",
+  "tibble",
+  "tidyr",
+  "readr",
+  "purrr",
+  "dplyr",
+  "stringr",
+  "forcats",
+  "openxlsx",
+  "here",
+  "fs",
+  "janitor",
+  "glue"
+)
+missing <- needed[!vapply(needed, requireNamespace, NA, quietly = TRUE)]
+if (length(missing)) {
+  stop(
+    "Missing package(s): ", paste(missing, collapse = ", "),
+    ". Install from CRAN (e.g. install.packages(...)) before sourcing this script.",
+    call. = FALSE
+  )
 }
 
 pkg_list <- c(
@@ -16,7 +36,8 @@ pkg_list <- c(
   "glue"
 )
 
-ipak(pkg_list)
+## Load packages that are already installed (no install in this script).
+misc::ipak(pkg_list)
 
 #' # Criando dos dados de exemplos
 #'

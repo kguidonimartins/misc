@@ -52,6 +52,10 @@ types.}
 
 \item{.name_repair}{Handling of column names}
 }
+\value{
+No return value, called for side effects (writes one CSV file for
+the requested sheet).
+}
 \description{
 \code{read_sheet_then_save_csv()} is heavily inspired in \code{readxl::read_excel()}
 (actually, this inherit almost all argument from it).
@@ -64,7 +68,7 @@ from \code{{readxl}} package site.
 }
 
 \examples{
-\dontrun{
+\donttest{
 # read and into a csv
 misc::create_dirs("ma-box")
 xlsx_file <-

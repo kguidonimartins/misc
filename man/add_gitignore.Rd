@@ -9,6 +9,10 @@ add_gitignore(type = "r")
 \arguments{
 \item{type}{a character vector with the language to be ignored}
 }
+\value{
+No return value, called for side effects (creates \code{.gitignore}, or
+stops with an error if the file already exists).
+}
 \description{
 \code{add_gitignore()} fetch files using the API from
 \href{https://www.toptal.com/developers/gitignore}{gitignore.io}. Also,
@@ -24,10 +28,11 @@ and by some examples on the gitignore.io
 }
 
 \examples{
-\dontrun{
-# if your project does not have a gitignore, get it with:
-add_gitignore()
-# want to ignore python files too:
-add_gitignore(type = c("r", "python"))
+\donttest{
+if (interactive()) {
+  # Downloads from gitignore.io (requires network). Use combined `type` on
+  # first create, e.g. `add_gitignore(type = c("r", "python"))`.
+  add_gitignore()
+}
 }
 }

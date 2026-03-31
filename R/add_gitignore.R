@@ -8,6 +8,9 @@
 #'
 #' @param type a character vector with the language to be ignored
 #'
+#' @returns No return value, called for side effects (creates `.gitignore`, or
+#'   stops with an error if the file already exists).
+#'
 #' @importFrom fs file_exists
 #' @importFrom here here
 #' @importFrom usethis ui_info ui_field ui_stop ui_todo ui_done
@@ -22,11 +25,12 @@
 #' [wiki page](https://github.com/toptal/gitignore.io/wiki/Advanced-Command-Line).
 #'
 #' @examples
-#' \dontrun{
-#' # if your project does not have a gitignore, get it with:
-#' add_gitignore()
-#' # want to ignore python files too:
-#' add_gitignore(type = c("r", "python"))
+#' \donttest{
+#' if (interactive()) {
+#'   # Downloads from gitignore.io (requires network). Use combined `type` on
+#'   # first create, e.g. `add_gitignore(type = c("r", "python"))`.
+#'   add_gitignore()
+#' }
 #' }
 add_gitignore <- function(type = "r") {
   file_wanted <- ".gitignore"
@@ -37,11 +41,8 @@ add_gitignore <- function(type = "r") {
     usethis::ui_info("{usethis::ui_field(here::here(file_wanted))} already exists! Check it content below:")
     file_conn <- file(file_wanted, open = "r")
     file_lines <- readLines(file_conn)
-    for (i in seq_along(file_lines)) {
-      print(file_lines[i])
-    }
     close(file_conn)
-    cat("\n")
+    message(paste(file_lines, collapse = "\n"))
     usethis::ui_stop("{usethis::ui_field(here::here(file_wanted))} not created!")
   } else {
     usethis::ui_todo("Creating {usethis::ui_field(here::here(file_wanted))}...")

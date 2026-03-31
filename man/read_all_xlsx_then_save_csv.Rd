@@ -9,6 +9,10 @@ read_all_xlsx_then_save_csv(path_to_xlsx)
 \arguments{
 \item{path_to_xlsx}{a character vector with the path to excel file}
 }
+\value{
+A list (one element per \code{.xlsx} file found under \code{path_to_xlsx}), each
+the list returned by \code{\link[=read_all_sheets_then_save_csv]{read_all_sheets_then_save_csv()}} for that workbook.
+}
 \description{
 Following the same principle of \code{\link{read_all_sheets_then_save_csv}}
 \code{read_all_xlsx_then_save_csv()} just loop \code{read_all_sheets_then_save_csv()} over
@@ -20,7 +24,7 @@ See: \code{\link{read_sheet_then_save_csv}}
 }
 
 \examples{
-\dontrun{
+\donttest{
 # read and into a csv
 xlsx_dir <- system.file("xlsx-examples", package = "misc")
 read_all_xlsx_then_save_csv(

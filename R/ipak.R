@@ -1,113 +1,105 @@
-#' Install and load multiple CRAN and github R packages
+#' Load multiple CRAN and GitHub R packages
 #'
 #' @description
-#' \code{ipak()} checks if the package is installed and then loads
-#' it. If the package is not installed, then \code{ipak()} installs it and then
-#' loads it. \code{ipak()} is capable of handling CRAN and github packages. In
-#' addition, the user can update their packages using the \code{force_*()}
-#' arguments.
+#' Attaches packages that are already installed. Names that are not found on
+#' the library search path are reported with suggested
+#' `install.packages()` or `remotes::install_github()` calls to run yourself;
+#' this function does not install packages (CRAN policy).
 #'
-#' @param pkg_list A character vector with the package names. Github packages needs to be listed as usual: \code{"username/repo"}
-#' @param force_cran logical. If force the installation of cran packages
-#' @param force_github logical. If force the installation of github packages
+#' @param pkg_list A character vector of package names. GitHub sources use
+#'   `"user/repo"`; the installed package name is the repository name (see
+#'   [basename()]).
+#' @param force_cran Logical. Ignored (retained for backwards compatibility;
+#'   this function does not install or update packages).
+#' @param force_github Logical. Ignored (retained for backwards compatibility).
 #'
-#' @importFrom crayon green blue red col_align
-#' @importFrom remotes install_github
-#' @importFrom usethis ui_todo ui_code ui_done ui_info ui_oops
-#' @importFrom utils install.packages installed.packages packageVersion
+#' @returns A `data.frame` with columns `pkg_name` (character), `success`
+#'   (logical: whether [require()] attached the package), and `version`
+#'   (character, `NA` when not loaded). Returned invisibly; summaries are
+#'   printed via [print()] on subsets when rows exist.
+#'
+#' @importFrom usethis ui_info ui_oops
+#' @importFrom utils packageVersion
 #'
 #' @export
 #'
 #' @section Acknowledgment:
-#' \code{ipak()} was first developed by
+#' `ipak()` was first developed by
 #' \href{https://github.com/stevenworthington}{Steven Worthington} and made
 #' publicly available
-#' \href{https://gist.github.com/stevenworthington/3178163}{here}. I've been
-#' using this function for years and now I decided to expand it.
+#' \href{https://gist.github.com/stevenworthington/3178163}{here}. This version
+#' only loads packages and suggests install commands for missing ones.
 #'
 #' @examples
-#' \dontrun{
-#' pkg_list <- c("vegan", "ggplot2", "trinker/textclean", "jalvesaq/colorout")
+#' \donttest{
+#' pkg_list <- c("utils", "stats") # base packages — usually present
 #' ipak(pkg_list)
 #' }
 ipak <- function(pkg_list, force_cran = FALSE, force_github = FALSE) {
+  force_cran
+  force_github
+
   pkg_list <- unique(pkg_list)
 
   has_tidy <- grepl(pattern = "tidyverse", x = pkg_list)
-
   if (sum(has_tidy) >= 1) {
     pkg_list <- pkg_list[!pkg_list %in% "tidyverse"]
-    pkg_list <- c(pkg_list, c("ggplot2", "tibble", "tidyr", "readr", "purrr", "dplyr", "stringr", "forcats"))
+    pkg_list <- c(
+      pkg_list,
+      c("ggplot2", "tibble", "tidyr", "readr", "purrr", "dplyr", "stringr", "forcats")
+    )
   }
 
-  pkg_list_github <- pkg_list[grep(pattern = "/", x = pkg_list)]
-  pkg_list_cran <- pkg_list[!pkg_list %in% pkg_list_github]
-
-  new_pkg_github <- basename(pkg_list_github)[!(basename(pkg_list) %in% utils::installed.packages()[, "Package"])]
-  new_pkg_cran <- pkg_list_cran[!(pkg_list_cran %in% utils::installed.packages()[, "Package"])]
-
-  install_gh <- function(new_pkg_github, force = FALSE) {
-    usethis::ui_todo("Installing github packages: {usethis::ui_code(new_pkg_github)}")
-    cat("\n")
-    remotes::install_github(new_pkg_github, dependencies = TRUE, force = force)
-    cat("\n")
-    usethis::ui_done("{usethis::ui_code(new_pkg_github)} installed!")
-    cat("\n")
+  pkg_installed <- function(nm) {
+    nzchar(system.file(package = nm))
   }
 
-  install_cran <- function(new_pkg_cran) {
-    usethis::ui_todo("Installing cran packages: {usethis::ui_code(new_pkg_cran)}")
-    cat("\n")
-    utils::install.packages(new_pkg_cran, dependencies = TRUE, repos = "https://cloud.r-project.org")
-    cat("\n")
-    usethis::ui_done("{usethis::ui_code(new_pkg_cran)} installed!")
-    cat("\n")
-  }
-
-  if (force_github) {
-    install_gh(pkg_list_github, force = TRUE)
-  }
-
-  if (force_cran) {
-    install_cran(pkg_list_cran)
-  }
-
-  if (length(new_pkg_github)) {
-    new_pkg_github_to_install <- pkg_list_github[grep(pattern = new_pkg_github, x = pkg_list_github)]
-    install_gh(new_pkg_github_to_install, force = FALSE)
-  }
-
-  if (length(new_pkg_cran)) {
-    install_cran(new_pkg_cran)
-  }
-
-  # load packages
-  suppressMessages({
-    invisible({
-      install_message <- sapply(X = basename(pkg_list), FUN = require, quietly = TRUE, character.only = TRUE, USE.NAMES = TRUE)
-    })
-  })
-
-  pkg_info <- data.frame(pkg_name = names(install_message), success = install_message, version = NA)
-
-  for (i in seq_along(pkg_info$pkg_name)) {
-    pkg_info$version[i] <- as.character(utils::packageVersion(pkg_info$pkg_name[i]))
-  }
-
-  success <- pkg_info[pkg_info$success == TRUE, ]
-  fail <- pkg_info[pkg_info$success == FALSE, ]
-
-  if (length(success$pkg_name)) {
-    usethis::ui_info("Successful loaded:")
-    for (i in seq_along(success$pkg_name)) {
-      cat(" -", paste0(crayon::col_align(crayon::green(success$pkg_name[i]), max(nchar(success$pkg_name))), " (", crayon::blue(success$version[i]), ")"), "\n")
+  resolve_row <- function(entry) {
+    is_gh <- grepl("/", entry, fixed = TRUE)
+    pkg_name <- basename(entry)
+    if (!pkg_installed(pkg_name)) {
+      if (is_gh) {
+        message(
+          "Package '", pkg_name, "' is not installed. Install the GitHub repo with:\n",
+          "  remotes::install_github(\"", entry, "\")"
+        )
+      } else {
+        message(
+          "Package '", pkg_name, "' is not installed. Install from CRAN with:\n",
+          "  install.packages(\"", pkg_name, "\", repos = \"https://cloud.r-project.org\")"
+        )
+      }
+      return(data.frame(pkg_name = pkg_name, success = FALSE, version = NA_character_))
     }
+    ok <- suppressPackageStartupMessages(
+      require(pkg_name, quietly = TRUE, character.only = TRUE)
+    )
+    ver <- if (ok) {
+      tryCatch(
+        as.character(packageVersion(pkg_name)),
+        error = function(e) NA_character_
+      )
+    } else {
+      NA_character_
+    }
+    data.frame(pkg_name = pkg_name, success = ok, version = ver)
   }
 
-  if (length(fail$pkg_name)) {
-    usethis::ui_oops("Fail to load:")
-    for (i in seq_along(fail$pkg_name)) {
-      cat(" -", paste0(crayon::col_align(crayon::red(fail$pkg_name[i]), max(nchar(fail$pkg_name))), " (", crayon::blue(fail$version[i]), ")"), "\n")
-    }
+  pkg_info <- do.call(rbind, lapply(pkg_list, resolve_row))
+  rownames(pkg_info) <- NULL
+
+  success <- pkg_info[pkg_info$success == TRUE, , drop = FALSE]
+  fail <- pkg_info[pkg_info$success == FALSE, , drop = FALSE]
+
+  if (nrow(success) > 0) {
+    usethis::ui_info("Successfully loaded:")
+    print(success[, c("pkg_name", "version"), drop = FALSE], row.names = FALSE)
   }
+
+  if (nrow(fail) > 0) {
+    usethis::ui_oops("Failed to load:")
+    print(fail[, c("pkg_name", "version"), drop = FALSE], row.names = FALSE)
+  }
+
+  invisible(pkg_info)
 }

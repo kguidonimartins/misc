@@ -25,7 +25,8 @@ and opens it in VisiData through the Terminal application. The temporary filenam
 a timestamp for identification.
 }
 \examples{
-\dontrun{
+\donttest{
+if (interactive()) {
 # View a data frame
 mtcars \%>\% view_vd()
 
@@ -34,5 +35,6 @@ mtcars \%>\% view_vd(title = "Car Data")
 
 # View with list columns preserved
 nested_df \%>\% view_vd(type = "json")
+}
 }
 }

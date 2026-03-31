@@ -19,9 +19,11 @@ None
 RStudio. To date, it works with gnumeric, libreoffice and tad.
 }
 \examples{
-\dontrun{
-library(tidyverse)
-mtcars \%>\%
-  view_in()
+\donttest{
+if (interactive()) {
+  library(misc)
+  mtcars \%>\%
+    view_in()
+}
 }
 }

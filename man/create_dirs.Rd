@@ -11,6 +11,10 @@ create_dirs(dirs = NULL)
 create \verb{data/\{raw,clean,temp\}}, \verb{output/\{figures,results,supp\}},
 and \code{R}}
 }
+\value{
+No return value, called for side effects (creates directories and
+optional \code{.gitkeep} placeholder files).
+}
 \description{
 The main purpose of \code{create_dirs()} is to create default directories used
 in data science projects. \code{create_dirs()} can also create custom
@@ -50,7 +54,7 @@ Below is the \emph{suggested} directory structure:
 }
 
 \examples{
-\dontrun{
+\donttest{
 # create a single directory
 create_dirs("myfolder")
 # create the default directories

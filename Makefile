@@ -5,15 +5,22 @@ R := Rscript -e
 PKGNAME := $(shell sed -n "s/Package: *\([^ ]*\)/\1/p" DESCRIPTION)
 PKGVERS := $(shell sed -n "s/Version: *\([^ ]*\)/\1/p" DESCRIPTION)
 
-.PHONY: help tests clean check-cran spell url-check cran-build submit-cran cran-release
+.PHONY: help tests clean check-cran spell url-check cran-build submit-cran cran-release extdata
 
 all: install tests check clean ## run install_deps, build, install, tests, check, and clean
 
 document: ## refresh function documentation
 	$(R) "devtools::document()"
 
+extdata: ## regenerate inst/extdata spatial samples (sf, zip; GDB via bash data-raw/build_misc_example_gdb.sh)
+	Rscript data-raw/build_read_geo_extdata.R
+	bash data-raw/build_misc_example_gdb.sh
+
 build: document ## build package
 	$(R) "devtools::build()"
+
+gp: ## get goodpractice' suggestions
+	$(R) "goodpractice::gp()" 2>&1 | tee out-gp.txt
 
 check: build ## check package
 	$(R) "Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0); devtools::check(document = FALSE, build_args = c('--no-build-vignettes'))" 2>&1 | tee out-check.txt
@@ -49,7 +56,7 @@ install_deps: ## install dependencies
 	-e 'remotes::install_deps(dependencies = TRUE, upgrade = "never")'
 
 install_remote: ## install package from remote version
-	$(R) 'misc::ipak("kguidonimartins/misc", force_github = TRUE)'
+	$(R) 'if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes", repos = "https://cloud.r-project.org"); remotes::install_github("kguidonimartins/misc")'
 
 install: install_deps build ## install package
 	cd ..; \
@@ -65,6 +72,9 @@ clean: ## clean *.tar.gz *.Rcheck
 
 README.md: README.Rmd ## render README
 	$(R) "rmarkdown::render('$<')"
+
+eg:     ## run examples
+	$(R) "devtools::run_examples(run_dontrun = TRUE, run_donttest = TRUE)" 2>&1 | tee out-eg.txt
 
 render: ## force render README
 	$(R) "rmarkdown::render('README.Rmd')"

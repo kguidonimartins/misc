@@ -20,12 +20,12 @@ This function removes duplicate rows from a data frame while keeping the first
 occurrence of each unique combination of the specified grouping variables.
 }
 \examples{
-\dontrun{
+\donttest{
 # Remove duplicates based on a single column
-df \%>\% deduplicate_by(species)
+mtcars \%>\% deduplicate_by(carb)
 
 # Remove duplicates based on multiple columns
-df \%>\% deduplicate_by(species, site, year)
+mtcars \%>\% deduplicate_by(carb, mpg)
 }
 
 }

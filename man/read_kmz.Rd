@@ -26,7 +26,8 @@ layers yield one row per layer; \code{layer_name} is simplified when there is on
 one layer in one file.
 }
 \examples{
-\dontrun{
-read_kmz("path/to/data.kmz")
+\donttest{
+kmz <- system.file("extdata", "misc_example.kmz", package = "misc")
+read_kmz(kmz)
 }
 }

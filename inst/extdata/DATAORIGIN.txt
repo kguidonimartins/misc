@@ -1,0 +1,17 @@
+inst/extdata sample datasets for examples and tests
+----------------------------------------------------
+
+misc_example.gdb
+  Copy of polygon_golden.gdb from GDAL autotest (OpenFileGDB driver):
+  https://github.com/OSGeo/gdal/tree/master/autotest/ogr/data/openfilegdb/polygon_golden.gdb
+  GDAL is under an MIT-style license (see GDAL COPYING).
+  Layer name as reported by sf::st_layers(): "OGRGeoJSON".
+
+misc_example.geojson, misc_example.gpkg, misc_example.{shp,shx,dbf,prj},
+misc_example.zip (same shapefile), misc_example.kml, misc_example.kmz
+  Single point (id = 1, coordinates 1,2), CRS EPSG:4326, layer name
+  "misc_example" where applicable. The KMZ archive contains doc.kml; its
+ GDAL layer name is "doc".
+  Regenerate with: Rscript data-raw/build_read_geo_extdata.R (requires sf, zip).
+
+To refresh only the .gdb mirror, run: bash data-raw/build_misc_example_gdb.sh

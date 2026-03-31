@@ -25,5 +25,12 @@
 ^out-check\.txt$
 ^out-check-cran\.txt$
 ^out-testthat\.txt$
+^out-gp\.txt$
+^out-eg\.txt$
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
+^data-raw$
+^data$
+^myfolder$
+^ma-box$
+^output$

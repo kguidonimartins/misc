@@ -11,11 +11,15 @@ save_temp_data(object, dir_to_save = NULL)
 
 \item{dir_to_save}{a character vector with the directory name. Default is NULL and save object in the "data/temp" if it exists.}
 }
+\value{
+No return value, called for side effects (writes an \code{.rds} file
+via \code{\link[=saveRDS]{saveRDS()}}).
+}
 \description{
 Save object as RDS file
 }
 \examples{
-\dontrun{
+\donttest{
 # create and save a R object
 awesome <- "not too much!"
 misc::create_dirs("ma-box")

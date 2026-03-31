@@ -20,7 +20,7 @@
 #' available in the excellent [`{glue}`](https://github.com/tidyverse/glue) package
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' misc::ipak(c("dplyr", "broom", "glue"))
 #'
 #' # showing significant variables

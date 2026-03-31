@@ -11,6 +11,9 @@
 #' @param pkg_name a atomic vector with package names
 #' @param quiet If warnings should be displayed. Default is TRUE
 #'
+#' @returns No return value, called for side effects (registers conflict
+#'   preferences via [conflicted::conflict_prefer()]).
+#'
 #' @section Acknowledgment:
 #' `prefer()` is shamelessly derived from a piece of code in
 #' [README.md](https://github.com/elbersb/tidylog/blob/master/README.md#namespace-conflicts)
@@ -19,7 +22,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # prefer `{dplyr}` functions over `{stats}`
 #' prefer("dplyr")
 #' }

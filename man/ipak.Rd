@@ -2,36 +2,44 @@
 % Please edit documentation in R/ipak.R
 \name{ipak}
 \alias{ipak}
-\title{Install and load multiple CRAN and github R packages}
+\title{Load multiple CRAN and GitHub R packages}
 \usage{
 ipak(pkg_list, force_cran = FALSE, force_github = FALSE)
 }
 \arguments{
-\item{pkg_list}{A character vector with the package names. Github packages needs to be listed as usual: \code{"username/repo"}}
+\item{pkg_list}{A character vector of package names. GitHub sources use
+\code{"user/repo"}; the installed package name is the repository name (see
+\code{\link[=basename]{basename()}}).}
 
-\item{force_cran}{logical. If force the installation of cran packages}
+\item{force_cran}{Logical. Ignored (retained for backwards compatibility;
+this function does not install or update packages).}
 
-\item{force_github}{logical. If force the installation of github packages}
+\item{force_github}{Logical. Ignored (retained for backwards compatibility).}
+}
+\value{
+A \code{data.frame} with columns \code{pkg_name} (character), \code{success}
+(logical: whether \code{\link[=require]{require()}} attached the package), and \code{version}
+(character, \code{NA} when not loaded). Returned invisibly; summaries are
+printed via \code{\link[=print]{print()}} on subsets when rows exist.
 }
 \description{
-\code{ipak()} checks if the package is installed and then loads
-it. If the package is not installed, then \code{ipak()} installs it and then
-loads it. \code{ipak()} is capable of handling CRAN and github packages. In
-addition, the user can update their packages using the \code{force_*()}
-arguments.
+Attaches packages that are already installed. Names that are not found on
+the library search path are reported with suggested
+\code{install.packages()} or \code{remotes::install_github()} calls to run yourself;
+this function does not install packages (CRAN policy).
 }
 \section{Acknowledgment}{
 
 \code{ipak()} was first developed by
 \href{https://github.com/stevenworthington}{Steven Worthington} and made
 publicly available
-\href{https://gist.github.com/stevenworthington/3178163}{here}. I've been
-using this function for years and now I decided to expand it.
+\href{https://gist.github.com/stevenworthington/3178163}{here}. This version
+only loads packages and suggests install commands for missing ones.
 }
 
 \examples{
-\dontrun{
-pkg_list <- c("vegan", "ggplot2", "trinker/textclean", "jalvesaq/colorout")
+\donttest{
+pkg_list <- c("utils", "stats") # base packages — usually present
 ipak(pkg_list)
 }
 }

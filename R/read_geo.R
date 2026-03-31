@@ -165,9 +165,10 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' read_gdb("path/to/data.gdb")
-#' read_gdb("path/to/data.gdb", layer = "my_layer")
+#' \donttest{
+#' gdb <- system.file("extdata", "misc_example.gdb", package = "misc")
+#' read_gdb(gdb)
+#' read_gdb(gdb, layer = "OGRGeoJSON")
 #' }
 read_gdb <- function(path, layer = NULL, quiet = TRUE, ...) {
   path <- .read_geo_check_path(path)
@@ -196,8 +197,9 @@ read_gdb <- function(path, layer = NULL, quiet = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' read_sf_zip("path/to/data.zip")
+#' \donttest{
+#' z <- system.file("extdata", "misc_example.zip", package = "misc")
+#' read_sf_zip(z)
 #' }
 read_sf_zip <- function(path, quiet = TRUE, ...) {
   path <- .read_geo_check_path(path)
@@ -259,8 +261,9 @@ read_sf_zip <- function(path, quiet = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' read_kmz("path/to/data.kmz")
+#' \donttest{
+#' kmz <- system.file("extdata", "misc_example.kmz", package = "misc")
+#' read_kmz(kmz)
 #' }
 read_kmz <- function(path, quiet = TRUE, ...) {
   path <- .read_geo_check_path(path)
@@ -329,11 +332,15 @@ read_kmz <- function(path, quiet = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' read_geo("areas.zip")
-#' read_geo("overlay.kmz")
-#' read_geo("data.gpkg")
-#' read_geo("file.gdb", layer = "parcels")
+#' \donttest{
+#' d <- system.file("extdata", package = "misc")
+#' read_geo(file.path(d, "misc_example.zip"))
+#' read_geo(file.path(d, "misc_example.kmz"))
+#' read_geo(file.path(d, "misc_example.kml"))
+#' read_geo(file.path(d, "misc_example.gpkg"))
+#' read_geo(file.path(d, "misc_example.geojson"))
+#' read_geo(file.path(d, "misc_example.shp"))
+#' read_geo(file.path(d, "misc_example.gdb"), layer = "OGRGeoJSON")
 #' }
 read_geo <- function(path, layer = NULL, quiet = TRUE, ...) {
   path <- .read_geo_check_path(path)

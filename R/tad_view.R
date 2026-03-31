@@ -12,10 +12,12 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' library(tidyverse)
-#' mtcars %>%
-#'   tad_view()
+#' \donttest{
+#' if (interactive()) {
+#'   library(misc)
+#'   mtcars %>%
+#'     tad_view()
+#' }
 #' }
 tad_view <- function(data) {
   if (Sys.which("tad") == "") {

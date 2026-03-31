@@ -27,7 +27,8 @@ this data to create the map.
 }
 
 \examples{
-\dontrun{
+\donttest{
+if (interactive()) {
 # plot a world map
 quick_map()
 # plot a new world map
@@ -36,7 +37,8 @@ quick_map(region = "Americas", type = "sf")
 quick_map(region = "Americas", type = "ggplot")
 # edit using ggplot2 layers
 quick_map() +
-  theme_void() +
-  geom_sf(fill = "white")
+  ggplot2::theme_void() +
+  ggplot2::geom_sf(fill = "white")
+}
 }
 }

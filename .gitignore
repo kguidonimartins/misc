@@ -10,3 +10,9 @@ out-check.txt
 py
 /out-check-cran.txt
 /out-testthat.txt
+/out-gp.txt
+/out-eg.txt
+data/
+myfolder
+ma-box
+output

@@ -19,9 +19,11 @@ RStudio. Please, make sure you have
 system.
 }
 \examples{
-\dontrun{
-library(tidyverse)
-mtcars \%>\%
-  tad_view()
+\donttest{
+if (interactive()) {
+  library(misc)
+  mtcars \%>\%
+    tad_view()
+}
 }
 }

@@ -11,6 +11,10 @@ prefer(pkg_name, quiet = TRUE)
 
 \item{quiet}{If warnings should be displayed. Default is TRUE}
 }
+\value{
+No return value, called for side effects (registers conflict
+preferences via \code{\link[conflicted:conflict_prefer]{conflicted::conflict_prefer()}}).
+}
 \description{
 The most common conflict between \code{{tidyverse}} users is \code{dplyr::filter()} and
 \code{stats::filter()}; among \code{{raster}} users, the conflict is with
@@ -27,7 +31,7 @@ of the \href{https://github.com/elbersb/tidylog}{\code{{tidylog}}}
 }
 
 \examples{
-\dontrun{
+\donttest{
 # prefer `{dplyr}` functions over `{stats}`
 prefer("dplyr")
 }

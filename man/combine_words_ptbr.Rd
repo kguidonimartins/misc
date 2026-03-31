@@ -28,7 +28,7 @@ available in the excellent \href{https://github.com/tidyverse/glue}{\code{{glue}
 }
 
 \examples{
-\dontrun{
+\donttest{
 misc::ipak(c("dplyr", "broom", "glue"))
 
 # showing significant variables

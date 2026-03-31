@@ -26,7 +26,7 @@ Emily Robinson.
 }
 
 \examples{
-\dontrun{
+\donttest{
 na_data <- data.frame(c1 = c(1, NA), c2 = c(NA, NA))
 na_data \%>\% na_count()
 }

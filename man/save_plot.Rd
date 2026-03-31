@@ -38,6 +38,10 @@ save_plot(
 
 \item{trim}{logical}
 }
+\value{
+No return value, called for side effects (writes a graphics file
+via \code{\link[ggplot2:ggsave]{ggplot2::ggsave()}}, and optionally calls \code{\link[=trim_fig]{trim_fig()}}).
+}
 \description{
 \code{save_plot()} wraps \code{ggplot2::ggsave()} and offer option to remove white
 spaces around figures (creates a additional file in \code{output/figures/trim};
@@ -52,7 +56,7 @@ available in the excellent
 }
 
 \examples{
-\dontrun{
+\donttest{
 library(misc)
 ipak(c("ggplot2", "dplyr"))
 create_dirs()

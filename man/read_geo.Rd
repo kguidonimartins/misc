@@ -30,10 +30,14 @@ Chooses the reader from \code{tools::file_ext(path)} (case-insensitive):
 }
 }
 \examples{
-\dontrun{
-read_geo("areas.zip")
-read_geo("overlay.kmz")
-read_geo("data.gpkg")
-read_geo("file.gdb", layer = "parcels")
+\donttest{
+d <- system.file("extdata", package = "misc")
+read_geo(file.path(d, "misc_example.zip"))
+read_geo(file.path(d, "misc_example.kmz"))
+read_geo(file.path(d, "misc_example.kml"))
+read_geo(file.path(d, "misc_example.gpkg"))
+read_geo(file.path(d, "misc_example.geojson"))
+read_geo(file.path(d, "misc_example.shp"))
+read_geo(file.path(d, "misc_example.gdb"), layer = "OGRGeoJSON")
 }
 }

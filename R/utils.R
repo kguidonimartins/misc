@@ -7,7 +7,7 @@ check_require <- function(pkg) {
   if (!requireNamespace(pkgname, quietly = TRUE)) {
     usethis::ui_stop(
       "Package {usethis::ui_field(pkgname)} needed for this function to work!
-       Solution: You can install it with `misc::ipak(\"{ui_field(full_pkgname)}\")`"
+       Solution: For CRAN, run install.packages(\"{pkgname}\", repos = \"https://cloud.r-project.org\"). For GitHub, run remotes::install_github(\"{full_pkgname}\"). Then try again."
     )
   }
 }

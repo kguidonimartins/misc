@@ -8,12 +8,12 @@ Authors@R:
            email = "kguidonimartins@gmail.com",
            comment = c(ORCID = "0000-0002-8458-8467"))
 Description: Helpers for common data analysis tasks including missing-value
-    summaries and filters, simple reporting and plotting utilities, Excel
+    summaries and filters, simple reporting and plotting utilities, 'Excel'
     import and export workflows, and reading geospatial formats (for example
     shapefiles in zip archives, file geodatabases, KMZ, and KML) via 'sf' and
-    related tools. Also includes small project utilities such as creating
+    related packages. Also includes small project utilities such as creating
     directories, gitignore scaffolding, combined package loading, and optional
-    lintr setup.
+    'lintr' setup.
 Depends:
     R (>= 4.1.0)
 Imports:
@@ -25,11 +25,9 @@ Imports:
     here,
     magrittr,
     purrr,
-    remotes,
     tidyr,
     tools,
     usethis,
-    crayon,
     readr,
     mapview,
     sf,

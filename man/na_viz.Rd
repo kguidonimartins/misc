@@ -22,8 +22,10 @@ a ggplot object
 }
 
 \examples{
-\dontrun{
+\donttest{
+if (interactive()) {
 na_data <- data.frame(c1 = c(1, NA), c2 = c(NA, NA))
 na_data \%>\% na_viz()
+}
 }
 }

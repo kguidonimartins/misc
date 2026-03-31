@@ -11,6 +11,18 @@ read_geo_expected_names <- function() {
   )
 }
 
+misc_extdata <- function(...) {
+  system.file("extdata", ..., package = "misc", mustWork = FALSE)
+}
+
+misc_extdata_dir <- function() {
+  p <- misc_extdata("misc_example.geojson")
+  if (!nzchar(p)) {
+    return("")
+  }
+  dirname(p)
+}
+
 # read_geo ----------------------------------------------------------------
 test_that("read_geo dispatches zip like read_sf_zip", {
   skip_if_not_installed("zip")
@@ -33,6 +45,40 @@ test_that("read_geo reads .shp via default GDAL branch", {
   out <- read_geo(shp)
   expect_true("data" %in% names(out))
   expect_equal(out$file_type, "shp")
+})
+
+test_that("read_geo reads bundled inst extdata samples", {
+  ext <- misc_extdata_dir()
+  skip_if_not(nzchar(ext) && dir.exists(ext), "inst/extdata not in package tree")
+  f <- function(...) file.path(ext, ...)
+
+  expect_equal(nrow(read_geo(f("misc_example.zip"))), 1L)
+  expect_equal(read_geo(f("misc_example.zip"))$file_type, "shp")
+
+  skip_if_not("KML" %in% sf::st_drivers()$name, "GDAL KML driver not available")
+  kmz_out <- read_geo(f("misc_example.kmz"))
+  expect_equal(nrow(kmz_out), 1L)
+  expect_equal(kmz_out$file_type, "kmz")
+  expect_equal(kmz_out$layer_name[[1]], "doc")
+
+  kml_out <- read_geo(f("misc_example.kml"))
+  expect_equal(nrow(kml_out), 1L)
+  expect_equal(kml_out$file_type, "kml")
+
+  expect_equal(nrow(read_geo(f("misc_example.gpkg"))), 1L)
+  expect_equal(read_geo(f("misc_example.gpkg"))$file_type, "gpkg")
+
+  expect_equal(nrow(read_geo(f("misc_example.geojson"))), 1L)
+  expect_equal(read_geo(f("misc_example.geojson"))$file_type, "geojson")
+
+  expect_equal(nrow(read_geo(f("misc_example.shp"))), 1L)
+  expect_equal(read_geo(f("misc_example.shp"))$file_type, "shp")
+
+  gdb <- f("misc_example.gdb")
+  skip_if_not(dir.exists(gdb), "misc_example.gdb missing")
+  gdb_out <- read_geo(gdb, layer = "OGRGeoJSON")
+  expect_equal(nrow(gdb_out), 1L)
+  expect_equal(gdb_out$file_type, "gdb")
 })
 
 # read_sf_zip -------------------------------------------------------------
@@ -82,6 +128,17 @@ test_that("read_sf_zip reads one shapefile from zip", {
   expect_match(out$fpath, "^/vsizip/")
 })
 
+test_that("read_sf_zip reads bundled misc_example.zip", {
+  skip_if_not_installed("zip")
+  z <- misc_extdata("misc_example.zip")
+  skip_if_not(nzchar(z) && file.exists(z), "misc_example.zip not in package tree")
+  out <- read_sf_zip(z)
+  expect_named(out, read_geo_expected_names())
+  expect_equal(nrow(out), 1L)
+  expect_equal(out$layer_name[[1]], "misc_example")
+  expect_true(inherits(out$data[[1]], "sf"))
+})
+
 test_that("read_sf_zip reads multiple shapefiles from zip", {
   skip_if_not_installed("zip")
   d <- tempfile("readgeo_shp2")
@@ -125,6 +182,18 @@ test_that("read_kmz errors when archive has no kml", {
   expect_error(read_kmz(z), "No .kml")
 })
 
+test_that("read_kmz reads bundled misc_example.kmz", {
+  skip_if_not("KML" %in% sf::st_drivers()$name, "GDAL KML driver not available")
+  kmz <- misc_extdata("misc_example.kmz")
+  skip_if_not(nzchar(kmz) && file.exists(kmz), "misc_example.kmz not in package tree")
+  out <- read_kmz(kmz)
+  expect_equal(nrow(out), 1L)
+  expect_named(out, read_geo_expected_names())
+  expect_equal(out$file_type, "kmz")
+  expect_equal(out$layer_name[[1]], "doc")
+  expect_true(inherits(out$data[[1]], "sf"))
+})
+
 test_that("read_kmz reads kmz built from a single kml layer", {
   skip_if_not_installed("zip")
   skip_if_not("KML" %in% sf::st_drivers()$name, "GDAL KML driver not available")
@@ -148,6 +217,18 @@ test_that("read_kmz reads kmz built from a single kml layer", {
 })
 
 # read_gdb ----------------------------------------------------------------
+test_that("read_gdb reads bundled inst extdata gdb when present", {
+  gdb <- system.file("extdata", "misc_example.gdb", package = "misc", mustWork = FALSE)
+  skip_if_not(nzchar(gdb) && dir.exists(gdb), "misc_example.gdb not in package tree")
+
+  out <- read_gdb(gdb)
+  expect_named(out, read_geo_expected_names())
+  expect_equal(out$layer_name[[1]], "OGRGeoJSON")
+
+  one <- read_gdb(gdb, layer = "OGRGeoJSON")
+  expect_equal(nrow(one), 1L)
+})
+
 test_that("read_gdb errors when path is missing", {
   expect_error(
     read_gdb(file.path(tempdir(), "missing.gdb")),

@@ -13,8 +13,12 @@ read_all_sheets_then_save_csv(path_to_xlsx, dir_to_save = NULL)
 Default is NULL and save the csv files in the "data/temp/extracted_sheets"
 if it exists.}
 }
+\value{
+A list (one element per sheet), each the return value of
+\code{\link[=read_sheet_then_save_csv]{read_sheet_then_save_csv()}} for that sheet (invisibly \code{NULL} per call).
+}
 \description{
-\code{read_all_sheet_then_save_csv()} just loop \code{read_sheet_then_save_csv()} over
+\code{read_all_sheets_then_save_csv()} just loops \code{read_sheet_then_save_csv()} over
 the available excel sheets and save them in \code{data/temp/extracted_sheets}
 }
 \section{Acknowledgment}{
@@ -23,11 +27,11 @@ See: \code{\link{read_sheet_then_save_csv}}
 }
 
 \examples{
-\dontrun{
+\donttest{
 # read and into a csv
 misc::create_dirs("ma-box")
 xlsx_file <- system.file("xlsx-examples", "mtcars_workbook_001.xlsx", package = "misc")
-read_all_sheet_then_save_csv(
+read_all_sheets_then_save_csv(
   path_to_xlsx = xlsx_file,
   dir_to_save = "ma-box"
 )

@@ -3,6 +3,9 @@
 #' @param object R object
 #' @param dir_to_save a character vector with the directory name. Default is NULL and save object in the "data/temp" if it exists.
 #'
+#' @returns No return value, called for side effects (writes an `.rds` file
+#'   via [saveRDS()]).
+#'
 #' @importFrom fs dir_exists file_exists
 #' @importFrom here here
 #' @importFrom usethis ui_stop ui_field ui_todo ui_done ui_info
@@ -10,7 +13,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # create and save a R object
 #' awesome <- "not too much!"
 #' misc::create_dirs("ma-box")

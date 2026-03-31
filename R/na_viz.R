@@ -14,9 +14,11 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' if (interactive()) {
 #' na_data <- data.frame(c1 = c(1, NA), c2 = c(NA, NA))
 #' na_data %>% na_viz()
+#' }
 #' }
 na_viz <- function(data) {
   check_require("naniar")

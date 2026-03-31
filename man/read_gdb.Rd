@@ -29,8 +29,9 @@ per row.
 Read layers from a file geodatabase (.gdb)
 }
 \examples{
-\dontrun{
-read_gdb("path/to/data.gdb")
-read_gdb("path/to/data.gdb", layer = "my_layer")
+\donttest{
+gdb <- system.file("extdata", "misc_example.gdb", package = "misc")
+read_gdb(gdb)
+read_gdb(gdb, layer = "OGRGeoJSON")
 }
 }

@@ -6,6 +6,15 @@
 \usage{
 lhs \%>\% rhs
 }
+\arguments{
+\item{lhs}{A value or the magrittr forward-pipe placeholder.}
+
+\item{rhs}{A function call using magrittr semantics.}
+}
+\value{
+The result of evaluating the right-hand side with the left-hand
+side as first argument (see \code{magrittr::\link[magrittr:pipe]{\%>\%}}).
+}
 \description{
 See \code{magrittr::\link[magrittr:pipe]{\%>\%}} for details.
 }

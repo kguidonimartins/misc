@@ -25,10 +25,12 @@ check_avail <- function(bin) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' library(tidyverse)
-#' mtcars %>%
-#'   view_in()
+#' \donttest{
+#' if (interactive()) {
+#'   library(misc)
+#'   mtcars %>%
+#'     view_in()
+#' }
 #' }
 view_in <- function(data, viewer = c("libreoffice", "gnumeric", "tad")) {
   viewer <- match.arg(viewer)
@@ -137,7 +139,8 @@ check_list_columns <- function(data) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' if (interactive()) {
 #' # View a data frame
 #' mtcars %>% view_vd()
 #'
@@ -146,6 +149,7 @@ check_list_columns <- function(data) {
 #'
 #' # View with list columns preserved
 #' nested_df %>% view_vd(type = "json")
+#' }
 #' }
 view_vd <- function(data, type = "csv") {
 

@@ -9,6 +9,9 @@
 #'   create `data/{raw,clean,temp}`, `output/{figures,results,supp}`,
 #'   and `R`
 #'
+#' @returns No return value, called for side effects (creates directories and
+#'   optional `.gitkeep` placeholder files).
+#'
 #' @importFrom fs dir_exists dir_create file_create
 #' @importFrom usethis ui_todo ui_done ui_info
 #' @importFrom here here
@@ -45,7 +48,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # create a single directory
 #' create_dirs("myfolder")
 #' # create the default directories

@@ -25,6 +25,9 @@
 #'   types.
 #' @param .name_repair Handling of column names
 #'
+#' @returns No return value, called for side effects (writes one CSV file for
+#'   the requested sheet).
+#'
 #' @export
 #'
 #' @importFrom fs dir_exists dir_create file_exists
@@ -38,7 +41,7 @@
 #' from `{readxl}` package site.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # read and into a csv
 #' misc::create_dirs("ma-box")
 #' xlsx_file <-
@@ -133,7 +136,7 @@ read_sheet_then_save_csv <-
 #' Read and save all excel sheets and save them to a CSV file
 #'
 #' @description
-#' `read_all_sheet_then_save_csv()` just loop `read_sheet_then_save_csv()` over
+#' `read_all_sheets_then_save_csv()` just loops `read_sheet_then_save_csv()` over
 #' the available excel sheets and save them in `data/temp/extracted_sheets`
 #'
 #' @param path_to_xlsx a character vector with path to the excel file
@@ -146,17 +149,20 @@ read_sheet_then_save_csv <-
 #' @importFrom purrr map set_names
 #' @importFrom usethis ui_stop ui_field
 #'
+#' @returns A list (one element per sheet), each the return value of
+#'   [read_sheet_then_save_csv()] for that sheet (invisibly `NULL` per call).
+#'
 #' @export
 #'
 #' @section Acknowledgment:
 #' See: \code{\link{read_sheet_then_save_csv}}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # read and into a csv
 #' misc::create_dirs("ma-box")
 #' xlsx_file <- system.file("xlsx-examples", "mtcars_workbook_001.xlsx", package = "misc")
-#' read_all_sheet_then_save_csv(
+#' read_all_sheets_then_save_csv(
 #'   path_to_xlsx = xlsx_file,
 #'   dir_to_save = "ma-box"
 #' )
@@ -196,13 +202,16 @@ read_all_sheets_then_save_csv <- function(path_to_xlsx, dir_to_save = NULL) {
 #' @importFrom fs dir_ls
 #' @importFrom purrr map
 #'
+#' @returns A list (one element per `.xlsx` file found under `path_to_xlsx`), each
+#'   the list returned by [read_all_sheets_then_save_csv()] for that workbook.
+#'
 #' @export
 #'
 #' @section Acknowledgment:
 #' See: \code{\link{read_sheet_then_save_csv}}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # read and into a csv
 #' xlsx_dir <- system.file("xlsx-examples", package = "misc")
 #' read_all_xlsx_then_save_csv(
