@@ -55,11 +55,13 @@ Below is the \emph{suggested} directory structure:
 
 \examples{
 \donttest{
+if (interactive()) {
 # create a single directory
 create_dirs("myfolder")
 # create the default directories
 create_dirs()
 # see the resulting tree
 fs::dir_tree()
+}
 }
 }

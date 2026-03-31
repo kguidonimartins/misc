@@ -29,18 +29,7 @@ available in the excellent \href{https://github.com/tidyverse/glue}{\code{{glue}
 
 \examples{
 \donttest{
-misc::ipak(c("dplyr", "broom", "glue"))
-
-# showing significant variables
-mtcars \%>\%
-  select(mpg, cyl, carb, wt) \%>\%
-  lm(mpg ~ cyl + carb + wt, data = .) \%>\%
-  tidy() \%>\%
-  filter(p.value <= 0.05, term != "(Intercept)") \%>\%
-  pull(term) \%>\%
-  {
-    paste("Variáveis significativas:", combine_words_ptbr(.))
-  }
+misc::ipak("glue")
 
 # using in an ordinary text
 feira <- c("banana", "maça", "pepino", "ovos")

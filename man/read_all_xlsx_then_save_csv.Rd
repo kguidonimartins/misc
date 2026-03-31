@@ -25,11 +25,12 @@ See: \code{\link{read_sheet_then_save_csv}}
 
 \examples{
 \donttest{
+if (interactive()) {
 # read and into a csv
 xlsx_dir <- system.file("xlsx-examples", package = "misc")
 read_all_xlsx_then_save_csv(
   path_to_xlsx = xlsx_dir
 )
 }
-
+}
 }

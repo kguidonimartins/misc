@@ -52,25 +52,31 @@ test_that("read_geo reads bundled inst extdata samples", {
   skip_if_not(nzchar(ext) && dir.exists(ext), "inst/extdata not in package tree")
   f <- function(...) file.path(ext, ...)
 
+  skip_if_not(file.exists(f("misc_example.zip")), "misc_example.zip not in package tree")
   expect_equal(nrow(read_geo(f("misc_example.zip"))), 1L)
   expect_equal(read_geo(f("misc_example.zip"))$file_type, "shp")
 
   skip_if_not("KML" %in% sf::st_drivers()$name, "GDAL KML driver not available")
+  skip_if_not(file.exists(f("misc_example.kmz")), "misc_example.kmz not in package tree")
   kmz_out <- read_geo(f("misc_example.kmz"))
   expect_equal(nrow(kmz_out), 1L)
   expect_equal(kmz_out$file_type, "kmz")
   expect_equal(kmz_out$layer_name[[1]], "doc")
 
+  skip_if_not(file.exists(f("misc_example.kml")), "misc_example.kml not in package tree")
   kml_out <- read_geo(f("misc_example.kml"))
   expect_equal(nrow(kml_out), 1L)
   expect_equal(kml_out$file_type, "kml")
 
+  skip_if_not(file.exists(f("misc_example.gpkg")), "misc_example.gpkg not in package tree")
   expect_equal(nrow(read_geo(f("misc_example.gpkg"))), 1L)
   expect_equal(read_geo(f("misc_example.gpkg"))$file_type, "gpkg")
 
+  skip_if_not(file.exists(f("misc_example.geojson")), "misc_example.geojson not in package tree")
   expect_equal(nrow(read_geo(f("misc_example.geojson"))), 1L)
   expect_equal(read_geo(f("misc_example.geojson"))$file_type, "geojson")
 
+  skip_if_not(file.exists(f("misc_example.shp")), "misc_example.shp not in package tree")
   expect_equal(nrow(read_geo(f("misc_example.shp"))), 1L)
   expect_equal(read_geo(f("misc_example.shp"))$file_type, "shp")
 

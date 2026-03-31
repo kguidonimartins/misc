@@ -34,6 +34,7 @@
 #'
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' library(misc)
 #' ipak(c("ggplot2", "dplyr"))
 #' create_dirs()
@@ -42,6 +43,7 @@
 #'   aes(x = mpg, y = cyl) +
 #'   geom_point()
 #' save_plot(p)
+#' }
 #' }
 save_plot <- function(object, filename = NULL, dir_to_save = NULL, width = NA, height = NA, format = NULL, units = NULL, dpi = NULL, overwrite = FALSE, trim = FALSE) {
   default_format <- "png"

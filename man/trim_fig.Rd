@@ -27,6 +27,7 @@ file under a \verb{trim/} subdirectory via \code{\link[magick:editing]{magick::i
 
 \examples{
 \donttest{
+if (interactive()) {
 library(misc)
 ipak(c("ggplot2", "dplyr"))
 create_dirs()
@@ -36,5 +37,6 @@ p <- mtcars \%>\%
   geom_point()
 save_plot(p)
 trim_fig("output/figures/p.png")
+}
 }
 }

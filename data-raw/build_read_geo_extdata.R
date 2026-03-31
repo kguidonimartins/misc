@@ -14,6 +14,9 @@ local({
 
   ext <- file.path("inst", "extdata")
   dir.create(ext, FALSE, TRUE)
+  # zip::zip() resolves relative paths from getwd(); shp_zip/kmz change getwd() to a
+  # temp dir, so output paths must be absolute or writes go under tempfile/inst/...
+  ext_abs <- normalizePath(ext, winslash = "/", mustWork = TRUE)
 
   pt <- sf::st_sfc(sf::st_point(c(1, 2)), crs = 4326)
   obj <- sf::st_sf(id = 1L, geometry = pt)
@@ -51,7 +54,7 @@ local({
     on.exit(unlink(d, recursive = TRUE), add = TRUE)
     shp_base <- file.path(d, "misc_example")
     sf::write_sf(obj, paste0(shp_base, ".shp"))
-    z <- file.path(ext, "misc_example.zip")
+    z <- file.path(ext_abs, "misc_example.zip")
     if (file.exists(z)) {
       unlink(z)
     }
@@ -75,7 +78,7 @@ local({
     on.exit(unlink(d, recursive = TRUE), add = TRUE)
     kml <- file.path(d, "doc.kml")
     sf::write_sf(obj, kml, driver = "KML")
-    z <- file.path(ext, "misc_example.kmz")
+    z <- file.path(ext_abs, "misc_example.kmz")
     if (file.exists(z)) {
       unlink(z)
     }

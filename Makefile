@@ -73,7 +73,7 @@ clean: ## clean *.tar.gz *.Rcheck
 README.md: README.Rmd ## render README
 	$(R) "rmarkdown::render('$<')"
 
-eg:     ## run examples
+eg: document ## run examples
 	$(R) "devtools::run_examples(run_dontrun = TRUE, run_donttest = TRUE)" 2>&1 | tee out-eg.txt
 
 render: ## force render README

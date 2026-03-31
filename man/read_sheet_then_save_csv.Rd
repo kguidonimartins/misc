@@ -69,6 +69,7 @@ from \code{{readxl}} package site.
 
 \examples{
 \donttest{
+if (interactive()) {
 # read and into a csv
 misc::create_dirs("ma-box")
 xlsx_file <-
@@ -78,5 +79,6 @@ read_sheet_then_save_csv(
   path_to_xlsx = xlsx_file,
   dir_to_save = "ma-box"
 )
+}
 }
 }

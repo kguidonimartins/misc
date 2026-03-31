@@ -20,6 +20,7 @@ Save object as RDS file
 }
 \examples{
 \donttest{
+if (interactive()) {
 # create and save a R object
 awesome <- "not too much!"
 misc::create_dirs("ma-box")
@@ -49,6 +50,7 @@ for (i in files) {
   )
   # assign name
   assign(obj_name, tmp)
+}
 }
 }
 }

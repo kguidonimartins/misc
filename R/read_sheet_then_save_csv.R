@@ -42,6 +42,7 @@
 #'
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' # read and into a csv
 #' misc::create_dirs("ma-box")
 #' xlsx_file <-
@@ -51,6 +52,7 @@
 #'   path_to_xlsx = xlsx_file,
 #'   dir_to_save = "ma-box"
 #' )
+#' }
 #' }
 read_sheet_then_save_csv <-
   function(excel_sheet,
@@ -159,6 +161,7 @@ read_sheet_then_save_csv <-
 #'
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' # read and into a csv
 #' misc::create_dirs("ma-box")
 #' xlsx_file <- system.file("xlsx-examples", "mtcars_workbook_001.xlsx", package = "misc")
@@ -167,7 +170,7 @@ read_sheet_then_save_csv <-
 #'   dir_to_save = "ma-box"
 #' )
 #' }
-#'
+#' }
 read_all_sheets_then_save_csv <- function(path_to_xlsx, dir_to_save = NULL) {
   check_require("readxl")
   if (is.null(dir_to_save)) {
@@ -212,13 +215,14 @@ read_all_sheets_then_save_csv <- function(path_to_xlsx, dir_to_save = NULL) {
 #'
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' # read and into a csv
 #' xlsx_dir <- system.file("xlsx-examples", package = "misc")
 #' read_all_xlsx_then_save_csv(
 #'   path_to_xlsx = xlsx_dir
 #' )
 #' }
-#'
+#' }
 read_all_xlsx_then_save_csv <- function(path_to_xlsx) {
   path_to_xlsx %>%
     fs::dir_ls(regexp = "\\.xls*") %>%

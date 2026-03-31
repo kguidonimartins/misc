@@ -57,6 +57,7 @@ available in the excellent
 
 \examples{
 \donttest{
+if (interactive()) {
 library(misc)
 ipak(c("ggplot2", "dplyr"))
 create_dirs()
@@ -65,5 +66,6 @@ p <- mtcars \%>\%
   aes(x = mpg, y = cyl) +
   geom_point()
 save_plot(p)
+}
 }
 }

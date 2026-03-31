@@ -14,6 +14,7 @@
 #'
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' # create and save a R object
 #' awesome <- "not too much!"
 #' misc::create_dirs("ma-box")
@@ -43,6 +44,7 @@
 #'   )
 #'   # assign name
 #'   assign(obj_name, tmp)
+#' }
 #' }
 #' }
 save_temp_data <- function(object, dir_to_save = NULL) {

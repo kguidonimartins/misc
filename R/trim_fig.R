@@ -22,6 +22,7 @@
 #'
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' library(misc)
 #' ipak(c("ggplot2", "dplyr"))
 #' create_dirs()
@@ -31,6 +32,7 @@
 #'   geom_point()
 #' save_plot(p)
 #' trim_fig("output/figures/p.png")
+#' }
 #' }
 trim_fig <- function(figure_path, overwrite = FALSE) {
   check_require("magick")
