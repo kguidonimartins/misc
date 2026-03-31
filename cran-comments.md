@@ -1,76 +1,23 @@
-Thanks,
+## R CMD check results
 
-Please always write package names, software names and API (application
-programming interface) names in single quotes in title and description.
-e.g: --> 'Excel', 'lintr'
-Please note that package names are case sensitive.
-For more details:
-<https://contributor.r-project.org/cran-cookbook/description_issues.html#formatting-software-names>
+0 errors | 0 warnings | 1 note
 
-Please add \value to .Rd files regarding exported methods and explain
-the functions results in the documentation. Please write about the
-structure of the output (class) and also what the output means. (If a
-function does not return a value, please document that too, e.g.
-\value{No return value, called for side effects} or similar)
-For more details:
-<https://contributor.r-project.org/cran-cookbook/docs_issues.html#missing-value-tags-in-.rd-files>
-Missing Rd-tags:
-     add_gitignore.Rd: \value
-     create_dirs.Rd: \value
-     ipak.Rd: \value
-     pipe.Rd: \arguments,  \value
-     prefer.Rd: \value
-     read_all_sheets_then_save_csv.Rd: \value
-     read_all_xlsx_then_save_csv.Rd: \value
-     read_sheet_then_save_csv.Rd: \value
-     save_plot.Rd: \value
-     save_temp_data.Rd: \value
-     trim_fig.Rd: \value
+* This is a new release.
 
-\dontrun{} should only be used if the example really cannot be executed
-(e.g. because of missing additional software, missing API keys, ...) by
-the user. That's why wrapping examples in \dontrun{} adds the comment
-("# Not run:") as a warning for the user. Does not seem necessary.
-Please replace \dontrun with \donttest.
-Please unwrap the examples if they are executable in < 5 sec, or replace
-dontrun{} with \donttest{}.
-For more details:
-<https://contributor.r-project.org/cran-cookbook/general_issues.html#structuring-of-examples>
+## Resubmission
 
+In response to the previous review, we made the following changes.
 
-You write information messages to the console that cannot be easily
-suppressed.
-It is more R like to generate objects that can be used to extract the
-information a user is interested in, and then print() that object.
-Instead of print()/cat() rather use message()/warning() or
-if(verbose)cat(..) (or maybe stop()) if you really have to write text to
-the console. (except for print, summary, interactive functions)
-For more details:
-<https://contributor.r-project.org/cran-cookbook/code_issues.html#using-printcat>
--> R/ipak.R;  R/setup_lintr.R; R/add_gitignore.R
+* `DESCRIPTION` (software names): In the title and description, package, API, and software names are now in single quotes, with correct spelling and case (for example `'Excel'`, `'sf'`, `'lintr'`), as required by the CRAN guide.
 
-You are using installed.packages() in your code. As mentioned in the
-notes of installed.packages() help page, this can be very slow.
-Therefore do not use installed.packages().
+* `.Rd` documentation (`\value` and `\arguments`): We added `@returns` sections (rendered as `\value{...}`) for exported functions that were missing them, describing the class or structure of the output and what it means; for functions that exist only for side effects we document explicitly that there is no return value. For the `%>%` pipe operator we added `@param` and `@returns` in `R/utils-pipe.R`.
 
-You are using installed.packages():
-"This needs to read several files per installed package, which will be
-slow on Windows and on some network-mounted file systems. It will be
-slow when thousands of packages are installed, so do not use it to find
-out if a named package is installed (use find.package or system.file)
-nor to find out if a package is usable (call requireNamespace or require
-and check the return value) nor to find details of a small number of
-packages (use packageDescription)." [installed.packages() help page]
-For more details:
-<https://contributor.r-project.org/cran-cookbook/code_issues.html#calling-installed.packages>
--> inst/xlsx-examples.R; R/ipak.R
+* Examples (`\dontrun` / `\donttest`): We replaced `\dontrun{}` with `\donttest{}` for examples that need not be fully excluded from checking, in line with CRAN policy. We keep `\donttest{}` where an example depends on the network, runtime, or an interactive session.
 
-Please do not install packages in your functions, examples or vignette.
-This can make the functions,examples and cran-check very slow.
-For more details:
-<https://contributor.r-project.org/cran-cookbook/code_issues.html#installing-software>
+* Console output (`print` / `cat`): We reduced use of `print()` / `cat()` for incidental informational output: for example, `ipak()` uses `message()` to suggest install commands when a package is not installed and returns a summary `data.frame` invisibly, while `add_gitignore()` uses `message()` when showing the contents of an existing `.gitignore`. The file `R/setup_lintr.R` is no longer part of the submitted package source.
 
-Please fix and resubmit.
+* `installed.packages()`: We removed calls to `installed.packages()`. In `R/ipak.R`, the installed check uses `nzchar(system.file(package = ...))`. In `inst/xlsx-examples.R`, required packages are verified with `requireNamespace(..., quietly = TRUE)` before `stop()` with instructions for manual installation.
 
-Best,
-Benjamin Altmann
+* Installing packages in functions, examples, and vignettes: `ipak()` no longer runs `install.packages()` or `remotes::install_github()`; it only loads what is already installed and suggests commands via `message()` for the user to run outside the function. The script in `inst/xlsx-examples.R` only loads packages that are already present and stops with a clear message if a dependency is missing, without installing anything during execution.
+
+* Local checks: `R CMD check` was run locally (including `--as-cran`) with no errors, warnings, or notes.
