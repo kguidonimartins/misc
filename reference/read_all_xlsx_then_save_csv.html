@@ -65,6 +65,11 @@ all available xlsx files</p>
 <dd><p>a character vector with the path to excel file</p></dd>
 
 </dl></div>
+    <div id="value">
+    <h2>Value</h2>
+    <p>A list (one element per <code>.xlsx</code> file found under <code>path_to_xlsx</code>), each
+the list returned by <code><a href="read_all_sheets_then_save_csv.html">read_all_sheets_then_save_csv()</a></code> for that workbook.</p>
+    </div>
     <div id="acknowledgment">
     <h2>Acknowledgment</h2>
 
@@ -74,13 +79,643 @@ all available xlsx files</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># read and into a csv</span></span></span>
 <span class="r-in"><span><span class="va">xlsx_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"xlsx-examples"</span>, package <span class="op">=</span> <span class="st">"misc"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">read_all_xlsx_then_save_csv</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  path_to_xlsx <span class="op">=</span> <span class="va">xlsx_dir</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Creating <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001</span> created!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001/mtcars_workbook_001_mtcars_sheet_001.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001/mtcars_workbook_001_mtcars_sheet_001.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001/mtcars_workbook_001_mtcars_sheet_002.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001/mtcars_workbook_001_mtcars_sheet_002.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001/mtcars_workbook_001_mtcars_sheet_003.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001/mtcars_workbook_001_mtcars_sheet_003.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001/mtcars_workbook_001_mtcars_sheet_004.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001/mtcars_workbook_001_mtcars_sheet_004.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001/mtcars_workbook_001_mtcars_sheet_005.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001/mtcars_workbook_001_mtcars_sheet_005.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001/mtcars_workbook_001_mtcars_sheet_006.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001/mtcars_workbook_001_mtcars_sheet_006.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001/mtcars_workbook_001_mtcars_sheet_007.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001/mtcars_workbook_001_mtcars_sheet_007.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001/mtcars_workbook_001_mtcars_sheet_008.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001/mtcars_workbook_001_mtcars_sheet_008.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001/mtcars_workbook_001_mtcars_sheet_009.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001/mtcars_workbook_001_mtcars_sheet_009.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001/mtcars_workbook_001_mtcars_sheet_010.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_001/mtcars_workbook_001_mtcars_sheet_010.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Creating <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002</span> created!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002/mtcars_workbook_002_mtcars_sheet_001.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002/mtcars_workbook_002_mtcars_sheet_001.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002/mtcars_workbook_002_mtcars_sheet_002.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002/mtcars_workbook_002_mtcars_sheet_002.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002/mtcars_workbook_002_mtcars_sheet_003.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002/mtcars_workbook_002_mtcars_sheet_003.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002/mtcars_workbook_002_mtcars_sheet_004.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002/mtcars_workbook_002_mtcars_sheet_004.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002/mtcars_workbook_002_mtcars_sheet_005.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002/mtcars_workbook_002_mtcars_sheet_005.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002/mtcars_workbook_002_mtcars_sheet_006.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002/mtcars_workbook_002_mtcars_sheet_006.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002/mtcars_workbook_002_mtcars_sheet_007.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002/mtcars_workbook_002_mtcars_sheet_007.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002/mtcars_workbook_002_mtcars_sheet_008.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002/mtcars_workbook_002_mtcars_sheet_008.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002/mtcars_workbook_002_mtcars_sheet_009.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002/mtcars_workbook_002_mtcars_sheet_009.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002/mtcars_workbook_002_mtcars_sheet_010.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_002/mtcars_workbook_002_mtcars_sheet_010.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Creating <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003</span> created!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003/mtcars_workbook_003_mtcars_sheet_001.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003/mtcars_workbook_003_mtcars_sheet_001.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003/mtcars_workbook_003_mtcars_sheet_002.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003/mtcars_workbook_003_mtcars_sheet_002.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003/mtcars_workbook_003_mtcars_sheet_003.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003/mtcars_workbook_003_mtcars_sheet_003.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003/mtcars_workbook_003_mtcars_sheet_004.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003/mtcars_workbook_003_mtcars_sheet_004.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003/mtcars_workbook_003_mtcars_sheet_005.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003/mtcars_workbook_003_mtcars_sheet_005.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003/mtcars_workbook_003_mtcars_sheet_006.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003/mtcars_workbook_003_mtcars_sheet_006.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003/mtcars_workbook_003_mtcars_sheet_007.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003/mtcars_workbook_003_mtcars_sheet_007.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003/mtcars_workbook_003_mtcars_sheet_008.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003/mtcars_workbook_003_mtcars_sheet_008.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003/mtcars_workbook_003_mtcars_sheet_009.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003/mtcars_workbook_003_mtcars_sheet_009.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003/mtcars_workbook_003_mtcars_sheet_010.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_003/mtcars_workbook_003_mtcars_sheet_010.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Creating <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004</span> created!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004/mtcars_workbook_004_mtcars_sheet_001.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004/mtcars_workbook_004_mtcars_sheet_001.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004/mtcars_workbook_004_mtcars_sheet_002.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004/mtcars_workbook_004_mtcars_sheet_002.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004/mtcars_workbook_004_mtcars_sheet_003.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004/mtcars_workbook_004_mtcars_sheet_003.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004/mtcars_workbook_004_mtcars_sheet_004.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004/mtcars_workbook_004_mtcars_sheet_004.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004/mtcars_workbook_004_mtcars_sheet_005.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004/mtcars_workbook_004_mtcars_sheet_005.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004/mtcars_workbook_004_mtcars_sheet_006.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004/mtcars_workbook_004_mtcars_sheet_006.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004/mtcars_workbook_004_mtcars_sheet_007.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004/mtcars_workbook_004_mtcars_sheet_007.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004/mtcars_workbook_004_mtcars_sheet_008.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004/mtcars_workbook_004_mtcars_sheet_008.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004/mtcars_workbook_004_mtcars_sheet_009.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004/mtcars_workbook_004_mtcars_sheet_009.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004/mtcars_workbook_004_mtcars_sheet_010.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_004/mtcars_workbook_004_mtcars_sheet_010.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Creating <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005</span> created!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005/mtcars_workbook_005_mtcars_sheet_001.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005/mtcars_workbook_005_mtcars_sheet_001.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005/mtcars_workbook_005_mtcars_sheet_002.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005/mtcars_workbook_005_mtcars_sheet_002.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005/mtcars_workbook_005_mtcars_sheet_003.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005/mtcars_workbook_005_mtcars_sheet_003.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005/mtcars_workbook_005_mtcars_sheet_004.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005/mtcars_workbook_005_mtcars_sheet_004.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005/mtcars_workbook_005_mtcars_sheet_005.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005/mtcars_workbook_005_mtcars_sheet_005.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005/mtcars_workbook_005_mtcars_sheet_006.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005/mtcars_workbook_005_mtcars_sheet_006.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005/mtcars_workbook_005_mtcars_sheet_007.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005/mtcars_workbook_005_mtcars_sheet_007.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005/mtcars_workbook_005_mtcars_sheet_008.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005/mtcars_workbook_005_mtcars_sheet_008.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005/mtcars_workbook_005_mtcars_sheet_009.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005/mtcars_workbook_005_mtcars_sheet_009.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005/mtcars_workbook_005_mtcars_sheet_010.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_005/mtcars_workbook_005_mtcars_sheet_010.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Creating <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006</span> created!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006/mtcars_workbook_006_mtcars_sheet_001.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006/mtcars_workbook_006_mtcars_sheet_001.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006/mtcars_workbook_006_mtcars_sheet_002.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006/mtcars_workbook_006_mtcars_sheet_002.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006/mtcars_workbook_006_mtcars_sheet_003.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006/mtcars_workbook_006_mtcars_sheet_003.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006/mtcars_workbook_006_mtcars_sheet_004.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006/mtcars_workbook_006_mtcars_sheet_004.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006/mtcars_workbook_006_mtcars_sheet_005.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006/mtcars_workbook_006_mtcars_sheet_005.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006/mtcars_workbook_006_mtcars_sheet_006.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006/mtcars_workbook_006_mtcars_sheet_006.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006/mtcars_workbook_006_mtcars_sheet_007.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006/mtcars_workbook_006_mtcars_sheet_007.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006/mtcars_workbook_006_mtcars_sheet_008.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006/mtcars_workbook_006_mtcars_sheet_008.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006/mtcars_workbook_006_mtcars_sheet_009.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006/mtcars_workbook_006_mtcars_sheet_009.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006/mtcars_workbook_006_mtcars_sheet_010.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_006/mtcars_workbook_006_mtcars_sheet_010.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Creating <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007</span> created!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007/mtcars_workbook_007_mtcars_sheet_001.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007/mtcars_workbook_007_mtcars_sheet_001.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007/mtcars_workbook_007_mtcars_sheet_002.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007/mtcars_workbook_007_mtcars_sheet_002.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007/mtcars_workbook_007_mtcars_sheet_003.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007/mtcars_workbook_007_mtcars_sheet_003.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007/mtcars_workbook_007_mtcars_sheet_004.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007/mtcars_workbook_007_mtcars_sheet_004.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007/mtcars_workbook_007_mtcars_sheet_005.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007/mtcars_workbook_007_mtcars_sheet_005.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007/mtcars_workbook_007_mtcars_sheet_006.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007/mtcars_workbook_007_mtcars_sheet_006.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007/mtcars_workbook_007_mtcars_sheet_007.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007/mtcars_workbook_007_mtcars_sheet_007.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007/mtcars_workbook_007_mtcars_sheet_008.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007/mtcars_workbook_007_mtcars_sheet_008.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007/mtcars_workbook_007_mtcars_sheet_009.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007/mtcars_workbook_007_mtcars_sheet_009.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007/mtcars_workbook_007_mtcars_sheet_010.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_007/mtcars_workbook_007_mtcars_sheet_010.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Creating <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008</span> created!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008/mtcars_workbook_008_mtcars_sheet_001.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008/mtcars_workbook_008_mtcars_sheet_001.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008/mtcars_workbook_008_mtcars_sheet_002.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008/mtcars_workbook_008_mtcars_sheet_002.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008/mtcars_workbook_008_mtcars_sheet_003.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008/mtcars_workbook_008_mtcars_sheet_003.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008/mtcars_workbook_008_mtcars_sheet_004.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008/mtcars_workbook_008_mtcars_sheet_004.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008/mtcars_workbook_008_mtcars_sheet_005.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008/mtcars_workbook_008_mtcars_sheet_005.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008/mtcars_workbook_008_mtcars_sheet_006.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008/mtcars_workbook_008_mtcars_sheet_006.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008/mtcars_workbook_008_mtcars_sheet_007.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008/mtcars_workbook_008_mtcars_sheet_007.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008/mtcars_workbook_008_mtcars_sheet_008.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008/mtcars_workbook_008_mtcars_sheet_008.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008/mtcars_workbook_008_mtcars_sheet_009.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008/mtcars_workbook_008_mtcars_sheet_009.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008/mtcars_workbook_008_mtcars_sheet_010.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_008/mtcars_workbook_008_mtcars_sheet_010.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Creating <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009</span> created!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009/mtcars_workbook_009_mtcars_sheet_001.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009/mtcars_workbook_009_mtcars_sheet_001.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009/mtcars_workbook_009_mtcars_sheet_002.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009/mtcars_workbook_009_mtcars_sheet_002.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009/mtcars_workbook_009_mtcars_sheet_003.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009/mtcars_workbook_009_mtcars_sheet_003.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009/mtcars_workbook_009_mtcars_sheet_004.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009/mtcars_workbook_009_mtcars_sheet_004.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009/mtcars_workbook_009_mtcars_sheet_005.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009/mtcars_workbook_009_mtcars_sheet_005.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009/mtcars_workbook_009_mtcars_sheet_006.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009/mtcars_workbook_009_mtcars_sheet_006.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009/mtcars_workbook_009_mtcars_sheet_007.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009/mtcars_workbook_009_mtcars_sheet_007.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009/mtcars_workbook_009_mtcars_sheet_008.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009/mtcars_workbook_009_mtcars_sheet_008.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009/mtcars_workbook_009_mtcars_sheet_009.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009/mtcars_workbook_009_mtcars_sheet_009.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009/mtcars_workbook_009_mtcars_sheet_010.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_009/mtcars_workbook_009_mtcars_sheet_010.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Creating <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010</span> created!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010/mtcars_workbook_010_mtcars_sheet_001.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010/mtcars_workbook_010_mtcars_sheet_001.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010/mtcars_workbook_010_mtcars_sheet_002.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010/mtcars_workbook_010_mtcars_sheet_002.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010/mtcars_workbook_010_mtcars_sheet_003.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010/mtcars_workbook_010_mtcars_sheet_003.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010/mtcars_workbook_010_mtcars_sheet_004.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010/mtcars_workbook_010_mtcars_sheet_004.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010/mtcars_workbook_010_mtcars_sheet_005.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010/mtcars_workbook_010_mtcars_sheet_005.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010/mtcars_workbook_010_mtcars_sheet_006.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010/mtcars_workbook_010_mtcars_sheet_006.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010/mtcars_workbook_010_mtcars_sheet_007.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010/mtcars_workbook_010_mtcars_sheet_007.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010/mtcars_workbook_010_mtcars_sheet_008.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010/mtcars_workbook_010_mtcars_sheet_008.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010/mtcars_workbook_010_mtcars_sheet_009.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010/mtcars_workbook_010_mtcars_sheet_009.csv</span> saved!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Directory <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010</span> already exists!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Saving <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010/mtcars_workbook_010_mtcars_sheet_010.csv</span>...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/home/runner/work/misc/misc/data/temp/extracted_sheets/mtcars_workbook_010/mtcars_workbook_010_mtcars_sheet_010.csv</span> saved!</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_001.xlsx`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_001.xlsx`$mtcars_sheet_001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_001.xlsx`$mtcars_sheet_002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_001.xlsx`$mtcars_sheet_003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_001.xlsx`$mtcars_sheet_004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_001.xlsx`$mtcars_sheet_005</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_001.xlsx`$mtcars_sheet_006</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_001.xlsx`$mtcars_sheet_007</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_001.xlsx`$mtcars_sheet_008</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_001.xlsx`$mtcars_sheet_009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_001.xlsx`$mtcars_sheet_010</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_002.xlsx`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_002.xlsx`$mtcars_sheet_001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_002.xlsx`$mtcars_sheet_002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_002.xlsx`$mtcars_sheet_003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_002.xlsx`$mtcars_sheet_004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_002.xlsx`$mtcars_sheet_005</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_002.xlsx`$mtcars_sheet_006</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_002.xlsx`$mtcars_sheet_007</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_002.xlsx`$mtcars_sheet_008</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_002.xlsx`$mtcars_sheet_009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_002.xlsx`$mtcars_sheet_010</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_003.xlsx`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_003.xlsx`$mtcars_sheet_001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_003.xlsx`$mtcars_sheet_002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_003.xlsx`$mtcars_sheet_003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_003.xlsx`$mtcars_sheet_004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_003.xlsx`$mtcars_sheet_005</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_003.xlsx`$mtcars_sheet_006</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_003.xlsx`$mtcars_sheet_007</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_003.xlsx`$mtcars_sheet_008</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_003.xlsx`$mtcars_sheet_009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_003.xlsx`$mtcars_sheet_010</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_004.xlsx`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_004.xlsx`$mtcars_sheet_001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_004.xlsx`$mtcars_sheet_002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_004.xlsx`$mtcars_sheet_003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_004.xlsx`$mtcars_sheet_004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_004.xlsx`$mtcars_sheet_005</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_004.xlsx`$mtcars_sheet_006</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_004.xlsx`$mtcars_sheet_007</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_004.xlsx`$mtcars_sheet_008</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_004.xlsx`$mtcars_sheet_009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_004.xlsx`$mtcars_sheet_010</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_005.xlsx`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_005.xlsx`$mtcars_sheet_001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_005.xlsx`$mtcars_sheet_002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_005.xlsx`$mtcars_sheet_003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_005.xlsx`$mtcars_sheet_004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_005.xlsx`$mtcars_sheet_005</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_005.xlsx`$mtcars_sheet_006</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_005.xlsx`$mtcars_sheet_007</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_005.xlsx`$mtcars_sheet_008</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_005.xlsx`$mtcars_sheet_009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_005.xlsx`$mtcars_sheet_010</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_006.xlsx`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_006.xlsx`$mtcars_sheet_001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_006.xlsx`$mtcars_sheet_002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_006.xlsx`$mtcars_sheet_003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_006.xlsx`$mtcars_sheet_004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_006.xlsx`$mtcars_sheet_005</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_006.xlsx`$mtcars_sheet_006</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_006.xlsx`$mtcars_sheet_007</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_006.xlsx`$mtcars_sheet_008</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_006.xlsx`$mtcars_sheet_009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_006.xlsx`$mtcars_sheet_010</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_007.xlsx`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_007.xlsx`$mtcars_sheet_001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_007.xlsx`$mtcars_sheet_002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_007.xlsx`$mtcars_sheet_003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_007.xlsx`$mtcars_sheet_004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_007.xlsx`$mtcars_sheet_005</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_007.xlsx`$mtcars_sheet_006</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_007.xlsx`$mtcars_sheet_007</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_007.xlsx`$mtcars_sheet_008</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_007.xlsx`$mtcars_sheet_009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_007.xlsx`$mtcars_sheet_010</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_008.xlsx`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_008.xlsx`$mtcars_sheet_001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_008.xlsx`$mtcars_sheet_002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_008.xlsx`$mtcars_sheet_003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_008.xlsx`$mtcars_sheet_004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_008.xlsx`$mtcars_sheet_005</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_008.xlsx`$mtcars_sheet_006</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_008.xlsx`$mtcars_sheet_007</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_008.xlsx`$mtcars_sheet_008</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_008.xlsx`$mtcars_sheet_009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_008.xlsx`$mtcars_sheet_010</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_009.xlsx`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_009.xlsx`$mtcars_sheet_001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_009.xlsx`$mtcars_sheet_002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_009.xlsx`$mtcars_sheet_003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_009.xlsx`$mtcars_sheet_004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_009.xlsx`$mtcars_sheet_005</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_009.xlsx`$mtcars_sheet_006</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_009.xlsx`$mtcars_sheet_007</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_009.xlsx`$mtcars_sheet_008</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_009.xlsx`$mtcars_sheet_009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_009.xlsx`$mtcars_sheet_010</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_010.xlsx`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_010.xlsx`$mtcars_sheet_001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_010.xlsx`$mtcars_sheet_002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_010.xlsx`$mtcars_sheet_003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_010.xlsx`$mtcars_sheet_004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_010.xlsx`$mtcars_sheet_005</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_010.xlsx`$mtcars_sheet_006</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_010.xlsx`$mtcars_sheet_007</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_010.xlsx`$mtcars_sheet_008</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_010.xlsx`$mtcars_sheet_009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`/home/runner/work/_temp/Library/misc/xlsx-examples/mtcars_workbook_010.xlsx`$mtcars_sheet_010</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

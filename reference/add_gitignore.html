@@ -67,6 +67,11 @@ ctags) into the gitignore file."><!-- mathjax --><script src="https://cdnjs.clou
 <dd><p>a character vector with the language to be ignored</p></dd>
 
 </dl></div>
+    <div id="value">
+    <h2>Value</h2>
+    <p>No return value, called for side effects (creates <code>.gitignore</code>, or
+stops with an error if the file already exists).</p>
+    </div>
     <div id="acknowledgment">
     <h2>Acknowledgment</h2>
 
@@ -79,12 +84,13 @@ and by some examples on the gitignore.io
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="co"># if your project does not have a gitignore, get it with:</span></span></span>
-<span class="r-in"><span><span class="fu">add_gitignore</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># want to ignore python files too:</span></span></span>
-<span class="r-in"><span><span class="fu">add_gitignore</span><span class="op">(</span>type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"r"</span>, <span class="st">"python"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="co"># Downloads from gitignore.io (requires network). Use combined `type` on</span></span></span>
+<span class="r-in"><span>  <span class="co"># first create, e.g. `add_gitignore(type = c("r", "python"))`.</span></span></span>
+<span class="r-in"><span>  <span class="fu">add_gitignore</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>
