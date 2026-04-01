@@ -4,25 +4,45 @@
 \alias{view_vd}
 \title{View data in VisiData}
 \usage{
-view_vd(data, type = "csv")
+view_vd(data, type = "csv", terminal = c("terminal", "auto", "iterm"))
 }
 \arguments{
 \item{data}{A data.frame, tibble, or sf object to view}
 
 \item{type}{Either "csv" or "json" format for writing the temporary file. Use "json" for
 preserving list-columns.}
+
+\item{terminal}{Which macOS terminal to use: \code{"terminal"} (default) is the built-in
+Terminal.app; \code{"iterm"} forces iTerm2 (new tab if a window already exists, otherwise a
+new window); \code{"auto"} reads the choice from the environment variable \code{MISC_VIEW_TERM}
+and then from \code{options(misc.view_term)} — set either to \code{"terminal"} or \code{"iterm"}.
+If \code{auto} finds nothing valid, Terminal.app is used.}
 }
 \value{
 Returns the input data invisibly
 }
 \description{
-Opens data in VisiData through the Terminal application on macOS. If the input is
-an sf object, the geometry column will be dropped before viewing.
+\strong{macOS only.} Does not work on Windows or Linux. Opens data in VisiData using the
+built-in Terminal.app by default (\code{terminal = "terminal"}); use \code{terminal = "auto"}
+with \code{MISC_VIEW_TERM} / \code{options(misc.view_term)} for a configurable choice, or
+\code{terminal = "iterm"} for iTerm2. If the input is an sf object, the geometry column
+will be dropped before viewing.
 }
 \details{
-This function only works in interactive sessions on macOS. It creates a temporary file
-and opens it in VisiData through the Terminal application. The temporary filename includes
-a timestamp for identification.
+\strong{Platform:} Supported only on \strong{macOS} (Darwin). On Windows or Linux, the function
+stops with an error. It only performs the VisiData launch in \strong{interactive} R sessions;
+in non-interactive sessions it does not open a terminal but still returns the data.
+
+It creates a temporary file and opens it in VisiData in the selected terminal. For
+\code{terminal = "auto"}, set \code{MISC_VIEW_TERM} (e.g. in \file{~/.Renviron}) and/or
+\code{options(misc.view_term = "iterm")} so VisiData opens in iTerm2 when you are inside
+tmux or other environments where a fixed default is needed.
+The temporary filename includes a timestamp for identification.
+
+The VisiData CLI (\code{vd}) must be installed and on your \code{PATH} (VisiData is a Python
+package; see \url{https://www.visidata.org/}). If an executable named \code{vdk} is also on
+your \code{PATH}, it is invoked instead as \verb{vdk <project_basename> <file>} (a local helper;
+not shipped with this package); \code{vd} is still required.
 }
 \examples{
 \donttest{

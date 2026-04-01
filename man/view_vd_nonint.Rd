@@ -4,17 +4,25 @@
 \alias{view_vd_nonint}
 \title{View data frame in VisiData (non-interactive version)}
 \usage{
-view_vd_nonint(data, title = NULL)
+view_vd_nonint(data, title = NULL, terminal = c("terminal", "auto", "iterm"))
 }
 \arguments{
 \item{data}{A data frame or sf object to view}
 
 \item{title}{Optional title for the viewer window (default: "misc::view_vd")}
+
+\item{terminal}{Which macOS terminal to use; see \code{\link[=view_vd]{view_vd()}}.}
 }
 \value{
 Returns the input data frame unchanged
 }
 \description{
+\strong{macOS only.} Does not work on Windows or Linux (see \code{\link[=view_vd]{view_vd()}}).
 Opens a data frame in VisiData terminal viewer, saving to a fixed location in Downloads.
-Similar to view_vd() but without interactive mode check.
+Similar to view_vd() but without interactive mode check. Uses \code{vdk} when on \code{PATH},
+otherwise \code{vd} (see Details of \code{\link[=view_vd]{view_vd()}}).
+}
+\details{
+\strong{Platform:} Supported only on \strong{macOS}. On Windows or Linux, stops with an error;
+see \code{\link[=view_vd]{view_vd()}} for VisiData and terminal requirements.
 }
