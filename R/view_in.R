@@ -8,6 +8,53 @@ check_avail <- function(bin) {
   }
 }
 
+
+.check_view_vd_macos <- function() {
+  sysname <- tolower(as.character(Sys.info()["sysname"]))
+  if (identical(sysname, "darwin")) {
+    return(invisible(NULL))
+  }
+  if (.Platform$OS.type == "windows") {
+    stop(
+      paste0(
+        "[ERROR] `{misc}`: This function is only supported on macOS. ",
+        "It does not work on Windows."
+      ),
+      call. = FALSE
+    )
+  }
+  if (identical(sysname, "linux")) {
+    stop(
+      paste0(
+        "[ERROR] `{misc}`: This function is only supported on macOS. ",
+        "It does not work on Linux."
+      ),
+      call. = FALSE
+    )
+  }
+  stop(
+    paste0(
+      "[ERROR] `{misc}`: This function is only supported on macOS. ",
+      "This operating system is not supported."
+    ),
+    call. = FALSE
+  )
+}
+
+
+.check_visidata_cli <- function() {
+  if (!nzchar(Sys.which("vd"))) {
+    stop(
+      paste0(
+        "[ERROR] `{misc}`: VisiData is required but the `vd` command was not found on your PATH. ",
+        "Install VisiData (a Python package), for example with: pip install visidata. ",
+        "See https://www.visidata.org/ for documentation."
+      ),
+      call. = FALSE
+    )
+  }
+}
+
 #' Alternative data.frame viewer
 #'
 #' @description
@@ -120,20 +167,140 @@ check_list_columns <- function(data) {
 }
 
 
+.vd_escape_applescript <- function(s) {
+  s <- gsub("\\", "\\\\", s, fixed = TRUE)
+  gsub('"', '\\"', s, fixed = TRUE)
+}
+
+
+##' @noRd
+.vd_parse_terminal_label <- function(raw) {
+  if (length(raw) != 1L) {
+    return(NULL)
+  }
+  raw <- as.character(raw)
+  if (!nzchar(trimws(raw))) {
+    return(NULL)
+  }
+  val <- tolower(trimws(raw))
+  if (val %in% c("iterm2", "iterm")) {
+    return("iterm")
+  }
+  if (val == "terminal") {
+    return("terminal")
+  }
+  warning(
+    "`MISC_VIEW_TERM` / `options(misc.view_term)` must be \"terminal\" or \"iterm\" (got: ",
+    val, "); ignored.",
+    call. = FALSE
+  )
+  NULL
+}
+
+
+##' Resolve \code{terminal = "auto"}: \env{MISC_VIEW_TERM} then \code{options(misc.view_term)}.
+##' If unknown or unset after invalid values, falls back to Terminal.app.
+##' @noRd
+.vd_resolve_terminal_auto <- function() {
+  chosen <- .vd_parse_terminal_label(Sys.getenv("MISC_VIEW_TERM", unset = ""))
+  if (!is.null(chosen)) {
+    return(chosen)
+  }
+  opt <- getOption("misc.view_term")
+  if (!is.null(opt)) {
+    chosen <- .vd_parse_terminal_label(opt)
+    if (!is.null(chosen)) {
+      return(chosen)
+    }
+  }
+  "terminal"
+}
+
+
+##' Build osascript invocation to run a shell command in Terminal.app or iTerm2 (macOS).
+##'
+##' @param shell_cmd Command line to run after the terminal starts (e.g. `vd file.csv`).
+##' @param terminal `"terminal"`, `"auto"`, or `"iterm"` (see [view_vd()]).
+##' @return String passed to [base::system()].
+##' @noRd
+.vd_macos_osascript <- function(shell_cmd, terminal = c("terminal", "auto", "iterm")) {
+  terminal <- match.arg(terminal)
+  if (terminal == "auto") {
+    terminal <- .vd_resolve_terminal_auto()
+  }
+  sh <- .vd_escape_applescript(shell_cmd)
+  if (terminal == "terminal") {
+    glue::glue(
+      "osascript -e 'tell application \"Terminal\"
+          if not application \"Terminal\" is running then launch
+          do script \"<<sh>>\"
+          activate
+      end tell'
+      ",
+      sh = sh,
+      .open = "<<",
+      .close = ">>"
+    )
+  } else {
+    glue::glue(
+      "osascript -e 'tell application \"iTerm2\"
+          activate
+          if (count of windows) is 0 then
+              set newWindow to (create window with default profile)
+              tell current session of newWindow
+                  write text \"<<sh>>\"
+              end tell
+          else
+              tell current window
+                  set newTab to (create tab with default profile)
+                  tell current session of newTab
+                      write text \"<<sh>>\"
+                  end tell
+              end tell
+          end if
+      end tell'
+      ",
+      sh = sh,
+      .open = "<<",
+      .close = ">>"
+    )
+  }
+}
+
+
 #' View data in VisiData
 #'
 #' @description
-#' Opens data in VisiData through the Terminal application on macOS. If the input is
-#' an sf object, the geometry column will be dropped before viewing.
+#' **macOS only.** Does not work on Windows or Linux. Opens data in VisiData using the
+#' built-in Terminal.app by default (\code{terminal = "terminal"}); use \code{terminal = "auto"}
+#' with `MISC_VIEW_TERM` / \code{options(misc.view_term)} for a configurable choice, or
+#' \code{terminal = "iterm"} for iTerm2. If the input is an sf object, the geometry column
+#' will be dropped before viewing.
 #'
 #' @param data A data.frame, tibble, or sf object to view
 #' @param type Either "csv" or "json" format for writing the temporary file. Use "json" for
 #'   preserving list-columns.
+#' @param terminal Which macOS terminal to use: `"terminal"` (default) is the built-in
+#'   Terminal.app; `"iterm"` forces iTerm2 (new tab if a window already exists, otherwise a
+#'   new window); `"auto"` reads the choice from the environment variable `MISC_VIEW_TERM`
+#'   and then from \code{options(misc.view_term)} — set either to `"terminal"` or `"iterm"`.
+#'   If `auto` finds nothing valid, Terminal.app is used.
 #'
 #' @details
-#' This function only works in interactive sessions on macOS. It creates a temporary file
-#' and opens it in VisiData through the Terminal application. The temporary filename includes
-#' a timestamp for identification.
+#' **Platform:** Supported only on **macOS** (Darwin). On Windows or Linux, the function
+#' stops with an error. It only performs the VisiData launch in **interactive** R sessions;
+#' in non-interactive sessions it does not open a terminal but still returns the data.
+#'
+#' It creates a temporary file and opens it in VisiData in the selected terminal. For
+#' \code{terminal = "auto"}, set `MISC_VIEW_TERM` (e.g. in \file{~/.Renviron}) and/or
+#' \code{options(misc.view_term = "iterm")} so VisiData opens in iTerm2 when you are inside
+#' tmux or other environments where a fixed default is needed.
+#' The temporary filename includes a timestamp for identification.
+#'
+#' The VisiData CLI (`vd`) must be installed and on your `PATH` (VisiData is a Python
+#' package; see <https://www.visidata.org/>). If an executable named `vdk` is also on
+#' your `PATH`, it is invoked instead as `vdk <project_basename> <file>` (a local helper;
+#' not shipped with this package); `vd` is still required.
 #'
 #' @return Returns the input data invisibly
 #' @export
@@ -151,13 +318,17 @@ check_list_columns <- function(data) {
 #' nested_df %>% view_vd(type = "json")
 #' }
 #' }
-view_vd <- function(data, type = "csv") {
+view_vd <- function(data, type = "csv", terminal = c("terminal", "auto", "iterm")) {
+
+  terminal <- match.arg(terminal)
 
   if (!any(class(data) %in% "data.frame")) {
 
     stop("[ERROR] `{misc}`: Input must be a data.frame", call. = FALSE)
 
   }
+
+  .check_view_vd_macos()
 
   if (interactive()) {
 
@@ -201,17 +372,13 @@ view_vd <- function(data, type = "csv") {
 
     ## NOTE 2024-10-15: Use jsonlite::write_json to get list-columns
     ## see: https://github.com/paulklemm/rvisidata/issues/5
-    system(
-      ## glue::glue("osascript -e 'tell app \"Terminal\" to do script \"vd --default-width=500 {tmp}\"' -e 'tell app \"Terminal\" to activate'")
-      glue::glue(
-      "osascript -e 'tell application \"Terminal\"
-          if not application \"Terminal\" is running then launch
-          do script \"vdk {project_name} {tmp}\"
-          activate
-      end tell'
-      "
-      )
-    )
+    .check_visidata_cli()
+    shell_cmd <- if (nzchar(Sys.which("vdk"))) {
+      glue::glue("vdk {project_name} {tmp}")
+    } else {
+      glue::glue("vd --default-width=500 {tmp}")
+    }
+    system(.vd_macos_osascript(shell_cmd, terminal = terminal))
 
   }
 
@@ -222,14 +389,26 @@ view_vd <- function(data, type = "csv") {
 
 #' View data frame in VisiData (non-interactive version)
 #'
+#' **macOS only.** Does not work on Windows or Linux (see [view_vd()]).
 #' Opens a data frame in VisiData terminal viewer, saving to a fixed location in Downloads.
-#' Similar to view_vd() but without interactive mode check.
+#' Similar to view_vd() but without interactive mode check. Uses `vdk` when on `PATH`,
+#' otherwise `vd` (see Details of [view_vd()]).
 #'
 #' @param data A data frame or sf object to view
 #' @param title Optional title for the viewer window (default: "misc::view_vd")
+#' @param terminal Which macOS terminal to use; see [view_vd()].
+#'
+#' @details
+#' **Platform:** Supported only on **macOS**. On Windows or Linux, stops with an error;
+#' see [view_vd()] for VisiData and terminal requirements.
+#'
 #' @return Returns the input data frame unchanged
 #' @export
-view_vd_nonint <- function(data, title = NULL) {
+view_vd_nonint <- function(data, title = NULL, terminal = c("terminal", "auto", "iterm")) {
+
+  terminal <- match.arg(terminal)
+  .check_view_vd_macos()
+
     ## bin <- Sys.which("st")
 
     if (is.null(title)) {
@@ -246,17 +425,14 @@ view_vd_nonint <- function(data, title = NULL) {
 
     tmp <- paste0("/Users/karloguidoni/Downloads/", "___", format(Sys.time(), "D%Y%m%dT%H%M%S"), "___misc___visidata.csv")
     readr::write_csv(data_clean, tmp)
-    system(
-      ## glue::glue("osascript -e 'tell app \"Terminal\" to do script \"vd --default-width=500 {tmp}\"' -e 'tell app \"Terminal\" to activate'")
-      glue::glue(
-      "osascript -e 'tell application \"Terminal\"
-          if not application \"Terminal\" is running then launch
-          do script \"vd --default-width=500 {tmp}\"
-          activate
-      end tell'
-      "
-      )
-    )
+    project_name <- basename(here::here())
+    .check_visidata_cli()
+    shell_cmd <- if (nzchar(Sys.which("vdk"))) {
+      glue::glue("vdk {project_name} {tmp}")
+    } else {
+      glue::glue("vd --default-width=500 {tmp}")
+    }
+    system(.vd_macos_osascript(shell_cmd, terminal = terminal))
   return(data)
 }
 
@@ -283,13 +459,15 @@ view_excel <- function(data, viewer = c("libreoffice", "gnumeric", "tad", "excel
 #' View spatial data from file path with optional map preview
 #'
 #' Reads a spatial data file (.shp or .gpkg) and optionally displays it in an interactive map preview.
-#' The data is also opened in VisiData for tabular viewing.
+#' **macOS only:** tabular viewing uses [view_vd_nonint()], which is not supported on Windows or Linux;
+#' on those systems the function stops with an error.
 #'
 #' @param path Path to the spatial data file (.shp or .gpkg)
 #' @param preview Logical. If TRUE, opens an interactive map preview in the browser. Default is FALSE.
 #'
 #' @details
-#' The function performs the following steps:
+#' Requires **macOS** because the workflow always opens the attribute table with VisiData
+#' via [view_vd_nonint()]. The function performs the following steps:
 #' 1. Validates that the input file exists and has the correct extension (.shp or .gpkg)
 #' 2. Creates a temporary HTML file for the map preview in ~/.local/share/mapview/
 #' 3. Reads the spatial data using sf::read_sf()
@@ -303,6 +481,8 @@ view_mapview_from_path <- function(path, preview = FALSE) {
   stopifnot(fs::file_exists(path))
 
   stopifnot(tolower(tools::file_ext(path)) == "shp" | tolower(tools::file_ext(path)) == "gpkg")
+
+  .check_view_vd_macos()
 
   path_string <- deparse(substitute(path))
 

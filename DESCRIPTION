@@ -1,6 +1,6 @@
 Package: misc
 Title: Miscellaneous Functions for Data and Geospatial Work
-Version: 0.0.5
+Version: 0.0.6
 Authors@R:
     person(given = "Karlo",
            family = "Guidoni Martins",

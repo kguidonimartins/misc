@@ -16,10 +16,12 @@ Returns nothing, called for side effects
 }
 \description{
 Reads a spatial data file (.shp or .gpkg) and optionally displays it in an interactive map preview.
-The data is also opened in VisiData for tabular viewing.
+\strong{macOS only:} tabular viewing uses \code{\link[=view_vd_nonint]{view_vd_nonint()}}, which is not supported on Windows or Linux;
+on those systems the function stops with an error.
 }
 \details{
-The function performs the following steps:
+Requires \strong{macOS} because the workflow always opens the attribute table with VisiData
+via \code{\link[=view_vd_nonint]{view_vd_nonint()}}. The function performs the following steps:
 \enumerate{
 \item Validates that the input file exists and has the correct extension (.shp or .gpkg)
 \item Creates a temporary HTML file for the map preview in ~/.local/share/mapview/
