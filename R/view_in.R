@@ -174,6 +174,20 @@ check_list_columns <- function(data) {
 
 
 ##' @noRd
+.vd_iterm_process_running <- function() {
+  for (nm in c("iTerm2", "iTerm")) {
+    st <- suppressWarnings(
+      system2("pgrep", c("-xq", nm), stdout = FALSE, stderr = FALSE)
+    )
+    if (isTRUE(st == 0)) {
+      return(TRUE)
+    }
+  }
+  FALSE
+}
+
+
+##' @noRd
 .vd_parse_terminal_label <- function(raw) {
   if (length(raw) != 1L) {
     return(NULL)
@@ -242,28 +256,57 @@ check_list_columns <- function(data) {
       .close = ">>"
     )
   } else {
-    glue::glue(
-      "osascript -e 'tell application \"iTerm2\"
-          activate
-          if (count of windows) is 0 then
-              set newWindow to (create window with default profile)
-              tell current session of newWindow
-                  write text \"<<sh>>\"
-              end tell
-          else
-              tell current window
-                  set newTab to (create tab with default profile)
-                  tell current session of newTab
-                      write text \"<<sh>>\"
-                  end tell
-              end tell
-          end if
-      end tell'
-      ",
-      sh = sh,
-      .open = "<<",
-      .close = ">>"
-    )
+    # Cold start: `open` creates one window with one tab. If we always used the
+    # "has windows" branch we would add a second tab (empty first tab + vd tab).
+    # When iTerm was already running, still add a tab in the current window.
+    #
+    # If the app is quit, AppleScript cannot compile (count of windows) until
+    # iTerm is running — so cold-start calls must prefix with open + sleep.
+    iterm_was_running <- .vd_iterm_process_running()
+    if (iterm_was_running) {
+      glue::glue(
+        "osascript -e 'tell application \"iTerm2\"
+            activate
+            if (count of windows) is 0 then
+                set newWindow to (create window with default profile)
+                tell current session of newWindow
+                    write text \"<<sh>>\"
+                end tell
+            else
+                tell current window
+                    set newTab to (create tab with default profile)
+                    tell current session of newTab
+                        write text \"<<sh>>\"
+                    end tell
+                end tell
+            end if
+        end tell'
+        ",
+        sh = sh,
+        .open = "<<",
+        .close = ">>"
+      )
+    } else {
+      glue::glue(
+        "open -b com.googlecode.iterm2; sleep 0.4; osascript -e 'tell application \"iTerm2\"
+            activate
+            if (count of windows) is 0 then
+                set newWindow to (create window with default profile)
+                tell current session of newWindow
+                    write text \"<<sh>>\"
+                end tell
+            else
+                tell current session of current window
+                    write text \"<<sh>>\"
+                end tell
+            end if
+        end tell'
+        ",
+        sh = sh,
+        .open = "<<",
+        .close = ">>"
+      )
+    }
   }
 }
 
