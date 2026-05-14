@@ -1,0 +1,214 @@
+---
+title: "Clip with a mask and filter by area fraction"
+lang: en-US
+author: "Karlo Guidoni Martins"
+output: rmarkdown::html_vignette
+description: >
+  Use case for `intersect_mask_filter_area()`: discard border slivers after a
+  geometric intersection by enforcing a minimum ratio of clipped area inside
+  the mask to each feature's original area.
+vignette: >
+  %\VignetteIndexEntry{Clip with a mask and filter by area fraction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 7,
+  fig.height = 4.5
+)
+Sys.setenv(PROJ_NETWORK = "OFF")
+
+# Sections that download `geobr` layers only run when the package is available.
+has_geobr <- requireNamespace("geobr", quietly = TRUE)
+```
+
+## The problem you often run into
+
+Polygon workflows often follow this pattern:
+
+1. Define a layer **`x`** of interest—for example parcels, municipalities, tenure polygons, or species ranges.
+2. Define a study mask **`y`**—say a biome, protected area, basin, distance buffer, and so forth.
+3. Call `sf::st_intersection(x, y)` to keep only geometry that falls "inside" the mask.
+
+Intersection answers the geometric question correctly, but **by itself it does not decide what to do with features that barely touch the boundary** or sit almost entirely outside the mask. The result can contain **narrow sliver fragments** along the edge (cut-line artifacts), or polygons where the economically or analytically useful overlap with the mask is tiny compared with the original feature.
+
+`misc::intersect_mask_filter_area()` wraps the workflow:
+
+- reprojects `x` and `y` into a projected CRS with meaningful area units (by default, SIRGAS 2000 Albers commonly used across Brazil);
+- keeps only rows in `x` that **touch** the mask (`st_intersects`);
+- runs `st_intersection`, then **sums clipped area per id** in `x`;
+- compares that to each feature's **original** area and sets `area_ratio = area_clip / area_full`;
+- drops features whose `area_ratio` is below `min_area_ratio`.
+
+So you choose **what fraction of the original polygon must lie inside the mask** to retain it, and you get an auditable **`summary`** table.
+
+## Synthetic example data
+
+We use two polygons in Web Mercator (meters; EPSG:3857), in the same spirit as the package tests:
+
+- **`A`** sits mostly **inside** the mask (`area_ratio` ≈ 1).
+- **`B`** is a **wide horizontal strip** with only **narrow contact** in a corner of the mask—the clipped area is small relative to `B`'s full area (`area_ratio` low).
+
+Coordinates are projected **meters**; only the proportions matter here.
+
+```{r setup}
+library(misc)
+library(sf)
+library(dplyr)
+library(mapview)
+
+crs_xy <- st_crs(3857)
+
+rect_sf <- function(xmin, ymin, xmax, ymax) {
+  ring <- matrix(
+    c(xmin, ymin, xmax, ymin, xmax, ymax, xmin, ymax, xmin, ymin),
+    ncol = 2L,
+    byrow = TRUE
+  )
+  st_sf(geometry = st_sfc(st_polygon(list(ring)), crs = crs_xy))
+}
+
+# Study mask (small square in lower-left quadrant)
+y_mask <- rect_sf(0, 0, 500, 500)
+
+# Most of this feature sits inside the mask
+x_inside <- rect_sf(100, 100, 300, 400) |>
+  mutate(id = "A", role = "mostly inside")
+
+# Matches the minimal-overlap package test pattern: marginal contact only
+x_edge <- rect_sf(-99500, 498, 498, 502) |>
+  mutate(id = "B", role = "marginal contact (mostly outside the mask)")
+
+x <- bind_rows(x_inside, x_edge)
+```
+
+## Map `x` and mask `y`
+
+```{r map-input, message = FALSE}
+mapview(y_mask, col.regions = "#e8f4ea", alpha.regions = 0.35, layer.name = "Mask (y)") +
+  mapview(x, zcol = "id", layer.name = "Features (x)")
+```
+
+## Compare `min_area_ratio` thresholds
+
+With `min_area_ratio = 0.01` (about **1&nbsp;%**), we expect **to keep both** features, because both touch the mask at that threshold. Raise the cutoff—for example requiring **50&nbsp;%** of each feature's original area inside the mask—and one of them drops out.
+
+```{r two-thresholds}
+loose <- intersect_mask_filter_area(
+  x,
+  y_mask,
+  x_id = "id",
+  crs = crs_xy,
+  min_area_ratio = 0.01,
+  repair = FALSE
+)
+
+strict <- intersect_mask_filter_area(
+  x,
+  y_mask,
+  x_id = "id",
+  crs = crs_xy,
+  min_area_ratio = 0.5,
+  repair = FALSE
+)
+
+loose$summary
+strict$summary
+```
+
+`summary` exposes `area_full`, `area_clip`, `area_ratio`, and `keep`. **`area_ratio` is the share of each original feature that falls inside the mask**, not the share of the mask covered by `x`.
+
+## Maps of what survives the filter
+
+**Permissive** run (`min_area_ratio = 0.01`): intersection geometries for features that passed the ratio check.
+
+```{r map-loose, message = FALSE}
+mapview(y_mask, col.regions = "gray90", alpha.regions = 0.25, layer.name = "Mask") +
+  mapview(loose$clipped, zcol = "id", layer.name = "Clipped (1%)")
+```
+
+**Stricter** run (`min_area_ratio = 0.5`): feature `B` is no longer kept.
+
+```{r map-strict, message = FALSE}
+mapview(y_mask, col.regions = "gray90", alpha.regions = 0.25, layer.name = "Mask") +
+  mapview(strict$clipped, zcol = "id", layer.name = "Clipped (50%)")
+```
+
+## Example with real data (`geobr`)
+
+This walks through clipping **Brazilian municipalities** to the **Caatinga biome** using [geobr](https://github.com/ipeaGIT/geobr). The downloads need **internet access** on the first run (data are cached afterward). Where this vignette is built without `geobr`, the code chunks below are skipped automatically.
+
+Define **`x`** as all municipalities and **`y`** as the Caatinga polygon—the same **`geobr`** calls you might use elsewhere:
+
+```{r geobr-data, eval = has_geobr, message = FALSE}
+municipios_geom <-
+  geobr::read_municipality() %>%
+  sf::st_make_valid()
+
+caatinga_geom <-
+  geobr::read_biomes() %>%
+  dplyr::filter(name_biome == "Caatinga") %>%
+  sf::st_make_valid()
+```
+
+Nationwide pairwise intersection tests (`st_intersects` on thousands of polygons) dominate runtime. For vignette readability we **limit geographic scope** immediately after loading: municipalities in **Ceará (`CE`) and Rio Grande do Norte (`RN`)** that intersect the biome. That keeps the illustration on real geometries while staying fast to knit. Omit the **`abbrev_state`** filter if you genuinely need **all** municipalities that touch Caatinga.
+
+```{r geobr-candidates, eval = has_geobr}
+munis_ne <- dplyr::filter(municipios_geom, abbrev_state %in% c("CE", "RN"))
+
+munis_touch <- dplyr::slice(
+  munis_ne,
+  which(lengths(sf::st_intersects(munis_ne, caatinga_geom)) > 0L)
+)
+```
+
+We pass an explicit **`x_id`** so each summary row corresponds to `code_muni`. Leaving **`crs = NULL`** uses the packaged SIRGAS 2000 Albers CRS suitable for Brazilian area comparisons. **`min_area_ratio = 0.05`** excludes municipalities whose clipped share of their *original municipal area* falls below roughly **5&nbsp;%**—a pragmatic cut for biome-scale screening (adjust to your analytic needs). Inputs are already cleaned with **`sf::st_make_valid()`** when reading from **geobr**; **`repair = FALSE`** avoids repeating that step inside **`intersect_mask_filter_area()`** (flip to **`TRUE`** if you ingest raw shapefiles elsewhere).
+
+```{r geobr-intersect, eval = has_geobr}
+geo_out <- intersect_mask_filter_area(
+  munis_touch,
+  caatinga_geom,
+  x_id = "code_muni",
+  crs = NULL,
+  min_area_ratio = 0.05,
+  repair = FALSE
+)
+
+dplyr::count(geo_out$summary, keep)
+
+geo_out$summary |>
+  dplyr::arrange(.data$area_ratio) |>
+  dplyr::slice_head(n = 8L)
+```
+
+Map of **Caatinga** (mask), municipalities that intersect it (thin outline), and the **accepted** intersections (`keep == TRUE`). Features colored by **`area_ratio`**:
+
+```{r geobr-mapview, eval = has_geobr, message = FALSE}
+clipped_vis <- dplyr::left_join(
+  geo_out$clipped,
+  dplyr::select(geo_out$summary, code_muni, area_ratio),
+  by = "code_muni"
+)
+
+mv_caatinga <- mapview(caatinga_geom, col.regions = "#f4e9d9", alpha.regions = 0.55, layer.name = "Caatinga biome")
+mv_munis <- mapview(sf::st_geometry(munis_touch), color = "#6b7280", lwd = 0.35, legend = FALSE, layer.name = "Municipality boundaries")
+mv_keep <- mapview(clipped_vis, zcol = "area_ratio", layer.name = "Clipped (min 5%; kept)")
+
+mv_caatinga + mv_munis + mv_keep
+```
+
+## When to tweak `crs` and `repair`
+
+- **`crs`**: if your study region is outside Brazil, or you need to mirror an existing project CRS exactly, supply a projected CRS with **meter** (or other explicit area) units: `crs = sf::st_crs(...)`.
+- **`repair`**: invalid geometries from Shapefile sources or cascaded dissolve operations benefit from `repair = TRUE` (the default): `sf::st_make_valid()` after reprojection, which avoids many `st_intersection` failures.
+
+## Reference
+
+Function help: `?intersect_mask_filter_area`.
+
+How vignettes are bundled is described in *R Packages*:
+<https://r-pkgs.org/vignettes.html>.

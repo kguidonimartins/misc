@@ -1,3 +1,4 @@
+vignettes/*.html
 README.html
 tags
 .Rproj.user
