@@ -4,12 +4,13 @@
 \alias{view_excel}
 \title{View data frame in Excel or other spreadsheet viewer}
 \usage{
-view_excel(data, viewer = c("libreoffice", "gnumeric", "tad", "excel"))
+view_excel(data, viewer = c("excel", "libreoffice", "gnumeric", "tad"))
 }
 \arguments{
 \item{data}{A data frame to view}
 
-\item{viewer}{The spreadsheet viewer to use. One of "libreoffice", "gnumeric", "tad", or "excel" (default)}
+\item{viewer}{The spreadsheet viewer to use. One of \code{"excel"} (default), \code{"libreoffice"},
+\code{"gnumeric"}, or \code{"tad"}.}
 }
 \value{
 Returns nothing

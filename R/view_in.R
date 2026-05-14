@@ -486,17 +486,24 @@ view_vd_nonint <- function(data, title = NULL, terminal = c("terminal", "auto", 
 #' to the system clipboard.
 #'
 #' @param data A data frame to view
-#' @param viewer The spreadsheet viewer to use. One of "libreoffice", "gnumeric", "tad", or "excel" (default)
+#' @param viewer The spreadsheet viewer to use. One of `"excel"` (default), `"libreoffice"`,
+#'   `"gnumeric"`, or `"tad"`.
 #' @return Returns nothing
 #' @export
-view_excel <- function(data, viewer = c("libreoffice", "gnumeric", "tad", "excel")) {
+view_excel <- function(data, viewer = c("excel", "libreoffice", "gnumeric", "tad")) {
   viewer <- match.arg(viewer)
   ## check_avail(viewer)
   tmp <- paste0(tempfile(), ".xlsx")
   clipr::write_clip(data)
   message("Data is also on system clipboard!")
   writexl::write_xlsx(data, tmp)
-  system(paste0("open -a 'Microsoft Excel'", " tmp "))
+  app <- switch(viewer,
+    excel = "Microsoft Excel",
+    libreoffice = "LibreOffice",
+    gnumeric = "Gnumeric",
+    tad = "Tad"
+  )
+  system(paste("open -a", shQuote(app), shQuote(tmp)))
 }
 
 #' View spatial data from file path with optional map preview
