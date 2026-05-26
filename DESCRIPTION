@@ -35,7 +35,11 @@ Imports:
     jsonlite,
     writexl,
     zip
+VignetteBuilder: knitr
 Suggests:
+    geobr,
+    knitr,
+    rmarkdown,
     clipr,
     conflicted,
     covr,
