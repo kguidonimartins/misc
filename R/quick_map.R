@@ -18,6 +18,8 @@
 #' package. In this sense, `quick_map()` uses a wide and dirty filtering of
 #' this data to create the map.
 #'
+#' @family geo-tools
+#'
 #' @export
 #'
 #' @examples

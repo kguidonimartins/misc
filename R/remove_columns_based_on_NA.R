@@ -3,9 +3,12 @@
 #' @param data A data frame or tibble
 #' @param threshold The proportion of NA values allowed in a column (default: 0.5)
 #' @return A data frame with columns removed if they have more than the specified threshold of NA values
-#' @export
 #'
 #' @importFrom dplyr select where
+#'
+#' @family missing-data
+#'
+#' @export
 #'
 #' @examples
 #' # Create sample data frame with NA values

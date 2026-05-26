@@ -77,6 +77,8 @@
 #' @importFrom rlang .data
 #' @importFrom sf st_area st_crs st_drop_geometry st_geometry st_geometry_type st_intersection st_intersects st_make_valid st_transform
 #'
+#' @family geo-tools
+#'
 #' @export
 #'
 #' @examples

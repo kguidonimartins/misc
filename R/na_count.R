@@ -20,6 +20,8 @@
 #' I learned this way of exploring data though the excellent webinar taught by
 #' Emily Robinson.
 #'
+#' @family missing-data
+#'
 #' @export
 #'
 #' @examples

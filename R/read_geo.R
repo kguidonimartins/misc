@@ -162,6 +162,8 @@
 #' @importFrom sf read_sf st_crs st_geometry_type st_layers
 #' @importFrom tools file_ext
 #'
+#' @family geo-io
+#'
 #' @export
 #'
 #' @examples
@@ -195,6 +197,8 @@ read_gdb <- function(path, layer = NULL, quiet = TRUE, ...) {
 #' @importFrom sf read_sf st_layers
 #' @importFrom tools file_ext
 #' @importFrom zip zip_list
+#'
+#' @family geo-io
 #'
 #' @export
 #'
@@ -259,6 +263,8 @@ read_sf_zip <- function(path, quiet = TRUE, ...) {
 #' @importFrom fs dir_create dir_ls
 #' @importFrom sf read_sf st_layers
 #' @importFrom tools file_ext
+#'
+#' @family geo-io
 #'
 #' @export
 #'
@@ -330,6 +336,8 @@ read_kmz <- function(path, quiet = TRUE, ...) {
 #' @importFrom purrr map
 #' @importFrom sf read_sf st_layers
 #' @importFrom tools file_ext
+#'
+#' @family geo-io
 #'
 #' @export
 #'

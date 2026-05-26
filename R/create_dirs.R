@@ -45,6 +45,8 @@
 #' `create_dirs()` takes advantage of the functions available in the excellent
 #' [`{fs}`](https://github.com/r-lib/fs) package.
 #'
+#' @family project-setup
+#'
 #' @export
 #'
 #' @examples

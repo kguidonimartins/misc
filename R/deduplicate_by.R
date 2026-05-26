@@ -21,6 +21,9 @@
 #'
 #' @importFrom rlang enquos
 #' @importFrom dplyr group_by filter row_number ungroup
+#'
+#' @family data-wrangling
+#'
 #' @export
 deduplicate_by <- function(.data, ...) {
   group_vars <- rlang::enquos(...)

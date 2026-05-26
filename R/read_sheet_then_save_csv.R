@@ -28,6 +28,8 @@
 #' @returns No return value, called for side effects (writes one CSV file for
 #'   the requested sheet).
 #'
+#' @family excel-import
+#'
 #' @export
 #'
 #' @importFrom fs dir_exists dir_create file_exists
@@ -154,6 +156,8 @@ read_sheet_then_save_csv <-
 #' @returns A list (one element per sheet), each the return value of
 #'   [read_sheet_then_save_csv()] for that sheet (invisibly `NULL` per call).
 #'
+#' @family excel-import
+#'
 #' @export
 #'
 #' @section Acknowledgment:
@@ -207,6 +211,8 @@ read_all_sheets_then_save_csv <- function(path_to_xlsx, dir_to_save = NULL) {
 #'
 #' @returns A list (one element per `.xlsx` file found under `path_to_xlsx`), each
 #'   the list returned by [read_all_sheets_then_save_csv()] for that workbook.
+#'
+#' @family excel-import
 #'
 #' @export
 #'

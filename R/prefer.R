@@ -19,6 +19,8 @@
 #' [README.md](https://github.com/elbersb/tidylog/blob/master/README.md#namespace-conflicts)
 #' of the [`{tidylog}`](https://github.com/elbersb/tidylog)
 #'
+#' @family package-management
+#'
 #' @export
 #'
 #' @examples

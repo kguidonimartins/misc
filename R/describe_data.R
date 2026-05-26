@@ -4,6 +4,8 @@
 #'
 #' @return a skimr object
 #'
+#' @family data-wrangling
+#'
 #' @export
 #'
 #' @examples

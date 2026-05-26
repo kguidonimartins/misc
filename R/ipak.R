@@ -21,6 +21,8 @@
 #' @importFrom usethis ui_info ui_oops
 #' @importFrom utils packageVersion
 #'
+#' @family package-management
+#'
 #' @export
 #'
 #' @section Acknowledgment:

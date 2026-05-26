@@ -69,6 +69,8 @@ check_avail <- function(bin) {
 #' @importFrom fs file_exists dir_create
 #' @return None
 #'
+#' @family data-viewers
+#'
 #' @export
 #'
 #' @examples
@@ -346,6 +348,9 @@ check_list_columns <- function(data) {
 #' not shipped with this package); `vd` is still required.
 #'
 #' @return Returns the input data invisibly
+#'
+#' @family data-viewers
+#'
 #' @export
 #'
 #' @examples
@@ -446,6 +451,9 @@ view_vd <- function(data, type = "csv", terminal = c("terminal", "auto", "iterm"
 #' see [view_vd()] for VisiData and terminal requirements.
 #'
 #' @return Returns the input data frame unchanged
+#'
+#' @family data-viewers
+#'
 #' @export
 view_vd_nonint <- function(data, title = NULL, terminal = c("terminal", "auto", "iterm")) {
 
@@ -489,6 +497,9 @@ view_vd_nonint <- function(data, title = NULL, terminal = c("terminal", "auto", 
 #' @param viewer The spreadsheet viewer to use. One of `"excel"` (default), `"libreoffice"`,
 #'   `"gnumeric"`, or `"tad"`.
 #' @return Returns nothing
+#'
+#' @family data-viewers
+#'
 #' @export
 view_excel <- function(data, viewer = c("excel", "libreoffice", "gnumeric", "tad")) {
   viewer <- match.arg(viewer)
@@ -525,6 +536,9 @@ view_excel <- function(data, viewer = c("excel", "libreoffice", "gnumeric", "tad
 #' 5. Opens the attribute data in VisiData
 #'
 #' @return Returns nothing, called for side effects
+#'
+#' @family geo-tools
+#'
 #' @export
 view_mapview_from_path <- function(path, preview = FALSE) {
 

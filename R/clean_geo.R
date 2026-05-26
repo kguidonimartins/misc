@@ -148,6 +148,8 @@
 #' @importFrom usethis ui_done ui_field ui_todo
 #' @importFrom zip zip
 #'
+#' @family geo-io
+#'
 #' @export
 #'
 #' @examples

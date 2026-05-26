@@ -16,6 +16,8 @@
 #' @importFrom usethis ui_info ui_field ui_stop ui_todo ui_done
 #' @importFrom utils download.file
 #'
+#' @family project-setup
+#'
 #' @export
 #'
 #' @section Acknowledgment:

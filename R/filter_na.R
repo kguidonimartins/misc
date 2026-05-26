@@ -12,6 +12,8 @@
 #'
 #' @return a tibble object
 #'
+#' @family missing-data
+#'
 #' @export
 #'
 #' @examples
