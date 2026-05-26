@@ -1,3 +1,15 @@
+# misc 0.0.7
+
+## New helpers
+
+- **`clean_geo()`** — reads a `.zip`/`.shp`/`.gpkg`/`.geojson`, drops Z/M
+  dimensions, replaces non-ASCII characters in attribute columns, reprojects
+  to a target CRS (default EPSG:4326) and writes the result to a
+  user-provided `output` path. The output format is determined by the
+  extension of `output` and may differ from the input format. Replaces the
+  standalone `R/prepare_zip_shapefiles.R` cleanup routine with a portable,
+  testable function backed by `zip::zip()` instead of `system("zip -j ...")`.
+
 # misc 0.0.6
 
 ## View helpers (`R/view_in.R`)
