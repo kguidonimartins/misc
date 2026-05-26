@@ -6,12 +6,14 @@
 <url><loc>/index.html</loc></url>
 <url><loc>/news/index.html</loc></url>
 <url><loc>/reference/add_gitignore.html</loc></url>
+<url><loc>/reference/clean_geo.html</loc></url>
 <url><loc>/reference/combine_words_ptbr.html</loc></url>
 <url><loc>/reference/create_dirs.html</loc></url>
 <url><loc>/reference/deduplicate_by.html</loc></url>
 <url><loc>/reference/describe_data.html</loc></url>
 <url><loc>/reference/filter_na.html</loc></url>
 <url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/intersect_mask_filter_area.html</loc></url>
 <url><loc>/reference/ipak.html</loc></url>
 <url><loc>/reference/na_count.html</loc></url>
 <url><loc>/reference/na_viz.html</loc></url>

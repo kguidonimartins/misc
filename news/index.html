@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">misc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.7</span>
       </span>
     </div>
 
@@ -47,6 +47,14 @@
       <small>Source: <a href="https://github.com/kguidonimartins/misc/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.0.7" id="misc-007">misc 0.0.7<a class="anchor" aria-label="anchor" href="#misc-007"></a></h2>
+<div class="section level3">
+<h3 id="new-helpers-0-0-7">New helpers<a class="anchor" aria-label="anchor" href="#new-helpers-0-0-7"></a></h3>
+<ul><li>
+<strong><code><a href="../reference/clean_geo.html">clean_geo()</a></code></strong> — reads a <code>.zip</code>/<code>.shp</code>/<code>.gpkg</code>/<code>.geojson</code>, drops Z/M dimensions, replaces non-ASCII characters in attribute columns, reprojects to a target CRS (default EPSG:4326) and writes the result to a user-provided <code>output</code> path. The output format is determined by the extension of <code>output</code> and may differ from the input format. Replaces the standalone <code>R/prepare_zip_shapefiles.R</code> cleanup routine with a portable, testable function backed by <code><a href="https://r-lib.github.io/zip/reference/zip.html" class="external-link">zip::zip()</a></code> instead of <code>system("zip -j ...")</code>.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.0.6" id="misc-006">misc 0.0.6<a class="anchor" aria-label="anchor" href="#misc-006"></a></h2>
 <div class="section level3">
