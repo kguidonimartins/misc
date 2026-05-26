@@ -43,3 +43,8 @@ pkg_list <- c("utils", "stats") # base packages — usually present
 ipak(pkg_list)
 }
 }
+\seealso{
+Other package-management: 
+\code{\link{prefer}()}
+}
+\concept{package-management}

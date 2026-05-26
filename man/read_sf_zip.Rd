@@ -28,3 +28,11 @@ z <- system.file("extdata", "misc_example.zip", package = "misc")
 if (nzchar(z) && file.exists(z)) read_sf_zip(z)
 }
 }
+\seealso{
+Other geo-io: 
+\code{\link{clean_geo}()},
+\code{\link{read_gdb}()},
+\code{\link{read_geo}()},
+\code{\link{read_kmz}()}
+}
+\concept{geo-io}

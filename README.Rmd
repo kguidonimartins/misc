@@ -55,26 +55,52 @@ get_title <- function(title) {
     .[[1]]
 }
 
+get_family <- function(path) {
+  parsed <- tools::parse_Rd(file = path)
+  concepts <- parsed[vapply(parsed, function(x) {
+    identical(attr(x, "Rd_tag"), "\\concept")
+  }, logical(1))]
+  if (!length(concepts)) return(NA_character_)
+  vals <- vapply(concepts, function(x) trimws(paste(unlist(x), collapse = "")), character(1))
+  paste(unique(vals), collapse = ", ")
+}
+
 mans <- fs::dir_ls(path = "man", regexp = "\\.Rd")
 
 list_func <- list()
 list_title <- list()
+list_family <- list()
 for (i in seq_along(mans)) {
   list_func[i] <- get_func(mans[i])[1]
   list_title[i] <- get_title(mans[i])[1]
+  list_family[i] <- get_family(mans[i])
 }
 
-full_join(
-  list_func %>% enframe() %>%
-    unnest(cols = c(value)) %>%
-    transmute(ID = name, Function = value),
-  list_title %>% enframe() %>%
-    unnest(cols = c(value)) %>%
-    transmute(ID = name, Description = value),
-  by = "ID"
-) %>%
+list_func %>%
+  enframe() %>%
+  unnest(cols = c(value)) %>%
+  transmute(ID = name, Function = value) %>%
+  full_join(
+    list_title %>%
+      enframe() %>%
+      unnest(cols = c(value)) %>%
+      transmute(ID = name, Description = value),
+    by = "ID"
+  ) %>%
+  full_join(
+    list_family %>%
+      enframe() %>%
+      unnest(cols = c(value), keep_empty = TRUE) %>%
+      transmute(ID = name, Family = value),
+    by = "ID"
+  ) %>%
   filter(Description != "Pipe operator") %>%
-  mutate(Function = paste0("`", Function, "()`")) %>%
+  mutate(
+    Function = paste0("`", Function, "()`"),
+    Family = if_else(is.na(Family), "—", paste0("`", Family, "`"))
+  ) %>%
+  arrange(Family, Function) %>%
+  mutate(ID = seq_len(n())) %>%
   as.data.frame() %>%
   knitr::kable(.)
 ```

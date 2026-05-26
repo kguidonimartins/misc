@@ -29,3 +29,10 @@ nice_data \%>\%
   filter_na("any")
 }
 }
+\seealso{
+Other missing-data: 
+\code{\link{na_count}()},
+\code{\link{na_viz}()},
+\code{\link{remove_columns_based_on_NA}()}
+}
+\concept{missing-data}

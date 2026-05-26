@@ -27,3 +27,11 @@ if (interactive()) {
 }
 }
 }
+\seealso{
+Other data-viewers: 
+\code{\link{tad_view}()},
+\code{\link{view_excel}()},
+\code{\link{view_vd}()},
+\code{\link{view_vd_nonint}()}
+}
+\concept{data-viewers}

@@ -31,3 +31,11 @@ kmz <- system.file("extdata", "misc_example.kmz", package = "misc")
 if (nzchar(kmz) && file.exists(kmz)) read_kmz(kmz)
 }
 }
+\seealso{
+Other geo-io: 
+\code{\link{clean_geo}()},
+\code{\link{read_gdb}()},
+\code{\link{read_geo}()},
+\code{\link{read_sf_zip}()}
+}
+\concept{geo-io}

@@ -42,3 +42,11 @@ if (file.exists(f("misc_example.shp"))) read_geo(f("misc_example.shp"))
 if (dir.exists(f("misc_example.gdb"))) read_geo(f("misc_example.gdb"), layer = "OGRGeoJSON")
 }
 }
+\seealso{
+Other geo-io: 
+\code{\link{clean_geo}()},
+\code{\link{read_gdb}()},
+\code{\link{read_kmz}()},
+\code{\link{read_sf_zip}()}
+}
+\concept{geo-io}

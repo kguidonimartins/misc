@@ -42,3 +42,9 @@ quick_map() +
 }
 }
 }
+\seealso{
+Other geo-tools: 
+\code{\link{intersect_mask_filter_area}()},
+\code{\link{view_mapview_from_path}()}
+}
+\concept{geo-tools}

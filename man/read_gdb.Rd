@@ -37,3 +37,11 @@ if (nzchar(gdb) && dir.exists(gdb)) {
 }
 }
 }
+\seealso{
+Other geo-io: 
+\code{\link{clean_geo}()},
+\code{\link{read_geo}()},
+\code{\link{read_kmz}()},
+\code{\link{read_sf_zip}()}
+}
+\concept{geo-io}

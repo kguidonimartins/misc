@@ -36,3 +36,8 @@ of the \href{https://github.com/elbersb/tidylog}{\code{{tidylog}}}
 prefer("dplyr")
 }
 }
+\seealso{
+Other package-management: 
+\code{\link{ipak}()}
+}
+\concept{package-management}

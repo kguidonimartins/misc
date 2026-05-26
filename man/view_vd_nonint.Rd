@@ -26,3 +26,11 @@ otherwise \code{vd} (see Details of \code{\link[=view_vd]{view_vd()}}).
 \strong{Platform:} Supported only on \strong{macOS}. On Windows or Linux, stops with an error;
 see \code{\link[=view_vd]{view_vd()}} for VisiData and terminal requirements.
 }
+\seealso{
+Other data-viewers: 
+\code{\link{tad_view}()},
+\code{\link{view_excel}()},
+\code{\link{view_in}()},
+\code{\link{view_vd}()}
+}
+\concept{data-viewers}

@@ -22,3 +22,8 @@ nice_data \%>\%
   describe_data()
 }
 }
+\seealso{
+Other data-wrangling: 
+\code{\link{deduplicate_by}()}
+}
+\concept{data-wrangling}

@@ -31,3 +31,10 @@ na_data <- data.frame(c1 = c(1, NA), c2 = c(NA, NA))
 na_data \%>\% na_count()
 }
 }
+\seealso{
+Other missing-data: 
+\code{\link{filter_na}()},
+\code{\link{na_viz}()},
+\code{\link{remove_columns_based_on_NA}()}
+}
+\concept{missing-data}

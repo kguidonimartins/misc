@@ -78,3 +78,9 @@ out <- intersect_mask_filter_area(x, y, x_id = "id", crs = crs_pl, repair = FALS
 nrow(out$summary)
 }
 }
+\seealso{
+Other geo-tools: 
+\code{\link{quick_map}()},
+\code{\link{view_mapview_from_path}()}
+}
+\concept{geo-tools}

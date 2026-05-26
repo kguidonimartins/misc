@@ -19,3 +19,11 @@ Returns nothing
 Opens a data frame in Microsoft Excel or another spreadsheet viewer. Also copies the data
 to the system clipboard.
 }
+\seealso{
+Other data-viewers: 
+\code{\link{tad_view}()},
+\code{\link{view_in}()},
+\code{\link{view_vd}()},
+\code{\link{view_vd_nonint}()}
+}
+\concept{data-viewers}

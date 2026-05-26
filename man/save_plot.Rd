@@ -69,3 +69,9 @@ save_plot(p)
 }
 }
 }
+\seealso{
+Other save-output: 
+\code{\link{save_temp_data}()},
+\code{\link{trim_fig}()}
+}
+\concept{save-output}

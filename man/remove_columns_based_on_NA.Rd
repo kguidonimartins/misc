@@ -31,3 +31,10 @@ remove_columns_based_on_NA(df)
 # Use stricter threshold of 10\% NA values
 remove_columns_based_on_NA(df, threshold = 0.1)
 }
+\seealso{
+Other missing-data: 
+\code{\link{filter_na}()},
+\code{\link{na_count}()},
+\code{\link{na_viz}()}
+}
+\concept{missing-data}

@@ -40,3 +40,9 @@ trim_fig("output/figures/p.png")
 }
 }
 }
+\seealso{
+Other save-output: 
+\code{\link{save_plot}()},
+\code{\link{save_temp_data}()}
+}
+\concept{save-output}

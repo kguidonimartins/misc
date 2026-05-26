@@ -29,3 +29,8 @@ mtcars \%>\% deduplicate_by(carb, mpg)
 }
 
 }
+\seealso{
+Other data-wrangling: 
+\code{\link{describe_data}()}
+}
+\concept{data-wrangling}
