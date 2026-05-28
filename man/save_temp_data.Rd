@@ -55,8 +55,8 @@ for (i in files) {
 }
 }
 \seealso{
-Other save-output: 
-\code{\link{save_plot}()},
-\code{\link{trim_fig}()}
+Other save-output:
+\code{\link[=save_plot]{save_plot()}},
+\code{\link[=trim_fig]{trim_fig()}}
 }
 \concept{save-output}

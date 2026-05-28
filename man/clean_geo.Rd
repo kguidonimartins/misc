@@ -55,10 +55,10 @@ if (requireNamespace("textclean", quietly = TRUE)) {
 }
 }
 \seealso{
-Other geo-io: 
-\code{\link{read_gdb}()},
-\code{\link{read_geo}()},
-\code{\link{read_kmz}()},
-\code{\link{read_sf_zip}()}
+Other geo-io:
+\code{\link[=read_gdb]{read_gdb()}},
+\code{\link[=read_geo]{read_geo()}},
+\code{\link[=read_kmz]{read_kmz()}},
+\code{\link[=read_sf_zip]{read_sf_zip()}}
 }
 \concept{geo-io}

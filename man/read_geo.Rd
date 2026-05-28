@@ -11,9 +11,9 @@ read_geo(path, layer = NULL, quiet = TRUE, ...)
 
 \item{layer}{Passed to multi-layer GDAL readers. Ignored for \code{.zip} and \code{.kmz}.}
 
-\item{quiet}{Passed to \code{\link[sf:st_read]{sf::read_sf()}}.}
+\item{quiet}{Passed to \code{\link[sf:read_sf]{sf::read_sf()}}.}
 
-\item{...}{Additional arguments passed to \code{\link[sf:st_read]{sf::read_sf()}}.}
+\item{...}{Additional arguments passed to \code{\link[sf:read_sf]{sf::read_sf()}}.}
 }
 \value{
 A tibble as described in \code{\link[=read_gdb]{read_gdb()}}.
@@ -43,10 +43,10 @@ if (dir.exists(f("misc_example.gdb"))) read_geo(f("misc_example.gdb"), layer = "
 }
 }
 \seealso{
-Other geo-io: 
-\code{\link{clean_geo}()},
-\code{\link{read_gdb}()},
-\code{\link{read_kmz}()},
-\code{\link{read_sf_zip}()}
+Other geo-io:
+\code{\link[=clean_geo]{clean_geo()}},
+\code{\link[=read_gdb]{read_gdb()}},
+\code{\link[=read_kmz]{read_kmz()}},
+\code{\link[=read_sf_zip]{read_sf_zip()}}
 }
 \concept{geo-io}

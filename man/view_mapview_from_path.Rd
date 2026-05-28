@@ -31,8 +31,8 @@ via \code{\link[=view_vd_nonint]{view_vd_nonint()}}. The function performs the f
 }
 }
 \seealso{
-Other geo-tools: 
-\code{\link{intersect_mask_filter_area}()},
-\code{\link{quick_map}()}
+Other geo-tools:
+\code{\link[=intersect_mask_filter_area]{intersect_mask_filter_area()}},
+\code{\link[=quick_map]{quick_map()}}
 }
 \concept{geo-tools}

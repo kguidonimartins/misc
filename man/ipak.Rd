@@ -44,7 +44,7 @@ ipak(pkg_list)
 }
 }
 \seealso{
-Other package-management: 
-\code{\link{prefer}()}
+Other package-management:
+\code{\link[=prefer]{prefer()}}
 }
 \concept{package-management}

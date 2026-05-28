@@ -14,13 +14,13 @@ read_gdb(path, layer = NULL, quiet = TRUE, ...)
 is read. If a character string, only that layer is read; it must exist in
 the geodatabase.}
 
-\item{quiet}{Passed to \code{\link[sf:st_read]{sf::read_sf()}}.}
+\item{quiet}{Passed to \code{\link[sf:read_sf]{sf::read_sf()}}.}
 
-\item{...}{Additional arguments passed to \code{\link[sf:st_read]{sf::read_sf()}}.}
+\item{...}{Additional arguments passed to \code{\link[sf:read_sf]{sf::read_sf()}}.}
 }
 \value{
 A tibble with columns \code{fpath} (path or GDAL dsn used for the layer),
-\code{file_type} (\code{\link[tools:fileutils]{tools::file_ext()}}), \code{layer_name}, \code{geometry_type}, \code{nrows_aka_features},
+\code{file_type} (\code{\link[tools:file_ext]{tools::file_ext()}}), \code{layer_name}, \code{geometry_type}, \code{nrows_aka_features},
 \code{ncols_aka_fields}, \code{crs_name} (from \code{st_layers()$crs} when available), and
 \code{data} (list-column of \link[sf:sf]{sf::sf} objects). Layers are not row-bound; differing CRS are preserved
 per row.
@@ -38,10 +38,10 @@ if (nzchar(gdb) && dir.exists(gdb)) {
 }
 }
 \seealso{
-Other geo-io: 
-\code{\link{clean_geo}()},
-\code{\link{read_geo}()},
-\code{\link{read_kmz}()},
-\code{\link{read_sf_zip}()}
+Other geo-io:
+\code{\link[=clean_geo]{clean_geo()}},
+\code{\link[=read_geo]{read_geo()}},
+\code{\link[=read_kmz]{read_kmz()}},
+\code{\link[=read_sf_zip]{read_sf_zip()}}
 }
 \concept{geo-io}

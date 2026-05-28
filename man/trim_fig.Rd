@@ -13,7 +13,7 @@ trim_fig(figure_path, overwrite = FALSE)
 }
 \value{
 No return value, called for side effects (writes a trimmed image
-file under a \verb{trim/} subdirectory via \code{\link[magick:editing]{magick::image_write()}}).
+file under a \verb{trim/} subdirectory via \code{\link[magick:image_write]{magick::image_write()}}).
 }
 \description{
 \code{trim_fig()} just remove white spaces around a figure and save it into the
@@ -41,8 +41,8 @@ trim_fig("output/figures/p.png")
 }
 }
 \seealso{
-Other save-output: 
-\code{\link{save_plot}()},
-\code{\link{save_temp_data}()}
+Other save-output:
+\code{\link[=save_plot]{save_plot()}},
+\code{\link[=save_temp_data]{save_temp_data()}}
 }
 \concept{save-output}

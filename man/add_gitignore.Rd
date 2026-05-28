@@ -37,7 +37,7 @@ if (interactive()) {
 }
 }
 \seealso{
-Other project-setup: 
-\code{\link{create_dirs}()}
+Other project-setup:
+\code{\link[=create_dirs]{create_dirs()}}
 }
 \concept{project-setup}

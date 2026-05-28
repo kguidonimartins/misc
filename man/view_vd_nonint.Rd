@@ -27,10 +27,10 @@ otherwise \code{vd} (see Details of \code{\link[=view_vd]{view_vd()}}).
 see \code{\link[=view_vd]{view_vd()}} for VisiData and terminal requirements.
 }
 \seealso{
-Other data-viewers: 
-\code{\link{tad_view}()},
-\code{\link{view_excel}()},
-\code{\link{view_in}()},
-\code{\link{view_vd}()}
+Other data-viewers:
+\code{\link[=tad_view]{tad_view()}},
+\code{\link[=view_excel]{view_excel()}},
+\code{\link[=view_in]{view_in()}},
+\code{\link[=view_vd]{view_vd()}}
 }
 \concept{data-viewers}

@@ -40,8 +40,8 @@ read_all_sheets_then_save_csv(
 }
 }
 \seealso{
-Other excel-import: 
-\code{\link{read_all_xlsx_then_save_csv}()},
-\code{\link{read_sheet_then_save_csv}()}
+Other excel-import:
+\code{\link[=read_all_xlsx_then_save_csv]{read_all_xlsx_then_save_csv()}},
+\code{\link[=read_sheet_then_save_csv]{read_sheet_then_save_csv()}}
 }
 \concept{excel-import}

@@ -30,18 +30,18 @@ working outside Brazil.}
 \code{area_clip / area_full} is greater than or equal to this value. Default
 \code{0.01} (about 1\% of the feature area inside the mask).}
 
-\item{repair}{If \code{TRUE}, apply \code{\link[sf:valid]{sf::st_make_valid()}} to \code{x} and \code{y} after
+\item{repair}{If \code{TRUE}, apply \code{\link[sf:st_make_valid]{sf::st_make_valid()}} to \code{x} and \code{y} after
 transforming (warnings are suppressed per call).}
 }
 \value{
 A list with \code{clipped}, an \link[sf:sf]{sf::sf} object with intersection
-geometries that passed the threshold, and \code{summary}, a \code{\link[dplyr:reexports]{dplyr::tibble()}}
+geometries that passed the threshold, and \code{summary}, a \code{\link[dplyr:tibble]{dplyr::tibble()}}
 with the ID column, \code{area_full}, \code{area_clip}, \code{area_ratio}, and logical
 \code{keep}.
 }
 \description{
 Transforms both layers to a projected CRS, keeps features in \code{x} that touch
-the mask \code{y}, computes \code{\link[sf:geos_binary_ops]{sf::st_intersection()}}, aggregates clipped area per
+the mask \code{y}, computes \code{\link[sf:st_intersection]{sf::st_intersection()}}, aggregates clipped area per
 identifier, and drops features whose clipped fraction of their original area is
 below \code{min_area_ratio}.
 }
@@ -79,8 +79,8 @@ nrow(out$summary)
 }
 }
 \seealso{
-Other geo-tools: 
-\code{\link{quick_map}()},
-\code{\link{view_mapview_from_path}()}
+Other geo-tools:
+\code{\link[=quick_map]{quick_map()}},
+\code{\link[=view_mapview_from_path]{view_mapview_from_path()}}
 }
 \concept{geo-tools}

@@ -23,7 +23,7 @@ nice_data \%>\%
 }
 }
 \seealso{
-Other data-wrangling: 
-\code{\link{deduplicate_by}()}
+Other data-wrangling:
+\code{\link[=deduplicate_by]{deduplicate_by()}}
 }
 \concept{data-wrangling}

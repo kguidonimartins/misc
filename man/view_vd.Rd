@@ -59,10 +59,10 @@ nested_df \%>\% view_vd(type = "json")
 }
 }
 \seealso{
-Other data-viewers: 
-\code{\link{tad_view}()},
-\code{\link{view_excel}()},
-\code{\link{view_in}()},
-\code{\link{view_vd_nonint}()}
+Other data-viewers:
+\code{\link[=tad_view]{tad_view()}},
+\code{\link[=view_excel]{view_excel()}},
+\code{\link[=view_in]{view_in()}},
+\code{\link[=view_vd_nonint]{view_vd_nonint()}}
 }
 \concept{data-viewers}

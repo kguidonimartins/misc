@@ -30,9 +30,9 @@ na_data \%>\% na_viz()
 }
 }
 \seealso{
-Other missing-data: 
-\code{\link{filter_na}()},
-\code{\link{na_count}()},
-\code{\link{remove_columns_based_on_NA}()}
+Other missing-data:
+\code{\link[=filter_na]{filter_na()}},
+\code{\link[=na_count]{na_count()}},
+\code{\link[=remove_columns_based_on_NA]{remove_columns_based_on_NA()}}
 }
 \concept{missing-data}

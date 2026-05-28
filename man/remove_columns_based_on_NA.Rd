@@ -32,9 +32,9 @@ remove_columns_based_on_NA(df)
 remove_columns_based_on_NA(df, threshold = 0.1)
 }
 \seealso{
-Other missing-data: 
-\code{\link{filter_na}()},
-\code{\link{na_count}()},
-\code{\link{na_viz}()}
+Other missing-data:
+\code{\link[=filter_na]{filter_na()}},
+\code{\link[=na_count]{na_count()}},
+\code{\link[=na_viz]{na_viz()}}
 }
 \concept{missing-data}

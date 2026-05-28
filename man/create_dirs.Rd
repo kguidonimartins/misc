@@ -66,7 +66,7 @@ fs::dir_tree()
 }
 }
 \seealso{
-Other project-setup: 
-\code{\link{add_gitignore}()}
+Other project-setup:
+\code{\link[=add_gitignore]{add_gitignore()}}
 }
 \concept{project-setup}

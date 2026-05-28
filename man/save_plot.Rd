@@ -70,8 +70,8 @@ save_plot(p)
 }
 }
 \seealso{
-Other save-output: 
-\code{\link{save_temp_data}()},
-\code{\link{trim_fig}()}
+Other save-output:
+\code{\link[=save_temp_data]{save_temp_data()}},
+\code{\link[=trim_fig]{trim_fig()}}
 }
 \concept{save-output}

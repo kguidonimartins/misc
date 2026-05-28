@@ -37,7 +37,7 @@ prefer("dplyr")
 }
 }
 \seealso{
-Other package-management: 
-\code{\link{ipak}()}
+Other package-management:
+\code{\link[=ipak]{ipak()}}
 }
 \concept{package-management}
