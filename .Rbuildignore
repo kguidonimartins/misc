@@ -1,4 +1,5 @@
 ^LICENSE\.md$
+^AGENTS\.md$
 ^README\.Rmd$
 ^\.pre-commit-config\.yaml$
 ^Makefile$
