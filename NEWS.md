@@ -2,6 +2,12 @@
 
 ## New helpers
 
+- **`intersect_filter_touch()`** — returns the rows of `x` whose geometries
+  touch any feature in the mask `y`, using `sf::st_intersects()` only. No
+  reprojection, clipping, or area computation is performed: geometries and
+  attributes of `x` are returned unchanged. The lightest-touch selection
+  strategy, condensed from the common `st_intersects() |> lengths() |> { . == 1 }`
+  idiom.
 - **`clean_geo()`** — reads a `.zip`/`.shp`/`.gpkg`/`.geojson`, drops Z/M
   dimensions, replaces non-ASCII characters in attribute columns, reprojects
   to a target CRS (default EPSG:4326) and writes the result to a
