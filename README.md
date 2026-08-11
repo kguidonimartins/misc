@@ -47,18 +47,19 @@ Check all available functions inside an interactive session using
 | 13 | `read_geo()` | Read a geospatial file or dataset (auto-detect by extension) | `geo-io` |
 | 14 | `read_kmz()` | Read a KMZ file (KML in a ZIP) | `geo-io` |
 | 15 | `read_sf_zip()` | Read shapefile(s) inside a ZIP archive via GDAL | `geo-io` |
-| 16 | `intersect_mask_filter_area()` | Clip features to a mask and drop border slivers by area ratio | `geo-tools` |
-| 17 | `quick_map()` | Create maps quickly | `geo-tools` |
-| 18 | `view_mapview_from_path()` | View spatial data from file path with optional map preview | `geo-tools` |
-| 19 | `filter_na()` | Easily filter NA values from data frames | `missing-data` |
-| 20 | `na_count()` | Count NA frequency in data | `missing-data` |
-| 21 | `na_viz()` | Visualize NA frequency in data | `missing-data` |
-| 22 | `remove_columns_based_on_NA()` | Remove columns based on NA values | `missing-data` |
-| 23 | `ipak()` | Load multiple CRAN and GitHub R packages | `package-management` |
-| 24 | `prefer()` | Defines preferred package::functions | `package-management` |
-| 25 | `add_gitignore()` | Add a gitignore file to the project root | `project-setup` |
-| 26 | `create_dirs()` | Create directories | `project-setup` |
-| 27 | `save_plot()` | Save a ggplot figure | `save-output` |
-| 28 | `save_temp_data()` | Save object as RDS file | `save-output` |
-| 29 | `trim_fig()` | Remove white spaces around figures | `save-output` |
-| 30 | `combine_words_ptbr()` | Combine words using ptbr rules | — |
+| 16 | `intersect_filter_touch()` | Keep features that touch a mask layer | `geo-tools` |
+| 17 | `intersect_mask_filter_area()` | Clip features to a mask and drop border slivers by area ratio | `geo-tools` |
+| 18 | `quick_map()` | Create maps quickly | `geo-tools` |
+| 19 | `view_mapview_from_path()` | View spatial data from file path with optional map preview | `geo-tools` |
+| 20 | `filter_na()` | Easily filter NA values from data frames | `missing-data` |
+| 21 | `na_count()` | Count NA frequency in data | `missing-data` |
+| 22 | `na_viz()` | Visualize NA frequency in data | `missing-data` |
+| 23 | `remove_columns_based_on_NA()` | Remove columns based on NA values | `missing-data` |
+| 24 | `ipak()` | Load multiple CRAN and GitHub R packages | `package-management` |
+| 25 | `prefer()` | Defines preferred package::functions | `package-management` |
+| 26 | `add_gitignore()` | Add a gitignore file to the project root | `project-setup` |
+| 27 | `create_dirs()` | Create directories | `project-setup` |
+| 28 | `save_plot()` | Save a ggplot figure | `save-output` |
+| 29 | `save_temp_data()` | Save object as RDS file | `save-output` |
+| 30 | `trim_fig()` | Remove white spaces around figures | `save-output` |
+| 31 | `combine_words_ptbr()` | Combine words using ptbr rules | — |
