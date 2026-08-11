@@ -52,6 +52,8 @@
 <div class="section level3">
 <h3 id="new-helpers-0-0-7">New helpers<a class="anchor" aria-label="anchor" href="#new-helpers-0-0-7"></a></h3>
 <ul><li>
+<strong><code><a href="../reference/intersect_filter_touch.html">intersect_filter_touch()</a></code></strong> — returns the rows of <code>x</code> whose geometries touch any feature in the mask <code>y</code>, using <code><a href="https://r-spatial.github.io/sf/reference/geos_binary_pred.html" class="external-link">sf::st_intersects()</a></code> only. No reprojection, clipping, or area computation is performed: geometries and attributes of <code>x</code> are returned unchanged. The lightest-touch selection strategy, condensed from the common <code>st_intersects() |&gt; lengths() |&gt; { . == 1 }</code> idiom.</li>
+<li>
 <strong><code><a href="../reference/clean_geo.html">clean_geo()</a></code></strong> — reads a <code>.zip</code>/<code>.shp</code>/<code>.gpkg</code>/<code>.geojson</code>, drops Z/M dimensions, replaces non-ASCII characters in attribute columns, reprojects to a target CRS (default EPSG:4326) and writes the result to a user-provided <code>output</code> path. The output format is determined by the extension of <code>output</code> and may differ from the input format. Replaces the standalone <code>R/prepare_zip_shapefiles.R</code> cleanup routine with a portable, testable function backed by <code><a href="https://r-lib.github.io/zip/reference/zip.html" class="external-link">zip::zip()</a></code> instead of <code>system("zip -j ...")</code>.</li>
 </ul></div>
 </div>
@@ -84,7 +86,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>
