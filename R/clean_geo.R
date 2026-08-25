@@ -103,8 +103,7 @@
 }
 
 .clean_geo_write <- function(sf_obj, output, output_ext, encoding) {
-  switch(
-    output_ext,
+  switch(output_ext,
     shp = .clean_geo_write_shp(sf_obj, output, encoding),
     gpkg = .clean_geo_write_gpkg(sf_obj, output),
     geojson = .clean_geo_write_geojson(sf_obj, output),
@@ -142,7 +141,7 @@
 #' @returns Invisibly returns the normalized `output` path (character).
 #'
 #' @importFrom dplyr across any_of mutate
-#' @importFrom fs dir_create dir_ls file_exists path_expand
+#' @importFrom fs dir_create dir_ls file_exists path_abs path_expand
 #' @importFrom sf read_sf st_transform st_zm write_sf
 #' @importFrom tools file_ext file_path_sans_ext
 #' @importFrom usethis ui_done ui_field ui_todo
@@ -181,6 +180,7 @@ clean_geo <- function(path,
 
   path <- .clean_geo_check_path(path)
   input_ext <- .clean_geo_check_ext(path, "input")
+  output <- fs::path_abs(fs::path_expand(output))
   output_ext <- .clean_geo_check_ext(output, "output")
 
   log_todo <- function(msg) {

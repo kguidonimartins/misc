@@ -16,6 +16,14 @@
   standalone `R/prepare_zip_shapefiles.R` cleanup routine with a portable,
   testable function backed by `zip::zip()` instead of `system("zip -j ...")`.
 
+## Fixes
+
+- **`clean_geo()`** now normalizes the `output` path to an absolute path
+  (via `fs::path_abs()`), matching the behavior already applied to `path`.
+  Relative `output` paths (e.g. `"data/clean/x.zip"`) previously failed when
+  writing `.zip` output with `zip::zip()`; all output formats now resolve
+  correctly against the current working directory.
+
 # misc 0.0.6
 
 ## View helpers (`R/view_in.R`)
