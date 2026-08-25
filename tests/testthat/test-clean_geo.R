@@ -37,6 +37,24 @@ test_that("clean_geo errors when output is missing or empty", {
   expect_error(clean_geo(z, NULL), "output.*required")
 })
 
+test_that("clean_geo normalizes relative output to an absolute path", {
+  skip_if_not_installed("textclean")
+  skip_if_not_installed("zip")
+  z <- clean_geo_make_zip(clean_geo_test_sf())$zip
+
+  out_rel <- file.path("rel_out_geo", "out.zip")
+  owd <- setwd(tempdir())
+  on.exit(setwd(owd), add = TRUE)
+  on.exit(unlink(file.path(tempdir(), "rel_out_geo"), recursive = TRUE), add = TRUE)
+
+  res <- clean_geo(z, out_rel, quiet = TRUE)
+  expect_true(file.exists(file.path(tempdir(), "rel_out_geo", "out.zip")))
+  expect_equal(
+    normalizePath(res, winslash = "/"),
+    normalizePath(file.path(tempdir(), "rel_out_geo", "out.zip"), winslash = "/")
+  )
+})
+
 test_that("clean_geo errors when path is missing", {
   expect_error(
     clean_geo(file.path(tempdir(), "does-not-exist.zip"), tempfile(fileext = ".zip")),
