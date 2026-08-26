@@ -23,6 +23,10 @@
   Relative `output` paths (e.g. `"data/clean/x.zip"`) previously failed when
   writing `.zip` output with `zip::zip()`; all output formats now resolve
   correctly against the current working directory.
+- **`clean_geo()`** now also accepts an in-memory `sf` object as `path`, so a
+  layer read and pre-filtered with `read_geo()` can be written out directly
+  (e.g. `sf %>% clean_geo(output = "x.zip")`) without round-tripping through
+  a file.
 
 # misc 0.0.6
 

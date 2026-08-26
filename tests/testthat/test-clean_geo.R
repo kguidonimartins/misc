@@ -192,20 +192,38 @@ test_that("clean_geo replaces non-ASCII characters in attribute columns", {
   expect_match(re$name, "^[Cc]afe$")
 })
 
-test_that("clean_geo reprojects to the target CRS", {
+# sf object input ---------------------------------------------------------
+test_that("clean_geo accepts an in-memory sf object", {
   skip_if_not_installed("textclean")
-  utm <- clean_geo_test_sf()
-  utm <- sf::st_transform(utm, 31983)
-
-  in_gpkg <- tempfile(fileext = ".gpkg")
-  on.exit(unlink(in_gpkg), add = TRUE)
-  sf::write_sf(utm, in_gpkg, driver = "GPKG")
-
+  s <- clean_geo_test_sf_nonascii()
   out <- tempfile(fileext = ".gpkg")
   on.exit(unlink(out), add = TRUE)
-  clean_geo(in_gpkg, out, crs = 4326, quiet = TRUE)
+  res <- clean_geo(s, out, quiet = TRUE)
+  expect_equal(normalizePath(res, winslash = "/"), normalizePath(out, winslash = "/"))
+  expect_true(file.exists(out))
+
   re <- sf::read_sf(out)
-  expect_equal(sf::st_crs(re)$epsg, 4326L)
+  expect_equal(nrow(re), 1L)
+  expect_false(grepl("[^[:ascii:]]", re$name, perl = TRUE))
+  expect_match(re$name, "^[Cc]afe$")
+})
+
+test_that("clean_geo sf object reprojects and writes .zip", {
+  skip_if_not_installed("textclean")
+  skip_if_not_installed("zip")
+  s <- sf::st_transform(clean_geo_test_sf(), 31983)
+  out <- tempfile(fileext = ".zip")
+  on.exit(unlink(out), add = TRUE)
+  clean_geo(s, out, crs = 4326, quiet = TRUE)
+
+  re <- read_sf_zip(out)
+  expect_equal(nrow(re), 1L)
+  expect_equal(sf::st_crs(re$data[[1]])$epsg, 4326L)
+})
+
+test_that("clean_geo errors when path is neither a path nor an sf object", {
+  skip_if_not_installed("textclean")
+  expect_error(clean_geo(123, tempfile(fileext = ".zip")), "single file path or an 'sf'")
 })
 
 # zip edge cases ----------------------------------------------------------

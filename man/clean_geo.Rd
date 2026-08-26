@@ -8,7 +8,9 @@ clean_geo(path, output, crs = 4326, encoding = "ISO-8859-1", quiet = FALSE)
 }
 \arguments{
 \item{path}{Path to the input spatial file. Must be \code{.zip} (containing
-exactly one shapefile), \code{.shp}, \code{.gpkg}, or \code{.geojson}.}
+exactly one shapefile), \code{.shp}, \code{.gpkg}, or \code{.geojson}. Alternatively, an
+in-memory \code{sf} object (for example read and filtered with \code{\link[=read_geo]{read_geo()}})
+may be supplied directly; it is cleaned and written to \code{output}.}
 
 \item{output}{Path to the output file. Required. The extension determines
 the output format and must also be one of \code{.zip}, \code{.shp}, \code{.gpkg}, or
@@ -35,6 +37,10 @@ the extension of \code{output} and may differ from the input format (for example
 a \code{.shp} can be cleaned and written as \code{.gpkg}).
 }
 \details{
+The input may also be an in-memory \code{\link[sf:sf]{sf}} object, so a layer read
+and pre-filtered with \code{\link[=read_geo]{read_geo()}} can be written out directly without
+round-tripping through a file.
+
 This function replaces a standalone batch script that cleaned shapefiles
 from a client geospatial portal. The non-ASCII replacement step relies on
 \code{\link[textclean:replace_non_ascii]{textclean::replace_non_ascii()}}; \code{textclean} lives in \verb{Suggests:}, so the
@@ -51,6 +57,12 @@ if (requireNamespace("textclean", quietly = TRUE)) {
     out_gpkg <- tempfile(fileext = ".gpkg")
     clean_geo(z, out_gpkg)
   }
+
+  # An in-memory sf object can be passed directly as `path`.
+  s <- sf::st_sf(id = 1L, name = "caf\u00e9",
+                 geometry = sf::st_sfc(sf::st_point(c(1, 2)), crs = 4326))
+  out_sf <- tempfile(fileext = ".gpkg")
+  clean_geo(s, out_sf)
 }
 }
 }

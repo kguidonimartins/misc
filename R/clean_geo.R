@@ -121,13 +121,19 @@
 #' the extension of `output` and may differ from the input format (for example,
 #' a `.shp` can be cleaned and written as `.gpkg`).
 #'
+#' The input may also be an in-memory [`sf`][sf::sf] object, so a layer read
+#' and pre-filtered with [read_geo()] can be written out directly without
+#' round-tripping through a file.
+#'
 #' This function replaces a standalone batch script that cleaned shapefiles
 #' from a client geospatial portal. The non-ASCII replacement step relies on
 #' [textclean::replace_non_ascii()]; `textclean` lives in `Suggests:`, so the
 #' function stops with an informative error if it is not installed.
 #'
 #' @param path Path to the input spatial file. Must be `.zip` (containing
-#'   exactly one shapefile), `.shp`, `.gpkg`, or `.geojson`.
+#'   exactly one shapefile), `.shp`, `.gpkg`, or `.geojson`. Alternatively, an
+#'   in-memory `sf` object (for example read and filtered with [read_geo()])
+#'   may be supplied directly; it is cleaned and written to `output`.
 #' @param output Path to the output file. Required. The extension determines
 #'   the output format and must also be one of `.zip`, `.shp`, `.gpkg`, or
 #'   `.geojson`. Existing files at `output` are overwritten.
@@ -162,6 +168,14 @@
 #'     out_gpkg <- tempfile(fileext = ".gpkg")
 #'     clean_geo(z, out_gpkg)
 #'   }
+#'
+#'   # An in-memory sf object can be passed directly as `path`.
+#'   s <- sf::st_sf(
+#'     id = 1L, name = "caf\u00e9",
+#'     geometry = sf::st_sfc(sf::st_point(c(1, 2)), crs = 4326)
+#'   )
+#'   out_sf <- tempfile(fileext = ".gpkg")
+#'   clean_geo(s, out_sf)
 #' }
 #' }
 clean_geo <- function(path,
@@ -178,8 +192,16 @@ clean_geo <- function(path,
 
   check_require("textclean")
 
-  path <- .clean_geo_check_path(path)
-  input_ext <- .clean_geo_check_ext(path, "input")
+  input_is_sf <- inherits(path, "sf")
+  if (!input_is_sf) {
+    if (!is.character(path) || length(path) != 1L) {
+      stop("`path` must be a single file path or an 'sf' object.", call. = FALSE)
+    }
+    path <- .clean_geo_check_path(path)
+    input_ext <- .clean_geo_check_ext(path, "input")
+  } else {
+    input_ext <- "sf"
+  }
   output <- fs::path_abs(fs::path_expand(output))
   output_ext <- .clean_geo_check_ext(output, "output")
 
@@ -190,16 +212,20 @@ clean_geo <- function(path,
     if (!isTRUE(quiet)) usethis::ui_done(msg)
   }
 
-  log_todo("Reading {usethis::ui_field(path)}")
-
-  if (input_ext == "zip") {
-    exdir <- tempfile("clean_geo_unzip_")
-    fs::dir_create(exdir)
-    on.exit(unlink(exdir, recursive = TRUE), add = TRUE)
-    shp_path <- .clean_geo_extract_zip(path, exdir)
-    sf_obj <- sf::read_sf(shp_path)
+  if (input_is_sf) {
+    sf_obj <- path
+    log_todo("Cleaning in-memory sf object")
   } else {
-    sf_obj <- sf::read_sf(path)
+    log_todo("Reading {usethis::ui_field(path)}")
+    if (input_ext == "zip") {
+      exdir <- tempfile("clean_geo_unzip_")
+      fs::dir_create(exdir)
+      on.exit(unlink(exdir, recursive = TRUE), add = TRUE)
+      shp_path <- .clean_geo_extract_zip(path, exdir)
+      sf_obj <- sf::read_sf(shp_path)
+    } else {
+      sf_obj <- sf::read_sf(path)
+    }
   }
 
   log_todo("Replacing non-ASCII characters and reprojecting")
