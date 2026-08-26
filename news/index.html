@@ -60,6 +60,8 @@
 <h3 id="fixes-0-0-7">Fixes<a class="anchor" aria-label="anchor" href="#fixes-0-0-7"></a></h3>
 <ul><li>
 <strong><code><a href="../reference/clean_geo.html">clean_geo()</a></code></strong> now normalizes the <code>output</code> path to an absolute path (via <code><a href="https://fs.r-lib.org/reference/path_math.html" class="external-link">fs::path_abs()</a></code>), matching the behavior already applied to <code>path</code>. Relative <code>output</code> paths (e.g. <code>"data/clean/x.zip"</code>) previously failed when writing <code>.zip</code> output with <code><a href="https://r-lib.github.io/zip/reference/zip.html" class="external-link">zip::zip()</a></code>; all output formats now resolve correctly against the current working directory.</li>
+<li>
+<strong><code><a href="../reference/clean_geo.html">clean_geo()</a></code></strong> now also accepts an in-memory <code>sf</code> object as <code>path</code>, so a layer read and pre-filtered with <code><a href="../reference/read_geo.html">read_geo()</a></code> can be written out directly (e.g. <code>sf %&gt;% clean_geo(output = "x.zip")</code>) without round-tripping through a file.</li>
 </ul></div>
 </div>
     <div class="section level2">

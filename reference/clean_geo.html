@@ -72,7 +72,9 @@ a <code>.shp</code> can be cleaned and written as <code>.gpkg</code>).</p>
 
 <dl><dt id="arg-path">path<a class="anchor" aria-label="anchor" href="#arg-path"></a></dt>
 <dd><p>Path to the input spatial file. Must be <code>.zip</code> (containing
-exactly one shapefile), <code>.shp</code>, <code>.gpkg</code>, or <code>.geojson</code>.</p></dd>
+exactly one shapefile), <code>.shp</code>, <code>.gpkg</code>, or <code>.geojson</code>. Alternatively, an
+in-memory <code>sf</code> object (for example read and filtered with <code><a href="read_geo.html">read_geo()</a></code>)
+may be supplied directly; it is cleaned and written to <code>output</code>.</p></dd>
 
 
 <dt id="arg-output">output<a class="anchor" aria-label="anchor" href="#arg-output"></a></dt>
@@ -102,7 +104,10 @@ to <code>.shp</code> and <code>.zip</code> outputs. Defaults to <code>"ISO-8859-
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>This function replaces a standalone batch script that cleaned shapefiles
+    <p>The input may also be an in-memory <code><a href="https://r-spatial.github.io/sf/reference/sf.html" class="external-link">sf</a></code> object, so a layer read
+and pre-filtered with <code><a href="read_geo.html">read_geo()</a></code> can be written out directly without
+round-tripping through a file.</p>
+<p>This function replaces a standalone batch script that cleaned shapefiles
 from a client geospatial portal. The non-ASCII replacement step relies on
 <code><a href="https://rdrr.io/pkg/textclean/man/replace_non_ascii.html" class="external-link">textclean::replace_non_ascii()</a></code>; <code>textclean</code> lives in <code>Suggests:</code>, so the
 function stops with an informative error if it is not installed.</p>
@@ -128,7 +133,17 @@ function stops with an informative error if it is not installed.</p>
 <span class="r-in"><span>    <span class="va">out_gpkg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".gpkg"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="fu">clean_geo</span><span class="op">(</span><span class="va">z</span>, <span class="va">out_gpkg</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># An in-memory sf object can be passed directly as `path`.</span></span></span>
+<span class="r-in"><span>  <span class="va">s</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/sf.html" class="external-link">st_sf</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1L</span>, name <span class="op">=</span> <span class="st">"caf\u00e9"</span>,</span></span>
+<span class="r-in"><span>                 geometry <span class="op">=</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/sfc.html" class="external-link">st_sfc</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st.html" class="external-link">st_point</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">out_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".gpkg"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">clean_geo</span><span class="op">(</span><span class="va">s</span>, <span class="va">out_sf</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Cleaning in-memory sf object</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Replacing non-ASCII characters and reprojecting</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Writing <span style="color: #00BB00;">/tmp/RtmpcE2BO7/file20715d2bd746.gpkg</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">/tmp/RtmpcE2BO7/file20715d2bd746.gpkg</span> written!</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
