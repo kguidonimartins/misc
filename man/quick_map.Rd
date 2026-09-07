@@ -44,7 +44,10 @@ quick_map() +
 }
 \seealso{
 Other geo-tools:
+\code{\link[=fix_invalid_geometries]{fix_invalid_geometries()}},
+\code{\link[=intersect_filter_touch]{intersect_filter_touch()}},
 \code{\link[=intersect_mask_filter_area]{intersect_mask_filter_area()}},
+\code{\link[=remove_geom_holes]{remove_geom_holes()}},
 \code{\link[=view_mapview_from_path]{view_mapview_from_path()}}
 }
 \concept{geo-tools}
