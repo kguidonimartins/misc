@@ -13,6 +13,7 @@
 <url><loc>/reference/deduplicate_by.html</loc></url>
 <url><loc>/reference/describe_data.html</loc></url>
 <url><loc>/reference/filter_na.html</loc></url>
+<url><loc>/reference/fix_invalid_geometries.html</loc></url>
 <url><loc>/reference/index.html</loc></url>
 <url><loc>/reference/intersect_filter_touch.html</loc></url>
 <url><loc>/reference/intersect_mask_filter_area.html</loc></url>
@@ -30,6 +31,7 @@
 <url><loc>/reference/read_sf_zip.html</loc></url>
 <url><loc>/reference/read_sheet_then_save_csv.html</loc></url>
 <url><loc>/reference/remove_columns_based_on_NA.html</loc></url>
+<url><loc>/reference/remove_geom_holes.html</loc></url>
 <url><loc>/reference/save_plot.html</loc></url>
 <url><loc>/reference/save_temp_data.html</loc></url>
 <url><loc>/reference/tad_view.html</loc></url>
@@ -37,6 +39,7 @@
 <url><loc>/reference/view_excel.html</loc></url>
 <url><loc>/reference/view_in.html</loc></url>
 <url><loc>/reference/view_mapview_from_path.html</loc></url>
+<url><loc>/reference/view_qgis.html</loc></url>
 <url><loc>/reference/view_vd.html</loc></url>
 <url><loc>/reference/view_vd_nonint.html</loc></url>
 </urlset>

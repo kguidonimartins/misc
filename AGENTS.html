@@ -57,9 +57,8 @@
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">make</span> tests          <span class="co"># devtools::test() → out-testthat.txt</span></span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">make</span> check          <span class="co"># devtools::check() → out-check.txt</span></span>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">make</span> check-cran     <span class="co"># CRAN-like check → out-check-cran.txt</span></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">make</span> styler         <span class="co"># styler::style_dir('R')</span></span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">make</span> eg             <span class="co"># devtools::run_examples() → out-eg.txt</span></span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="fu">make</span> extdata        <span class="co"># regenerate inst/extdata samples</span></span></code></pre></div>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">make</span> eg             <span class="co"># devtools::run_examples() → out-eg.txt</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">make</span> extdata        <span class="co"># regenerate inst/extdata samples</span></span></code></pre></div>
 <p>Equivalent one-liners:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"devtools::load_all()"</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"devtools::test()"</span></span>
@@ -74,7 +73,6 @@
 <li>Use the <strong>magrittr pipe</strong> (<code>%&gt;%</code>). This package imports <code>magrittr</code>; do not switch to <code>|&gt;</code> unless the maintainer asks for a repo-wide migration.</li>
 <li>Use <code>\(...) ...</code> for single-line anonymous functions; use <code>function() { ... }</code> otherwise.</li>
 <li>Internal helpers: dot-prefix and <strong>no</strong> roxygen (e.g. <code>.read_geo_check_path()</code>).</li>
-<li>After editing <code>R/</code>, run <code>make styler</code> (this repo uses <strong>styler</strong>, not <code>air</code>). Note: <code>styler</code> is a Suggests dep; install it manually if missing.</li>
 <li>Soft dependency on packages like <code>magick</code> is handled via <code>check_require("magick")</code> from <code>R/utils.R</code> — do not add the package to Imports just for one function.</li>
 <li>Geospatial code: prefer <code>sf</code> idioms, <code>fs</code> for paths, and explicit CRS handling. Many readers return structured lists with metadata plus a <code>data</code> column.</li>
 <li>RStudio project uses 2-space indentation.</li>
@@ -143,7 +141,7 @@
 <div class="section level2">
 <h2 id="domain-notes">Domain notes<a class="anchor" aria-label="anchor" href="#domain-notes"></a></h2>
 <ul><li>
-<strong>View helpers</strong> (<code>view_vd</code>, <code>view_vd_nonint</code>, <code>view_mapview_from_path</code>) are <strong>macOS-only</strong>; preserve platform checks and clear errors on other OSes.</li>
+<strong>View helpers</strong> (<code>view_vd</code>, <code>view_vd_nonint</code>, <code>view_mapview_from_path</code>, <code>view_qgis</code>) are <strong>macOS-only</strong>; preserve platform checks and clear errors on other OSes.</li>
 <li>
 <strong>Extdata</strong> — spatial samples in <code>inst/extdata/</code>; regenerate with <code>make extdata</code> after changing fixture builders in <code>data-raw/</code>.</li>
 <li>
