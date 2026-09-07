@@ -25,16 +25,16 @@
 #' @examples
 #' \donttest{
 #' if (interactive()) {
-#' # plot a world map
-#' quick_map()
-#' # plot a new world map
-#' quick_map(region = "Americas", type = "sf")
-#' # using ggplot
-#' quick_map(region = "Americas", type = "ggplot")
-#' # edit using ggplot2 layers
-#' quick_map() +
-#'   ggplot2::theme_void() +
-#'   ggplot2::geom_sf(fill = "white")
+#'   # plot a world map
+#'   quick_map()
+#'   # plot a new world map
+#'   quick_map(region = "Americas", type = "sf")
+#'   # using ggplot
+#'   quick_map(region = "Americas", type = "ggplot")
+#'   # edit using ggplot2 layers
+#'   quick_map() +
+#'     ggplot2::theme_void() +
+#'     ggplot2::geom_sf(fill = "white")
 #' }
 #' }
 quick_map <- function(region = NULL, type = NULL) {

@@ -28,7 +28,7 @@
 deduplicate_by <- function(.data, ...) {
   group_vars <- rlang::enquos(...)
   .data %>%
-    dplyr::group_by(!!! group_vars) %>%
+    dplyr::group_by(!!!group_vars) %>%
     dplyr::filter(dplyr::row_number() == 1) %>%
     dplyr::ungroup()
 }

@@ -28,15 +28,15 @@ file under a \verb{trim/} subdirectory via \code{\link[magick:image_write]{magic
 \examples{
 \donttest{
 if (interactive()) {
-library(misc)
-ipak(c("ggplot2", "dplyr"))
-create_dirs()
-p <- mtcars \%>\%
-  ggplot() +
-  aes(x = mpg, y = cyl) +
-  geom_point()
-save_plot(p)
-trim_fig("output/figures/p.png")
+  library(misc)
+  ipak(c("ggplot2", "dplyr"))
+  create_dirs()
+  p <- mtcars \%>\%
+    ggplot() +
+    aes(x = mpg, y = cyl) +
+    geom_point()
+  save_plot(p)
+  trim_fig("output/figures/p.png")
 }
 }
 }

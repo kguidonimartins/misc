@@ -21,36 +21,36 @@ Save object as RDS file
 \examples{
 \donttest{
 if (interactive()) {
-# create and save a R object
-awesome <- "not too much!"
-misc::create_dirs("ma-box")
-save_temp_data(object = awesome, dir_to_save = "ma-box")
-# using default directories from `misc::create_dirs()`
-create_dirs()
-so_good <- "Yep!"
-save_temp_data(object = so_good)
+  # create and save a R object
+  awesome <- "not too much!"
+  misc::create_dirs("ma-box")
+  save_temp_data(object = awesome, dir_to_save = "ma-box")
+  # using default directories from `misc::create_dirs()`
+  create_dirs()
+  so_good <- "Yep!"
+  save_temp_data(object = so_good)
 
-# reading many temp data
-ext <- "\\\\.[rRdDsS]$"
-# list files
-files <- list.files(
-  path = "data/temp",
-  pattern = ext,
-  full.names = TRUE
-)
-# loop over files
-for (i in files) {
-  # read temporary file
-  tmp <- readRDS(file = i)
-  # remove extension from filename
-  obj_name <- gsub(
+  # reading many temp data
+  ext <- "\\\\.[rRdDsS]$"
+  # list files
+  files <- list.files(
+    path = "data/temp",
     pattern = ext,
-    replacement = "",
-    x = basename(i)
+    full.names = TRUE
   )
-  # assign name
-  assign(obj_name, tmp)
-}
+  # loop over files
+  for (i in files) {
+    # read temporary file
+    tmp <- readRDS(file = i)
+    # remove extension from filename
+    obj_name <- gsub(
+      pattern = ext,
+      replacement = "",
+      x = basename(i)
+    )
+    # assign name
+    assign(obj_name, tmp)
+  }
 }
 }
 }

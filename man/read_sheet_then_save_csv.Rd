@@ -70,15 +70,15 @@ from \code{{readxl}} package site.
 \examples{
 \donttest{
 if (interactive()) {
-# read and into a csv
-misc::create_dirs("ma-box")
-xlsx_file <-
-  system.file("xlsx-examples", "mtcars_workbook_001.xlsx", package = "misc")
-read_sheet_then_save_csv(
-  excel_sheet = "mtcars_sheet_001",
-  path_to_xlsx = xlsx_file,
-  dir_to_save = "ma-box"
-)
+  # read and into a csv
+  misc::create_dirs("ma-box")
+  xlsx_file <-
+    system.file("xlsx-examples", "mtcars_workbook_001.xlsx", package = "misc")
+  read_sheet_then_save_csv(
+    excel_sheet = "mtcars_sheet_001",
+    path_to_xlsx = xlsx_file,
+    dir_to_save = "ma-box"
+  )
 }
 }
 }

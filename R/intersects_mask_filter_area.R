@@ -103,12 +103,13 @@
 #' nrow(out$summary)
 #' }
 intersect_mask_filter_area <- function(
-    x,
-    y,
-    x_id = NULL,
-    crs = NULL,
-    min_area_ratio = 0.01,
-    repair = TRUE) {
+  x,
+  y,
+  x_id = NULL,
+  crs = NULL,
+  min_area_ratio = 0.01,
+  repair = TRUE
+) {
   if (!inherits(x, "sf") || !inherits(y, "sf")) {
     stop("`x` and `y` must be sf objects.", call. = FALSE)
   }

@@ -59,8 +59,10 @@ if (requireNamespace("textclean", quietly = TRUE)) {
   }
 
   # An in-memory sf object can be passed directly as `path`.
-  s <- sf::st_sf(id = 1L, name = "caf\u00e9",
-                 geometry = sf::st_sfc(sf::st_point(c(1, 2)), crs = 4326))
+  s <- sf::st_sf(
+    id = 1L, name = "caf\u00e9",
+    geometry = sf::st_sfc(sf::st_point(c(1, 2)), crs = 4326)
+  )
   out_sf <- tempfile(fileext = ".gpkg")
   clean_geo(s, out_sf)
 }

@@ -47,14 +47,14 @@ not shipped with this package); \code{vd} is still required.
 \examples{
 \donttest{
 if (interactive()) {
-# View a data frame
-mtcars \%>\% view_vd()
+  # View a data frame
+  mtcars \%>\% view_vd()
 
-# View with custom title
-mtcars \%>\% view_vd(title = "Car Data")
+  # View with custom title
+  mtcars \%>\% view_vd(title = "Car Data")
 
-# View with list columns preserved
-nested_df \%>\% view_vd(type = "json")
+  # View with list columns preserved
+  nested_df \%>\% view_vd(type = "json")
 }
 }
 }

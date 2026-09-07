@@ -109,63 +109,45 @@ view_in <- function(data, viewer = c("libreoffice", "gnumeric", "tad")) {
 ## }
 
 check_sf_geometry <- function(data) {
-
   if (any(class(data) %in% "sf")) {
-
     message("[INFO] `{misc}`: Removing sf geometry...")
 
     data_clean <-
       data %>%
       sf::st_drop_geometry()
-
   } else {
-
     data_clean <- data
-
   }
 
   return(data_clean)
-
 }
 
 check_grouped_data <- function(data) {
-
   if (dplyr::is_grouped_df(data)) {
-
     message("[INFO] `{misc}`: Ungrouping data...")
 
     data_clean <-
       data %>%
       dplyr::ungroup()
-
   } else {
-
     data_clean <- data
-
   }
 
   return(data_clean)
-
 }
 
 check_list_columns <- function(data) {
-
   if (any(sapply(data, class) %in% "list")) {
-
     message("[INFO] `{misc}`: Removing list-columns... You can choose `type = 'json'` to explore list-columns!")
 
     data_clean <-
       data %>%
       dplyr::select(-dplyr::where(is.list))
-
   } else {
-
     data_clean <- data
-
   }
 
   return(data_clean)
-
 }
 
 
@@ -356,30 +338,26 @@ check_list_columns <- function(data) {
 #' @examples
 #' \donttest{
 #' if (interactive()) {
-#' # View a data frame
-#' mtcars %>% view_vd()
+#'   # View a data frame
+#'   mtcars %>% view_vd()
 #'
-#' # View with custom title
-#' mtcars %>% view_vd(title = "Car Data")
+#'   # View with custom title
+#'   mtcars %>% view_vd(title = "Car Data")
 #'
-#' # View with list columns preserved
-#' nested_df %>% view_vd(type = "json")
+#'   # View with list columns preserved
+#'   nested_df %>% view_vd(type = "json")
 #' }
 #' }
 view_vd <- function(data, type = "csv", terminal = c("terminal", "auto", "iterm")) {
-
   terminal <- match.arg(terminal)
 
   if (!any(class(data) %in% "data.frame")) {
-
     stop("[ERROR] `{misc}`: Input must be a data.frame", call. = FALSE)
-
   }
 
   .check_view_vd_macos()
 
   if (interactive()) {
-
     misc_dir <- paste0(Sys.getenv("HOME"), "/.misc")
 
     if (!dir.exists(here::here(misc_dir))) {
@@ -393,7 +371,6 @@ view_vd <- function(data, type = "csv", terminal = c("terminal", "auto", "iterm"
     }
 
     if (type == "csv") {
-
       data_clean <-
         data %>%
         check_sf_geometry() %>%
@@ -405,17 +382,14 @@ view_vd <- function(data, type = "csv", terminal = c("terminal", "auto", "iterm"
       num_threads <- parallel::detectCores()
       data.table::setDTthreads(num_threads)
       data.table::fwrite(x = data_clean, file = tmp, nThread = num_threads, na = NA)
-
     }
 
     if (type == "json") {
-
       data_clean <- data
 
       extfile <- ".json"
       tmp <- construct_file_name(extfile)
       jsonlite::write_json(data_clean, tmp)
-
     }
 
     ## NOTE 2024-10-15: Use jsonlite::write_json to get list-columns
@@ -427,12 +401,10 @@ view_vd <- function(data, type = "csv", terminal = c("terminal", "auto", "iterm"
       glue::glue("vd --default-width=500 {tmp}")
     }
     system(.vd_macos_osascript(shell_cmd, terminal = terminal))
-
   }
 
   message("[INFO] `{misc}`: Your original data:")
   return(data)
-
 }
 
 #' View data frame in VisiData (non-interactive version)
@@ -456,34 +428,33 @@ view_vd <- function(data, type = "csv", terminal = c("terminal", "auto", "iterm"
 #'
 #' @export
 view_vd_nonint <- function(data, title = NULL, terminal = c("terminal", "auto", "iterm")) {
-
   terminal <- match.arg(terminal)
   .check_view_vd_macos()
 
-    ## bin <- Sys.which("st")
+  ## bin <- Sys.which("st")
 
-    if (is.null(title)) {
-      title <- "misc::view_vd"
-    }
+  if (is.null(title)) {
+    title <- "misc::view_vd"
+  }
 
-    if (class(data)[1] == "sf") {
-      message("Removing sf geometry...")
-      data_clean <-
-        sf::st_drop_geometry(data)
-    } else {
-      data_clean <- data
-    }
+  if (class(data)[1] == "sf") {
+    message("Removing sf geometry...")
+    data_clean <-
+      sf::st_drop_geometry(data)
+  } else {
+    data_clean <- data
+  }
 
-    tmp <- paste0("/Users/karloguidoni/Downloads/", "___", format(Sys.time(), "D%Y%m%dT%H%M%S"), "___misc___visidata.csv")
-    readr::write_csv(data_clean, tmp)
-    project_name <- basename(here::here())
-    .check_visidata_cli()
-    shell_cmd <- if (nzchar(Sys.which("vdk"))) {
-      glue::glue("vdk {project_name} {tmp}")
-    } else {
-      glue::glue("vd --default-width=500 {tmp}")
-    }
-    system(.vd_macos_osascript(shell_cmd, terminal = terminal))
+  tmp <- paste0("/Users/karloguidoni/Downloads/", "___", format(Sys.time(), "D%Y%m%dT%H%M%S"), "___misc___visidata.csv")
+  readr::write_csv(data_clean, tmp)
+  project_name <- basename(here::here())
+  .check_visidata_cli()
+  shell_cmd <- if (nzchar(Sys.which("vdk"))) {
+    glue::glue("vdk {project_name} {tmp}")
+  } else {
+    glue::glue("vd --default-width=500 {tmp}")
+  }
+  system(.vd_macos_osascript(shell_cmd, terminal = terminal))
   return(data)
 }
 
@@ -541,7 +512,6 @@ view_excel <- function(data, viewer = c("excel", "libreoffice", "gnumeric", "tad
 #'
 #' @export
 view_mapview_from_path <- function(path, preview = FALSE) {
-
   stopifnot(fs::file_exists(path))
 
   stopifnot(tolower(tools::file_ext(path)) == "shp" | tolower(tools::file_ext(path)) == "gpkg")
@@ -566,7 +536,6 @@ view_mapview_from_path <- function(path, preview = FALSE) {
     sf::read_sf()
 
   if (preview) {
-
     dinamic_map <-
       mapview::mapview(df, map.types = c("OpenStreetMap"))
 
@@ -578,9 +547,7 @@ view_mapview_from_path <- function(path, preview = FALSE) {
     )
 
     system(paste0("open ", tempmapfile))
-
   }
 
   misc::view_vd_nonint(df)
-
 }
