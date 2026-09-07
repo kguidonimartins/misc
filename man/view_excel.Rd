@@ -23,6 +23,7 @@ to the system clipboard.
 Other data-viewers:
 \code{\link[=tad_view]{tad_view()}},
 \code{\link[=view_in]{view_in()}},
+\code{\link[=view_qgis]{view_qgis()}},
 \code{\link[=view_vd]{view_vd()}},
 \code{\link[=view_vd_nonint]{view_vd_nonint()}}
 }

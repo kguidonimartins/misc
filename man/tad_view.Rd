@@ -31,6 +31,7 @@ if (interactive()) {
 Other data-viewers:
 \code{\link[=view_excel]{view_excel()}},
 \code{\link[=view_in]{view_in()}},
+\code{\link[=view_qgis]{view_qgis()}},
 \code{\link[=view_vd]{view_vd()}},
 \code{\link[=view_vd_nonint]{view_vd_nonint()}}
 }

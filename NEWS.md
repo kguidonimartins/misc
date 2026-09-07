@@ -2,12 +2,6 @@
 
 ## New helpers
 
-- **`intersect_filter_touch()`** — returns the rows of `x` whose geometries
-  touch any feature in the mask `y`, using `sf::st_intersects()` only. No
-  reprojection, clipping, or area computation is performed: geometries and
-  attributes of `x` are returned unchanged. The lightest-touch selection
-  strategy, condensed from the common `st_intersects() |> lengths() |> { . == 1 }`
-  idiom.
 - **`clean_geo()`** — reads a `.zip`/`.shp`/`.gpkg`/`.geojson`, drops Z/M
   dimensions, replaces non-ASCII characters in attribute columns, reprojects
   to a target CRS (default EPSG:4326) and writes the result to a
@@ -15,6 +9,22 @@
   extension of `output` and may differ from the input format. Replaces the
   standalone `R/prepare_zip_shapefiles.R` cleanup routine with a portable,
   testable function backed by `zip::zip()` instead of `system("zip -j ...")`.
+- **`fix_invalid_geometries()`** — reports rows with invalid geometries
+  (via `sf::st_is_valid()`) and repairs them with `sf::st_make_valid()`,
+  preserving attributes and the geometry column name; valid layers are
+  returned unchanged.
+- **`intersect_filter_touch()`** — returns the rows of `x` whose geometries
+  touch any feature in the mask `y`, using `sf::st_intersects()` only. No
+  reprojection, clipping, or area computation is performed: geometries and
+  attributes of `x` are returned unchanged. The lightest-touch selection
+  strategy, condensed from the common `st_intersects() |> lengths() |> { . == 1 }`
+  idiom.
+- **`remove_geom_holes()`** — removes polygon holes, optionally keeping holes
+  at or above a configurable `max_area`; adapted from `nngeo` under its MIT
+  license.
+- **`view_qgis()`** — opens `sf` objects in QGIS on macOS, with GeoPackage or
+  GeoJSON output and QGIS selection through `MISC_QGIS_APP` or
+  `options(misc.qgis_app)`.
 
 ## Fixes
 
