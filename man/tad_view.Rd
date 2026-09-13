@@ -29,6 +29,8 @@ if (interactive()) {
 }
 \seealso{
 Other data-viewers:
+\code{\link[=serve_plots]{serve_plots()}},
+\code{\link[=serve_plots_url]{serve_plots_url()}},
 \code{\link[=view_excel]{view_excel()}},
 \code{\link[=view_in]{view_in()}},
 \code{\link[=view_qgis]{view_qgis()}},

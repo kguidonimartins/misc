@@ -28,6 +28,8 @@ see \code{\link[=view_vd]{view_vd()}} for VisiData and terminal requirements.
 }
 \seealso{
 Other data-viewers:
+\code{\link[=serve_plots]{serve_plots()}},
+\code{\link[=serve_plots_url]{serve_plots_url()}},
 \code{\link[=tad_view]{tad_view()}},
 \code{\link[=view_excel]{view_excel()}},
 \code{\link[=view_in]{view_in()}},

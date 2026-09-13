@@ -43,6 +43,7 @@ Suggests:
     clipr,
     conflicted,
     covr,
+    httpgd,
     janitor,
     lexicon,
     magick,

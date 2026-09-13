@@ -22,6 +22,13 @@
 - **`remove_geom_holes()`** — removes polygon holes, optionally keeping holes
   at or above a configurable `max_area`; adapted from `nngeo` under its MIT
   license.
+- **`serve_plots()`** / **`serve_plots_url()`** — serve R plots over HTTP
+  via `httpgd` so they can be viewed in a browser on another device (for
+  example an iPad running a terminal over SSH or mosh). The advertised
+  hostname is resolved from `MISC_PLOTS_HOST`, `options(misc.plots_host)`, or
+  the Tailscale MagicDNS name, replacing the local mDNS name that `httpgd`
+  reports and that does not resolve over a VPN. Binds a free port by default
+  to avoid clashing with other local servers.
 - **`view_qgis()`** — opens `sf` objects in QGIS on macOS, with GeoPackage or
   GeoJSON output and QGIS selection through `MISC_QGIS_APP` or
   `options(misc.qgis_app)`.

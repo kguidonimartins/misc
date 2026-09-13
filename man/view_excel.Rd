@@ -21,6 +21,8 @@ to the system clipboard.
 }
 \seealso{
 Other data-viewers:
+\code{\link[=serve_plots]{serve_plots()}},
+\code{\link[=serve_plots_url]{serve_plots_url()}},
 \code{\link[=tad_view]{tad_view()}},
 \code{\link[=view_in]{view_in()}},
 \code{\link[=view_qgis]{view_qgis()}},
