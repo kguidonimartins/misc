@@ -22,6 +22,14 @@
 - **`remove_geom_holes()`** — removes polygon holes, optionally keeping holes
   at or above a configurable `max_area`; adapted from `nngeo` under its MIT
   license.
+- **`serve_html()`** / **`serve_map()`** / **`serve_html_stop()`** — serve
+  HTML widgets and rendered reports over HTTP so they can be opened in a
+  browser on another device. Accepts `mapview` maps, any `htmlwidget`
+  (`leaflet`, `plotly`, `DT`, `gt`), `sf` objects, and `.html` files already
+  on disk; an on-disk report is mounted together with its sibling asset
+  directory instead of being copied. One static server is reused per R
+  session, so every URL handed out stays valid and pages can be compared in
+  separate tabs. Hostname resolution is shared with `serve_plots()`.
 - **`serve_plots()`** / **`serve_plots_url()`** — serve R plots over HTTP
   via `httpgd` so they can be viewed in a browser on another device (for
   example an iPad running a terminal over SSH or mosh). The advertised

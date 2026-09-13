@@ -32,39 +32,42 @@ Check all available functions inside an interactive session using
 
 | ID | Function | Description | Family |
 |---:|:---|:---|:---|
-| 1 | `serve_plots()` | Serve R plots over HTTP for a remote browser | `data-viewers` |
-| 2 | `serve_plots_url()` | Recover the URL of a running plot server | `data-viewers` |
-| 3 | `tad_view()` | Alternative data.frame viewer using tad | `data-viewers` |
-| 4 | `view_excel()` | View data frame in Excel or other spreadsheet viewer | `data-viewers` |
-| 5 | `view_in()` | Alternative data.frame viewer | `data-viewers` |
-| 6 | `view_qgis()` | Open an sf object in QGIS | `data-viewers` |
-| 7 | `view_vd()` | View data in VisiData | `data-viewers` |
-| 8 | `view_vd_nonint()` | View data frame in VisiData (non-interactive version) | `data-viewers` |
-| 9 | `deduplicate_by()` | Remove duplicate rows based on specified grouping variables | `data-wrangling` |
-| 10 | `describe_data()` | Describe data | `data-wrangling` |
-| 11 | `read_all_sheets_then_save_csv()` | Read and save all excel sheets and save them to a CSV file | `excel-import` |
-| 12 | `read_all_xlsx_then_save_csv()` | Read all sheets from all excel files and save into CSV files | `excel-import` |
-| 13 | `read_sheet_then_save_csv()` | Read an excel sheet and save it to a CSV file | `excel-import` |
-| 14 | `clean_geo()` | Clean a spatial file and write a normalized copy | `geo-io` |
-| 15 | `read_gdb()` | Read layers from a file geodatabase (.gdb) | `geo-io` |
-| 16 | `read_geo()` | Read a geospatial file or dataset (auto-detect by extension) | `geo-io` |
-| 17 | `read_kmz()` | Read a KMZ file (KML in a ZIP) | `geo-io` |
-| 18 | `read_sf_zip()` | Read shapefile(s) inside a ZIP archive via GDAL | `geo-io` |
-| 19 | `fix_invalid_geometries()` | Fix invalid geometries in an sf object | `geo-tools` |
-| 20 | `intersect_filter_touch()` | Keep features that touch a mask layer | `geo-tools` |
-| 21 | `intersect_mask_filter_area()` | Clip features to a mask and drop border slivers by area ratio | `geo-tools` |
-| 22 | `quick_map()` | Create maps quickly | `geo-tools` |
-| 23 | `remove_geom_holes()` | Remove holes from polygon geometries | `geo-tools` |
-| 24 | `view_mapview_from_path()` | View spatial data from file path with optional map preview | `geo-tools` |
-| 25 | `filter_na()` | Easily filter NA values from data frames | `missing-data` |
-| 26 | `na_count()` | Count NA frequency in data | `missing-data` |
-| 27 | `na_viz()` | Visualize NA frequency in data | `missing-data` |
-| 28 | `remove_columns_based_on_NA()` | Remove columns based on NA values | `missing-data` |
-| 29 | `ipak()` | Load multiple CRAN and GitHub R packages | `package-management` |
-| 30 | `prefer()` | Defines preferred package::functions | `package-management` |
-| 31 | `add_gitignore()` | Add a gitignore file to the project root | `project-setup` |
-| 32 | `create_dirs()` | Create directories | `project-setup` |
-| 33 | `save_plot()` | Save a ggplot figure | `save-output` |
-| 34 | `save_temp_data()` | Save object as RDS file | `save-output` |
-| 35 | `trim_fig()` | Remove white spaces around figures | `save-output` |
-| 36 | `combine_words_ptbr()` | Combine words using ptbr rules | — |
+| 1 | `serve_html()` | Serve HTML widgets and reports to a remote browser | `data-viewers` |
+| 2 | `serve_html_stop()` | Stop the session HTML server | `data-viewers` |
+| 3 | `serve_map()` | Serve an interactive map to a remote browser | `data-viewers` |
+| 4 | `serve_plots()` | Serve R plots over HTTP for a remote browser | `data-viewers` |
+| 5 | `serve_plots_url()` | Recover the URL of a running plot server | `data-viewers` |
+| 6 | `tad_view()` | Alternative data.frame viewer using tad | `data-viewers` |
+| 7 | `view_excel()` | View data frame in Excel or other spreadsheet viewer | `data-viewers` |
+| 8 | `view_in()` | Alternative data.frame viewer | `data-viewers` |
+| 9 | `view_qgis()` | Open an sf object in QGIS | `data-viewers` |
+| 10 | `view_vd()` | View data in VisiData | `data-viewers` |
+| 11 | `view_vd_nonint()` | View data frame in VisiData (non-interactive version) | `data-viewers` |
+| 12 | `deduplicate_by()` | Remove duplicate rows based on specified grouping variables | `data-wrangling` |
+| 13 | `describe_data()` | Describe data | `data-wrangling` |
+| 14 | `read_all_sheets_then_save_csv()` | Read and save all excel sheets and save them to a CSV file | `excel-import` |
+| 15 | `read_all_xlsx_then_save_csv()` | Read all sheets from all excel files and save into CSV files | `excel-import` |
+| 16 | `read_sheet_then_save_csv()` | Read an excel sheet and save it to a CSV file | `excel-import` |
+| 17 | `clean_geo()` | Clean a spatial file and write a normalized copy | `geo-io` |
+| 18 | `read_gdb()` | Read layers from a file geodatabase (.gdb) | `geo-io` |
+| 19 | `read_geo()` | Read a geospatial file or dataset (auto-detect by extension) | `geo-io` |
+| 20 | `read_kmz()` | Read a KMZ file (KML in a ZIP) | `geo-io` |
+| 21 | `read_sf_zip()` | Read shapefile(s) inside a ZIP archive via GDAL | `geo-io` |
+| 22 | `fix_invalid_geometries()` | Fix invalid geometries in an sf object | `geo-tools` |
+| 23 | `intersect_filter_touch()` | Keep features that touch a mask layer | `geo-tools` |
+| 24 | `intersect_mask_filter_area()` | Clip features to a mask and drop border slivers by area ratio | `geo-tools` |
+| 25 | `quick_map()` | Create maps quickly | `geo-tools` |
+| 26 | `remove_geom_holes()` | Remove holes from polygon geometries | `geo-tools` |
+| 27 | `view_mapview_from_path()` | View spatial data from file path with optional map preview | `geo-tools` |
+| 28 | `filter_na()` | Easily filter NA values from data frames | `missing-data` |
+| 29 | `na_count()` | Count NA frequency in data | `missing-data` |
+| 30 | `na_viz()` | Visualize NA frequency in data | `missing-data` |
+| 31 | `remove_columns_based_on_NA()` | Remove columns based on NA values | `missing-data` |
+| 32 | `ipak()` | Load multiple CRAN and GitHub R packages | `package-management` |
+| 33 | `prefer()` | Defines preferred package::functions | `package-management` |
+| 34 | `add_gitignore()` | Add a gitignore file to the project root | `project-setup` |
+| 35 | `create_dirs()` | Create directories | `project-setup` |
+| 36 | `save_plot()` | Save a ggplot figure | `save-output` |
+| 37 | `save_temp_data()` | Save object as RDS file | `save-output` |
+| 38 | `trim_fig()` | Remove white spaces around figures | `save-output` |
+| 39 | `combine_words_ptbr()` | Combine words using ptbr rules | — |
