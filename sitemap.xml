@@ -34,6 +34,11 @@
 <url><loc>/reference/remove_geom_holes.html</loc></url>
 <url><loc>/reference/save_plot.html</loc></url>
 <url><loc>/reference/save_temp_data.html</loc></url>
+<url><loc>/reference/serve_html.html</loc></url>
+<url><loc>/reference/serve_html_stop.html</loc></url>
+<url><loc>/reference/serve_map.html</loc></url>
+<url><loc>/reference/serve_plots.html</loc></url>
+<url><loc>/reference/serve_plots_url.html</loc></url>
 <url><loc>/reference/tad_view.html</loc></url>
 <url><loc>/reference/trim_fig.html</loc></url>
 <url><loc>/reference/view_excel.html</loc></url>
