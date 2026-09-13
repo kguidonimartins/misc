@@ -42,6 +42,11 @@ if (interactive()) {
 }
 \seealso{
 Other data-viewers:
+\code{\link[=serve_html]{serve_html()}},
+\code{\link[=serve_html_stop]{serve_html_stop()}},
+\code{\link[=serve_map]{serve_map()}},
+\code{\link[=serve_plots]{serve_plots()}},
+\code{\link[=serve_plots_url]{serve_plots_url()}},
 \code{\link[=tad_view]{tad_view()}},
 \code{\link[=view_excel]{view_excel()}},
 \code{\link[=view_in]{view_in()}},

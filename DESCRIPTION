@@ -30,6 +30,7 @@ Imports:
     usethis,
     readr,
     mapview,
+    methods,
     sf,
     rlang,
     jsonlite,
@@ -43,7 +44,11 @@ Suggests:
     clipr,
     conflicted,
     covr,
+    htmlwidgets,
+    httpgd,
+    httpuv,
     janitor,
+    leaflet,
     lexicon,
     magick,
     naniar,
@@ -53,6 +58,7 @@ Suggests:
     stringr,
     testthat,
     textclean,
+    withr,
     tidyselect,
     lintr
 License: MIT + file LICENSE
