@@ -103,3 +103,41 @@ test_that("serve_plots advertises the configured host and a free port", {
   port <- httpgd::hgd_details()$port
   expect_gt(port, 0L)
 })
+
+test_that("URL status is NA when the host cannot be reached", {
+  expect_true(is.na(.serve_url_status("http://misc-nao-existe.invalid:1/live")))
+})
+
+test_that("an unreachable URL is announced without a warning", {
+  url <- "http://misc-nao-existe.invalid:1/live?token=abc"
+  expect_no_warning(.serve_announce(url, quiet = TRUE))
+  expect_identical(.serve_announce(url, quiet = TRUE), url)
+})
+
+test_that("the announced URL sits on a line of its own", {
+  url <- "http://misc-nao-existe.invalid:1/live?token=abc"
+  expect_message(
+    .serve_announce(url, label = "Plots served at"),
+    paste0("Plots served at\n", url),
+    fixed = TRUE
+  )
+})
+
+test_that("a served URL answers, and a clipped one does not", {
+  skip_if_not_installed("httpgd")
+  skip_on_cran()
+  skip_if_not(isTRUE(capabilities("libcurl")), "libcurl not available")
+
+  on.exit({
+    while (grDevices::dev.cur() > 1L) grDevices::dev.off()
+  }, add = TRUE)
+
+  url <- serve_plots(host = "127.0.0.1", bind = "127.0.0.1", quiet = TRUE)
+
+  expect_identical(.serve_url_status(url), 200L)
+  # The shapes a truncated or hand-typed URL takes on the way to a browser.
+  expect_identical(.serve_url_status(sub("/live.*$", "/", url)), 404L)
+  expect_identical(.serve_url_status(sub("\\?.*$", "/", url)), 404L)
+  expect_identical(.serve_url_status(sub("\\?.*$", "", url)), 401L)
+  expect_warning(.serve_warn_bad_status(sub("/live.*$", "/", url)), "HTTP 404")
+})

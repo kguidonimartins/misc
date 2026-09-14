@@ -34,6 +34,10 @@
 #' Pages are served on a background thread, so they stay reachable while R is
 #' busy computing.
 #'
+#' The URL is messaged on a line of its own and probed once before it is
+#' returned, for the same reasons given under `Troubleshooting a 404` in
+#' [serve_plots()].
+#'
 #' Unlike [serve_plots()], a static server has no access token. Page names
 #' carry a random component instead, and directory listing is disabled, so a
 #' URL cannot be guessed from the port alone. Binding to `0.0.0.0` still
@@ -72,11 +76,7 @@ serve_html <- function(x, host = NULL, name = NULL, port = NULL,
   rel <- .serve_html_publish(x, name = name, server = server)
   url <- .serve_html_url(rel, host = host, server = server)
 
-  if (!quiet) {
-    message("[INFO] `{misc}`: Page served at ", url)
-  }
-
-  invisible(url)
+  .serve_announce(url, quiet = quiet, label = "Page served at")
 }
 
 #' Serve an interactive map to a remote browser

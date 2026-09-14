@@ -42,6 +42,20 @@
 #' Binding to `0.0.0.0` exposes the device to every machine that can reach
 #' this host on that port. Keep `token = TRUE` unless the network is trusted.
 #'
+#' @section Troubleshooting a 404:
+#' `httpgd` serves the plot viewer at `/live` and nothing else, so the URL
+#' has to be opened whole. A bare `host:port`, a trailing slash after
+#' `/live`, or a URL clipped by a terminal that wrapped it all answer
+#' `404 Not Found`; a missing or stale `token` answers `401 Unauthorized`
+#' instead. The URL is therefore messaged on a line of its own, so tapping
+#' it in a wrapped terminal does not hand the browser a fragment, and it is
+#' probed once before being returned: an HTTP error from this machine is
+#' reported as a warning rather than left for the browser to find.
+#'
+#' Pinning `port` and `token` keeps the URL stable across sessions, which is
+#' worth doing when the remote browser bookmarks it:
+#' `serve_plots(port = 7070, token = "plots")`.
+#'
 #' @family data-viewers
 #' @seealso [serve_plots_url()]
 #' @export
@@ -77,11 +91,7 @@ serve_plots <- function(host = NULL, port = 0, bind = "0.0.0.0",
 
   url <- .serve_plots_build_url(host)
 
-  if (!quiet) {
-    message("[INFO] `{misc}`: Plots served at ", url)
-  }
-
-  invisible(url)
+  .serve_announce(url, quiet = quiet, label = "Plots served at")
 }
 
 #' Recover the URL of a running plot server
@@ -109,11 +119,7 @@ serve_plots_url <- function(host = NULL, quiet = FALSE) {
 
   url <- .serve_plots_build_url(host)
 
-  if (!quiet) {
-    message("[INFO] `{misc}`: Plots served at ", url)
-  }
-
-  invisible(url)
+  .serve_announce(url, quiet = quiet, label = "Plots served at")
 }
 
 .serve_plots_build_url <- function(host = NULL) {
@@ -147,6 +153,69 @@ serve_plots_url <- function(host = NULL, quiet = FALSE) {
   }
 
   httpgd::hgd_url(host = host)
+}
+
+# Message a served URL and check that it actually answers.
+#
+# The URL goes on a line of its own: prefixed on the same line it overflows a
+# narrow terminal, and a terminal that wraps it hands a clipped fragment to
+# whatever opens the link, which is the usual source of a surprise 404.
+.serve_announce <- function(url, quiet = FALSE, label = "Served at") {
+  if (!quiet) {
+    message("[INFO] `{misc}`: ", label, "\n", url)
+  }
+
+  .serve_warn_bad_status(url)
+
+  invisible(url)
+}
+
+# HTTP status of `url`, or NA when it cannot be asked for. A host that is
+# meant to be reachable only from another device does not resolve or connect
+# here, and that is not an error worth reporting.
+.serve_url_status <- function(url, timeout = 2L) {
+  if (!isTRUE(capabilities("libcurl"))) {
+    return(NA_integer_)
+  }
+  headers <- tryCatch(
+    suppressWarnings(
+      curlGetHeaders(url, redirect = FALSE, timeout = timeout)
+    ),
+    error = function(e) NULL
+  )
+  status <- attr(headers, "status")
+  if (is.null(status)) {
+    return(NA_integer_)
+  }
+  as.integer(status)
+}
+
+.serve_warn_bad_status <- function(url) {
+  status <- .serve_url_status(url)
+  if (is.na(status) || status == 200L) {
+    return(invisible(status))
+  }
+
+  hint <- if (status == 401L) {
+    "the access token is missing or stale; use the URL exactly as printed."
+  } else if (status == 404L) {
+    paste0(
+      "that path is not served; open the URL whole, exactly as printed. ",
+      "Clipping it or adding a trailing slash is enough to get a 404."
+    )
+  } else {
+    "the server answered, but not with the viewer page."
+  }
+
+  warning(
+    paste0(
+      "[WARNING] `{misc}`: ", url, " answered HTTP ", status,
+      " from this machine: ", hint
+    ),
+    call. = FALSE
+  )
+
+  invisible(status)
 }
 
 .serve_plots_host <- function(host = NULL) {

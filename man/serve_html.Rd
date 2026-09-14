@@ -51,6 +51,10 @@ the server down earlier.
 Pages are served on a background thread, so they stay reachable while R is
 busy computing.
 
+The URL is messaged on a line of its own and probed once before it is
+returned, for the same reasons given under \verb{Troubleshooting a 404} in
+\code{\link[=serve_plots]{serve_plots()}}.
+
 Unlike \code{\link[=serve_plots]{serve_plots()}}, a static server has no access token. Page names
 carry a random component instead, and directory listing is disabled, so a
 URL cannot be guessed from the port alone. Binding to \verb{0.0.0.0} still
