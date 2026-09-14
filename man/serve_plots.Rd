@@ -62,6 +62,22 @@ stop it, or \code{\link[=serve_plots_url]{serve_plots_url()}} to recover the URL
 Binding to \verb{0.0.0.0} exposes the device to every machine that can reach
 this host on that port. Keep \code{token = TRUE} unless the network is trusted.
 }
+\section{Troubleshooting a 404}{
+
+\code{httpgd} serves the plot viewer at \verb{/live} and nothing else, so the URL
+has to be opened whole. A bare \code{host:port}, a trailing slash after
+\verb{/live}, or a URL clipped by a terminal that wrapped it all answer
+\verb{404 Not Found}; a missing or stale \code{token} answers \verb{401 Unauthorized}
+instead. The URL is therefore messaged on a line of its own, so tapping
+it in a wrapped terminal does not hand the browser a fragment, and it is
+probed once before being returned: an HTTP error from this machine is
+reported as a warning rather than left for the browser to find.
+
+Pinning \code{port} and \code{token} keeps the URL stable across sessions, which is
+worth doing when the remote browser bookmarks it:
+\code{serve_plots(port = 7070, token = "plots")}.
+}
+
 \examples{
 \donttest{
 if (interactive()) {
