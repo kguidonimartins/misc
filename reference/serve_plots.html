@@ -122,6 +122,22 @@ stop it, or <code><a href="serve_plots_url.html">serve_plots_url()</a></code> to
 <p>Binding to <code>0.0.0.0</code> exposes the device to every machine that can reach
 this host on that port. Keep <code>token = TRUE</code> unless the network is trusted.</p>
     </div>
+    <div id="troubleshooting-a-">
+    <h2>Troubleshooting a 404</h2>
+
+
+<p><code>httpgd</code> serves the plot viewer at <code>/live</code> and nothing else, so the URL
+has to be opened whole. A bare <code>host:port</code>, a trailing slash after
+<code>/live</code>, or a URL clipped by a terminal that wrapped it all answer
+<code>404 Not Found</code>; a missing or stale <code>token</code> answers <code>401 Unauthorized</code>
+instead. The URL is therefore messaged on a line of its own, so tapping
+it in a wrapped terminal does not hand the browser a fragment, and it is
+probed once before being returned: an HTTP error from this machine is
+reported as a warning rather than left for the browser to find.</p>
+<p>Pinning <code>port</code> and <code>token</code> keeps the URL stable across sessions, which is
+worth doing when the remote browser bookmarks it:
+<code>serve_plots(port = 7070, token = "plots")</code>.</p>
+    </div>
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index"><p><code><a href="serve_plots_url.html">serve_plots_url()</a></code></p>

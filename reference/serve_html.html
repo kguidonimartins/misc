@@ -117,6 +117,9 @@ different browser tabs. Files are served from a session directory below
 the server down earlier.</p>
 <p>Pages are served on a background thread, so they stay reachable while R is
 busy computing.</p>
+<p>The URL is messaged on a line of its own and probed once before it is
+returned, for the same reasons given under <code>Troubleshooting a 404</code> in
+<code><a href="serve_plots.html">serve_plots()</a></code>.</p>
 <p>Unlike <code><a href="serve_plots.html">serve_plots()</a></code>, a static server has no access token. Page names
 carry a random component instead, and directory listing is disabled, so a
 URL cannot be guessed from the port alone. Binding to <code>0.0.0.0</code> still
