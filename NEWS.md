@@ -10,6 +10,10 @@
   previous one-row-per-fragment behaviour. Also, `y` is now intersected as
   geometry only, so its attributes no longer leak into `clipped` and no
   longer collide with `x`'s attribute names ([#8](https://github.com/kguidonimartins/misc/issues/8)).
+  Fixed a bug in this same change where a `GEOMETRYCOLLECTION` decomposing
+  into more than one polygon during dissolve was assigned back into the
+  clipped `sfc` by position, silently recycling and mixing fragments across
+  unrelated `x_id`s ([#10](https://github.com/kguidonimartins/misc/issues/10)).
 
 ## New helpers
 

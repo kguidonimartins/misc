@@ -208,12 +208,10 @@ intersect_mask_filter_area <- function(
 }
 
 .misc_dissolve_clipped <- function(clipped, key) {
-  geom <- sf::st_geometry(clipped)
-  gc_idx <- which(as.character(sf::st_geometry_type(geom)) == "GEOMETRYCOLLECTION")
-  if (length(gc_idx)) {
-    geom[gc_idx] <- sf::st_collection_extract(geom[gc_idx], "POLYGON")
+  is_gc <- sf::st_geometry_type(clipped, by_geometry = TRUE) == "GEOMETRYCOLLECTION"
+  if (any(is_gc)) {
+    clipped <- sf::st_collection_extract(clipped, "POLYGON", warn = FALSE)
   }
-  sf::st_geometry(clipped) <- geom
   clipped <- suppressWarnings(sf::st_make_valid(clipped))
 
   attr_cols <- setdiff(names(sf::st_drop_geometry(clipped)), c(key, "area_clip_part"))
