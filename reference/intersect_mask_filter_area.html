@@ -20,7 +20,7 @@ below min_area_ratio."><!-- mathjax --><script src="https://cdnjs.cloudflare.com
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">misc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
@@ -65,7 +65,8 @@ below <code>min_area_ratio</code>.</p>
 <span>  x_id <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  crs <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  min_area_ratio <span class="op">=</span> <span class="fl">0.01</span>,</span>
-<span>  repair <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  repair <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  dissolve <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -103,13 +104,20 @@ working outside Brazil.</p></dd>
 <dd><p>If <code>TRUE</code>, apply <code><a href="https://r-spatial.github.io/sf/reference/valid.html" class="external-link">sf::st_make_valid()</a></code> to <code>x</code> and <code>y</code> after
 transforming (warnings are suppressed per call).</p></dd>
 
+
+<dt id="arg-dissolve">dissolve<a class="anchor" aria-label="anchor" href="#arg-dissolve"></a></dt>
+<dd><p>If <code>TRUE</code> (default), union clipped fragments so <code>clipped</code>
+has one row per kept <code>x_id</code> (see Details). <code>FALSE</code> returns one row per
+<code>x</code>-<code>y</code> fragment, as in versions prior to 0.1.0.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
     <p>A list with <code>clipped</code>, an <a href="https://r-spatial.github.io/sf/reference/sf.html" class="external-link">sf::sf</a> object with intersection
-geometries that passed the threshold, and <code>summary</code>, a <code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">dplyr::tibble()</a></code>
-with the ID column, <code>area_full</code>, <code>area_clip</code>, <code>area_ratio</code>, and logical
-<code>keep</code>.</p>
+geometries that passed the threshold (one row per <code>x_id</code> when
+<code>dissolve = TRUE</code>, one row per fragment when <code>dissolve = FALSE</code>), and
+<code>summary</code>, a <code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">dplyr::tibble()</a></code> with the ID column, <code>area_full</code>,
+<code>area_clip</code>, <code>area_ratio</code>, and logical <code>keep</code>.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -122,6 +130,18 @@ are not meaningful for an area ratio. For example, <code>min_area_ratio = 0.5</c
 retains a feature only when at least
 half of its area overlaps the mask; the default <code>0.01</code> drops only very small
 edge overlaps.</p>
+<p><code>y</code> is treated as a mask: only its geometry is used in
+<code><a href="https://r-spatial.github.io/sf/reference/geos_binary_ops.html" class="external-link">sf::st_intersection()</a></code>, so attributes of <code>y</code> never appear in <code>clipped</code> and
+never collide with attributes of <code>x</code>.</p>
+<p>When <code>dissolve = TRUE</code> (the default), <code>clipped</code> has exactly one row per
+kept <code>x_id</code>: fragments produced by misaligned boundaries between <code>x</code> and
+<code>y</code> (for example two administrative meshes from different vintages) are
+unioned back into a single feature. Non-geometry attributes of <code>x</code> are
+assumed constant within an <code>x_id</code> and reduced with the first value per
+group; if an attribute actually varies within an <code>x_id</code>, a <code><a href="https://rdrr.io/r/base/warning.html" class="external-link">warning()</a></code>
+names the offending column(s) instead of silently picking one value.
+<code>dissolve = FALSE</code> keeps the previous behaviour: one row per surviving
+<code>x</code>-<code>y</code> fragment.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
