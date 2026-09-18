@@ -134,6 +134,45 @@ imfa_sliver_case <- function() {
   list(x = x, y = y)
 }
 
+test_that(".misc_dissolve_clipped não recicla pedaços entre GEOMETRYCOLLECTION de tamanhos diferentes", {
+  # Regressão #10: st_collection_extract() numa fatia do sfc não preserva
+  # correspondência 1:1 quando uma GEOMETRYCOLLECTION se decompõe em N > 1
+  # polígonos: geom[gc_idx] <- valor_maior recicla silenciosamente e mistura
+  # pedaços entre grupos diferentes.
+  sq <- function(x0, y0, s) {
+    ring <- matrix(
+      c(x0, y0, x0 + s, y0, x0 + s, y0 + s, x0, y0 + s, x0, y0),
+      ncol = 2,
+      byrow = TRUE
+    )
+    sf::st_polygon(list(ring))
+  }
+  crs <- imfa_metric_crs()
+  # grupo "A": GEOMETRYCOLLECTION com 2 polígonos disjuntos (área 4 + 9 = 13)
+  gc_a <- sf::st_geometrycollection(list(sq(0, 0, 2), sq(0, 100, 3)))
+  # grupo "B": um único polígono (área 5x1 = 5)
+  poly_b <- sf::st_polygon(list(matrix(
+    c(50, 0, 55, 0, 55, 1, 50, 1, 50, 0),
+    ncol = 2,
+    byrow = TRUE
+  )))
+  # grupo "C": GEOMETRYCOLLECTION com 3 polígonos disjuntos (área 1+1+1 = 3)
+  gc_c <- sf::st_geometrycollection(list(sq(80, 0, 1), sq(80, 50, 1), sq(80, 100, 1)))
+
+  clipped <- sf::st_sf(
+    id = c("A", "B", "C"),
+    geometry = sf::st_sfc(gc_a, poly_b, gc_c, crs = crs)
+  )
+
+  out <- misc:::.misc_dissolve_clipped(clipped, "id")
+  areas <- stats::setNames(as.numeric(sf::st_area(out)), out$id)
+
+  expect_equal(nrow(out), 3L)
+  expect_equal(unname(areas["A"]), 13, tolerance = 1e-6)
+  expect_equal(unname(areas["B"]), 5, tolerance = 1e-6)
+  expect_equal(unname(areas["C"]), 3, tolerance = 1e-6)
+})
+
 test_that("dissolve = TRUE devolve 1 linha por x_id em fronteira serrilhada", {
   crs <- imfa_metric_crs()
   case <- imfa_sliver_case()
