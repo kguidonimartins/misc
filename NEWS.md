@@ -1,4 +1,15 @@
-# misc 0.0.7
+# misc 0.1.0
+
+## Breaking changes
+
+- **`intersect_mask_filter_area()`** — `clipped` now returns one row per
+  kept `x_id` by default (`dissolve = TRUE`): fragments produced when `x`
+  and `y` have misaligned boundaries (for example two administrative meshes
+  from different vintages) are unioned into a single feature instead of
+  being left as separate slivers. Pass `dissolve = FALSE` to recover the
+  previous one-row-per-fragment behaviour. Also, `y` is now intersected as
+  geometry only, so its attributes no longer leak into `clipped` and no
+  longer collide with `x`'s attribute names ([#8](https://github.com/kguidonimartins/misc/issues/8)).
 
 ## New helpers
 

@@ -10,7 +10,8 @@ intersect_mask_filter_area(
   x_id = NULL,
   crs = NULL,
   min_area_ratio = 0.01,
-  repair = TRUE
+  repair = TRUE,
+  dissolve = TRUE
 )
 }
 \arguments{
@@ -32,12 +33,17 @@ working outside Brazil.}
 
 \item{repair}{If \code{TRUE}, apply \code{\link[sf:st_make_valid]{sf::st_make_valid()}} to \code{x} and \code{y} after
 transforming (warnings are suppressed per call).}
+
+\item{dissolve}{If \code{TRUE} (default), union clipped fragments so \code{clipped}
+has one row per kept \code{x_id} (see Details). \code{FALSE} returns one row per
+\code{x}-\code{y} fragment, as in versions prior to 0.1.0.}
 }
 \value{
 A list with \code{clipped}, an \link[sf:sf]{sf::sf} object with intersection
-geometries that passed the threshold, and \code{summary}, a \code{\link[dplyr:tibble]{dplyr::tibble()}}
-with the ID column, \code{area_full}, \code{area_clip}, \code{area_ratio}, and logical
-\code{keep}.
+geometries that passed the threshold (one row per \code{x_id} when
+\code{dissolve = TRUE}, one row per fragment when \code{dissolve = FALSE}), and
+\code{summary}, a \code{\link[dplyr:tibble]{dplyr::tibble()}} with the ID column, \code{area_full},
+\code{area_clip}, \code{area_ratio}, and logical \code{keep}.
 }
 \description{
 Transforms both layers to a projected CRS, keeps features in \code{x} that touch
@@ -55,6 +61,20 @@ are not meaningful for an area ratio. For example, \code{min_area_ratio = 0.5}
 retains a feature only when at least
 half of its area overlaps the mask; the default \code{0.01} drops only very small
 edge overlaps.
+
+\code{y} is treated as a mask: only its geometry is used in
+\code{\link[sf:st_intersection]{sf::st_intersection()}}, so attributes of \code{y} never appear in \code{clipped} and
+never collide with attributes of \code{x}.
+
+When \code{dissolve = TRUE} (the default), \code{clipped} has exactly one row per
+kept \code{x_id}: fragments produced by misaligned boundaries between \code{x} and
+\code{y} (for example two administrative meshes from different vintages) are
+unioned back into a single feature. Non-geometry attributes of \code{x} are
+assumed constant within an \code{x_id} and reduced with the first value per
+group; if an attribute actually varies within an \code{x_id}, a \code{warning()}
+names the offending column(s) instead of silently picking one value.
+\code{dissolve = FALSE} keeps the previous behaviour: one row per surviving
+\code{x}-\code{y} fragment.
 }
 \examples{
 \donttest{
