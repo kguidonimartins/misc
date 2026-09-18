@@ -54,6 +54,20 @@
 #' half of its area overlaps the mask; the default `0.01` drops only very small
 #' edge overlaps.
 #'
+#' `y` is treated as a mask: only its geometry is used in
+#' [sf::st_intersection()], so attributes of `y` never appear in `clipped` and
+#' never collide with attributes of `x`.
+#'
+#' When `dissolve = TRUE` (the default), `clipped` has exactly one row per
+#' kept `x_id`: fragments produced by misaligned boundaries between `x` and
+#' `y` (for example two administrative meshes from different vintages) are
+#' unioned back into a single feature. Non-geometry attributes of `x` are
+#' assumed constant within an `x_id` and reduced with the first value per
+#' group; if an attribute actually varies within an `x_id`, a `warning()`
+#' names the offending column(s) instead of silently picking one value.
+#' `dissolve = FALSE` keeps the previous behaviour: one row per surviving
+#' `x`-`y` fragment.
+#'
 #' @param x An [sf::sf] object with `POLYGON` or `MULTIPOLYGON` geometries.
 #' @param y An [sf::sf] mask layer with polygon geometries.
 #' @param x_id Name of the column in `x` with unique identifiers. If `NULL`
@@ -67,15 +81,19 @@
 #'   `0.01` (about 1% of the feature area inside the mask).
 #' @param repair If `TRUE`, apply [sf::st_make_valid()] to `x` and `y` after
 #'   transforming (warnings are suppressed per call).
+#' @param dissolve If `TRUE` (default), union clipped fragments so `clipped`
+#'   has one row per kept `x_id` (see Details). `FALSE` returns one row per
+#'   `x`-`y` fragment, as in versions prior to 0.1.0.
 #'
 #' @return A list with `clipped`, an [sf::sf] object with intersection
-#'   geometries that passed the threshold, and `summary`, a [dplyr::tibble()]
-#'   with the ID column, `area_full`, `area_clip`, `area_ratio`, and logical
-#'   `keep`.
+#'   geometries that passed the threshold (one row per `x_id` when
+#'   `dissolve = TRUE`, one row per fragment when `dissolve = FALSE`), and
+#'   `summary`, a [dplyr::tibble()] with the ID column, `area_full`,
+#'   `area_clip`, `area_ratio`, and logical `keep`.
 #'
-#' @importFrom dplyr filter group_by if_else mutate semi_join slice summarise first tibble
+#' @importFrom dplyr across all_of filter first group_by if_else mutate n_distinct semi_join slice summarise tibble
 #' @importFrom rlang .data
-#' @importFrom sf st_area st_crs st_drop_geometry st_geometry st_geometry_type st_intersection st_intersects st_make_valid st_transform
+#' @importFrom sf st_area st_cast st_collection_extract st_crs st_drop_geometry st_geometry st_geometry_type st_intersection st_intersects st_make_valid st_transform
 #'
 #' @family geo-tools
 #'
@@ -108,7 +126,8 @@ intersect_mask_filter_area <- function(
   x_id = NULL,
   crs = NULL,
   min_area_ratio = 0.01,
-  repair = TRUE
+  repair = TRUE,
+  dissolve = TRUE
 ) {
   if (!inherits(x, "sf") || !inherits(y, "sf")) {
     stop("`x` and `y` must be sf objects.", call. = FALSE)
@@ -152,7 +171,7 @@ intersect_mask_filter_area <- function(
     cand,
     area_full = as.numeric(sf::st_area(sf::st_geometry(cand)))
   )
-  inter <- suppressWarnings(sf::st_intersection(cand, ym))
+  inter <- suppressWarnings(sf::st_intersection(cand, sf::st_geometry(ym)))
   inter <- dplyr::mutate(
     inter,
     area_clip_part = as.numeric(sf::st_area(sf::st_geometry(inter)))
@@ -181,5 +200,54 @@ intersect_mask_filter_area <- function(
     by = key
   )
 
+  if (dissolve && nrow(clipped)) {
+    clipped <- .misc_dissolve_clipped(clipped, key)
+  }
+
   list(clipped = clipped, summary = summary)
+}
+
+.misc_dissolve_clipped <- function(clipped, key) {
+  geom <- sf::st_geometry(clipped)
+  gc_idx <- which(as.character(sf::st_geometry_type(geom)) == "GEOMETRYCOLLECTION")
+  if (length(gc_idx)) {
+    geom[gc_idx] <- sf::st_collection_extract(geom[gc_idx], "POLYGON")
+  }
+  sf::st_geometry(clipped) <- geom
+  clipped <- suppressWarnings(sf::st_make_valid(clipped))
+
+  attr_cols <- setdiff(names(sf::st_drop_geometry(clipped)), c(key, "area_clip_part"))
+  if (length(attr_cols)) {
+    n_distinct_by_group <- clipped |>
+      sf::st_drop_geometry() |>
+      dplyr::group_by(.data[[key]]) |>
+      dplyr::summarise(
+        dplyr::across(dplyr::all_of(attr_cols), dplyr::n_distinct),
+        .groups = "drop"
+      )
+    inconsistent <- attr_cols[vapply(
+      attr_cols,
+      function(col) any(n_distinct_by_group[[col]] > 1L),
+      logical(1)
+    )]
+    if (length(inconsistent)) {
+      warning(
+        sprintf(
+          "Attribute(s) %s vary within the same `%s`; keeping the first value per group.",
+          paste0("`", inconsistent, "`", collapse = ", "),
+          key
+        ),
+        call. = FALSE
+      )
+    }
+  }
+
+  clipped |>
+    dplyr::group_by(.data[[key]]) |>
+    dplyr::summarise(
+      dplyr::across(dplyr::all_of(attr_cols), dplyr::first),
+      .groups = "drop"
+    ) |>
+    sf::st_make_valid() |>
+    sf::st_cast("MULTIPOLYGON")
 }

@@ -112,6 +112,79 @@ test_that("x_id preserva agrupamento e filtra clipped por linha mantida", {
   expect_equal(sort(strict$summary$mun[strict$summary$keep]), "A")
 })
 
+imfa_sliver_case <- function() {
+  ring_x <- matrix(c(0, 0, 10, 0, 10, 10, 0, 10, 0, 0), ncol = 2, byrow = TRUE)
+  x <- sf::st_sf(
+    id = "A",
+    geometry = sf::st_sfc(sf::st_polygon(list(ring_x)), crs = imfa_metric_crs())
+  )
+  polys <- lapply(seq(0, 9, by = 1), function(i) {
+    x_right <- 10.3 - (i %% 2) * 0.4
+    ring <- matrix(
+      c(-5, i, x_right, i, x_right, i + 1, -5, i + 1, -5, i),
+      ncol = 2,
+      byrow = TRUE
+    )
+    sf::st_polygon(list(ring))
+  })
+  y <- sf::st_sf(
+    mask_id = seq_along(polys),
+    geometry = sf::st_sfc(polys, crs = imfa_metric_crs())
+  )
+  list(x = x, y = y)
+}
+
+test_that("dissolve = TRUE devolve 1 linha por x_id em fronteira serrilhada", {
+  crs <- imfa_metric_crs()
+  case <- imfa_sliver_case()
+  out <- intersect_mask_filter_area(
+    case$x,
+    case$y,
+    x_id = "id",
+    crs = crs,
+    min_area_ratio = 0.01
+  )
+  expect_equal(nrow(out$clipped), length(unique(out$clipped$id)))
+  expect_equal(nrow(out$clipped), 1L)
+  expect_true(all(sf::st_is_valid(out$clipped)))
+  expect_false(any(c("mask_id") %in% names(out$clipped)))
+})
+
+test_that("dissolve = FALSE preserva 1 linha por fragmento", {
+  crs <- imfa_metric_crs()
+  case <- imfa_sliver_case()
+  out <- intersect_mask_filter_area(
+    case$x,
+    case$y,
+    x_id = "id",
+    crs = crs,
+    min_area_ratio = 0.01,
+    dissolve = FALSE
+  )
+  expect_gt(nrow(out$clipped), 1L)
+  expect_equal(length(unique(out$clipped$id)), 1L)
+})
+
+test_that("dissolve = TRUE emite warning quando atributo de x varia no grupo", {
+  crs <- imfa_metric_crs()
+  case <- imfa_sliver_case()
+  x_dup <- dplyr::bind_rows(case$x, case$x)
+  x_dup$label <- c("um", "dois")
+  x_dup$id <- c("A", "A")
+
+  expect_warning(
+    out <- intersect_mask_filter_area(
+      x_dup,
+      case$y,
+      x_id = "id",
+      crs = crs,
+      min_area_ratio = 0.01
+    ),
+    "`label`.*vary within the same `id`"
+  )
+  expect_equal(nrow(out$clipped), 1L)
+})
+
 test_that("intersect_mask_filter_area works on geobr municipalities x Caatinga (CE/RN)", {
   skip_if_not_installed("geobr")
   skip_on_cran()
