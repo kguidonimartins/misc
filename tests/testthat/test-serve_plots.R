@@ -34,6 +34,8 @@ test_that("tailscale DNS name is NULL for unusable payloads", {
 })
 
 test_that("tailscale CLI lookup falls back to known install paths", {
+  # hide any tailscale installed on PATH so only `candidates` are consulted
+  withr::local_envvar(PATH = withr::local_tempdir())
   missing <- tempfile("misc-ts-missing-")
   expect_null(.tailscale_cli(candidates = missing))
 

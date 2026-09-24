@@ -4,7 +4,7 @@
 \alias{read_geo}
 \title{Read a geospatial file or dataset (auto-detect by extension)}
 \usage{
-read_geo(path, layer = NULL, quiet = TRUE, ...)
+read_geo(path, layer = NULL, quiet = TRUE, by_bbox = NULL, ...)
 }
 \arguments{
 \item{path}{Path to a spatial file or a \code{.gdb} directory.}
@@ -12,6 +12,21 @@ read_geo(path, layer = NULL, quiet = TRUE, ...)
 \item{layer}{Passed to multi-layer GDAL readers. Ignored for \code{.zip} and \code{.kmz}.}
 
 \item{quiet}{Passed to \code{\link[sf:read_sf]{sf::read_sf()}}.}
+
+\item{by_bbox}{If \code{NULL} (default), every feature is read. Otherwise an
+\code{sf}, \code{sfc}, \code{bbox} or named numeric vector (\code{xmin}, \code{ymin}, \code{xmax},
+\code{ymax}) whose bounding box limits the features read: only features that
+intersect it are returned, filtered by GDAL at read time through the
+\code{wkt_filter} argument of \code{\link[sf:st_read]{sf::st_read()}}. The bounding box is
+reprojected to each layer's CRS; if it has no CRS, its coordinates are
+assumed to be in the layer's CRS. If the layer has no CRS it can be
+reprojected to (no \code{.prj}, or an undefined \code{LOCAL_CS}), the coordinates
+are used as-is with a warning. Features with empty geometry are
+dropped. Layers without a geometry column (e.g. a shapefile made of a
+\code{.dbf} only, or an attribute table in a GeoPackage) cannot be filtered:
+they are read in full with a warning. When set, \code{nrows_aka_features}
+reports the number of features read, not the layer total. Cannot be
+combined with \code{wkt_filter} in \code{...}.}
 
 \item{...}{Additional arguments passed to \code{\link[sf:read_sf]{sf::read_sf()}}.}
 }
@@ -40,6 +55,11 @@ if (file.exists(f("misc_example.gpkg"))) read_geo(f("misc_example.gpkg"))
 if (file.exists(f("misc_example.geojson"))) read_geo(f("misc_example.geojson"))
 if (file.exists(f("misc_example.shp"))) read_geo(f("misc_example.shp"))
 if (dir.exists(f("misc_example.gdb"))) read_geo(f("misc_example.gdb"), layer = "OGRGeoJSON")
+
+# read only the features that intersect a bounding box
+nc <- system.file("shape/nc.shp", package = "sf")
+bb <- sf::st_bbox(c(xmin = -80, ymin = 35, xmax = -79, ymax = 36), crs = 4326)
+read_geo(nc, by_bbox = bb)
 }
 }
 \seealso{

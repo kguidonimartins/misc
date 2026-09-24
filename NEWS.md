@@ -56,6 +56,18 @@
   GeoJSON output and QGIS selection through `MISC_QGIS_APP` or
   `options(misc.qgis_app)`.
 
+## Improvements
+
+- **`read_geo()`**, **`read_gdb()`**, **`read_kmz()`** and **`read_sf_zip()`**
+  gain a `by_bbox` argument that reads only the features intersecting a
+  bounding box (an `sf`, `sfc`, `bbox` or named numeric), filtered by GDAL
+  at read time via `wkt_filter`. The bounding box is reprojected to each
+  layer's CRS; layers without a geometry column (e.g. a `.dbf`-only
+  shapefile or a GeoPackage attribute table) are read in full with a
+  warning, as are coordinates on layers whose CRS is missing or cannot be
+  reprojected to (e.g. an undefined `LOCAL_CS` `.prj`). Requires
+  `sf >= 1.0-17`.
+
 ## Fixes
 
 - **`clean_geo()`** now normalizes the `output` path to an absolute path
