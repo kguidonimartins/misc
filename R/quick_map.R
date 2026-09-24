@@ -5,10 +5,12 @@
 #' reason, the resulting map is fully editable through `{ggplot2}` layers.
 #'
 #' @param region character string or atomic vector containing countries names ou continents. Default is \code{NULL}.
-#' @param type character string informing map type. Can be \code{"sf"} or \code{"ggplot"}
+#' @param type character string informing map type. Can be \code{"sf"} or
+#'   \code{"ggplot"}. Default is \code{NULL}, which plots the whole world when
+#'   `region` is also \code{NULL} and uses \code{"sf"} otherwise.
 #'
 #' @importFrom dplyr select filter if_any all_of everything mutate case_when pull
-#' @importFrom ggplot2 ggplot geom_sf borders theme_bw labs theme element_blank element_line
+#' @importFrom ggplot2 ggplot geom_sf theme_bw labs theme element_blank element_line
 #'
 #' @return a ggplot object
 #'
@@ -42,6 +44,11 @@ quick_map <- function(region = NULL, type = NULL) {
   check_require("ropensci/rnaturalearthdata")
   check_require("sf")
   check_require("stringr")
+  if (!is.null(type)) {
+    type <- match.arg(type, c("sf", "ggplot"))
+  } else if (!is.null(region)) {
+    type <- "sf"
+  }
   world_data <-
     rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
   columns <- c(
@@ -93,8 +100,15 @@ quick_map <- function(region = NULL, type = NULL) {
           )
         ) %>%
         dplyr::pull(admin)
+      # `borders()` was deprecated in ggplot2 4.0.0 in favor of
+      # `annotation_borders()`, which has the same signature.
+      borders_fun <- if (exists("annotation_borders", envir = asNamespace("ggplot2"))) {
+        getExportedValue("ggplot2", "annotation_borders")
+      } else {
+        getExportedValue("ggplot2", "borders")
+      }
       map_borders <-
-        ggplot2::borders(
+        borders_fun(
           database = "world",
           regions = data_filtered,
           fill = "white",

@@ -9,7 +9,9 @@ quick_map(region = NULL, type = NULL)
 \arguments{
 \item{region}{character string or atomic vector containing countries names ou continents. Default is \code{NULL}.}
 
-\item{type}{character string informing map type. Can be \code{"sf"} or \code{"ggplot"}}
+\item{type}{character string informing map type. Can be \code{"sf"} or
+\code{"ggplot"}. Default is \code{NULL}, which plots the whole world when
+\code{region} is also \code{NULL} and uses \code{"sf"} otherwise.}
 }
 \value{
 a ggplot object

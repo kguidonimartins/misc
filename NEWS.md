@@ -79,6 +79,11 @@
   layer read and pre-filtered with `read_geo()` can be written out directly
   (e.g. `sf %>% clean_geo(output = "x.zip")`) without round-tripping through
   a file.
+- **`quick_map()`** now defaults to `type = "sf"` when only `region` is given,
+  instead of failing with an obscure `object 'plot_map' not found` error, and
+  rejects unknown `type` values with a clear message. It also uses
+  `ggplot2::annotation_borders()` when available (ggplot2 >= 4.0.0), avoiding
+  the `borders()` deprecation warning.
 
 # misc 0.0.6
 
