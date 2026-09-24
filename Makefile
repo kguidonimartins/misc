@@ -1,5 +1,6 @@
 .DEFAULT_GOAL := help
 
+TYPE ?= patch
 R := Rscript -e
 
 PKGNAME := $(shell sed -n "s/Package: *\([^ ]*\)/\1/p" DESCRIPTION)
@@ -40,8 +41,8 @@ cran-build: document ## tarball limpo na pasta pai (para upload manual ao CRAN)
 submit-cran: ## envia ao CRAN (confirme no prompt R + e-mail do maintainer)
 	$(R) "devtools::submit_cran('.')"
 
-cran-release: ## fluxo interativo completo recomendado (checks + confirmações antes do upload)
-	$(R) "if (!requireNamespace('devtools', quietly = TRUE)) stop('Install devtools'); devtools::release()"
+cran-release: ## cria issue de release (use: make cran-release TYPE=minor|major; padrão patch)
+	$(R) "if (!requireNamespace('usethis', quietly = TRUE)) stop('Install usethis'); usethis::use_release_issue(version = '$(TYPE)')"
 
 styler: ## styler package
 	$(R) "styler::style_dir('R')"
