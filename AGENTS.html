@@ -58,7 +58,9 @@
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">make</span> check          <span class="co"># devtools::check() → out-check.txt</span></span>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">make</span> check-cran     <span class="co"># CRAN-like check → out-check-cran.txt</span></span>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">make</span> eg             <span class="co"># devtools::run_examples() → out-eg.txt</span></span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">make</span> extdata        <span class="co"># regenerate inst/extdata samples</span></span></code></pre></div>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">make</span> coverage       <span class="co"># covr::package_coverage() → out-coverage.txt</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="fu">make</span> coverage-report <span class="co"># covr::report() → coverage/coverage.html</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="fu">make</span> extdata        <span class="co"># regenerate inst/extdata samples</span></span></code></pre></div>
 <p>Equivalent one-liners:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"devtools::load_all()"</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"devtools::test()"</span></span>
@@ -100,7 +102,7 @@
 <td>—</td>
 <td>
 <strong>Edit README.Rmd</strong>, not <code>README.md</code> (generated)</td>
-</tr></tbody></table><p><code>R/</code> files without test coverage: <code>deduplicate_by.R</code>, <code>remove_columns_based_on_NA.R</code>, <code>view_in.R</code> (viewers are macOS-only, hard to test).</p>
+</tr></tbody></table><p><code>R/</code> files with little test coverage: <code>view_in.R</code>, <code>view_qgis.R</code>, <code>tad_view.R</code> (they launch desktop apps; <code>view_*</code> are macOS-only).</p>
 </div>
 <div class="section level2">
 <h2 id="testing-testthat">Testing (testthat)<a class="anchor" aria-label="anchor" href="#testing-testthat"></a></h2>
@@ -136,7 +138,7 @@
 </ul></div>
 <div class="section level2">
 <h2 id="ci">CI<a class="anchor" aria-label="anchor" href="#ci"></a></h2>
-<p>GitHub Actions (<code>R-CMD-check.yaml</code>): 5 jobs — macOS (release), Windows (release), Ubuntu (devel, release, oldrel-1). <code>pkgdown.yaml</code> builds and deploys site to <code>gh-pages</code> branch. <code>rhub.yaml</code> for manual R-hub dispatch.</p>
+<p>GitHub Actions (<code>R-CMD-check.yaml</code>): 5 jobs — macOS (release), Windows (release), Ubuntu (devel, release, oldrel-1). <code>pkgdown.yaml</code> builds and deploys site to <code>gh-pages</code> branch. <code>rhub.yaml</code> for manual R-hub dispatch. <code>test-coverage.yaml</code> runs <code>covr</code> on Ubuntu and uploads to Codecov (config in <code>codecov.yml</code>; needs the <code>CODECOV_TOKEN</code> repo secret).</p>
 </div>
 <div class="section level2">
 <h2 id="domain-notes">Domain notes<a class="anchor" aria-label="anchor" href="#domain-notes"></a></h2>
