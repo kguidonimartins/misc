@@ -41,8 +41,12 @@
   )
 }
 
-.read_geo_make_row <- function(fpath, file_type, layer_name, dsn, gdal_layer_name, data) {
+.read_geo_make_row <- function(fpath, file_type, layer_name, dsn, gdal_layer_name, data,
+                               by_bbox = NULL) {
   m <- .read_geo_row_meta(dsn, gdal_layer_name, data)
+  if (!is.null(by_bbox)) {
+    m$nrows_aka_features <- as.integer(nrow(data))
+  }
   list(
     fpath = fpath,
     file_type = file_type,
@@ -71,7 +75,62 @@
   )
 }
 
-.read_geo_read_sf_dsn <- function(path, layer = NULL, quiet = TRUE, ...) {
+.read_geo_as_bbox <- function(by_bbox, ...) {
+  if (is.null(by_bbox)) {
+    return(NULL)
+  }
+  if ("wkt_filter" %in% ...names()) {
+    stop("Use either `by_bbox` or `wkt_filter`, not both.", call. = FALSE)
+  }
+  bb <- tryCatch(sf::st_bbox(by_bbox), error = function(e) NULL)
+  bad <- is.null(bb) || anyNA(bb[1:4]) ||
+    bb[["xmin"]] > bb[["xmax"]] || bb[["ymin"]] > bb[["ymax"]]
+  if (bad) {
+    stop(
+      "`by_bbox` must be an `sf`, `sfc`, `bbox` or named numeric ",
+      "(xmin, ymin, xmax, ymax) with a non-empty extent.",
+      call. = FALSE
+    )
+  }
+  bb
+}
+
+.read_geo_bbox_wkt <- function(bb, layer_crs, layer) {
+  bb_crs <- sf::st_crs(bb)
+  layer_crs <- sf::st_crs(layer_crs)
+  if (!is.na(bb_crs) && (is.na(layer_crs) || bb_crs != layer_crs)) {
+    # missing or engineering CRS (e.g. LOCAL_CS .prj) cannot be targeted
+    bb_layer <- tryCatch(sf::st_transform(bb, layer_crs), error = function(e) NULL)
+    if (is.null(bb_layer)) {
+      warning(
+        "Layer `", layer, "` has no CRS that `by_bbox` can be reprojected to; ",
+        "its coordinates are used as-is.",
+        call. = FALSE
+      )
+    } else {
+      bb <- bb_layer
+    }
+  }
+  sf::st_as_text(sf::st_as_sfc(bb))
+}
+
+.read_geo_read_layer <- function(dsn, layer, layers_meta, quiet, by_bbox, ...) {
+  if (is.null(by_bbox)) {
+    return(sf::read_sf(dsn, layer = layer, quiet = quiet, ...))
+  }
+  i <- match(layer, layers_meta$name)
+  if (is.na(layers_meta$geomtype[[i]][1])) {
+    warning(
+      "Layer `", layer, "` has no geometry column; `by_bbox` ignored and all rows read.",
+      call. = FALSE
+    )
+    return(sf::read_sf(dsn, layer = layer, quiet = quiet, ...))
+  }
+  wkt <- .read_geo_bbox_wkt(by_bbox, layers_meta$crs[[i]], layer)
+  sf::read_sf(dsn, layer = layer, quiet = quiet, wkt_filter = wkt, ...)
+}
+
+.read_geo_read_sf_dsn <- function(path, layer = NULL, quiet = TRUE, by_bbox = NULL, ...) {
   meta <- sf::st_layers(path)
   nms <- meta$name
 
@@ -89,20 +148,21 @@
   rows <- vector("list", length(nms))
   for (j in seq_along(nms)) {
     l <- nms[[j]]
-    obj <- sf::read_sf(path, layer = l, quiet = quiet, ...)
+    obj <- .read_geo_read_layer(path, l, meta, quiet, by_bbox, ...)
     rows[[j]] <- .read_geo_make_row(
       fpath = path,
       file_type = ft,
       layer_name = l,
       dsn = path,
       gdal_layer_name = l,
-      data = obj
+      data = obj,
+      by_bbox = by_bbox
     )
   }
   .read_geo_build_result(rows)
 }
 
-.read_geo_read_kml_path <- function(path, layer = NULL, quiet = TRUE, ...) {
+.read_geo_read_kml_path <- function(path, layer = NULL, quiet = TRUE, by_bbox = NULL, ...) {
   path <- .read_geo_check_path(path)
   kp <- path
   meta_full <- sf::st_layers(kp)
@@ -122,7 +182,7 @@
   rows <- vector("list", length(nms))
   for (j in seq_along(nms)) {
     ln <- nms[[j]]
-    obj <- sf::read_sf(kp, layer = ln, quiet = quiet, ...)
+    obj <- .read_geo_read_layer(kp, ln, meta_full, quiet, by_bbox, ...)
     key <- if (n_layers_src == 1L) {
       ln
     } else {
@@ -134,7 +194,8 @@
       layer_name = key,
       dsn = kp,
       gdal_layer_name = ln,
-      data = obj
+      data = obj,
+      by_bbox = by_bbox
     )
   }
   .read_geo_build_result(rows)
@@ -148,6 +209,20 @@
 #'   is read. If a character string, only that layer is read; it must exist in
 #'   the geodatabase.
 #' @param quiet Passed to [sf::read_sf()].
+#' @param by_bbox If `NULL` (default), every feature is read. Otherwise an
+#'   `sf`, `sfc`, `bbox` or named numeric vector (`xmin`, `ymin`, `xmax`,
+#'   `ymax`) whose bounding box limits the features read: only features that
+#'   intersect it are returned, filtered by GDAL at read time through the
+#'   `wkt_filter` argument of [sf::st_read()]. The bounding box is
+#'   reprojected to each layer's CRS; if it has no CRS, its coordinates are
+#'   assumed to be in the layer's CRS. If the layer has no CRS it can be
+#'   reprojected to (no `.prj`, or an undefined `LOCAL_CS`), the coordinates
+#'   are used as-is with a warning. Features with empty geometry are
+#'   dropped. Layers without a geometry column (e.g. a shapefile made of a
+#'   `.dbf` only, or an attribute table in a GeoPackage) cannot be filtered:
+#'   they are read in full with a warning. When set, `nrows_aka_features`
+#'   reports the number of features read, not the layer total. Cannot be
+#'   combined with `wkt_filter` in `...`.
 #' @param ... Additional arguments passed to [sf::read_sf()].
 #'
 #' @return A tibble with columns `fpath` (path or GDAL dsn used for the layer),
@@ -159,7 +234,8 @@
 #' @importFrom dplyr tibble
 #' @importFrom fs dir_exists file_exists path_expand
 #' @importFrom purrr map
-#' @importFrom sf read_sf st_crs st_geometry_type st_layers
+#' @importFrom sf read_sf st_as_sfc st_as_text st_bbox st_crs st_geometry_type
+#' @importFrom sf st_layers st_transform
 #' @importFrom tools file_ext
 #'
 #' @family geo-io
@@ -174,9 +250,10 @@
 #'   read_gdb(gdb, layer = "OGRGeoJSON")
 #' }
 #' }
-read_gdb <- function(path, layer = NULL, quiet = TRUE, ...) {
+read_gdb <- function(path, layer = NULL, quiet = TRUE, by_bbox = NULL, ...) {
   path <- .read_geo_check_path(path)
-  .read_geo_read_sf_dsn(path, layer, quiet, ...)
+  by_bbox <- .read_geo_as_bbox(by_bbox, ...)
+  .read_geo_read_sf_dsn(path, layer, quiet, by_bbox, ...)
 }
 
 #' Read shapefile(s) inside a ZIP archive via GDAL `/vsizip/`
@@ -188,6 +265,7 @@ read_gdb <- function(path, layer = NULL, quiet = TRUE, ...) {
 #' @param path Path to a `.zip` file.
 #' @param quiet Passed to [sf::read_sf()].
 #' @param ... Additional arguments passed to [sf::read_sf()].
+#' @inheritParams read_gdb
 #'
 #' @return A tibble with `fpath` (the `/vsizip/...` dsn), `file_type`, metadata
 #'   from [sf::st_layers()], and `data` (list-column of `sf`). See [read_gdb()].
@@ -207,8 +285,9 @@ read_gdb <- function(path, layer = NULL, quiet = TRUE, ...) {
 #' z <- system.file("extdata", "misc_example.zip", package = "misc")
 #' if (nzchar(z) && file.exists(z)) read_sf_zip(z)
 #' }
-read_sf_zip <- function(path, quiet = TRUE, ...) {
+read_sf_zip <- function(path, quiet = TRUE, by_bbox = NULL, ...) {
   path <- .read_geo_check_path(path)
+  by_bbox <- .read_geo_as_bbox(by_bbox, ...)
   zl <- zip::zip_list(path)
   fn <- zl$filename
   shps <- fn[grepl("\\.shp$", fn, ignore.case = TRUE)]
@@ -229,14 +308,15 @@ read_sf_zip <- function(path, quiet = TRUE, ...) {
     vsip <- paste0("/vsizip/", zip_abs, "/", entry)
     ly <- sf::st_layers(vsip)
     gdal_name <- ly$name[[1]]
-    obj <- sf::read_sf(vsip, layer = gdal_name, quiet = quiet, ...)
+    obj <- .read_geo_read_layer(vsip, gdal_name, ly, quiet, by_bbox, ...)
     .read_geo_make_row(
       fpath = vsip,
       file_type = tolower(tools::file_ext(entry)),
       layer_name = lyr_display,
       dsn = vsip,
       gdal_layer_name = gdal_name,
-      data = obj
+      data = obj,
+      by_bbox = by_bbox
     )
   }))
 
@@ -253,6 +333,7 @@ read_sf_zip <- function(path, quiet = TRUE, ...) {
 #' @param path Path to a `.kmz` file.
 #' @param quiet Passed to [sf::read_sf()].
 #' @param ... Additional arguments passed to [sf::read_sf()].
+#' @inheritParams read_gdb
 #'
 #' @return A tibble with the same columns as [read_gdb()]. Here `fpath` is the
 #'   path to the original `.kmz` (not the temporary `.kml`), and `file_type` is
@@ -273,8 +354,9 @@ read_sf_zip <- function(path, quiet = TRUE, ...) {
 #' kmz <- system.file("extdata", "misc_example.kmz", package = "misc")
 #' if (nzchar(kmz) && file.exists(kmz)) read_kmz(kmz)
 #' }
-read_kmz <- function(path, quiet = TRUE, ...) {
+read_kmz <- function(path, quiet = TRUE, by_bbox = NULL, ...) {
   path <- .read_geo_check_path(path)
+  by_bbox <- .read_geo_as_bbox(by_bbox, ...)
   exdir <- tempfile("kmz_")
   fs::dir_create(exdir)
   on.exit(unlink(exdir, recursive = TRUE), add = TRUE)
@@ -294,7 +376,7 @@ read_kmz <- function(path, quiet = TRUE, ...) {
   for (kp in kml_paths) {
     layers <- sf::st_layers(kp)
     for (ln in layers$name) {
-      obj <- sf::read_sf(kp, layer = ln, quiet = quiet, ...)
+      obj <- .read_geo_read_layer(kp, ln, layers, quiet, by_bbox, ...)
       key <- if (length(kml_paths) == 1L && length(layers$name) == 1L && multiple_total == 1L) {
         ln
       } else {
@@ -307,7 +389,8 @@ read_kmz <- function(path, quiet = TRUE, ...) {
         layer_name = key,
         dsn = kp,
         gdal_layer_name = ln,
-        data = obj
+        data = obj,
+        by_bbox = by_bbox
       )
     }
   }
@@ -352,15 +435,21 @@ read_kmz <- function(path, quiet = TRUE, ...) {
 #' if (file.exists(f("misc_example.geojson"))) read_geo(f("misc_example.geojson"))
 #' if (file.exists(f("misc_example.shp"))) read_geo(f("misc_example.shp"))
 #' if (dir.exists(f("misc_example.gdb"))) read_geo(f("misc_example.gdb"), layer = "OGRGeoJSON")
+#'
+#' # read only the features that intersect a bounding box
+#' nc <- system.file("shape/nc.shp", package = "sf")
+#' bb <- sf::st_bbox(c(xmin = -80, ymin = 35, xmax = -79, ymax = 36), crs = 4326)
+#' read_geo(nc, by_bbox = bb)
 #' }
-read_geo <- function(path, layer = NULL, quiet = TRUE, ...) {
+read_geo <- function(path, layer = NULL, quiet = TRUE, by_bbox = NULL, ...) {
   path <- .read_geo_check_path(path)
+  by_bbox <- .read_geo_as_bbox(by_bbox, ...)
   ext <- tolower(tools::file_ext(path))
   switch(ext,
-    zip = read_sf_zip(path, quiet = quiet, ...),
-    kmz = read_kmz(path, quiet = quiet, ...),
-    kml = .read_geo_read_kml_path(path, layer = layer, quiet = quiet, ...),
-    gdb = read_gdb(path, layer = layer, quiet = quiet, ...),
-    .read_geo_read_sf_dsn(path, layer, quiet = quiet, ...)
+    zip = read_sf_zip(path, quiet = quiet, by_bbox = by_bbox, ...),
+    kmz = read_kmz(path, quiet = quiet, by_bbox = by_bbox, ...),
+    kml = .read_geo_read_kml_path(path, layer = layer, quiet = quiet, by_bbox = by_bbox, ...),
+    gdb = read_gdb(path, layer = layer, quiet = quiet, by_bbox = by_bbox, ...),
+    .read_geo_read_sf_dsn(path, layer, quiet = quiet, by_bbox = by_bbox, ...)
   )
 }

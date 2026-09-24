@@ -87,6 +87,182 @@ test_that("read_geo reads bundled inst extdata samples", {
   expect_equal(gdb_out$file_type, "gdb")
 })
 
+# read_geo by_bbox --------------------------------------------------------
+read_geo_bbox_pts <- function(crs = 4326) {
+  pts <- sf::st_sf(
+    id = 1:3,
+    geometry = sf::st_sfc(
+      sf::st_point(c(0, 0)), sf::st_point(c(1, 1)), sf::st_point(c(10, 10)),
+      crs = 4326
+    )
+  )
+  if (is.na(crs)) sf::st_set_crs(pts, NA) else sf::st_transform(pts, crs)
+}
+
+read_geo_bbox <- function(crs = 4326) {
+  sf::st_bbox(c(xmin = -0.5, ymin = -0.5, xmax = 1.5, ymax = 1.5), crs = crs)
+}
+
+test_that("read_geo by_bbox keeps only features intersecting the bbox", {
+  d <- withr::local_tempdir()
+  shp <- file.path(d, "pts.shp")
+  sf::write_sf(read_geo_bbox_pts(), shp)
+
+  expect_equal(read_geo(shp)$nrows_aka_features, 3L)
+
+  out <- read_geo(shp, by_bbox = read_geo_bbox())
+  expect_named(out, read_geo_expected_names())
+  expect_equal(out$data[[1]]$id, 1:2)
+  expect_equal(out$nrows_aka_features, 2L)
+})
+
+test_that("read_geo by_bbox filters every supported format", {
+  skip_if_not_installed("zip")
+  d <- withr::local_tempdir()
+  pts <- read_geo_bbox_pts()
+  sf::write_sf(pts, file.path(d, "pts.shp"))
+  sf::write_sf(pts, file.path(d, "pts.gpkg"))
+  sf::write_sf(pts, file.path(d, "pts.geojson"))
+  withr::with_dir(d, zip::zip("pts.zip", paste0("pts.", c("shp", "shx", "dbf", "prj"))))
+  paths <- file.path(d, c("pts.shp", "pts.gpkg", "pts.geojson", "pts.zip"))
+
+  if ("KML" %in% sf::st_drivers()$name) {
+    sf::write_sf(pts, file.path(d, "doc.kml"), driver = "KML")
+    withr::with_dir(d, zip::zip("pts.kmz", "doc.kml"))
+    paths <- c(paths, file.path(d, c("doc.kml", "pts.kmz")))
+  }
+
+  wrote_gdb <- tryCatch(
+    {
+      sf::write_sf(pts, file.path(d, "pts.gdb"), driver = "OpenFileGDB")
+      TRUE
+    },
+    error = function(e) FALSE
+  )
+  if (wrote_gdb) paths <- c(paths, file.path(d, "pts.gdb"))
+
+  for (p in paths) {
+    out <- read_geo(p, by_bbox = read_geo_bbox())
+    expect_equal(nrow(out$data[[1]]), 2L, info = basename(p))
+    expect_equal(out$nrows_aka_features, 2L, info = basename(p))
+  }
+})
+
+test_that("read_gdb, read_sf_zip and read_kmz accept by_bbox directly", {
+  skip_if_not_installed("zip")
+  d <- withr::local_tempdir()
+  pts <- read_geo_bbox_pts()
+  sf::write_sf(pts, file.path(d, "pts.shp"))
+  withr::with_dir(d, zip::zip("pts.zip", paste0("pts.", c("shp", "shx", "dbf", "prj"))))
+  expect_equal(nrow(read_sf_zip(file.path(d, "pts.zip"), by_bbox = read_geo_bbox())$data[[1]]), 2L)
+
+  skip_if_not("KML" %in% sf::st_drivers()$name, "GDAL KML driver not available")
+  sf::write_sf(pts, file.path(d, "doc.kml"), driver = "KML")
+  withr::with_dir(d, zip::zip("pts.kmz", "doc.kml"))
+  expect_equal(nrow(read_kmz(file.path(d, "pts.kmz"), by_bbox = read_geo_bbox())$data[[1]]), 2L)
+
+  gdb <- file.path(d, "pts.gdb")
+  wrote <- tryCatch(
+    {
+      sf::write_sf(pts, gdb, driver = "OpenFileGDB")
+      TRUE
+    },
+    error = function(e) FALSE
+  )
+  skip_if_not(wrote, "OpenFileGDB driver cannot write this gdb in this environment")
+  expect_equal(nrow(read_gdb(gdb, by_bbox = read_geo_bbox())$data[[1]]), 2L)
+})
+
+test_that("read_geo by_bbox reprojects the bbox to the layer CRS", {
+  d <- withr::local_tempdir()
+  shp <- file.path(d, "pts_3857.shp")
+  sf::write_sf(read_geo_bbox_pts(crs = 3857), shp)
+
+  out <- read_geo(shp, by_bbox = read_geo_bbox(crs = 4326))
+  expect_equal(out$data[[1]]$id, 1:2)
+})
+
+test_that("read_geo by_bbox accepts sf, sfc and named numeric", {
+  d <- withr::local_tempdir()
+  shp <- file.path(d, "pts.shp")
+  sf::write_sf(read_geo_bbox_pts(), shp)
+  bb_sfc <- sf::st_as_sfc(read_geo_bbox())
+
+  expect_equal(read_geo(shp, by_bbox = bb_sfc)$data[[1]]$id, 1:2)
+  expect_equal(read_geo(shp, by_bbox = sf::st_sf(geometry = bb_sfc))$data[[1]]$id, 1:2)
+  expect_equal(
+    read_geo(shp, by_bbox = c(xmin = -0.5, ymin = -0.5, xmax = 1.5, ymax = 1.5))$data[[1]]$id,
+    1:2
+  )
+})
+
+test_that("read_geo by_bbox reads layers without geometry in full with a warning", {
+  d <- withr::local_tempdir()
+  pts <- read_geo_bbox_pts()
+
+  # shapefile written without geometry is a lone .dbf
+  sf::write_sf(sf::st_drop_geometry(pts), file.path(d, "tab.shp"))
+  dbf <- file.path(d, "tab.dbf")
+  expect_true(file.exists(dbf))
+  expect_warning(
+    out <- read_geo(dbf, by_bbox = read_geo_bbox()),
+    "`tab` has no geometry column"
+  )
+  expect_equal(nrow(out$data[[1]]), 3L)
+
+  gpkg <- file.path(d, "mixed.gpkg")
+  sf::write_sf(pts, gpkg, layer = "pts")
+  sf::write_sf(sf::st_drop_geometry(pts), gpkg, layer = "tab")
+  expect_warning(
+    out <- read_geo(gpkg, by_bbox = read_geo_bbox()),
+    "`tab` has no geometry column"
+  )
+  n <- stats::setNames(purrr::map_int(out$data, nrow), out$layer_name)
+  expect_equal(n[["pts"]], 2L)
+  expect_equal(n[["tab"]], 3L)
+})
+
+test_that("read_geo by_bbox uses coordinates as-is when the layer CRS is unusable", {
+  d <- withr::local_tempdir()
+  # sf writes an undefined LOCAL_CS .prj for a missing CRS
+  shp <- file.path(d, "localcs.shp")
+  sf::write_sf(read_geo_bbox_pts(crs = NA), shp)
+  expect_match(readLines(file.path(d, "localcs.prj"), warn = FALSE), "^LOCAL_CS")
+  expect_warning(
+    out <- read_geo(shp, by_bbox = read_geo_bbox()),
+    "`localcs` has no CRS that `by_bbox` can be reprojected to"
+  )
+  expect_equal(out$data[[1]]$id, 1:2)
+
+  shp <- file.path(d, "noprj.shp")
+  sf::write_sf(read_geo_bbox_pts(), shp)
+  file.remove(file.path(d, "noprj.prj"))
+  expect_warning(
+    out <- read_geo(shp, by_bbox = read_geo_bbox()),
+    "`noprj` has no CRS that `by_bbox` can be reprojected to"
+  )
+  expect_equal(out$data[[1]]$id, 1:2)
+
+  expect_no_warning(
+    out <- read_geo(shp, by_bbox = c(xmin = -0.5, ymin = -0.5, xmax = 1.5, ymax = 1.5))
+  )
+  expect_equal(out$data[[1]]$id, 1:2)
+})
+
+test_that("read_geo by_bbox validates its input", {
+  d <- withr::local_tempdir()
+  shp <- file.path(d, "pts.shp")
+  sf::write_sf(read_geo_bbox_pts(), shp)
+
+  expect_error(read_geo(shp, by_bbox = "a"), "`by_bbox` must be")
+  expect_error(read_geo(shp, by_bbox = c(1, 2, 3, 4)), "`by_bbox` must be")
+  expect_error(read_geo(shp, by_bbox = read_geo_bbox_pts()[0, ]), "`by_bbox` must be")
+  expect_error(
+    read_geo(shp, by_bbox = read_geo_bbox(), wkt_filter = "POINT (0 0)"),
+    "not both"
+  )
+})
+
 # read_sf_zip -------------------------------------------------------------
 test_that("read_sf_zip errors when path is missing", {
   expect_error(
