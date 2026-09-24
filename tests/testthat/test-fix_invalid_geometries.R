@@ -99,3 +99,21 @@ test_that("fix_invalid_geometries não dá erro com sf de zero linhas", {
   )
   expect_equal(out, x)
 })
+
+test_that("fix_invalid_geometries avisa quando uma geometria fica vazia", {
+  x <- sf::st_sf(
+    id = "bowtie",
+    shape = sf::st_sfc(fig_bowtie(), crs = fig_crs())
+  )
+  local_mocked_bindings(
+    st_make_valid = function(x, ...) {
+      sf::st_geometry(x) <- sf::st_sfc(sf::st_polygon(), crs = sf::st_crs(x))
+      x
+    },
+    .package = "sf"
+  )
+  expect_warning(
+    suppressMessages(fix_invalid_geometries(x)),
+    "row\\(s\\) 1 became empty"
+  )
+})

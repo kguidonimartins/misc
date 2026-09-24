@@ -19,3 +19,5 @@ ma-box
 output
 /.agent-shell/
 /PLAN.md
+/out-coverage.txt
+/coverage/

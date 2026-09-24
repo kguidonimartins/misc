@@ -14,6 +14,8 @@ make tests          # devtools::test() → out-testthat.txt
 make check          # devtools::check() → out-check.txt
 make check-cran     # CRAN-like check → out-check-cran.txt
 make eg             # devtools::run_examples() → out-eg.txt
+make coverage       # covr::package_coverage() → out-coverage.txt
+make coverage-report # covr::report() → coverage/coverage.html
 make extdata        # regenerate inst/extdata samples
 ```
 
@@ -49,7 +51,7 @@ During interactive work, use `devtools::load_all()` (not `library(misc)`) so une
 | `data-raw/` | — | Scripts to build extdata; not run in checks |
 | `README.Rmd` | — | **Edit README.Rmd**, not `README.md` (generated) |
 
-`R/` files without test coverage: `deduplicate_by.R`, `remove_columns_based_on_NA.R`, `view_in.R` (viewers are macOS-only, hard to test).
+`R/` files with little test coverage: `view_in.R`, `view_qgis.R`, `tad_view.R` (they launch desktop apps; `view_*` are macOS-only).
 
 ## Testing (testthat)
 
@@ -92,7 +94,7 @@ Avoid deprecated testthat 2 patterns: `context()`, `with_mock()`, `expect_equiva
 
 ## CI
 
-GitHub Actions (`R-CMD-check.yaml`): 5 jobs — macOS (release), Windows (release), Ubuntu (devel, release, oldrel-1). `pkgdown.yaml` builds and deploys site to `gh-pages` branch. `rhub.yaml` for manual R-hub dispatch.
+GitHub Actions (`R-CMD-check.yaml`): 5 jobs — macOS (release), Windows (release), Ubuntu (devel, release, oldrel-1). `pkgdown.yaml` builds and deploys site to `gh-pages` branch. `rhub.yaml` for manual R-hub dispatch. `test-coverage.yaml` runs `covr` on Ubuntu and uploads to Codecov (config in `codecov.yml`; needs the `CODECOV_TOKEN` repo secret).
 
 ## Domain notes
 

@@ -19,6 +19,7 @@ knitr::opts_chunk$set(
 [![CRAN
 status](https://www.r-pkg.org/badges/version/misc)](https://CRAN.R-project.org/package=misc)
 [![R build status](https://github.com/kguidonimartins/misc/workflows/R-CMD-check/badge.svg)](https://github.com/kguidonimartins/misc/actions)
+[![Codecov test coverage](https://codecov.io/gh/kguidonimartins/misc/graph/badge.svg)](https://app.codecov.io/gh/kguidonimartins/misc)
 <!-- badges: end -->
 
 `{misc}` stands for *miscellaneous*. This is a personal package. Use it at your own risk.

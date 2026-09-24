@@ -461,3 +461,27 @@ test_that("read_gdb errors on unknown layer", {
 
   expect_error(read_gdb(gdb, layer = "nonexistent_layer_xyz"), "not found")
 })
+
+test_that("read_geo validates layer for multi-layer sources and KML", {
+  d <- withr::local_tempdir()
+  pts <- read_geo_test_sf()
+  gpkg <- file.path(d, "two.gpkg")
+  sf::write_sf(pts, gpkg, layer = "a")
+  sf::write_sf(pts, gpkg, layer = "b")
+
+  expect_equal(read_geo(gpkg, layer = "b")$layer_name, "b")
+  expect_error(read_geo(gpkg, layer = c("a", "b")), "single non-empty")
+  expect_error(read_geo(gpkg, layer = ""), "single non-empty")
+  expect_error(read_geo(gpkg, layer = "zzz"), "Layer not found in data source")
+
+  kml <- file.path(d, "doc.kml")
+  skip_if_not(
+    isTRUE(tryCatch({
+      sf::write_sf(pts, kml, driver = "KML")
+      TRUE
+    }, error = function(e) FALSE)),
+    "GDAL KML driver cannot write"
+  )
+  expect_error(read_geo(kml, layer = c("a", "b")), "single non-empty")
+  expect_error(read_geo(kml, layer = "zzz"), "Layer not found in KML")
+})
